@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Fallback Metrics and CLS - Fontlore</title>
+<meta name="description" content="Why font swaps shift layout, the metric override descriptors (size-adjust, ascent-override, descent-override, line-gap-override), how to compute and generate...">
+<meta property="og:title" content="Fallback Metrics and CLS - Fontlore">
+<meta property="og:description" content="Why font swaps shift layout, the metric override descriptors (size-adjust, ascent-override, descent-override, line-gap-override), how to compute and generate...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Fallback Metrics and CLS</h1>
+<p>What this reference covers: Why font swaps shift layout, the metric override descriptors (size-adjust, ascent-override, descent-override, line-gap-override), how to compute and generate metric-compatible fallbacks, and how this fits into keeping Cumulative Layout Shift low. This is the craft that makes font-display: swap safe.</p>
+<h2>The problem in one paragraph</h2>
+<p>With font-display: swap, text paints in the fallback font and reflows when the webfont arrives. If the fallback&#x27;s metrics differ, every line rewraps: buttons resize, headings move, text jumps under the reader&#x27;s eye. That movement is Cumulative Layout Shift, and font swaps are a classic CLS source. The fix is not to abandon swap; it is to make the fallback occupy nearly the same box as the webfont.</p>
+<h2>The four descriptors</h2>
+<p>Applied inside the fallback font&#x27;s @font-face rule, these descriptors reshape the fallback to approximate the primary font:</p>
+<ul><li>size-adjust: scales the fallback&#x27;s glyph size by a percentage. The main lever: raise a small-x fallback so its text occupies the same space as the primary.</li><li>ascent-override and descent-override: replace the fallback&#x27;s ascent and descent with percentages of its em box, controlling where text sits in the line box.</li><li>line-gap-override: usually set to 0% to stop the fallback adding its own leading.</li></ul>
+<p>They affect only that @font-face, so you create a dedicated fallback face, for example a family named &quot;Inter-fallback&quot; wrapping Arial with adjusted metrics, placed first in the stack after Inter.</p>
+<h2>Computing the values</h2>
+<p>The arithmetic: for each metric, the override percentage is the primary font&#x27;s metric divided by the fallback&#x27;s metric. Concretely, if the primary has ascent 0.969 em and the fallback 0.905 em, ascent-override is about 107%. Size-adjust compares the primary&#x27;s glyph proportions (cap height and x-height matter most) to the fallback&#x27;s.</p>
+<p>Doing this by hand for every pair is error-prone, so automate:</p>
+<ul><li>Fontaine: an npm tool that inspects your fonts and generates metric-adjusted fallback @font-face declarations automatically.</li><li>next/font: Next.js&#x27;s font component generates metric-compatible fallbacks and self-hosts fonts as part of its output; if you are on Next.js, this is largely solved for you.</li><li>Wakamai Fondue reports a font&#x27;s ascent, descent, and suggested size-adjust values for common fallbacks, which is enough to hand-roll one declaration when tooling is overkill.</li><li>capsize addresses the same problem from the other side: trimming the extra space above cap height and below baseline so chosen line-heights are exact; it pairs well with metric-adjusted fallbacks.</li></ul>
+<h2>Choosing the fallback font</h2>
+<ul><li>Pick a system font with broadly similar proportions to the primary: Arial or Helvetica for neo-grotesques, Georgia for transitional serifs, Segoe UI on Windows-targeted stacks.</li><li>system-ui is unpredictable: it resolves differently per OS, so a fallback tuned for it is only correct on some machines. A named, metric-stable font makes the tuning meaningful.</li><li>Tune one fallback per primary face, not one per page. The overrides live in the fallback&#x27;s @font-face and are reused everywhere.</li><li>For multilingual content, remember the fallback only matches Latin metrics; complex scripts fall to their own system fonts, and their swap behavior is governed by line-height headroom rather than these descriptors.</li></ul>
+<h2>Verifying the result</h2>
+<ul><li>DevTools: render the page, then block the font request (Network request blocking) and compare screenshots; the pre-swap and post-swap layouts should differ by a few pixels at most.</li><li>Record CLS in the field (web vitals) before and after adding adjusted fallbacks; font-swap CLS should drop to near zero.</li><li>Check heading sizes especially: large text magnifies metric differences, so the headline is where residual shift shows.</li><li>Re-verify when either font changes: a primary font upgrade invalidates the computed overrides.</li></ul>
+<h2>Interaction with everything else</h2>
+<ul><li>Metric-adjusted fallbacks make font-display: swap safe on content pages; without them, swap on slow connections reflows visibly.</li><li>They do not fix glyph-level differences: the fallback&#x27;s letterforms differ, and readers see a style change on swap; that is acceptable, layout stability is the goal.</li><li>They are a webfont-era technique: if you serve system fonts only, there is nothing to adjust.</li><li>Subsetting interacts: adjusted fallbacks are declared against your fallback face regardless of subsets, but keep unicode-range on the primary consistent so the fallback is used only during the gap.</li><li>Browser support for the descriptors is good in current engines; degrade harmlessly elsewhere, since a non-supporting browser just behaves as before.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Tuning size-adjust while ignoring ascent-override, so text lines sit visibly higher in the fallback and every line box moves on swap.</li><li>Applying override descriptors to the primary font&#x27;s @font-face; they belong to the fallback.</li><li>Using system-ui as the tuned fallback, making the tuning correct only on some platforms.</li><li>One global fallback for a multi-family system: each primary face deserves its own adjusted fallback.</li><li>Assuming CLS tooling will attribute the shift clearly; font swaps often get lumped into &quot;unknown&quot; sources, so verify with request blocking rather than trusting labels.</li><li>Setting line-gap-override nonzero and re-introducing the leading differences you were removing.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any webfont with font-display: swap on a content page: metric-adjusted fallback is mandatory, not optional polish.</li><li>App shells where fonts arrive with the first bundle: still add them; cold caches exist.</li><li>Multi-family brand systems: one adjusted fallback per family, generated by tooling and committed with the fonts.</li><li>When a font upgrade ships: regenerate overrides as part of the upgrade checklist.</li><li>If shifts persist after tuning: the fallback font is too different in width; pick a closer-natured fallback before chasing decimals.</li></ul>
+<h2>Worked example</h2>
+<p>A blog body face is Inter with Arial as the system fallback. Build the adjusted fallback face step by step.</p>
+<ol><li>Measure both files (Wakamai Fondue, or ttx on the OS/2 and hhea tables): ascent, descent, cap height, x-height, per em.</li><li>Compute ratios in em units. The figures from &quot;Computing the values&quot; above: ascent 0.969 divided by 0.905 gives a ratio of about 1.07, so ascent-override: 107%. Run the same division for descent. Size-adjust compares glyph proportions: if the fallback draws small relative to the primary, raise it by the ratio of x-heights.</li><li>Declare a dedicated face that never downloads; it only carries overrides:</li></ol>
+<pre><code>@font-face {
+  font-family: &quot;Inter-fallback&quot;;
+  src: local(&quot;Arial&quot;);
+  /* size-adjust: measured x-height ratio, usually near 100% */
+  ascent-override: 107%;
+  /* descent-override: primary descent divided by fallback descent */
+  line-gap-override: 0%;
+}</code></pre>
+<ol start="4"><li>Place the face directly after the primary in every stack:</li></ol>
+<pre><code>body { font-family: &quot;Inter&quot;, &quot;Inter-fallback&quot;, Arial, sans-serif; }</code></pre>
+<p>The browser uses Inter-fallback only while Inter loads; once the real face is available it wins the match.</p>
+<ol start="5"><li>Verify: block the woff2 request in DevTools (Network request blocking), reload, screenshot; unblock, screenshot; overlay them. Line endings, button widths, and heading positions should not move. Then compare field CLS before and after.</li></ol>
+<p>Note on local(): the webfont-formats reference warns against local() sources for primary faces, because an installed copy bypasses your version control. A metric-adjusted fallback is the accepted exception: the face exists only to host overrides for a font the user already has, and nothing is served from your origin.</p>
+<h2>Code notes</h2>
+<p>A minimal CLS logger that attributes shifts without recent user input:</p>
+<pre><code>new PerformanceObserver((list) =&gt; {
+  for (const entry of list.getEntries()) {
+    if (!entry.hadRecentInput) {
+      console.log(&quot;layout-shift&quot;, entry.value, entry.startTime);
+    }
+  }
+}).observe({ type: &quot;layout-shift&quot;, buffered: true });</code></pre>
+<p>Generation: Fontaine (npm) emits adjusted fallback declarations for each font declared in a bundler build; next/font does the same inside Next.js. Hand-rolling is fine for one or two families; automate once the count grows.</p>
+<p>Verification procedure (DevTools, not CI): block requests matching woff2, capture document height and a full-page screenshot, unblock, capture again, diff. Movement above a pixel or two at body sizes means a ratio is off; large headings magnify the error, so check them first.</p>
+<p>To attribute a field shift to the swap specifically, pair the layout-shift log with font load timing: shifts that cluster at the moment a font finishes loading and are absent while it is blocked are font-swap shifts.</p>
+<h2>Quick reference</h2>
+<table><thead><tr><th>Descriptor</th><th>Unit</th><th>Reshapes</th><th>Typical role</th></tr></thead><tbody><tr><td>size-adjust</td><td>percentage</td><td>glyph scale of the fallback</td><td>match width and apparent size</td></tr><tr><td>ascent-override</td><td>percentage of em</td><td>top of the line box</td><td>match vertical position</td></tr><tr><td>descent-override</td><td>percentage of em</td><td>bottom of the line box</td><td>match vertical position</td></tr><tr><td>line-gap-override</td><td>percentage of em</td><td>extra leading</td><td>usually 0%</td></tr></tbody></table>
+<ul><li>All four are @font-face descriptors: they apply to one face, inherit to nothing, and belong on the fallback, never the primary.</li><li>They fix metrics, not letterforms: readers still see the fallback&#x27;s shapes until the webfont arrives.</li><li>One adjusted fallback per primary face, not per page: the overrides are reused wherever the stack appears.</li><li>A computed size-adjust far from 100% usually means the wrong fallback pair; switch the fallback font before tuning decimals.</li></ul>
+<h2>Common failure modes</h2>
+<ul><li>Layout looks stable and CLS is low, but headings still &quot;jump&quot;: antialiasing and rendering differences between the two faces, not layout shift. Metric overrides cannot remove a rendering artifact, and no Core Web Vitals metric measures it.</li><li>Overrides written on the primary&#x27;s @font-face: the primary&#x27;s real metrics get clobbered and the fallback stays untouched. They belong only on the fallback face.</li><li>A fallback tuned once, then the primary font upgraded a year later: every ratio is stale. Tie override regeneration to font upgrades, not to CSS reviews.</li><li>Glyphs visibly larger or smaller during load even though lines do not move: size-adjust compensated scale but fixed line-height in CSS pins the boxes. Match x-height ratios rather than em size.</li><li>Page still shifts with font-display: optional: the shift source is not the font; audit images, ads, and late CSS before blaming typography.</li><li>Overrides silently ignored: the fallback declaration was duplicated later in the cascade (last matching @font-face wins) or placed inside a media query that did not match at load.</li><li>Numerals-only surfaces (tickers, timers, price badges) tuned with letter metrics: digit advance widths dominate there; tune against figure strings instead.</li><li>Two-line buttons and badges shift more than paragraphs because each line rewraps independently; verify interactive components with their real fixed strings, not just body copy.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="font-display-strategies.html">Font display strategies</a></li><li><a href="font-face-and-css.html">Font-face and CSS</a></li><li><a href="../scripts/mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="../accessibility/testing-typography-accessibility.html">Testing typography accessibility</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

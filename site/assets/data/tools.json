@@ -1,0 +1,573 @@
+{
+  "count": 71,
+  "tools": [
+    {
+      "name": "Google Fonts",
+      "url": "https://fonts.google.com/",
+      "section": "catalogs",
+      "what": "The largest open-license catalog; browse, test specimen text, and download families.",
+      "access": "free",
+      "slug": "google-fonts"
+    },
+    {
+      "name": "Google Fonts Developer API",
+      "url": "https://developers.google.com/fonts/docs/developer_api",
+      "section": "apis",
+      "what": "Structured metadata for every Google Fonts family: variants, subsets, scripts, and updates.",
+      "access": "free",
+      "slug": "google-fonts-developer-api"
+    },
+    {
+      "name": "Google Fonts GitHub repository",
+      "url": "https://github.com/google/fonts",
+      "section": "source-repos",
+      "what": "Upstream font files, METADATA.pb, LICENSE files, and the axis registry.",
+      "access": "free",
+      "slug": "google-fonts-github-repository"
+    },
+    {
+      "name": "Fontsource",
+      "url": "https://fontsource.org/",
+      "section": "catalogs",
+      "what": "Self-hostable open-source fonts packaged for npm with search and previews.",
+      "access": "free",
+      "slug": "fontsource"
+    },
+    {
+      "name": "Fontsource API",
+      "url": "https://fontsource.org/docs/api/introduction",
+      "section": "apis",
+      "what": "Read-only REST API for catalog metadata, weights, subsets, and variable status.",
+      "access": "free",
+      "slug": "fontsource-api"
+    },
+    {
+      "name": "Fontsource list endpoint",
+      "url": "https://api.fontsource.org/v1/fonts",
+      "section": "apis",
+      "what": "Direct JSON endpoint for the full Fontsource catalog.",
+      "access": "free",
+      "slug": "fontsource-list-endpoint"
+    },
+    {
+      "name": "Fontshare",
+      "url": "https://www.fontshare.com/",
+      "section": "catalogs",
+      "what": "Indian Type Foundry's free-quality catalog under the ITF FFL license.",
+      "access": "free",
+      "slug": "fontshare"
+    },
+    {
+      "name": "Noto Fonts",
+      "url": "https://notofonts.github.io/",
+      "section": "scripts",
+      "what": "Google's project to cover every script; the default answer for global products.",
+      "access": "free",
+      "slug": "noto-fonts"
+    },
+    {
+      "name": "SIL fonts",
+      "url": "https://software.sil.org/fonts/",
+      "section": "scripts",
+      "what": "Language-development faces with exceptional coverage: Gentium, Charis, Andika, Scheherazade.",
+      "access": "free",
+      "slug": "sil-fonts"
+    },
+    {
+      "name": "Open Foundry",
+      "url": "https://open-foundry.com/",
+      "section": "discovery",
+      "what": "Curated open-source typefaces with generous specimens.",
+      "access": "free",
+      "slug": "open-foundry"
+    },
+    {
+      "name": "UNCUT.wtf",
+      "url": "https://uncut.wtf/",
+      "section": "discovery",
+      "what": "Independent open-license foundry showcase.",
+      "access": "free",
+      "slug": "uncut-wtf"
+    },
+    {
+      "name": "Future Fonts",
+      "url": "https://www.futurefonts.com/",
+      "section": "discovery",
+      "what": "Early-access typefaces in progress; licenses evolve with the fonts.",
+      "access": "freemium",
+      "slug": "future-fonts"
+    },
+    {
+      "name": "Velvetyne",
+      "url": "https://velvetyne.fr/",
+      "section": "foundries",
+      "what": "French open-source foundry with experimental voices.",
+      "access": "free",
+      "slug": "velvetyne"
+    },
+    {
+      "name": "The League of Moveable Type",
+      "url": "https://www.theleagueofmoveabletype.com/",
+      "section": "discovery",
+      "what": "The original open-source type foundry collective.",
+      "access": "free",
+      "slug": "the-league-of-moveable-type"
+    },
+    {
+      "name": "Font Squirrel",
+      "url": "https://www.fontsquirrel.com/",
+      "section": "discovery",
+      "what": "Hand-checked free fonts with commercial-use clarity.",
+      "access": "free",
+      "slug": "font-squirrel"
+    },
+    {
+      "name": "Fontesk",
+      "url": "https://fontesk.com/",
+      "section": "discovery",
+      "what": "Editorial feed of free and commercial typefaces.",
+      "access": "free",
+      "slug": "fontesk"
+    },
+    {
+      "name": "Fonts In Use",
+      "url": "https://fontsinuse.com/",
+      "section": "evidence",
+      "what": "An independent archive of real typography, searchable by typeface, industry, and format.",
+      "access": "free",
+      "slug": "fonts-in-use"
+    },
+    {
+      "name": "Typewolf",
+      "url": "https://www.typewolf.com/",
+      "section": "evidence",
+      "what": "Site-of-the-month archives, pairings, and trending data; one signal among many.",
+      "access": "freemium",
+      "slug": "typewolf"
+    },
+    {
+      "name": "Typewolf recommendations",
+      "url": "https://www.typewolf.com/recommendations",
+      "section": "evidence",
+      "what": "Curated alternatives and pairings per typeface.",
+      "access": "freemium",
+      "slug": "typewolf-recommendations"
+    },
+    {
+      "name": "Typographica",
+      "url": "https://typographica.org/",
+      "section": "education",
+      "what": "Long-running type reviews and the yearly favorites list.",
+      "access": "free",
+      "slug": "typographica"
+    },
+    {
+      "name": "I Love Typography",
+      "url": "https://ilovetypography.com/",
+      "section": "education",
+      "what": "Accessible essays on type history and practice.",
+      "access": "free",
+      "slug": "i-love-typography"
+    },
+    {
+      "name": "The Font Review Journal",
+      "url": "https://fontreviewjournal.com/",
+      "section": "education",
+      "what": "Critical reviews of contemporary typefaces.",
+      "access": "free",
+      "slug": "the-font-review-journal"
+    },
+    {
+      "name": "Google Fonts Knowledge",
+      "url": "https://fonts.google.com/knowledge",
+      "section": "education",
+      "what": "Structured lessons on choosing, using, and understanding type.",
+      "access": "free",
+      "slug": "google-fonts-knowledge"
+    },
+    {
+      "name": "Google Design on choosing web fonts",
+      "url": "https://design.google/library/choosing-web-fonts-beginners-guide",
+      "section": "education",
+      "what": "Practical selection guidance from Google's design team.",
+      "access": "free",
+      "slug": "google-design-on-choosing-web-fonts"
+    },
+    {
+      "name": "SIL Open Font License",
+      "url": "https://openfontlicense.org/",
+      "section": "licensing",
+      "what": "The primary source for OFL rights, restrictions, and RFN rules.",
+      "access": "free",
+      "slug": "sil-open-font-license"
+    },
+    {
+      "name": "OFL FAQ",
+      "url": "https://openfontlicense.org/ofl-faq/",
+      "section": "licensing",
+      "what": "Answers to the questions teams actually ask about OFL.",
+      "access": "free",
+      "slug": "ofl-faq"
+    },
+    {
+      "name": "Google Fonts licensing guide",
+      "url": "https://googlefonts.github.io/gf-guide/license-file.html",
+      "section": "licensing",
+      "what": "How licensing metadata works in the google/fonts repository.",
+      "access": "free",
+      "slug": "google-fonts-licensing-guide"
+    },
+    {
+      "name": "Adobe Fonts",
+      "url": "https://fonts.adobe.com/",
+      "section": "commercial",
+      "what": "Subscription catalog included with Creative Cloud.",
+      "access": "paid",
+      "slug": "adobe-fonts"
+    },
+    {
+      "name": "Adobe Fonts licensing FAQ",
+      "url": "https://helpx.adobe.com/fonts/web/font-licensing/font-licensing.html",
+      "section": "licensing",
+      "what": "What the Adobe Fonts subscription allows on web and desktop.",
+      "access": "paid",
+      "slug": "adobe-fonts-licensing-faq"
+    },
+    {
+      "name": "MyFonts",
+      "url": "https://www.myfonts.com/",
+      "section": "commercial",
+      "what": "The largest commercial marketplace with per-family license calculators.",
+      "access": "paid",
+      "slug": "myfonts"
+    },
+    {
+      "name": "Monotype Fonts",
+      "url": "https://www.monotypefonts.com/",
+      "section": "commercial",
+      "what": "Enterprise subscription platform for the Monotype library.",
+      "access": "paid",
+      "slug": "monotype-fonts"
+    },
+    {
+      "name": "Fontspring",
+      "url": "https://www.fontspring.com/",
+      "section": "commercial",
+      "what": "Perpetual desktop and web licenses with clear pricing models.",
+      "access": "paid",
+      "slug": "fontspring"
+    },
+    {
+      "name": "Fontstand",
+      "url": "https://fontstand.com/",
+      "section": "commercial",
+      "what": "Monthly desktop font rentals from many foundries.",
+      "access": "paid",
+      "slug": "fontstand"
+    },
+    {
+      "name": "WhatTheFont",
+      "url": "https://www.myfonts.com/pages/whatthefont",
+      "section": "identification",
+      "what": "Upload a crop, get candidate matches; connects to MyFonts purchasing.",
+      "access": "free",
+      "slug": "whatthefont"
+    },
+    {
+      "name": "Fontspring Matcherator",
+      "url": "https://www.fontspring.com/matcherator",
+      "section": "identification",
+      "what": "Glyph-based identification with commercial-free emphasis.",
+      "access": "free",
+      "slug": "fontspring-matcherator"
+    },
+    {
+      "name": "WhatFontIs",
+      "url": "https://www.whatfontis.com/",
+      "section": "identification",
+      "what": "Identification with manual glyph correction and free/pro tiers.",
+      "access": "freemium",
+      "slug": "whatfontis"
+    },
+    {
+      "name": "Identifont",
+      "url": "https://www.identifont.com/",
+      "section": "identification",
+      "what": "Question-tree identification when you have no image.",
+      "access": "free",
+      "slug": "identifont"
+    },
+    {
+      "name": "Fonts Ninja",
+      "url": "https://fonts.ninja/",
+      "section": "identification",
+      "what": "Browser extension that reads live pages: family, weight, size, and purchase links.",
+      "access": "freemium",
+      "slug": "fonts-ninja"
+    },
+    {
+      "name": "Fontjoy",
+      "url": "https://fontjoy.com/",
+      "section": "pairing",
+      "what": "Embedding-based pairing generator with contrast sliders.",
+      "access": "free",
+      "slug": "fontjoy"
+    },
+    {
+      "name": "Fontpair",
+      "url": "https://fontpair.co/",
+      "section": "pairing",
+      "what": "Curated Google Fonts pairings by mood.",
+      "access": "free",
+      "slug": "fontpair"
+    },
+    {
+      "name": "Typescale",
+      "url": "https://typescale.com/",
+      "section": "tooling",
+      "what": "Interactive modular scale generator with CSS output.",
+      "access": "free",
+      "slug": "typescale"
+    },
+    {
+      "name": "Modular Scale",
+      "url": "https://www.modularscale.com/",
+      "section": "tooling",
+      "what": "The classic ratio-based scale calculator.",
+      "access": "free",
+      "slug": "modular-scale"
+    },
+    {
+      "name": "MDN font loading guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Font_loading",
+      "section": "technical",
+      "what": "How browsers fetch and apply web fonts.",
+      "access": "free",
+      "slug": "mdn-font-loading-guide"
+    },
+    {
+      "name": "MDN @font-face",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face",
+      "section": "technical",
+      "what": "The definitive @font-face reference including font-display and unicode-range.",
+      "access": "free",
+      "slug": "mdn-font-face"
+    },
+    {
+      "name": "OpenType specification",
+      "url": "https://learn.microsoft.com/en-us/typography/opentype/spec/",
+      "section": "technical",
+      "what": "The file format, GSUB/GPOS, and axis registry source of truth.",
+      "access": "free",
+      "slug": "opentype-specification"
+    },
+    {
+      "name": "Axis-Praxis",
+      "url": "https://www.axis-praxis.org/",
+      "section": "technical",
+      "what": "Playground for variable fonts and their axes.",
+      "access": "free",
+      "slug": "axis-praxis"
+    },
+    {
+      "name": "Samsa",
+      "url": "https://github.com/Lorp/samsa",
+      "section": "technical",
+      "what": "In-browser variable font inspector showing interpolation behavior.",
+      "access": "free",
+      "slug": "samsa"
+    },
+    {
+      "name": "Wakamai Fondue",
+      "url": "https://wakamaifondue.com/",
+      "section": "technical",
+      "what": "Drop a font file to learn its axes, features, languages, and layout tricks.",
+      "access": "free",
+      "slug": "wakamai-fondue"
+    },
+    {
+      "name": "FontDrop",
+      "url": "https://fontdrop.info/",
+      "section": "technical",
+      "what": "Font file inspector for glyphs, tables, and metadata.",
+      "access": "free",
+      "slug": "fontdrop"
+    },
+    {
+      "name": "Fontspector",
+      "url": "https://fonttools.github.io/fontspector/",
+      "section": "technical",
+      "what": "Quality checker for font files with a browser build.",
+      "access": "free",
+      "slug": "fontspector"
+    },
+    {
+      "name": "FontGoggles",
+      "url": "https://fontgoggles.org/",
+      "section": "technical",
+      "what": "MacOS shaping inspector for real text behavior.",
+      "access": "free",
+      "slug": "fontgoggles"
+    },
+    {
+      "name": "FontForge",
+      "url": "https://fontforge.org/",
+      "section": "creation",
+      "what": "Open-source font editor for inspection and modification.",
+      "access": "free",
+      "slug": "fontforge"
+    },
+    {
+      "name": "Glyphr Studio",
+      "url": "https://www.glyphrstudio.com/",
+      "section": "creation",
+      "what": "Browser-based font editor for light customization.",
+      "access": "free",
+      "slug": "glyphr-studio"
+    },
+    {
+      "name": "Glyphs",
+      "url": "https://glyphsapp.com/",
+      "section": "creation",
+      "what": "The professional Mac font editor.",
+      "access": "paid",
+      "slug": "glyphs"
+    },
+    {
+      "name": "WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "section": "accessibility",
+      "what": "The standard: contrast, reflow, and text-spacing requirements relevant to type.",
+      "access": "free",
+      "slug": "wcag-2-2"
+    },
+    {
+      "name": "Understanding WCAG text spacing",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing",
+      "section": "accessibility",
+      "what": "The exact spacing overrides your layout must survive.",
+      "access": "free",
+      "slug": "understanding-wcag-text-spacing"
+    },
+    {
+      "name": "Indian Type Foundry",
+      "url": "https://www.indiantypefoundry.com/",
+      "section": "foundries",
+      "what": "Independent foundry behind Poppins, Teko, and the Fontshare catalog.",
+      "access": "freemium",
+      "slug": "indian-type-foundry"
+    },
+    {
+      "name": "Ek Type",
+      "url": "https://ektype.in/",
+      "section": "foundries",
+      "what": "Indian collective behind Mukta and Baloo.",
+      "access": "free",
+      "slug": "ek-type"
+    },
+    {
+      "name": "Cadson Demak",
+      "url": "https://www.cadsondemak.com/",
+      "section": "foundries",
+      "what": "Bangkok foundry leading Thai and Southeast Asian type.",
+      "access": "freemium",
+      "slug": "cadson-demak"
+    },
+    {
+      "name": "Rosetta",
+      "url": "https://www.rosettatype.com/",
+      "section": "foundries",
+      "what": "Foundry specializing in complex-script and multilingual families.",
+      "access": "paid",
+      "slug": "rosetta"
+    },
+    {
+      "name": "TypeTogether",
+      "url": "https://www.type-together.com/",
+      "section": "foundries",
+      "what": "Foundry known for text families and publishing type.",
+      "access": "paid",
+      "slug": "typetogether"
+    },
+    {
+      "name": "Klim Type Foundry",
+      "url": "https://klim.co.nz/",
+      "section": "foundries",
+      "what": "Independent foundry with rigorous text faces.",
+      "access": "paid",
+      "slug": "klim-type-foundry"
+    },
+    {
+      "name": "Grilli Type",
+      "url": "https://www.grillitype.com/",
+      "section": "foundries",
+      "what": "Swiss foundry with contemporary grotesques.",
+      "access": "paid",
+      "slug": "grilli-type"
+    },
+    {
+      "name": "Commercial Type",
+      "url": "https://commercialtype.com/",
+      "section": "foundries",
+      "what": "Editorial powerhouse for news and display.",
+      "access": "paid",
+      "slug": "commercial-type"
+    },
+    {
+      "name": "Dinamo",
+      "url": "https://abcdinamo.com/",
+      "section": "foundries",
+      "what": "Basel/Berlin foundry with modular variable systems.",
+      "access": "paid",
+      "slug": "dinamo"
+    },
+    {
+      "name": "Pangram Pangram",
+      "url": "https://pangrampangram.com/",
+      "section": "foundries",
+      "what": "Trend-facing foundry with trial licensing.",
+      "access": "freemium",
+      "slug": "pangram-pangram"
+    },
+    {
+      "name": "Typotheque",
+      "url": "https://typotheque.com/",
+      "section": "foundries",
+      "what": "Research-driven foundry; strong multilingual and licensing docs.",
+      "access": "paid",
+      "slug": "typotheque"
+    },
+    {
+      "name": "OH no Type Company",
+      "url": "https://ohnotype.co/",
+      "section": "foundries",
+      "what": "Display-first foundry behind Vulf and Degular.",
+      "access": "paid",
+      "slug": "oh-no-type-company"
+    },
+    {
+      "name": "Sharp Type",
+      "url": "https://sharptype.co/",
+      "section": "foundries",
+      "what": "Boutique foundry with editorial range.",
+      "access": "paid",
+      "slug": "sharp-type"
+    },
+    {
+      "name": "Displaay",
+      "url": "https://displaay.net/",
+      "section": "foundries",
+      "what": "Copenhagen foundry with product-grade families.",
+      "access": "paid",
+      "slug": "displaay"
+    },
+    {
+      "name": "Hoefler and Co.",
+      "url": "https://www.typography.com/",
+      "section": "foundries",
+      "what": "Historic American foundry; licensing now via Monotype.",
+      "access": "paid",
+      "slug": "hoefler-and-co"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="Fontlore specimen banner: cycling glyphs across scripts with the tagline and library stats">
+  <title>Fontlore specimen banner</title>
+  <rect x="0" y="0" width="1200" height="400" rx="14" fill="#F7F1E8"/>
+  <rect x="1" y="1" width="1198" height="398" rx="13" fill="none" stroke="#E3D7C5" stroke-width="2"/>
+
+  <!-- baseline grid, draws itself on -->
+  <g stroke="#E3D7C5" stroke-width="1">
+    <line x1="60" y1="96"  x2="620" y2="96"><animate attributeName="opacity" values="0;0.9" dur="1.4s" begin="0.2s" fill="freeze"/></line>
+    <line x1="60" y1="176" x2="620" y2="176"><animate attributeName="opacity" values="0;0.9" dur="1.4s" begin="0.4s" fill="freeze"/></line>
+    <line x1="60" y1="256" x2="620" y2="256"><animate attributeName="opacity" values="0;0.9" dur="1.4s" begin="0.6s" fill="freeze"/></line>
+    <line x1="60" y1="336" x2="620" y2="336"><animate attributeName="opacity" values="0;0.9" dur="1.4s" begin="0.8s" fill="freeze"/></line>
+  </g>
+  <line x1="60" y1="246" x2="620" y2="246" stroke="#A63D2F" stroke-width="1.4" stroke-dasharray="560" stroke-dashoffset="560">
+    <animate attributeName="stroke-dashoffset" values="560;0" dur="1.8s" begin="1.0s" fill="freeze"/>
+    <animate attributeName="opacity" values="1;1;0.35;1" keyTimes="0;0.7;0.85;1" dur="4s" begin="2.8s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- wordmark -->
+  <text x="60" y="238" font-family="Iowan Old Style, Palatino Linotype, Palatino, Georgia, 'Times New Roman', serif" font-size="96" letter-spacing="-2">
+    <tspan fill="#1C1917">Font</tspan><tspan fill="#A63D2F">lore</tspan>
+    <animate attributeName="opacity" values="0;1" dur="1.0s" begin="0.1s" fill="freeze"/>
+  </text>
+  <text x="62" y="292" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="17" fill="#6E6353" letter-spacing="1">
+    Typeface intelligence for AI agents
+    <animate attributeName="opacity" values="0;1" dur="1.0s" begin="1.4s" fill="freeze"/>
+  </text>
+
+  <!-- stats row, staggered fade-in -->
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#1C1917">
+    <text x="62" y="342"><tspan fill="#A63D2F">727</tspan> guides and references<animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.0s" fill="freeze"/></text>
+    <text x="352" y="342"><tspan fill="#A63D2F">165</tspan> fonts<animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.3s" fill="freeze"/></text>
+    <text x="452" y="342"><tspan fill="#A63D2F">66</tspan> pairings<animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.6s" fill="freeze"/></text>
+    <text x="556" y="342"><tspan fill="#A63D2F">71</tspan> tools<animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.9s" fill="freeze"/></text>
+  </g>
+
+  <!-- specimen panel -->
+  <rect x="660" y="56" width="480" height="288" rx="12" fill="#F0E4D2">
+    <animate attributeName="opacity" values="0;1" dur="1.2s" begin="0.6s" fill="freeze"/>
+  </rect>
+
+  <!-- cycling glyph frames: 8 frames x 1.6s = 12.8s -->
+  <g text-anchor="middle">
+    <text x="900" y="228" font-family="Iowan Old Style, Palatino Linotype, Georgia, serif" font-size="170" fill="#1C1917">Ff
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="0s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="system-ui, 'Helvetica Neue', Arial, sans-serif" font-size="170" fill="#1C1917">Aa
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="1.6s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="170" fill="#1C1917">g&amp;
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="3.2s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="Georgia, 'Times New Roman', serif" font-size="170" fill="#A63D2F">Rk
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="4.8s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK SC', serif" font-size="150" fill="#1C1917">&#31179;&#25991;
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="6.4s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="'Geeza Pro', 'Noto Naskh Arabic', 'Times New Roman', serif" font-size="170" fill="#1C1917">&#1604;&#1605;
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="8.0s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="'Nirmala UI', 'Noto Sans Devanagari', sans-serif" font-size="150" fill="#1C1917">&#2342;&#2375;
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="9.6s" repeatCount="indefinite"/>
+    </text>
+    <text x="900" y="228" font-family="'Snell Roundhand', 'Brush Script MT', 'Segoe Script', cursive" font-size="170" fill="#A63D2F">Qj
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="11.2s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- cycling captions -->
+  <g text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#6E6353" letter-spacing="2">
+    <text x="900" y="316">SERIF - TEXT<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="0s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">SANS - INTERFACE<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="1.6s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">MONO - CODE<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="3.2s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">DISPLAY - POSTER<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="4.8s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">HAN - CJK<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="6.4s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">ARABIC - RTL<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="8.0s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">DEVANAGARI - INDIC<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="9.6s" repeatCount="indefinite"/></text>
+    <text x="900" y="316">SCRIPT - VOICE<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.05;0.10;0.80;0.86;1" dur="12.8s" begin="11.2s" repeatCount="indefinite"/></text>
+  </g>
+
+  <!-- traveling baseline dot -->
+  <circle r="3.5" fill="#A63D2F" cy="384" cx="80">
+    <animate attributeName="cx" values="80;1120" dur="12.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.35;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>

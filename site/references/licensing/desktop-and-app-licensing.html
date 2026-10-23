@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Desktop and App Licensing - Fontlore</title>
+<meta name="description" content="How desktop licenses differ from app embedding licenses, what iOS and Android bundling requires, and how ePub and game/console cases change the picture. Desk...">
+<meta property="og:title" content="Desktop and App Licensing - Fontlore">
+<meta property="og:description" content="How desktop licenses differ from app embedding licenses, what iOS and Android bundling requires, and how ePub and game/console cases change the picture. Desk...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>Desktop and App Licensing</h1>
+<p>What this reference covers: How desktop licenses differ from app embedding licenses, what iOS and Android bundling requires, and how ePub and game/console cases change the picture. Desktop rights do not imply app rights; this guide draws the line precisely.</p>
+<p>The desktop-app boundary is the most common place teams discover their license is too small. Designers install fonts freely, an app ships with the same files inside, and the audit finds an unlicensed embedding.</p>
+<p>The pattern generalizes: every font quietly collects use contexts over time, and each context has its own license category. The cure is a one-page map of contexts to grants, reviewed whenever a new surface ships.</p>
+<h2>Desktop licenses</h2>
+<ul><li>A desktop license grants installation on machines and use in design tools to create artwork: mockups, print files, PDFs, images rendered from the design.</li><li>Scope dimensions: number of users, number of machines (often more permissive than users), and sometimes company size or revenue tiers.</li><li>Desktop rights cover outputs where the font is rendered into a static form (PDF, PNG, print). They do not cover shipping the font file itself to end users.</li><li>Team distribution rules vary: some licenses let one designer install on multiple machines; enterprise licenses cover whole organizations. Read the user and machine clauses, not the marketing.</li><li>Contractors count as users in most licenses; plan their access explicitly instead of &quot;just sharing the files&quot;.</li></ul>
+<h2>What desktop does NOT cover</h2>
+<ul><li>Bundling the font file into any distributed software: apps, games, firmware, kiosks, themes for other products.</li><li>Serving the font to browsers: that is the webfont license&#x27;s job.</li><li>Server-side rendering: PDF/image generation on servers is server use, usually a separate grant.</li><li>These three boundaries (bundled, served, rendered-server-side) are the whole map; most confusion is one of them mislabeled.</li><li>A quick self-test for any new feature: &quot;does the user&#x27;s device end up with the font file?&quot; If yes, embedding. &quot;Does the font render only inside our own process?&quot; If yes, desktop or server. &quot;Does the visitor&#x27;s browser fetch it?&quot; If yes, webfont.</li><li>Writing the three answers into the feature&#x27;s spec makes licensing review a lookup instead of a meeting.</li></ul>
+<h2>App embedding</h2>
+<ul><li>Embedding means the font file ships inside the application package (IPA, APK, desktop installer, game build) and renders text at runtime.</li><li>Open fonts (OFL, Apache) permit this freely with license retention; keep the license file in the bundle&#x27;s legal notices.</li><li>Commercial fonts require an app or extended license: foundries price app embedding separately, often by app tier (free app vs paid app vs enterprise internal app).</li><li>iOS specifics: fonts bundled in the app binary or shipped via custom font APIs count as embedding; platform system fonts (San Francisco) are covered by the OS and need no license.</li><li>Android specifics: bundled TTF/OTF in APK or downloaded font resources both count; downloadable fonts through provider mechanisms still need the underlying license to permit distribution.</li><li>Count the app&#x27;s distribution model: free, paid, or internal-only enterprise distribution all price differently; internal tools sometimes qualify for lighter terms but only when the license says so.</li></ul>
+<h2>Games, consoles, and devices</h2>
+<ul><li>Games embed fonts like apps; console platforms add certification requirements that make clean font licensing part of submission paperwork.</li><li>Digital signage, kiosks, and embedded devices are &quot;bundled use&quot; in perpetuity across hardware units; per-device or per-unit terms exist in enterprise foundry contracts.</li><li>eReaders and ePubs: embedding subsets in publications is usually permitted under specific ePub terms; open fonts make this trivial, commercial fonts need the ePub clause.</li><li>Hardware keyboards and firmwares rarely ship fonts, but smart TVs and set-top boxes do; those are OEM negotiations, not marketplace purchases.</li></ul>
+<h2>ePub and document embedding</h2>
+<ul><li>Document embedding (PDFs with embedded subsets) is normally covered by ordinary desktop licenses because the document is a rendered output.</li><li>ePub is different: the file can install fonts on the reader&#x27;s device, which crosses toward distribution; check the license&#x27;s ePub or &quot;electronic publication&quot; clause.</li><li>The distinction worth internalizing: a PDF embeds glyphs into a document, while an ePub often carries font files as assets; a document with outlines is an image of type, an ePub with fonts is a package containing software.</li><li>Retailer platforms (the major ebook stores) may impose their own embedding requirements on top of the license; verify both layers when publishing through a store.</li><li>OFL fonts: embed freely, keep the license accessible per the license terms when distributing the font itself; typical ePub subsetting is fine.</li><li>Commercial ePub licenses usually tier by title sales or are sold per title; budget for the clause, not the hope.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Classify every font use: design-time (desktop), served (web), bundled (app/device), rendered server-side.</li><li>Buy desktop licenses for the design team&#x27;s actual user count, including contractors.</li><li>For each shipped app or device, buy or verify an embedding license before feature freeze, not after submission.</li><li>Keep license documents and entitlements with the build system&#x27;s legal folder.</li><li>Re-audit when the distribution model changes (new platform, public release of an internal tool).</li><li>Re-verify the seat count after organizational changes; seats drift upward quietly.</li><li>Keep the foundry&#x27;s written answers about scope with the entitlements; they settle future questions without reopening negotiation.</li><li>Budget review: embedding licenses and seat counts grow with the product; treat them like infrastructure costs, not design incidentals.</li></ol>
+<h2>Quick reference: the three-question classifier</h2>
+<ol><li>Does the user&#x27;s device receive the font file? Yes means embedding or webfont, by channel.</li><li>Does the font render only inside our own process? Yes means desktop or server, by location.</li><li>Does a server or device render text at volume, or ship inside hardware? Yes means a negotiated category, priced by scale.</li></ol>
+<p>Run the three questions per surface, per product, at every platform launch; the answers are the license map, and the map is the audit&#x27;s starting point.</p>
+<h2>Common mistakes</h2>
+<ul><li>Shipping the design team&#x27;s desktop-licensed fonts inside the production app because &quot;we already own them&quot;.</li><li>Forgetting contractor machines in the desktop user count.</li><li>Using marketplace app license tiers meant for indie apps on an enterprise internal tool, or the reverse mismatch.</li><li>Embedding commercial fonts in game builds during a game jam and never cleaning it up before release.</li><li>Assuming ePub embedding is the same as PDF embedding; one is output, the other is distribution.</li><li>Treating the app tier as a one-time decision; app pricing tiers often track revenue bands, so a successful app can outgrow its tier.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Font file crosses to a user&#x27;s device inside software: that is embedding; verify that license.</li><li>Font renders inside your own design tool only: desktop license; nothing else needed.</li><li>Uncertain whether a platform feature (dynamic type, downloadable fonts) counts as embedding: ask the foundry in writing before launch.</li><li>For multi-platform products, price embedding licenses as a platform matrix, and revisit at every new platform launch.</li><li>When the same family must cover design-time and runtime, check whether the foundry offers a combined license; some do, and it is usually cheaper than two purchases and always cheaper than one audit finding.</li><li>Prefer families with explicit app-embedding pages on their site; a foundry that prices embedding openly will answer scope questions faster when the inevitable edge case arrives.</li><li>If budget forces a choice, license the surface with real users first and design-time last; desktop seats are the easiest and cheapest to true up after the fact.</li></ul>
+<h2>Comparison table: use context to license category</h2>
+<table><thead><tr><th>Use context</th><th>License category it needs</th><th>Notes</th></tr></thead><tbody><tr><td>Designer installs font and produces mockups</td><td>Desktop</td><td>Count seats, including contractors</td></tr><tr><td>Print vendor receives outlined or PDF output</td><td>Desktop (output covered)</td><td>No separate vendor license in most cases</td></tr><tr><td>Marketing website serves woff2</td><td>Webfont</td><td>Separate grant; pageview and domain scoped</td></tr><tr><td>Native app ships the font inside the binary</td><td>App embedding</td><td>Priced by app tier; per platform</td></tr><tr><td>Server generates PDFs or images with the font</td><td>Server / application</td><td>Usually negotiated, not cart-bought</td></tr><tr><td>ePub ships embedded subsets</td><td>ePub clause</td><td>Distribution to readers&#x27; devices</td></tr><tr><td>Kiosk or signage device ships the font</td><td>Embedded / device</td><td>Per-unit terms common</td></tr><tr><td>Internal admin tool renders documents</td><td>Server or app, per license</td><td>Some licenses have lighter internal terms</td></tr><tr><td>Slide templates shared across the company</td><td>Desktop seats for installers</td><td>Templates circulate files, not just output</td></tr><tr><td>Console game build</td><td>App embedding plus platform cert</td><td>Certification requires clean paperwork</td></tr></tbody></table>
+<p>The map fits on one screen, which is the point: every real project is a handful of rows, and each row either matches a grant you hold or is a finding.</p>
+<p>Fill the table once per product and revisit it at every platform launch; the rows that change are usually the ones nobody predicted, which is exactly why the map is written down rather than remembered.</p>
+<h2>Worked example: one font, four surfaces</h2>
+<p>A fintech brand uses one commercial grotesk across four surfaces. The licensing walk:</p>
+<ul><li>Design team of six, including two contractors: eight desktop seats, purchased up front; the agency&#x27;s two seats are separate.</li><li>Marketing site: a webfont license with pageview tier and the two production domains.</li><li>iOS and Android apps: app embedding licenses for the shipping platforms, bought at the paid-app tier because the app is not free; the internal test builds ride the same grant.</li><li>A nightly reporting service that renders PDF statements on a server: a server license negotiated with the foundry after the team asked, not assumed from the desktop purchase.</li><li>The team wrote the surface-by-surface map into the license register before writing any checks, which is what surfaced the server case at all.</li><li>Total cost was dominated by the app tiers, not the desktop seats, which surprised nobody once the matrix was visible.</li><li>When the brand later considered an OFL replacement (Inter or Public Sans are common swaps), the matrix collapsed to a single row plus license retention, and that arithmetic became part of the decision.</li><li>The switch estimate included reflow and redesign work, which is the honest cost OFL swaps trade for the licensing simplicity; both columns of that comparison went into the decision record.</li><li>The reporting service also got a written answer from the foundry confirming server scope, filed with the entitlement; the answer cost one email and closed the risk permanently.</li><li>App tiers were revisited when the apps went free with subscriptions; a tier change is a license event, and the register caught it because tier was a field.</li></ul>
+<h2>Questions to ask before purchase</h2>
+<ul><li>Does the desktop license count users, machines, or both, and which number do you want from us?</li><li>Do contractors and agencies working on our behalf need their own seats or ride ours?</li><li>Is an upgrade from one app tier to another priced as the difference or as a new purchase?</li><li>Does adding a platform (a TV app, a console port) require a new grant or fall under the existing embedding license?</li><li>What do you require as evidence of licensing for app store review or an audit: invoice, certificate, signed agreement?</li><li>For internal-only distribution, are there lighter terms, and what documentation proves internal-only status?</li><li>What happens to our rights if the foundry is acquired or the product line is discontinued?</li><li>Do beta and TestFlight-style distribution builds count under the app tier, or is there a separate evaluation grant?</li><li>If we ship localized builds where the font renders user content, does user-generated text change the embedding category?</li><li>Can the embedding license be counted per title (game, app) or must it be company-wide?</li></ul>
+<h2>Field notes</h2>
+<ul><li>The most expensive mistake in this category is sequencing: buying desktop seats, then discovering app embedding later, then paying twice for the design phase that should have been licensed once.</li><li>Platform system fonts (San Francisco on iOS, Roboto on Android) need no license and no bundling; a surprising amount of &quot;font licensing&quot; anxiety dissolves into using the platform&#x27;s own stack where brand allows.</li><li>App store review rarely checks font licenses, but enterprise procurement and platform certification do; do not calibrate your diligence to the lenient reviewer.</li><li>Keep per-platform entitlements attached to the build system&#x27;s documentation, because the people shipping builds are rarely the people who bought the license.</li><li>Hardware bundles (kiosks, smart TVs) outlive software contracts; negotiate perpetuity in the embedding grant for devices, or every firmware refresh becomes a licensing event.</li><li>If the app is white-labeled, the embedding question doubles: does the license cover your customer&#x27;s deployment, and does it cover their branding of yours?</li><li>When a design agency hands over app source with fonts bundled, the handoff memo should name the app embedding license and its holder; source code repositories rarely carry that context.</li><li>Watch for OS-level features that blur lines: dynamic type downloads, font providers, and on-demand resources all still deliver the font to the device, which is embedding by any license&#x27;s definition.</li><li>The desktop seat count is a snapshot, not a truth: re-verify after reorgs, contractor waves, and acquisitions, because seats are the most commonly drifted number.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="webfont-embedding-rights.html">Webfont embedding rights</a></li><li><a href="saas-ebook-and-embedded-use.html">SaaS, ebook, and embedded use</a></li><li><a href="open-font-license.html">Open Font License in practice</a></li><li><a href="marketplace-license-models.html">Marketplace license models</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

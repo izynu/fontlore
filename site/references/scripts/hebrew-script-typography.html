@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Hebrew Script Typography - Fontlore</title>
+<meta name="description" content="Hebrew&#x27;s structural facts that drive font decisions, niqqud and when vertical space must grow, and how to pair Latin and Hebrew faces so one page does not lo...">
+<meta property="og:title" content="Hebrew Script Typography - Fontlore">
+<meta property="og:description" content="Hebrew&#x27;s structural facts that drive font decisions, niqqud and when vertical space must grow, and how to pair Latin and Hebrew faces so one page does not lo...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Scripts</span></nav>
+<article class="doc">
+<h1>Hebrew Script Typography</h1>
+<p>What this reference covers: Hebrew&#x27;s structural facts that drive font decisions, niqqud and when vertical space must grow, and how to pair Latin and Hebrew faces so one page does not look like two projects. It stays practical: what to check, which open families to trust, and what goes wrong.</p>
+<h2>Structural facts that matter</h2>
+<p>Hebrew differs from Arabic in ways that simplify some decisions and add others:</p>
+<ul><li>No joining: letters do not connect, so shaping is far simpler than Arabic. Isolated-letter testing is actually meaningful here.</li><li>No letter case: there are no capitals, so text-transform: uppercase is a no-op and &quot;small caps hierarchy&quot; tricks do not exist. Hierarchy must come from size, weight, and spacing.</li><li>Right to left: same <code>dir=&quot;rtl&quot;</code> handling as Arabic; numerals and Latin runs inside Hebrew remain left to right.</li><li>22 consonant letters plus 5 final forms (sofit letters: kaf, mem, nun, pe, tsadi in their word-final shapes). Check the five finals in any font; rare but real omissions exist.</li></ul>
+<h2>Niqqud and vertical space</h2>
+<p>Niqqud are the combining vowel and cantillation marks in the range U+0591-05C7, placed above and below consonants, with internal points (dagesh, shin and sin dots) inside the letter body.</p>
+<ul><li>Modern secular Hebrew is written unpointed; body text in most products needs no niqqud and no extra leading.</li><li>Pointed text (children&#x27;s books, prayer books, learning tools, biblical text) needs generous line-height, commonly 1.7 or more, plus mark positioning quality: a font can contain niqqud codepoints yet place them off-center or colliding.</li><li>Test with a fully pointed string such as Genesis 1:1 and check: sheva and hataf vowels under letters, dagesh centered inside letters, shin and sin dots placed on the correct side, and marks clearing the line above.</li><li>Geresh and gershayim (U+05F3, U+05F4) mark abbreviations and acronyms; they are part of everyday text, so confirm coverage.</li></ul>
+<h2>Latin-Hebrew pairing</h2>
+<p>Most Hebrew-reading users see Latin brand names, numbers, and UI chrome mixed with Hebrew text, so the pairing decision is the central one.</p>
+<p>Strategy A, one family for both: many open Hebrew families ship a matched Latin. Rubik, Heebo, Assistant, Alef, Secular One, Miriam Libre, Frank Ruhl Libre, David Libre, and the Noto Sans Hebrew and Noto Serif Hebrew releases all include Latin designed to work with their Hebrew. This is the lowest-risk route and usually the best default.</p>
+<p>Strategy B, brand Latin plus Hebrew companion: when a Latin brand face has no Hebrew, pick a Hebrew face and match these properties, in order of visual importance:</p>
+<ol><li>x-height and overall vertical proportion; Hebrew letters occupy a narrow vertical band, so a tall-x Latin next to a small Hebrew reads as imbalance.</li><li>Weight range: ensure the Hebrew face has real bold at the same apparent weight, not a heavier-than-needed bold.</li><li>Aperture and stroke contrast: pair humanist Latin with open Hebrew designs rather than high-contrast Latin with monoline Hebrew.</li><li>Width: Hebrew is naturally wider per &quot;letter&quot; than Latin; do not force optical parity by scaling, align baselines and let widths differ.</li></ol>
+<p>Set the two faces at slightly different sizes if needed: Hebrew often benefits from a half-point to one-point bump at small UI sizes.</p>
+<h2>Reliable open families</h2>
+<ul><li>Frank Ruhl Libre: a contemporary take on the classic Frank-Ruehl book style; the natural serif-leaning default.</li><li>David Libre: derived from the David Hebrew style used in Israeli printing; bookish and familiar.</li><li>Heebo, Rubik, Assistant, Secular One, Alef, Miriam Libre, Varela Round (Hebrew extended): sans voices ranging from neutral UI to rounded and geometric.</li><li>Noto Sans Hebrew and Noto Serif Hebrew: neutral workhorses with wide weight ranges, useful as the connective tissue in multilingual stacks.</li></ul>
+<p>Heebo and Rubik are particularly common for UI work; Frank Ruhl Libre and David Libre for editorial; Noto Sans Hebrew when one system must serve many scripts.</p>
+<h2>Metric compatibility and UI details</h2>
+<ul><li>Digits in Hebrew text are Western Arabic numerals running left to right; in tables, figures stay aligned regardless of direction, but column headers in Hebrew flip. Test a numeric table with <code>dir=&quot;rtl&quot;</code>.</li><li>Buttons and inputs containing Hebrew: the same elements often contain Latin placeholders too; check both directions of a form.</li><li>Mixed-name lists (a Latin first name, Hebrew surname) are where bidi handling shows cracks; wrap user-generated segments in bdi.</li><li>If the design uses letter-spacing for labels, Hebrew tolerates it better than Arabic (no joins), but keep it subtle; wide tracking on Hebrew reads as alien.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Pairing a thin, high-contrast Latin display face with a sturdy Hebrew sans because &quot;both are modern&quot;; the mismatch reads strongest in mixed headlines.</li><li>Declaring a font &quot;supports Hebrew&quot; from its subset label, then discovering niqqud collide at production line-height.</li><li>Using uppercase Latin labels next to sentence-case Hebrew and expecting the same visual hierarchy; rework the hierarchy per language instead.</li><li>Forgetting the five sofit forms in a display face check; their absence is a hard blocker for real text.</li><li>Applying Arabic-style assumptions (joins, kashida, no tracking) to Hebrew or vice versa; the two scripts share direction, little else.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Product UI with Hebrew plus Latin: Rubik, Heebo, or Assistant as the single family; Noto Sans Hebrew when the stack must scale to more scripts.</li><li>Editorial Hebrew: Frank Ruhl Libre for body, Secular One or a heavier Rubik for display.</li><li>Pointed text for learning or liturgy: test niqqud placement explicitly; Noto Serif Hebrew and Frank Ruhl Libre are reasonable first checks.</li><li>Brand Latin without Hebrew: choose Noto Sans Hebrew or Miriam Libre, match x-height and weight, and size Hebrew up slightly at small sizes.</li></ul>
+<h2>Comparison table</h2>
+<p>Open Hebrew families compared on voice, weights, and the checks that decide shortlists:</p>
+<table><thead><tr><th>Family</th><th>Voice</th><th>Latin included</th><th>Weights</th><th>Typical use</th></tr></thead><tbody><tr><td>Rubik</td><td>Contemporary sans, slightly rounded corners</td><td>Yes</td><td>300-900</td><td>Product UI, marketing</td></tr><tr><td>Heebo</td><td>Neutral UI sans, familiar Israeli web voice</td><td>Yes</td><td>100-900</td><td>Product UI</td></tr><tr><td>Assistant</td><td>Humanist UI sans, open apertures</td><td>Yes</td><td>200-800</td><td>Product UI, dashboards</td></tr><tr><td>Alef</td><td>Sturdy, simple</td><td>Yes</td><td>400, 700</td><td>Simple sites, documentation</td></tr><tr><td>Secular One</td><td>Display-leaning single weight</td><td>Yes</td><td>400</td><td>Headlines, accents</td></tr><tr><td>Miriam Libre</td><td>Clean text sans</td><td>Yes</td><td>400, 700</td><td>Text and labels</td></tr><tr><td>Frank Ruhl Libre</td><td>Serif-leaning book style</td><td>Yes</td><td>300-900</td><td>Editorial body, headlines</td></tr><tr><td>David Libre</td><td>Bookish, Israeli printing tradition</td><td>Yes</td><td>400, 500, 700</td><td>Editorial, formal text</td></tr><tr><td>Noto Sans Hebrew</td><td>Neutral workhorse</td><td>Yes</td><td>100-900</td><td>Multilingual stacks</td></tr><tr><td>Noto Serif Hebrew</td><td>Neutral serif</td><td>Yes</td><td>100-900</td><td>Books, pointed text checks</td></tr><tr><td>Varela Round</td><td>Rounded, single weight</td><td>Yes</td><td>400</td><td>Friendly accents, logos</td></tr></tbody></table>
+<p>Reading the table:</p>
+<ul><li>Single-weight families (Secular One, Varela Round) are accents, not systems; a product that needs a bold must not lean on them.</li><li>Weight parity across the family is the check that matters most: Hebrew bolds that overshoot the Latin bold are the common failure in mixed headlines.</li><li>Every family here ships a matched Latin, which is why the single-family strategy dominates Hebrew-Latin product work.</li></ul>
+<h2>Worked example</h2>
+<p>A Hebrew-English B2B SaaS with an existing Latin brand face that has no Hebrew:</p>
+<ol><li>Requirements: Hebrew UI and English marketing, numeric tables, mixed user names, and a glossary feature that includes pointed Hebrew terms.</li><li>Strategy decision: the brand Latin cannot carry Hebrew, so strategy B applies; the Hebrew companion must match x-height proportion first, weight second, contrast third.</li><li>Companion choice: Rubik for UI (weight range covers the brand&#x27;s 400 and 600 slots) and Noto Sans Hebrew in the stack as the deliberate safety net.</li><li>Direction: dir=&quot;rtl&quot; on the Hebrew locale; logical properties throughout; user names wrapped in bdi because Latin and Hebrew names interleave in lists.</li><li>Numeric tables: Western digits stay left-to-right inside RTL; column headers flip while figure columns hold alignment, verified with dir=&quot;rtl&quot; on a real table.</li><li>Niqqud gate: the glossary&#x27;s pointed terms are set at production line-height with the scoped 1.7 leading; sheva and hataf vowels, dagesh centering, and shin/sin dot sides are all checked.</li><li>Sizing: Hebrew runs a half-step larger than Latin at small UI sizes after side-by-side proofing showed it reading smaller.</li><li>Bidi stress: an English product name inside a Hebrew sentence, and a Hebrew file name inside an English path, both rendered as clean isolated runs.</li><li>Cross-browser pass: Chromium, Firefox, and WebKit, with the rendered-fonts inspector confirming no silent substitution.</li></ol>
+<p>Outcome: a coherent two-family system (brand Latin plus Rubik), RTL-safe components from one codebase, and pointed text that survives production line-height.</p>
+<h2>Field notes</h2>
+<ul><li>Unpointed Hebrew is the norm for products; pointed text (children&#x27;s books, prayer, learning tools) is a distinct project with its own leading and font requirements.</li><li>The rendered-fonts inspector settles pairing doubts quickly: mixed Hebrew-Latin runs show exactly which face drew which segment.</li><li>Geresh and gershayim (U+05F3, U+05F4) appear in ordinary text - abbreviations, acronyms, quotations - so their absence shows up fast in real content.</li><li>Numeric expressions with separators (ranges, dates, decimal commas) can reorder visually in RTL layouts; wrapping computed numeric output in dir=&quot;ltr&quot; is the standard fix.</li><li>Desktop system stacks carry Hebrew in Arial and Segoe UI cuts, and Android falls back to Noto Sans Hebrew; audit the no-webfont path rather than assuming it is fine.</li><li>Wide tracking reads as alien on Hebrew faster than on Latin; if a label system tracks uppercase Latin, define an untracked Hebrew variant.</li><li>Frank Ruhl Libre and David Libre both descend from named Israeli printing traditions; choosing between them is a voice decision a Hebrew reader should make, not a metrics decision.</li><li>Sofit forms are the display-face trap: poster and display fonts sometimes omit or deform the five final forms, and they occur in ordinary words.</li><li>Hebrew quotation and punctuation conventions differ from English (gershayim inside acronyms, gershayim-based quotation marks); test real strings rather than transliterated samples.</li><li>Weight-based hierarchy works well in Hebrew because there is no case; a design system that communicates hierarchy through weight and size ports over cleanly.</li><li>Monospace and terminal fonts rarely cover Hebrew; Hebrew inside logs or code output falls back to the UI face, so width expectations in log views should assume the seam.</li><li>Latin descenders (g, y, p) make mixed Hebrew-Latin lines look uneven even at matched x-heights; check a mixed-name list rather than single-script lines.</li><li>Hebrew-calendar year abbreviations attach a geresh or gershayim to letters; if any date UI touches the Hebrew calendar, include one in the test strings.</li><li>Email renders without webfonts in most clients, so the system Hebrew fallback is the actual email design; audit it rather than the webfont.</li><li>Niqqud leading interacts with size: large display sizes need relatively less extra leading than 14 px body text, so scope pointed-text leading by size as well as language.</li><li>Fixed row heights keep Latin-only and Hebrew-only rows visually identical in mixed lists; content-driven row heights let metric differences make lists visibly breathe.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Direction: dir=&quot;rtl&quot; for Hebrew; dir=&quot;auto&quot; plus bdi for unpredictable mixed content; logical properties everywhere.</li><li>Hierarchy: weight and size only; no uppercase transforms exist.</li><li>Niqqud: unpointed needs no extra leading; pointed text wants 1.7 or more scoped by :lang(he), plus mark-placement checks.</li><li>Hard gates: the five sofit forms, U+05F3 and U+05F4, dagesh centering, shin/sin dot sides.</li><li>Digits: Western digits left-to-right inside Hebrew; wrap numeric output in dir=&quot;ltr&quot; when separators scramble.</li><li>Defaults: Rubik, Heebo, or Assistant for UI; Frank Ruhl Libre and David Libre for editorial; Noto Sans Hebrew for multilingual stacks.</li><li>Sizing: Hebrew often benefits from a half-step bump at small sizes; verify with side-by-side mixed lines.</li><li>Pairing order: x-height proportion, then weight range, then aperture and contrast, then width; align baselines and let widths differ.</li><li>Tracking: keep any letter-spacing subtle and define an untracked Hebrew variant for tracked Latin labels.</li><li>Verification: real pointed strings, numeric tables under dir=&quot;rtl&quot;, and mixed-name lists in three browser engines.</li><li>Mixed-run tests: a Hebrew file name inside an English path, and an English product name inside a Hebrew sentence, both as standing cases.</li><li>Email: assume no webfonts render; the platform Hebrew fallback is the design that most subscribers see.</li><li>Row heights: fixed heights for mixed lists so Hebrew-only and Latin-only rows align identically.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="arabic-script-typography.html">Arabic script typography</a></li><li><a href="mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="../accessibility/localization-and-rtl-accessibility.html">Localization and RTL accessibility</a></li><li><a href="../applications/web-and-saas-interfaces.html">Web and SaaS interfaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

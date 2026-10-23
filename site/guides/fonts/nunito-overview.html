@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Nunito: typeface overview - Fontlore</title>
+<meta name="description" content="Nunito as recorded in the Fontlore data layer: identity, classification, script coverage, technical profile, license, and where the family fits or does not fit.">
+<meta property="og:title" content="Nunito: typeface overview - Fontlore">
+<meta property="og:description" content="Nunito as recorded in the Fontlore data layer: identity, classification, script coverage, technical profile, license, and where the family fits or does not fit.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#fonts">Browse</a><span class="crumb-sep">/</span><span aria-current="page">Fonts</span></nav>
+<article class="doc">
+<h1>Nunito: typeface overview</h1>
+<p>What this reference covers: Nunito as recorded in the Fontlore data layer: identity, classification, script coverage, technical profile, license, and where the family fits or does not fit.</p>
+<h2>Identity</h2>
+<table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Family</td><td>Nunito</td></tr><tr><td>Slug</td><td>nunito</td></tr><tr><td>Designer</td><td>Vernon Adams</td></tr><tr><td>Foundry</td><td>not recorded in the data layer</td></tr><tr><td>License</td><td>OFL-1.1</td></tr><tr><td>Category</td><td>sans-serif</td></tr><tr><td>Classification</td><td>rounded</td></tr><tr><td>Source</td><td>https://fonts.google.com/specimen/Nunito</td></tr></tbody></table>
+<h2>Position in the taxonomy</h2>
+<p>The data layer files Nunito under sans-serif with the rounded classification. Tags: rounded, friendly, education.</p>
+<p>Data-layer note: well-rounded terminators make it the default friendly face for education products</p>
+<h2>Script and subset coverage</h2>
+<table><thead><tr><th>Script or subset</th><th>Record</th></tr></thead><tbody><tr><td>latin</td><td>declared in the data layer</td></tr><tr><td>latin-ext</td><td>declared in the data layer</td></tr><tr><td>cyrillic</td><td>declared in the data layer</td></tr><tr><td>cyrillic-ext</td><td>declared in the data layer</td></tr><tr><td>vietnamese</td><td>declared in the data layer</td></tr></tbody></table>
+<p>Coverage is recorded as declared by the upstream catalog. Before shipping a multilingual product, run the strings from the project through the family; see the cross-referenced testing guide at the end of this file.</p>
+<h2>Technical profile</h2>
+<p>Variable build: yes. Declared axes: wght.</p>
+<table><thead><tr><th>Axis</th><th>What it controls</th></tr></thead><tbody><tr><td>wght</td><td>weight from thin to black</td></tr></tbody></table>
+<p>Static instances can be generated from the variable file, but prefer serving the variable build where the platform supports it.</p>
+<h2>Where it fits</h2>
+<ul><li>Interface text, navigation, and form controls</li><li>Dashboards and dense data layouts when paired with tabular figures</li><li>Marketing headlines at larger sizes for geometric and grotesque voices</li></ul>
+<h2>Where it does not fit</h2>
+<ul><li>Long literary body text where an old-style serif reads more comfortably</li><li>Display contexts that need strong contrast or personality</li></ul>
+<h2>Alternatives in the same slot</h2>
+<p>Compared against the same classification and category in the data layer:</p>
+<table><thead><tr><th>Family</th><th>Classification</th><th>License</th><th>Variable</th></tr></thead><tbody><tr><td>Baloo 2</td><td>rounded</td><td>OFL-1.1</td><td>yes</td></tr><tr><td>Comfortaa</td><td>rounded</td><td>OFL-1.1</td><td>yes</td></tr><tr><td>Modak</td><td>rounded</td><td>OFL-1.1</td><td>no</td></tr><tr><td>Quicksand</td><td>rounded</td><td>OFL-1.1</td><td>yes</td></tr></tbody></table>
+<h2>License notes</h2>
+<p>Released under the SIL Open Font License 1.1. The family may be used, studied, modified, embedded, and bundled in commercial and personal work. Selling the font files on their own is the only prohibited use. If a Reserved Font Name applies, modified versions must be renamed.</p>
+<p>Always verify against the source page: https://fonts.google.com/specimen/Nunito</p>
+<h2>How to load it</h2>
+<ul><li>npm package: <code>@fontsource-variable/nunito</code></li><li>CDN stylesheet: <code>https://cdn.jsdelivr.net/fontsource/css/nunito@latest/index.css</code></li><li>Implementation details, axis usage, and fallback strategy: see the implementation guide below.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Assuming every named instance in design tools exists as a web-safe CSS value; set axes explicitly.</li><li>Loading the full variable file when only two weights are needed; check the size budget first.</li><li>Treating this overview as license advice; the license text at the source URL is the authority.</li><li>Skipping a real-copy test because the catalog preview looked right.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="./baloo-2-overview.html">Baloo 2 overview</a></li><li><a href="./nunito-implementation.html">Nunito implementation guide</a></li><li><a href="./nunito-pairing-playbook.html">Nunito pairing playbook</a></li><li><a href="../../references/selection/classification-primer.html">Classification primer</a></li><li><a href="../../references/licensing/open-font-license.html">Open Font License reference</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Generated from the Fontlore data layer. <a href="../../browse.html#fonts">Back to all fonts</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

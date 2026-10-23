@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Dyslexia and Readable Type - Fontlore</title>
+<meta name="description" content="What research actually supports about type and dyslexia, why &quot;dyslexia fonts&quot; are a poor centerpiece, and the spacing, structure, and user-control practices...">
+<meta property="og:title" content="Dyslexia and Readable Type - Fontlore">
+<meta property="og:description" content="What research actually supports about type and dyslexia, why &quot;dyslexia fonts&quot; are a poor centerpiece, and the spacing, structure, and user-control practices...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Dyslexia and Readable Type</h1>
+<p>What this reference covers: What research actually supports about type and dyslexia, why &quot;dyslexia fonts&quot; are a poor centerpiece, and the spacing, structure, and user-control practices that reliably help. Written to prevent teams from shipping gimmicks while genuinely improving reading comfort.</p>
+<h2>What the evidence says</h2>
+<p>Peer-reviewed studies comparing &quot;dyslexia-specific&quot; fonts (OpenDyslexic and similar) with common standard fonts have repeatedly failed to find reliable reading benefits for the specialized fonts; some studies found no significant differences, others found slight advantages for ordinary sans serifs. The honest summary: there is no solid evidence that any particular typeface fixes dyslexia-related reading difficulty, and claims that one does should be treated as marketing.</p>
+<p>What does help, per the research and practitioner guidance:</p>
+<ul><li>Larger text and more line spacing: consistently reported as helpful by readers with dyslexia.</li><li>Letter and word spacing: modest increases can improve word recognition; this is why WCAG 1.4.12&#x27;s overridable spacing matters so much here.</li><li>Shorter line lengths and left-aligned text: reduces place-loss and overshoot on return sweeps.</li><li>Avoiding justified text: uneven word spacing creates rivers that disrupt tracking.</li><li>Clear structure: headings, lists, and short paragraphs reduce cognitive load more than any glyph change.</li><li>Consistent, familiar letterforms: highly stylized or experimental faces add decoding work.</li></ul>
+<p>The British Dyslexia Association&#x27;s style guidance reflects this: clear sans serifs, generous spacing, left alignment, and good structure, rather than any proprietary font.</p>
+<h2>Designing without gimmicks</h2>
+<ul><li>Offer control rather than prescription: a reading settings control (text size, spacing, sometimes theme) serves dyslexic readers better than baking one &quot;helpful&quot; style into the design, because needs vary per person and per context.</li><li>Never claim a font is dyslexia-friendly in product copy unless you can cite evidence; the claim is checkable and currently unsupported for the commercial &quot;dyslexia fonts&quot;.</li><li>Do not encode assumptions in the type system (forced large spacing site-wide); instead make defaults sensible and overrides available.</li><li>Beware accessibility theater: swapping in a special font while shipping justified 110-character lines with 1.3 leading is a net negative.</li></ul>
+<h2>Type choices that are genuinely defensible</h2>
+<p>Given no magic font exists, choose on the factors with real support:</p>
+<ul><li>Familiar, open sans serifs for reading-heavy UIs: Inter, Source Sans 3, Verdana-lineage designs; nothing exotic required.</li><li>Good lowercase differentiation and open apertures; test the face at your actual sizes.</li><li>Real bold for emphasis rather than color alone or underlining (underline is reserved for links).</li><li>Line length 45 to 75 characters, line-height around 1.5, left-aligned ragged right.</li><li>If body text is serif, a sturdy text serif (Source Serif 4, Literata, PT Serif) rather than a high-contrast display serif.</li><li>A face with real weights rather than a two-weight family; emphasis built from genuine 600 beats synthetic bold, which blurs at exactly the sizes dyslexic readers use most.</li></ul>
+<h2>Beyond type: structure carries the load</h2>
+<p>Dyslexia-friendly reading is mostly an information-architecture practice:</p>
+<ul><li>Front-load meaning in headings and first sentences.</li><li>Break long content with subheadings every few paragraphs.</li><li>Use lists over dense prose when enumerating.</li><li>Keep link text meaningful out of context (&quot;read the pricing guide&quot;, not &quot;click here&quot;).</li><li>Provide text alternatives and consistent navigation so re-reading is cheap.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Shipping a &quot;dyslexia mode&quot; that just switches the font and nothing else; spacing, size, and structure are the levers with evidence.</li><li>Believing the font vendor&#x27;s study; most are internal, uncontrolled, and unpublished.</li><li>Forcing a special font on everyone; some readers find the letterforms harder, and the claim alienates the audience it names.</li><li>Justified text with large word gaps on content pages.</li><li>Ignoring the spacing overrides criterion; dyslexic readers are among the primary users of such overrides.</li><li>Treating dyslexia as a niche: it is common (estimates around 5 to 10 percent of people, with wider reading-difficulty ranges), so these practices are mainstream usability, not edge-case accommodation.</li><li>Measuring success by shipping the panel; measure by whether readers change settings and finish long pages, then iterate.</li><li>Applying the reading recipe to interface chrome; buttons, navigation, and forms follow UI rules, not reading rules.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Request for &quot;a dyslexia font&quot;: respond with a reading-settings proposal (size, spacing, measure) and cite the evidence gap; do not buy a specialist font on that basis.</li><li>Default type for a content product: a clear, familiar sans or sturdy text serif at 16 px or more, 1.5 leading, 45 to 75 character measure, left-aligned.</li><li>Any accessibility claim in marketing about type: must trace to a citable source or be removed.</li><li>Evaluating a proposal that cites a specialist font&#x27;s benefits: ask for peer-reviewed evidence; absent that, redirect the effort to spacing and structure work.</li><li>Everything user-facing: pass the text-spacing override test, because that is the accommodation this audience actually uses.</li><li>When any accessibility claim about type is proposed: write the source next to the claim in the design system docs; an unsourced claim is removed, not softened.</li></ul>
+<h2>Comparison table: claims versus evidence</h2>
+<table><thead><tr><th>Intervention</th><th>State of the evidence</th><th>Practical verdict</th></tr></thead><tbody><tr><td>Specialist dyslexia fonts</td><td>Peer-reviewed comparisons find no reliable benefit over well-set standard faces</td><td>Do not build a product claim on one</td></tr><tr><td>Larger default text</td><td>Consistently reported as helpful by readers</td><td>Ship 17 to 18 px on reading surfaces</td></tr><tr><td>Increased letter and word spacing</td><td>Modest support; needs vary per reader</td><td>Offer as a user control</td></tr><tr><td>Line height 1.5 or above</td><td>Supported</td><td>Default 1.5 to 1.8 for body text</td></tr><tr><td>Left-aligned, ragged right</td><td>Supported</td><td>Always for reading text</td></tr><tr><td>Justified text</td><td>Creates rivers and uneven word spacing</td><td>Avoid on reading surfaces</td></tr><tr><td>Tinted backgrounds and overlays</td><td>Mixed and highly individual</td><td>Optional theme at most, never the default</td></tr><tr><td>Familiar letterforms</td><td>Reported as reducing decoding effort</td><td>Prefer proven, open faces</td></tr></tbody></table>
+<p>The pattern is consistent: the interventions with evidence are spacing, size, and structure, which are layout and control decisions. The typeface is a supporting actor.</p>
+<h2>Field notes: building a reading-settings panel</h2>
+<p>The control that serves dyslexic readers is a small panel on reading surfaces (articles, docs, lessons), not a site-wide theme switch:</p>
+<ul><li>Text size: three steps mapping to 100, 112.5, and 125 percent on the root, implemented in rem so browser preferences still compose with it.</li><li>Line spacing: three steps, 1.5, 1.75, and 2, scoped to article containers, not to buttons and navigation.</li><li>Letter and word spacing: one toggle applying a gentle increase (for example 0.015em letter and 0.06em word spacing), never the 1.4.12 stress values, which exist for override testing, not default design.</li><li>Face: the default plus one alternative, offered without claims; Atkinson Hyperlegible is a defensible alternative because its design goals are documented for low vision, and Lexend exists for readers who prefer its spacing-tuned forms.</li><li>Persistence: the choice stored with the user or locally and applied before first paint, so there is no flash of default text.</li><li>Do not: swap fonts automatically based on a dyslexia assumption, force the settings on, or label the panel &quot;dyslexia mode&quot;.</li><li>Respect prefers-contrast and forced-colors in the same panel so high-contrast needs are met without JavaScript guesswork.</li></ul>
+<h2>Code notes: the reading-surface recipe</h2>
+<pre><code class="language-css">/* Reading surfaces: the defaults that follow from the evidence */
+article {
+  font-size: 1.125rem;      /* 18 px, respects the user&#x27;s rem base */
+  line-height: 1.7;
+  max-width: 64ch;
+  text-align: left;         /* ragged right; no justification */
+  letter-spacing: normal;   /* never tracked body text */
+}
+article p { margin-block: 0 1em; }    /* visible paragraph separation */
+article strong { font-weight: 600; }  /* real semibold, not color emphasis */</code></pre>
+<p>The same values ship as design tokens (a reading-size, a reading-leading, a reading-measure) so product and marketing surfaces inherit them instead of re-deciding per page.</p>
+<h2>Worked example: answering the &quot;dyslexia font&quot; request</h2>
+<p>A product manager forwards a vendor email: a specialist font, licensed per seat, &quot;clinically shown to help dyslexic readers&quot;. A defensible response, written once and reused:</p>
+<ol><li>Ask for the peer-reviewed evidence behind the claim; the studies that exist are typically internal and uncontrolled.</li><li>Present the evidence summary from this reference: no reliable advantage for specialist fonts over well-set standard faces.</li><li>Offer the alternative plan: reading-settings panel, 17 to 18 px body, 1.5 to 1.8 leading, structured content, text-spacing override support.</li><li>Cost it against the font license; the settings panel is usually cheaper and helps every reader, not only the diagnosed ones.</li><li>If the organization still wants the font, offer it as an optional user choice inside the panel, with no claims attached, and record the decision.</li></ol>
+<p>The outcome that matters: the reader gets knobs that help, the company avoids an unsupported marketing claim, and the money buys structure instead of a ligature.</p>
+<h2>Quick reference: numbers for reading surfaces</h2>
+<p>The defaults below summarize the evidence and guidance cited above; the WCAG column is the override test the page must survive, not a recommended default:</p>
+<table><thead><tr><th>Setting</th><th>Default to ship</th><th>Override test it must survive</th></tr></thead><tbody><tr><td>Body size</td><td>1.0625rem to 1.125rem (17 to 18 px) on reading surfaces; 1rem floor elsewhere</td><td>User raises the browser base font size well above default</td></tr><tr><td>Line height</td><td>1.5 to 1.8 for body text</td><td>1.4.12 line-height at 1.5x font size</td></tr><tr><td>Paragraph spacing</td><td>Visible margin of 0.5em to 1em between paragraphs</td><td>1.4.12 paragraph spacing at 2x font size</td></tr><tr><td>Letter spacing</td><td>normal for body</td><td>1.4.12 letter spacing at 0.12x font size</td></tr><tr><td>Word spacing</td><td>normal</td><td>1.4.12 word spacing at 0.16x font size</td></tr><tr><td>Measure</td><td>45 to 75 characters</td><td>Reflow at 320 px width keeps text intact</td></tr><tr><td>Alignment</td><td>Left, ragged right; never justified</td><td>Not applicable</td></tr><tr><td>Emphasis</td><td>Real 600 weight from the font files</td><td>Forced-colors mode remaps colors without breaking meaning</td></tr></tbody></table>
+<p>The distinction matters: shipping 0.12x letter spacing everywhere because the criterion tests for it confuses the accommodation (users may override) with the default (keep it normal; readers who want it will set it, which is why the criterion exists).</p>
+<h2>Audit checklist: reading surfaces</h2>
+<ul><li>[ ] Body text at or above 1rem, 1.5 leading or more, 45 to 75 character measure.</li><li>[ ] Left-aligned; text-align: justify absent from article and long-form containers.</li><li>[ ] Paragraph separation visible without relying on spacing alone.</li><li>[ ] Emphasis uses real bold (600 or 700) from the font files, not synthetic bold and not color alone.</li><li>[ ] Links distinguishable without color (underline or weight) and nothing else is underline-decorated.</li><li>[ ] Headings break up long content every few paragraphs; heading levels nest without skips.</li><li>[ ] The 1.4.12 override sweep passes on every reading template, screenshots filed.</li><li>[ ] Any reading-settings panel offers size and spacing as user choices, persists them, and applies before first paint.</li><li>[ ] No product or marketing copy claims a typeface is &quot;dyslexia-friendly&quot; without a citable source.</li><li>[ ] Enumerations use lists; link text is meaningful out of context.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="text-spacing-criterion.html">Text spacing criterion</a></li><li><a href="line-length-and-reading.html">Line length and reading</a></li><li><a href="../workflow/common-mistakes.html">Common mistakes</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

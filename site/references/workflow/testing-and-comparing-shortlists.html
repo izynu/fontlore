@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Testing and Comparing Shortlists - Fontlore</title>
+<meta name="description" content="Building specimen tests with the project&#x27;s real copy, running side-by-side comparison matrices, using size ramps, and scoring candidates so a shortlist becom...">
+<meta property="og:title" content="Testing and Comparing Shortlists - Fontlore">
+<meta property="og:description" content="Building specimen tests with the project&#x27;s real copy, running side-by-side comparison matrices, using size ramps, and scoring candidates so a shortlist becom...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>Testing and Comparing Shortlists</h1>
+<p>What this reference covers: Building specimen tests with the project&#x27;s real copy, running side-by-side comparison matrices, using size ramps, and scoring candidates so a shortlist becomes a decision. Specimens show fonts at their best; tests show fonts at your worst-case, which is the only case that matters.</p>
+<h2>Real copy or nothing</h2>
+<p>Generic specimen text (pangrams, marketing slogans) hides exactly the problems fonts have in production. Build the test corpus from the project:</p>
+<ul><li>The longest product name, the longest headline, the shortest button label, the densest table, a real error message, a real address, a real date range, a currency amount, and one piece of long-form copy from the actual content.</li><li>The full language set from the constraint sheet: real paragraphs in every launch language, pulled from the UDHR translations or the product&#x27;s own content.</li><li>Edge inputs: all-caps UI strings, user names with mixed scripts, emoji in context, numbers of every shape (prices, percentages, phone numbers, IDs).</li></ul>
+<p>One HTML file with a section per candidate and the same corpus in each is the entire tooling needed; build it once, reuse it forever.</p>
+<h2>The side-by-side matrix</h2>
+<p>For each candidate family, render the same blocks in the same order:</p>
+<ol><li>Body paragraph at production size and measure (the values from the constraint sheet, not arbitrary ones).</li><li>The UI strip: nav, button row, form field, status label, error message at their production sizes.</li><li>Headline stack: display size, section heading, card title.</li><li>Data block: table with tabular figures, price, timestamp, ID in mono if the system uses one.</li><li>Language blocks: every launch language, same paragraph, at body size.</li><li>Feature checks: bold, italic (if used), tabular numerals, small caps (if used).</li></ol>
+<p>Read each column at each block and note failures against the block&#x27;s job; a matrix entry is a judgment (&quot;crumbles at 13 px labels&quot;), not a vibe.</p>
+<h2>Size ramps and stress settings</h2>
+<ul><li>Size ramp: each candidate at 12, 14, 16, 20, 32, 48, 72 px equivalents in one column; UI faces must survive 12 to 16, display faces 32 and up. Failure at a size you ship is disqualifying, whatever the rest looks like.</li><li>Weight ladder: set the same paragraph in every shipped weight; gaps between weights (missing 500) or mushy bolds appear immediately.</li><li>Tracking and case stress: the all-caps label style, the tracked kicker, the tight display leading; apply your actual production CSS values.</li><li>Script stress: the language blocks at production line-height, including the tall-mark scripts; this is where line-height and coverage failures surface.</li><li>Rendering stress: screenshots on Windows at small sizes and, for CJK or complex scripts, in a second browser; platform differences are real and recurring.</li></ul>
+<h2>Scoring without pretending it is math</h2>
+<p>A simple rubric keeps discussions honest; scores are structured opinions, not measurements:</p>
+<ul><li>Legibility at production sizes (1-5): the body and UI blocks.</li><li>Coverage and shaping (pass/fail per language): a hard gate, not a score.</li><li>Hierarchy range (1-5): do the weights and styles build the system the design needs?</li><li>Data typography (1-5 or pass/fail): tabular figures, alignment, mono quality if relevant.</li><li>Fit to voice (1-5): the only taste entry; score it as a group, not by fiat.</li><li>License and logistics (pass/fail plus notes): verified in research.</li></ul>
+<p>Hard gates first (coverage, license, tabular figures): anything failing is out regardless of score. Then compare scores; a tie is broken by fit to voice and by evidence of proven performance in similar contexts.</p>
+<h2>Deciding and recording</h2>
+<ul><li>Rank survivors, keep the top three for the stakeholder presentation (see the presenting reference); record scores and the corpus used.</li><li>Note per candidate what tuning it needs (size bumps, leading adjustments, per-language rules): these become the CSS handoff, and a candidate needing heavy tuning is a real cost.</li><li>Archive the comparison page with the version of each font tested; decisions get re-audited against the artifacts, and the artifacts must show what was actually seen.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Comparing fonts at sizes the project never uses; a 72 px showcase means nothing to a 13 px dashboard.</li><li>One language tested, five shipped; the missing languages fail later, in production, in front of users.</li><li>Scoring before hard gates, so a font with broken Vietnamese wins on charm.</li><li>Testing in the design tool only; Figma rendering is not Windows ClearType, and the difference is the decision.</li><li>Letting the loudest stakeholder&#x27;s taste override a recorded hard-gate failure; the matrix exists to prevent exactly that.</li><li>No tuning notes: the chosen font ships with default leading and the wrong numeral style, and nobody remembers why it looked better in the test.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Hard-gate failure: out, no appeals; record the gate and the reason.</li><li>Two candidates tie: run one more round with new, harder copy (longer, denser, more languages), not with more opinions.</li><li>A candidate needs tuning to win: acceptable if the tuning is written into the handoff; not acceptable if it depends on per-page fixes.</li><li>The winner on scores loses on voice with the stakeholder: present the evidence, then let voice break the tie consciously and record that it did.</li><li>Any change of corpus, size, or settings mid-comparison: re-run all candidates; a matrix is only valid under identical conditions.</li></ul>
+<h2>Quick reference: the standard corpus blocks</h2>
+<table><thead><tr><th>Block</th><th>Contents</th><th>What it reveals</th></tr></thead><tbody><tr><td>Longest headline</td><td>The longest real title at display size</td><td>Tracking, wrapping, repeated-letter collisions</td></tr><tr><td>Body paragraph</td><td>Two paragraphs of the actual long-form copy at production size and measure</td><td>Rhythm, color, comfort over a real read</td></tr><tr><td>UI strip</td><td>Nav labels, buttons, form field, status badge, error message at production sizes</td><td>Small-size survival, letterform disambiguation</td></tr><tr><td>Data block</td><td>Table with prices, timestamps, IDs</td><td>Tabular figures, digit width consistency, alignment</td></tr><tr><td>Language blocks</td><td>One paragraph per launch language</td><td>Diacritics, shaping, vertical metrics</td></tr><tr><td>Edge inputs</td><td>All caps, mixed-script user names, emoji neighbors, every numeral shape</td><td>Case mapping, fallback behavior, punctuated strings</td></tr><tr><td>Measure sweep</td><td>The body paragraph at narrow, production, and wide measures</td><td>Rivers and one-word lines at the extremes</td></tr><tr><td>Export block</td><td>The PDF or report surface, if the constraint sheet names one</td><td>Rendering outside the browser before it becomes a launch surprise</td></tr></tbody></table>
+<p>Build the corpus once per project from the constraint sheet and version it with the comparison artifacts; a corpus that drifts between rounds invalidates the scores recorded against it.</p>
+<p>The corpus is versioned text, not vibes: store it beside the comparison page. When a later dispute asks what the decision was based on, the corpus plus the archived matrix is the complete answer. Reusing last year&#x27;s corpus is allowed and encouraged; the version history then shows what the project learned between selections.</p>
+<h2>Worked example: two body faces for a documentation site</h2>
+<p>Shortlist of two after research: a sturdy text serif and a neutral grotesque, both OFL, both with the needed Cyrillic.</p>
+<ol><li>Corpus: the real getting-started guide (two paragraphs), the real API error strings, a table of rate limits, German and Polish paragraphs, and a code snippet in mono context.</li><li>Size ramp at production sizes only (14, 16, 20 px): the serif held its color better at 14 px; the grotesque won the 20 px intro text on openness.</li><li>The UI strip killed nothing but exposed tuning: the grotesque&#x27;s all-caps labels needed 0.01em tracking to match the serif&#x27;s; recorded as a handoff note either way.</li><li>Data block: the serif&#x27;s default figures were proportional; switching the table to tabular-nums aligned it cleanly, but the grotesque&#x27;s tabular figures ran wider, adding a character of width to the price column. Column budgets adjusted.</li><li>Language blocks: both passed Cyrillic; the serif&#x27;s Polish diacritics sat tighter against ascenders at 1.45 leading, so 1.5 was locked for both.</li><li>Scores: legibility 4 versus 4; hierarchy range 4 versus 3 (the serif had a true italic, the grotesque an oblique); data 3 versus 4; voice 4 versus 3 as scored by the group.</li><li>Decision: the serif for article bodies, the grotesque retained for UI chrome, which the matrix had been quietly suggesting all along; both tuning notes entered the CSS handoff.</li><li>Archive: the comparison page, the corpus file, and both candidates&#x27; tested versions stored with the decision record; the tuning notes (the tracking value, the leading floor, the tabular-nums scope) copied verbatim into the CSS handoff.</li></ol>
+<p>Two candidates, one afternoon, and a record that explains the split-system decision to whoever inherits it.</p>
+<p>The afternoon produced one more output worth the effort: the losing grotesque stayed in the record with its scores, so when a UI-only redesign began the following year, it started from a documented candidate instead of a blank page. Split-system decisions (one face for reading, one for chrome) need this record most, because the next maintainer inherits two families and one paragraph of rationale.</p>
+<h2>Field notes: failures only tests catch</h2>
+<ul><li>Fake italics: the family ships a true italic for regular but synthesizes bold italic; the weight ladder with italics is the only way to see it.</li><li>Mushy 500: some faces render their 500 nearly identical to 400 at UI sizes, which silently deletes medium emphasis from the design.</li><li>Digit drift: default figures that look fine in prose misalign a price column; tabular figures exist but were never tested.</li><li>Vietnamese clipping at tight leading: diacritics clear at 1.5 leading and touch at 1.3; only the language block at production leading shows it.</li><li>Windows rendering at 13 px: a face that renders beautifully on macOS falls apart at small sizes on Windows; screenshots from one platform are half the evidence.</li><li>Fallback flash: with font-display: swap and no metric-adjusted fallback, the comparison page itself hides the layout shift production gets on every load.</li><li>All-caps accent clipping: uppercase Vietnamese or German in tracked labels clips accents against tight line-height; the tracked-kicker stress block exists for this.</li><li>Numeral ambiguity: a zero that reads like a capital O at 13 px looks charming in specimens and generates support tickets in production; the data block catches it.</li><li>Ascender height versus leading: a face with tall ascenders forces looser leading, which silently rewrites the vertical rhythm tokens; the language blocks at production leading surface it before launch.</li><li>Subset drift: a candidate whose latin-ext file lags its latin file produces half-updated pages after every font update; pin all subset files to one release.</li><li>Punctuation color: some faces set quotes, hyphens, and parentheses a size too large, which shows only in dense error strings; the edge-inputs block is where it appears.</li><li>Faked small caps: scaled capitals survive specimens and die in the feature check; test the real smcp feature if the design uses small caps.</li><li>Weight coverage gaps: a family missing 500 forces the design system to choose between two wrong emphasis levels; the weight ladder exposes it immediately.</li><li>Return-sweep failures: at over-wide measures a face&#x27;s rhythm can send the eye to the wrong line; the measure sweep has ended two display-serif candidates in practice.</li><li>Fallback mismatch: view the corpus in the fallback stack first, and the webfont&#x27;s contribution becomes visible; comparisons that never show the fallback understate the cost of slow loading.</li></ul>
+<p>Each of these has ended a real comparison, and none appears in foundry specimens, which is precisely why the specimen is not the test.</p>
+<h2>Audit checklist: comparison validity</h2>
+<ul><li>[ ] Every candidate renders the same corpus, in the same order, at the same sizes.</li><li>[ ] Font files pinned to specific versions; the versions recorded with the artifacts.</li><li>[ ] Browser and OS versions recorded; at least one Windows capture if UI text ships below 16 px.</li><li>[ ] Hard gates (coverage, license, tabular figures) applied before any scoring.</li><li>[ ] Scores entered per rubric line with the scorer named; the group-scored voice entry noted as such.</li><li>[ ] Tuning needs recorded per candidate as handoff-ready notes.</li><li>[ ] The comparison page archived (file or screenshot set) with the corpus version.</li><li>[ ] Any mid-comparison change (corpus, sizes, weights) triggers a full re-run; no partial updates.</li><li>[ ] The corpus includes at least one block per shipped language and one block per production size class.</li><li>[ ] Candidates tested at their production tuning (tracking, leading), not at browser defaults only.</li><li>[ ] The archive can be reopened: file paths and versions recorded so a maintainer can rebuild the comparison page.</li><li>[ ] Feature checks run where used (tabular figures, real small caps, true italic), not assumed from listings.</li><li>[ ] Tabular figures verified in the actual data block, including the minus sign and currency glyphs.</li><li>[ ] The losing candidates&#x27; scores kept; the record of why they lost is as load-bearing as the winner&#x27;s.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="research-workflow.html">Research workflow</a></li><li><a href="presenting-to-stakeholders.html">Presenting to stakeholders</a></li><li><a href="../scripts/testing-multilingual-coverage.html">Testing multilingual coverage</a></li><li><a href="css-handoff-snippets.html">CSS handoff snippets</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

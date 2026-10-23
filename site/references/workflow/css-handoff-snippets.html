@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>CSS Handoff Snippets - Fontlore</title>
+<meta name="description" content="The exact CSS that ships with a font decision: @font-face blocks, fallback metric overrides, custom properties, type scales, feature settings, preload markup...">
+<meta property="og:title" content="CSS Handoff Snippets - Fontlore">
+<meta property="og:description" content="The exact CSS that ships with a font decision: @font-face blocks, fallback metric overrides, custom properties, type scales, feature settings, preload markup...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>CSS Handoff Snippets</h1>
+<p>What this reference covers: The exact CSS that ships with a font decision: @font-face blocks, fallback metric overrides, custom properties, type scales, feature settings, preload markup, and per-language adjustments. A font choice without these snippets is a suggestion, not a handoff; this file is the template to fill in.</p>
+<h2>@font-face blocks</h2>
+<p>Static weights, one block per file, honest descriptors:</p>
+<ul><li>font-family: &quot;App Sans&quot;; src: url(&quot;/fonts/app-sans-latin-400.woff2&quot;) format(&quot;woff2&quot;); font-weight: 400; font-style: normal; font-display: swap;</li><li>Repeat per weight (400, 500, 600, 700) and per style (italic blocks carry font-style: italic), with unicode-range per subset file (latin, latin-ext, cyrillic, greek, vietnamese as the language matrix requires).</li><li>Variable version: one block, font-weight: 100 900 (the actual range), font-style: normal, same font-display and unicode-range discipline.</li></ul>
+<p>Metric-adjusted fallback, sized against the primary (generate the numbers with tooling, see the fallback reference):</p>
+<ul><li>@font-face { font-family: &quot;App Sans Fallback&quot;; src: local(&quot;Arial&quot;); size-adjust: 105%; ascent-override: 105%; descent-override: 35%; line-gap-override: 0%; }</li><li>The stack then reads: font-family: &quot;App Sans&quot;, &quot;App Sans Fallback&quot;, sans-serif;</li></ul>
+<h2>Custom properties: the token layer</h2>
+<ul><li>--font-sans: &quot;App Sans&quot;, &quot;App Sans Fallback&quot;, system-ui, sans-serif;</li><li>--font-display: &quot;App Display&quot;, &quot;App Display Fallback&quot;, Georgia, serif;</li><li>--font-mono: &quot;App Mono&quot;, ui-monospace, &quot;Cascadia Mono&quot;, monospace;</li><li>Weights as tokens too: --font-weight-regular: 400; --font-weight-medium: 500; --font-weight-semibold: 600; --font-weight-bold: 700; components consume tokens, never raw numbers, so a family swap is a token edit.</li><li>Per-script adjustments as scoped rules: :lang(ar) { line-height: 1.6; } :lang(th) { line-height: 1.7; } :lang(hi) { line-height: 1.6; } plus any size bumps; these live next to the family tokens, not scattered in components.</li></ul>
+<h2>Type scale</h2>
+<p>Rem-based, role-named, with leading attached:</p>
+<ul><li>--text-xs: 0.75rem with --leading-xs: 1.4 (captions, metadata; check contrast and 12 px floor).</li><li>--text-sm: 0.875rem with --leading-sm: 1.45 (dense UI, tables).</li><li>--text-base: 1rem with --leading-base: 1.5 (body).</li><li>--text-lg: 1.125rem with --leading-lg: 1.55 (intro text).</li><li>--text-xl through display sizes with leading stepping down (1.3, 1.2, 1.1); fluid display sizes use clamp() with rem bounds: --text-display: clamp(2rem, 1.4rem + 2.5vw, 4rem).</li><li>Scale values are a project decision; what is not negotiable is that leading travels with size as one token, so components cannot pair 1.6 leading with display sizes by accident.</li></ul>
+<h2>Feature settings</h2>
+<ul><li>Tables and data: .tabular { font-variant-numeric: tabular-nums; } applied at the table or metric component level.</li><li>Editorial body (if the face earns it): .body-editorial { font-variant-numeric: oldstyle-nums proportional-nums; } one class, documented.</li><li>Stylistic sets frozen in tokens: .brand-display { font-variation-settings: &quot;SOFT&quot; 60, &quot;WONK&quot; 1; } with the axis values recorded as the brand&#x27;s chosen instance, or @font-feature-values for named sets.</li><li>Disable ligatures in code contexts: code, kbd { font-variant-ligatures: none; }</li><li>Nothing else: default ligatures and kerning stay on; feature sprawl is a maintenance tax.</li></ul>
+<h2>Preload markup</h2>
+<ul><li>link rel=&quot;preload&quot; href=&quot;/fonts/app-sans-latin-400.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin</li><li>One or two faces maximum, exactly matching the @font-face URLs; the crossorigin attribute is mandatory even same-origin.</li><li>Pair with font-display: swap and the metric-adjusted fallback so the swap is invisible.</li></ul>
+<h2>The handoff package</h2>
+<p>Ship the decision as a package, not a message:</p>
+<ol><li>fonts/ directory with files, license texts, and a manifest (family, version, source, date).</li><li>tokens.css with the custom properties above.</li><li>fonts.css with the @font-face blocks and fallback overrides.</li><li>README with the tuning notes (per-language leading, feature decisions, size floors) and links to the decision record.</li><li>The comparison and test artifacts referenced, so future maintainers can re-verify.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Handing over family names without weights: the team then loads six weights &quot;to be safe&quot; and the budget dies.</li><li>Tokens for families but not for weights and leading, so components hardcode values and the next swap is a rewrite.</li><li>Preload URLs that drift from @font-face URLs after a rename; the preload silently becomes waste.</li><li>Missing per-language leading in the handoff, discovered when the first Arabic or Thai content ships.</li><li>Fallback overrides copied from a template without regenerating for the actual font pair; wrong overrides are worse than none.</li><li>License files not shipped with the fonts; the first vendor or audit request stalls the release.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Every font decision ships with this package on the same day; a decision that waits for &quot;CSS cleanup&quot; ships without its tuning.</li><li>Any new surface (email, docs site, app webview) inherits the tokens; new tokens require a governance request, not a local edit.</li><li>Version bumps regenerate the whole package (files, overrides, manifest) atomically; partial updates are how mixed-version bugs start.</li><li>If the handoff cannot include a metric-adjusted fallback for some surface (email clients, for example), document the swap risk in the README for that surface.</li></ul>
+<h2>Code notes: the fonts.css skeleton</h2>
+<p>A complete minimal handoff file; fill in the project specifics and delete what does not apply:</p>
+<pre><code class="language-css">/* fonts.css - ships with tokens.css and the license texts */
+
+/* Primary face: one block per subset per weight */
+@font-face {
+  font-family: &quot;App Sans&quot;;
+  src: url(&quot;/fonts/app-sans-latin-400.woff2&quot;) format(&quot;woff2&quot;);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* Abbreviated; copy the exact range from the source of the subset files */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-adjusted fallback: regenerate the numbers for the actual pair */
+@font-face {
+  font-family: &quot;App Sans Fallback&quot;;
+  src: local(&quot;Arial&quot;);
+  size-adjust: 105%;
+  ascent-override: 105%;
+  descent-override: 35%;
+  line-gap-override: 0%;
+}
+
+/* Tokens: families, weights, and leading travel together */
+:root {
+  --font-sans: &quot;App Sans&quot;, &quot;App Sans Fallback&quot;, system-ui, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --leading-body: 1.5;
+  --leading-tight: 1.2;
+}
+
+/* Roles consume tokens; text sizes in rem only */
+body { font-family: var(--font-sans); font-size: 1rem; line-height: var(--leading-body); }
+h1, h2, h3 { line-height: var(--leading-tight); }
+
+/* No fixed heights on text containers; overrides and zoom must reflow */
+.button { min-height: 2.75rem; padding: 0.5rem 1rem; }
+
+/* Data alignment */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Per-script leading lives here, not in components */
+:lang(ar) { line-height: 1.7; }
+:lang(th) { line-height: 1.8; }</code></pre>
+<p>A note on the unicode-range: copy it from the source of the subset files (the google/fonts repository and Fontsource publish the exact values). Hand-guessed ranges silently exclude glyphs and are miserable to debug.</p>
+<h2>Quick reference: font-display values</h2>
+<table><thead><tr><th>Value</th><th>Behavior</th><th>Use when</th></tr></thead><tbody><tr><td>swap</td><td>Fallback shows at once; swaps when the webfont loads (zero block period, unlimited swap period)</td><td>Default for text users must read; pair with a metric-adjusted fallback</td></tr><tr><td>block</td><td>Invisible text during a short block period, then swap</td><td>Faces where a flash of fallback is unacceptable and slow loads are rare</td></tr><tr><td>fallback</td><td>Very short block (about 100 ms), short swap window (about 3 s), then the fallback sticks</td><td>Ambient or non-critical faces</td></tr><tr><td>optional</td><td>Very short block; the browser uses it only if cached; no swap after the first visit</td><td>Faces the design can lose entirely on a slow connection</td></tr></tbody></table>
+<p>The time constants are browser-defined and have shifted over browser releases; treat the durations as approximate and verify in current browsers. Whichever value ships, it belongs in the @font-face block and its reason belongs in the handoff README.</p>
+<h2>Worked example: handoff for a three-family system</h2>
+<p>A product ships App Sans (UI and body), App Display (marketing hero), and App Mono (code). The handoff package, as built:</p>
+<ol><li>fonts/: the woff2 files (sans 400/600/700 in latin and latin-ext, the display variable file, mono 400/500), the OFL license text for each family, and MANIFEST.md listing family, version, source URL, and download date per file.</li><li>fonts.css: @font-face blocks with unicode-range per subset, a metric-adjusted fallback generated for App Sans against Arial, and font-display: swap everywhere except the display face (fallback, because the hero tolerates it).</li><li>tokens.css: family, weight, size, and leading tokens; per-script leading for the two shipped second languages; the tabular-nums utility.</li><li>README: the size floors (16 px inputs, 18 px reading surfaces), the preload pair (sans 400 latin only), the decisions that were rejected (no 300 weight: unused, saved kilobytes), and links to the comparison artifacts.</li><li>The acceptance checklist below, run by the receiving engineer before merge.</li></ol>
+<p>The package took half a day to assemble and one review round. The same handoff previously delivered as a message with three family names cost the team two weeks of wrong-weight loading and a re-audit.</p>
+<h2>Audit checklist: handoff acceptance</h2>
+<p>The receiving engineer runs this before merging a font handoff:</p>
+<ul><li>[ ] Every @font-face URL resolves and matches the preload URLs exactly.</li><li>[ ] Weight and style descriptors match the actual files (open one and check the name table).</li><li>[ ] unicode-range values copied from the file source, not hand-typed from memory.</li><li>[ ] The fallback overrides were regenerated for the actual primary and fallback pair, not copied from a template.</li><li>[ ] Tokens exist for families, weights, sizes, and leading; components import tokens only.</li><li>[ ] No text container has a fixed height; min-height in rem at most.</li><li>[ ] Per-language rules present for every shipped language.</li><li>[ ] The license text for every family ships in the package; the manifest records version and source.</li><li>[ ] The 1.4.12 spacing sweep and the 200 percent zoom pass run against the handoff state, screenshots filed.</li><li>[ ] Preload limited to one or two files that are actually used above the fold.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../technical/font-face-and-css.html">Font-face and CSS</a></li><li><a href="design-tokens-for-type.html">Design tokens for type</a></li><li><a href="../technical/font-loading-pipeline.html">Font loading pipeline</a></li><li><a href="../technical/fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

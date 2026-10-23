@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>WhatFontIs Workflow - Fontlore</title>
+<meta name="description" content="How to use WhatFontIs, the identifier built around manual glyph correction: marking and confirming character boxes, using the free tier effectively, filterin...">
+<meta property="og:title" content="WhatFontIs Workflow - Fontlore">
+<meta property="og:description" content="How to use WhatFontIs, the identifier built around manual glyph correction: marking and confirming character boxes, using the free tier effectively, filterin...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Identification</span></nav>
+<article class="doc">
+<h1>WhatFontIs Workflow</h1>
+<p>What this reference covers: How to use WhatFontIs, the identifier built around manual glyph correction: marking and confirming character boxes, using the free tier effectively, filtering commercial versus free results, and knowing when its approach beats fully automatic tools.</p>
+<p>WhatFontIs trades a little manual labor for accuracy. Where other tools guess at segmentation, it lets you fix it, which rescues many samples that automatic identifiers mangle.</p>
+<h2>What the tool is</h2>
+<ul><li>WhatFontIs is an independent font identification service with a large indexed database spanning commercial foundries and free font sources.</li><li>Its differentiator is a correction step: after upload, you confirm or fix the boxes around detected characters and type in the letters, teaching the matcher exactly what it is looking at.</li><li>The free tier covers the core workflow; a paid tier removes interruptions and adds convenience features like advanced filtering and larger result sets.</li><li>Because it indexes free font aggregators as well as commercial catalogs, it frequently identifies OFL and free-use families that commercial-only tools miss.</li></ul>
+<h2>Preparing the image</h2>
+<ul><li>Crop a clean string of letters, straightened and high contrast, as with any identifier.</li><li>Include enough letters to be diagnostic but not so many that correction becomes tedious; 6 to 10 characters is the sweet spot.</li><li>If letters touch or overlap, try to pick a string where they separate; manual correction can survive minor issues but clean input still wins.</li><li>Dark-on-light or light-on-dark both work; the tool can invert, but a normal-contrast crop avoids that step entirely.</li></ul>
+<h2>The manual correction step</h2>
+<ul><li>After upload, review the detected character boxes: fix box positions that are off, delete boxes on noise, and add missing letters.</li><li>Type the actual character for each box; accurate transcription materially improves matching, especially for ambiguous shapes like l, I, and 1.</li><li>Use this step to exclude decorative characters (swashes, ornaments) that would mislead shape matching.</li><li>The correction step is also the fastest way to learn what identifiers struggle with: you see the segmentation problems with your own eyes.</li></ul>
+<h2>Free versus Pro</h2>
+<ul><li>The free tier requires solving a check and shows results with some limits; it is fully capable of identifying common fonts.</li><li>Pro removes interruptions, expands result counts, and unlocks filters that speed up repeated identification work.</li><li>Occasional users: free is enough; run the workflow and stop. Professional identify-anything services and agencies: Pro pays for itself in saved minutes.</li><li>Whatever the tier, the core discipline is identical: correct the boxes honestly, verify candidates by hand, and log the outputs.</li></ul>
+<h2>Filtering commercial and free results</h2>
+<ul><li>Use the free/commercial filter when you already know your constraint: a zero-budget project should not fall in love with a commercial match.</li><li>The free filter is especially valuable for finding open-source stand-ins for famous commercial faces; verify the free candidate&#x27;s license before adopting, since aggregator-indexed licenses vary.</li><li>When a commercial result matches best, note the foundry and check the foundry&#x27;s own site; WhatFontIs listing data can lag the foundry&#x27;s current version.</li><li>Filtered results still require hand verification; filters narrow the field, they do not confirm identity.</li></ul>
+<h2>Running the identification</h2>
+<ul><li>Upload, then invest real attention in the correction step; it is the tool&#x27;s whole advantage.</li><li>Read the full result list and compare top candidates against your sample at matched size.</li><li>Cross-run the crop through WhatTheFont and Matcherator; independent agreement is the strongest cheap signal.</li><li>For survivors, verify at the foundry and search Fonts In Use for real-world confirmations.</li></ul>
+<h2>When WhatFontIs is the right tool</h2>
+<ul><li>Low-quality or partially obscured samples where automatic segmentation fails: the correction step rescues these.</li><li>Suspected free or open-source fonts: its free-source indexing beats commercial-focused tools.</li><li>Stylized but separated display lettering: manual transcription guides the matcher past the weirdness.</li><li>Repeated professional identification work where Pro filters compound over time.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Crop 6 to 10 clean, straight letters at good contrast.</li><li>Upload and correct the character boxes carefully; transcribe accurately.</li><li>Read the full results; filter by free or commercial according to the project constraint.</li><li>Hand-compare top candidates at matched size; eliminate on diagnostic letters.</li><li>Cross-check with a second tool for agreement.</li><li>Record outputs, dates, and confidence in the evidence file.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Skipping or rushing the correction step, then blaming the tool for bad results.</li><li>Mistranscribing characters, especially l, I, 1 and O, 0, which steers the matcher badly.</li><li>Trusting a result because it is first; the ranking is shape distance, not identity.</li><li>Forgetting to verify the license of free results surfaced from aggregator sources.</li><li>Using WhatFontIs on connected script where even manual correction cannot fix structural mismatch.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Automatic tools returned nothing plausible: WhatFontIs with careful correction is the next move, not an afterthought.</li><li>The corrected transcription produces strong candidates: verify by hand, then check license before adoption.</li><li>Results are only commercial but the budget is zero: use the free filter and evaluate open alternatives on merit, not desperation.</li><li>If the sample is a logo or custom wordmark, leave this workflow; no identifier will match drawn lettering.</li></ul>
+<h2>Comparison table</h2>
+<p>When the manual correction step pays, by sample problem:</p>
+<table><thead><tr><th>Sample problem</th><th>Automatic tools do</th><th>WhatFontIs with correction does</th></tr></thead><tbody><tr><td>Letters touching at one join</td><td>Segment merges two glyphs; results skew</td><td>Split the boxes; the matcher reads true</td></tr><tr><td>Noise, grain, or scan texture</td><td>Boxes land on specks; garbage candidates</td><td>Delete noise boxes; transcription carries the match</td></tr><tr><td>One decorative glyph in the string</td><td>The swash dominates shape distance</td><td>Exclude the glyph; letterforms decide</td></tr><tr><td>Ambiguous stems (l, I, 1)</td><td>Misread and misranked</td><td>You type what each box is; ranking stabilizes</td></tr><tr><td>Light text on dark</td><td>Some tools miss it or invert wrongly</td><td>Handled at upload; correction mops up the rest</td></tr><tr><td>Partial letters at crop edges</td><td>Half-glyphs pollute matching</td><td>Delete or trim the boxes; clean input restored</td></tr></tbody></table>
+<p>The pattern: whenever segmentation, not shape matching, is the bottleneck, correction turns a dead sample into a live one. Whenever the crop is already clean, correction buys little and a fully automatic tool is faster; knowing which situation you are in is most of the tool-selection skill.</p>
+<p>The table also doubles as a triage order: try one automatic pass first, read its segmentation, and bring the sample here only when the boxes visibly failed. Automatic tools cost a minute; correction costs ten, and ten minutes spent on a healthy sample is ten minutes lost.</p>
+<h2>Worked example</h2>
+<p>A scanned book cover from 2004, title in an old-style serif, scan quality mediocre with two letters touching. The rescue, step by step:</p>
+<ol><li>Automatic first pass: WhatTheFont merges the touching letters and returns high-contrast display serifs, none close; the sample&#x27;s moderate contrast and old-style proportions point elsewhere anyway.</li><li>WhatFontIs upload: the box step finds six of eight letters; the joined &quot;ct&quot; pair gets split manually, one noise box on a scan shadow is deleted, and each surviving box is transcribed.</li><li>Result list: Garamond-class candidates lead; among them EB Garamond, the open revival based on the 1592 Egenolff-Berner specimen, and Adobe Garamond Pro, the commercial revival.</li><li>Honest limit: silhouette comparison cannot separate Garamond revivals reliably; the letterform evidence supports the class, not one revival within it.</li><li>Decision logic: with the class probable and the revivals tied, the zero-budget use case adopts EB Garamond under OFL 1.1, and the record says exactly that; the artifact itself would be needed to push higher.</li><li>Record: confidence probable; evidence attached; the tie and its resolution documented for the next person.</li></ol>
+<p>This is the honest shape of many real cases: the tool narrows the class, correction rescues the sample, and the final step is a licensing decision rather than a certainty. Recording the tie is what keeps the work reusable; hiding it is what forces the next person to redo the hunt.</p>
+<p>Note what the record deliberately does not claim: it does not name one Garamond revival as the answer, because the sample cannot support that. A probable class with a documented, license-driven adoption is worth more than a confident wrong revival name, and the next person who touches the case inherits a decision they can defend.</p>
+<h2>Field notes</h2>
+<p>Habits that separate productive WhatFontIs sessions from wasted ones:</p>
+<ul><li>Transcribe honestly even when a box looks like a different letter than expected; the matcher benefits from what is there, not what should be there.</li><li>Six to ten corrected letters is the effort sweet spot; beyond that, correction cost grows faster than result quality.</li><li>Solve the l, I, 1 problem deliberately: if the sample contains all three, transcribe each and let the face&#x27;s own distinctions work for you.</li><li>The free/commercial filter is a decision made before falling in love with a candidate, never after.</li><li>Listing data lags foundries; when a candidate&#x27;s listing shows an old version, check the foundry&#x27;s own catalog for the current one before ruling it out.</li><li>Re-run after fixing boxes rather than reading tea leaves in a bad result set; one corrected resubmit is cheaper than an hour of speculation.</li><li>Keep the corrected-boxes screenshot in the record; it shows the next person exactly what the tool was asked to match.</li><li>The interruption on the free tier doubles as a pacing device: if a case is not worth one captcha, it is not worth a Pro subscription either.</li><li>Inverted samples (light on dark) work, but transcribe after inverting mentally; transcription errors spike on inverted text.</li><li>When the correction step reveals the segmentation was fine all along, the problem is shape matching, and the fix is a different tool, not better boxes.</li><li>Scan shadows and book spine curvature bend baselines; straighten the crop before blaming the boxes, or you will fight the geometry letter by letter.</li><li>Small caps and old-style figures in a sample confuse transcription; confirm whether those letters are what they look like before typing them.</li><li>The correction step is also free training: every session teaches what segmenters fail at, which makes your crops better across every tool.</li><li>When Pro features would help once, note which one and why; the case for a subscription is a pattern of those notes, not a single busy afternoon.</li></ul>
+<h2>Quick reference</h2>
+<p>The WhatFontIs loop, compressed:</p>
+<ol><li>Crop 6 to 10 clean, straight letters at good contrast; PDFs and native screenshots beat photos.</li><li>Upload, then invest real attention in the box step: fix positions, delete noise, transcribe each character.</li><li>Read the full result list; apply the free/commercial filter only when the project constraint is already known.</li><li>Hand-compare top candidates at matched size; eliminate on diagnostic letters (g, a, R, t, numerals).</li><li>Cross-check with one other tool for independent agreement.</li><li>Record outputs, dates, corrected-box screenshots, and the confidence tier.</li><li>When the class is probable but the exact face is tied, say so in the record and decide on license grounds; ties are decisions, not failures.</li><li>Route logos and wordmarks out of this workflow before the first upload; no amount of box fixing turns drawn lettering into a font.</li></ol>
+<p>Standing rules: correction quality caps result quality; filters narrow, they never confirm; and a logo or wordmark leaves this workflow entirely, because no amount of box fixing turns drawn lettering into a font.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="identification-workflow-overview.html">Identification workflow overview</a></li><li><a href="whatthefont-workflow.html">WhatTheFont workflow</a></li><li><a href="identifont-decision-tree.html">Identifont decision tree</a></li><li><a href="../licensing/free-font-risks.html">Free font risks</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

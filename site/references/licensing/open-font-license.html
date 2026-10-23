@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Open Font License in Practice - Fontlore</title>
+<meta name="description" content="How the SIL Open Font License 1.1 works when you actually use fonts: what you may do, the four obligations you take on, how Reserved Font Names work, bundlin...">
+<meta property="og:title" content="Open Font License in Practice - Fontlore">
+<meta property="og:description" content="How the SIL Open Font License 1.1 works when you actually use fonts: what you may do, the four obligations you take on, how Reserved Font Names work, bundlin...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>Open Font License in Practice</h1>
+<p>What this reference covers: How the SIL Open Font License 1.1 works when you actually use fonts: what you may do, the four obligations you take on, how Reserved Font Names work, bundling and selling rules, and the misunderstandings that cause most licensing arguments.</p>
+<p>The OFL is the license behind most of the good free type in the world, from Google Fonts to SIL&#x27;s own catalog. It is short, readable, and almost universally misquoted. This guide replaces folklore with the actual terms.</p>
+<h2>What the OFL is</h2>
+<ul><li>The SIL Open Font License version 1.1 was written by SIL International, the language-development organization, and released in its current form in 2007.</li><li>It governs the font software: the outlines, the tables, the code inside the file. It is not a design patent and it does not cover the abstract letterforms.</li><li>Thousands of families ship under it, including nearly all of Google Fonts&#x27; catalog, SIL&#x27;s fonts, and most independent open-source foundry work.</li><li>The license text lives at openfontlicense.org and travels inside every OFL font package as OFL.txt; reading it once is a professional obligation.</li></ul>
+<h2>What you may do without asking anyone</h2>
+<ul><li>Use the fonts commercially, in any project, for any purpose, forever. There are no per-seat fees, no pageview tiers, no renewal dates.</li><li>Install on any number of machines and distribute to any number of team members within your organization.</li><li>Embed the fonts in documents (PDFs, ePubs), in applications, on devices, and serve them as webfonts, subject only to the license accompanying the distribution.</li><li>Study the font files, modify them, subset them, rename them (with the RFN rules below), and build derivative designs.</li><li>Bundle OFL fonts inside software you sell, as long as the fonts remain under the OFL and are not the thing being sold by themselves.</li></ul>
+<h2>The four obligations you take on</h2>
+<ul><li>Keep the license with the font: any redistribution of the font files must include the OFL text. A font shipped without its license is a broken distribution.</li><li>Keep copyright notices: do not strip the copyright statements from the font&#x27;s name table or license file.</li><li>Respect Reserved Font Names: modified versions must not carry the original&#x27;s reserved name (see the deep dive referenced below).</li><li>Distribute modifications under the OFL: if you distribute a Modified Version, it must be licensed under the OFL too. The copyleft applies to font files, not to documents rendered with them.</li></ul>
+<h2>Reserved Font Names in brief</h2>
+<ul><li>The OFL header may declare one or more Reserved Font Names (RFNs). Anyone modifying the font must pick a new name that does not contain the reserved one.</li><li>The RFN mechanism protects users from confused forks trading on the original&#x27;s reputation; it does not restrict unmodified use in any way.</li><li>Practical consequence for teams: if you subset or modify a font with an RFN and redistribute the result publicly, you must rename it. Internal use does not trigger this.</li><li>The OFL FAQ at openfontlicense.org is the authoritative interpretation source and is genuinely readable.</li></ul>
+<h2>Bundling and selling</h2>
+<ul><li>You may include OFL fonts in paid products (apps, themes, templates, hardware) because the font is part of a larger work, not the item of sale.</li><li>You may not sell the font files by themselves as your product; that would be resale, which the license forbids.</li><li>Charging for delivery media, bundles, or services around the font (installation, support, customization) is permitted; the font itself stays free.</li><li>Templates and design products that embed OFL fonts must carry the license and attribution notes for each font; make that a packaging checklist item.</li></ul>
+<h2>Common misunderstandings, corrected</h2>
+<ul><li>&quot;You must credit the designer in your app&#x27;s about page.&quot; False. The OFL requires keeping the license and copyright with the font files, not public attribution in your product UI.</li><li>&quot;OFL fonts cannot be used in logos.&quot; False. The license explicitly permits any use, including logo artwork.</li><li>&quot;Commercial use requires a paid upgrade.&quot; False for genuine OFL fonts; that pitch usually signals a trial license or an aggregator mislabeling a font.</li><li>&quot;Modifying an OFL font and shipping it violates the license.&quot; False if you follow the obligations: keep the OFL, keep notices, rename if an RFN exists.</li><li>&quot;Google Fonts CDN usage needs attribution.&quot; False legally; attributions are courteous, not required.</li><li>&quot;OFL is viral for my project.&quot; False. The copyleft attaches to modified font files, never to your documents, apps, or designs.</li></ul>
+<h2>Workflow</h2>
+<ol><li>When adopting an OFL font, archive the OFL.txt and note the copyright line and any RFN declarations.</li><li>Record the exact license name (OFL-1.1) in the font manifest, never just &quot;open source&quot;.</li><li>Plan redistribution: webfont subsets served from your origin are fine; public repos carrying modified files need the rename check.</li><li>For product bundling, add the license file to the package&#x27;s legal directory with the other third-party notices.</li><li>Re-check RFN status before any public fork or redistribution of modified files.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Shipping OFL fonts without the license file in the bundle or repository.</li><li>Modifying a font with an RFN and redistributing it under (or containing) the reserved name.</li><li>Confusing aggregator &quot;free font&quot; pages with OFL grants and skipping the source verification.</li><li>Writing &quot;Google Fonts license&quot; into legal documents instead of naming the OFL, Apache, or UFL explicitly.</li><li>Assuming an OFL font found on a random site is current; version and file verification is part of due diligence.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any project needing free commercial use, embedding, and modification rights: OFL fonts are the default answer.</li><li>Need to redistribute modified outlines publicly: check RFNs first, then rename and relicense correctly.</li><li>Disagreement about an OFL clause: resolve it with the license text and the official FAQ, not with blog folklore.</li><li>When a stakeholder asks &quot;are we allowed to...?&quot;, the answer almost always begins with &quot;yes, because the OFL permits...&quot;, with the four obligations checked.</li></ul>
+<h2>The license text, clause by clause</h2>
+<p>Reading OFL.txt takes five minutes and settles most arguments. Its structure, in order, with the parts teams actually trip over:</p>
+<ul><li>The preamble states the intent: fonts released under it may be used, studied, modified, and redistributed freely, with protection limited to keeping the license intact and respecting reserved names.</li><li>Numbered definitions follow: Font Software (the set of files released under the license, including source files, build scripts, and documentation), Reserved Font Name, Original Version, Modified Version, and Author (designers, engineers, programmers, technical writers, and other contributors).</li><li>&quot;Modified Version&quot; is defined broadly: adding to, deleting, or substituting components in part or in whole, changing formats, or porting to a new environment all count. Subsetting counts. Publishing a woff2 conversion counts.</li><li>The binding requirements: distribute copies bundled with the license and copyright notices preserved; do not use a Reserved Font Name for a Modified Version except to note its origin; do not sell the font files by themselves.</li><li>The termination clause: &quot;This license becomes null and void if any of the above requirements are not met.&quot; Breach converts an open font into an unlicensed copy; it is not a technicality.</li><li>An as-is disclaimer with no warranty of any kind follows, which is why provenance and quality checks are the user&#x27;s job, not the licensor&#x27;s.</li><li>Status notes worth recording: OFL 1.1 has been the current version since 2007 (there is no 1.2 to wait for), and it sits on the OSI list of approved open-source licenses, which settles &quot;is this a real open-source license&quot; in policy reviews.</li><li>The official FAQ at openfontlicense.org supplements the text with worked interpretations and is maintained by SIL; when a blog post and the FAQ disagree, the FAQ wins.</li><li>When citing the license in a manifest or NOTICE file, write OFL-1.1 and quote the copyright statement from the font&#x27;s own OFL.txt rather than paraphrasing it.</li></ul>
+<h2>Worked example: shipping a paid template</h2>
+<p>A studio sells a website template bundling Inter, Literata, and JetBrains Mono, all OFL families. The licensing walk:</p>
+<ul><li>Bundling is permitted: the fonts ride inside a larger work, and the template, not the fonts, is what the customer buys.</li><li>Each font directory ships with its OFL.txt and copyright notices intact; the release checklist treats a missing license file as a ship blocker.</li><li>The build pipeline subsets the webfonts. Subsetting deletes components, so a subset is a Modified Version under the license&#x27;s own definition.</li><li>Inter declares &quot;Inter&quot; as a Reserved Font Name, so the public template cannot carry a subset still named Inter. Options, in order of simplicity: ship the unmodified files with the license (no rename needed); rename the subset family to a string that does not contain &quot;Inter&quot; and update the name table, CSS, and docs; or skip bundling and instruct buyers to load the family from Google Fonts, which many template sellers do.</li><li>Internal builds of the same subset need no rename, because use is not redistribution.</li><li>Before generalizing the workflow, read each family&#x27;s own OFL.txt: Reserved Font Name declarations are per font, and assuming they match across a bundle is how forks get published wrongly named.</li><li>The verification step that catches most problems: unzip the shipped template and confirm every font directory contains its license, and that the family name inside each file matches the manifest.</li><li>If the template later grows a &quot;premium&quot; variant that ships additional weights, the same obligations apply to the new files; the check belongs in the release checklist, not in memory.</li><li>Documenting the decision (which fonts, which subsets, which names, which date) in the template&#x27;s repo turns a future audit from an investigation into a lookup.</li></ul>
+<h2>Comparison table: folklore versus the license</h2>
+<table><thead><tr><th>Belief</th><th>What the license actually says</th></tr></thead><tbody><tr><td>&quot;You must credit the designer in your app UI.&quot;</td><td>No public attribution is required; keep the license and copyright with the files.</td></tr><tr><td>&quot;OFL fonts cannot be used in logos.&quot;</td><td>Logo use is permitted like any other use.</td></tr><tr><td>&quot;Commercial use requires a paid upgrade.&quot;</td><td>No such tier exists; the pitch signals a trial or a mislabeled font.</td></tr><tr><td>&quot;Modifying and shipping a build violates the license.&quot;</td><td>Allowed when the four obligations are met.</td></tr><tr><td>&quot;The OFL is viral for my project.&quot;</td><td>Copyleft attaches to modified font files only, never to documents or apps.</td></tr><tr><td>&quot;Google Fonts CDN usage needs attribution.&quot;</td><td>Not legally; courtesy only.</td></tr><tr><td>&quot;Reserved names restrict who may use the font.&quot;</td><td>They restrict naming of modified versions, not use of the original.</td></tr><tr><td>&quot;Selling a product that bundles OFL fonts is resale.&quot;</td><td>Bundling with a larger work is permitted; selling the files alone is not.</td></tr><tr><td>&quot;A subset served from my own origin is a Modified Version I must rename.&quot;</td><td>Serving privately is use; public redistribution of the subset is the trigger.</td></tr><tr><td>&quot;I must publish my design source files if I modify the font.&quot;</td><td>The OFL covers font software; nothing obliges releasing unrelated source.</td></tr><tr><td>&quot;The OFL expires or needs renewal.&quot;</td><td>It is perpetual for the fonts it covers; there is nothing to renew.</td></tr><tr><td>&quot;I cannot charge a client for work set in an OFL font.&quot;</td><td>Charging for design work is unaffected; only selling the font files alone is barred.</td></tr></tbody></table>
+<h2>Field notes</h2>
+<ul><li>SIL&#x27;s own catalog (Gentium Plus, Andika, Scheherazade New, Lateef, Harmattan) is the reference implementation of OFL hygiene: every download carries the license, and naming discipline is strict.</li><li>The google/fonts repository carries each family&#x27;s license text; when a downloaded archive arrives without OFL.txt, fetch it from there rather than from wherever the file came from.</li><li>Some foundries publish custom OFL-based texts with one clause changed: extra naming rules, no-modification terms, or field-of-use limits. Those are not the OFL; read the whole document before writing &quot;OFL-1.1&quot; into a manifest.</li><li>The license travels with the file: fonts copied onto a shared drive carry the obligation to keep the license text along, even inside one organization.</li><li>Version 1.0 of the OFL exists historically and differs from 1.1; a file declaring 1.0 is legitimate but rare, and the difference is another reason to record the exact license identifier.</li><li>Translations of the OFL exist for convenience, but the English text is the operative one; do not license-audit from a translation.</li><li>The OFL governs font software, not names or designs: writing &quot;set in Inter&quot; in a book needs no permission, while shipping a renamed build of Inter does follow the RFN rules.</li><li>Package managers show why the license travels: Fontsource npm packages include the license file, and a font dependency without one is a packaging bug worth reporting upstream.</li><li>Teams adopting many OFL families should keep one canonical licenses directory rather than letting each product copy drift.</li><li>When a stakeholder asks whether &quot;open source&quot; fonts are safe for a regulated product, the OSI approval and the license&#x27;s fixed text are the answer; hand them the document, not a summary.</li><li>The license&#x27;s short text is a feature for audits: an auditor can read the whole grant in one sitting, unlike most commercial EULAs.</li></ul>
+<h2>Quick reference: the four obligations</h2>
+<ol><li>Keep the license: any redistribution of the font files includes the OFL text.</li><li>Keep notices: copyright statements stay intact in the name table and the license file.</li><li>Respect RFNs: modified versions must not carry reserved strings, in whole or in part, except to note origin.</li><li>License modifications under the OFL: distributed Modified Versions are OFL fonts too.</li></ol>
+<p>Everything else people remember (about-page credit lines, paid upgrades, share-back duties for documents) is folklore, not license.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="ofl-reserved-font-names.html">OFL reserved font names</a></li><li><a href="license-families-compared.html">License families compared</a></li><li><a href="open-source-due-diligence.html">Open-source due diligence</a></li><li><a href="../sourcing/google-fonts-catalog.html">Google Fonts Catalog</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

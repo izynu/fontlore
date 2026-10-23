@@ -1,0 +1,32 @@
+name: Bug report
+description: Something in the scripts, templates, or CI does not work as documented.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For wrong data values use the Data correction form instead.
+        For questions about usage, open a Discussion.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you run, what did you expect, what happened instead.
+      placeholder: python3 scripts/decide.py --project dashboard --script latin --tone neutral
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version and OS.
+      placeholder: "Python 3.11.6, Ubuntu 24.04"
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Full output or validator errors
+      description: Paste the complete command output, including any validate.py errors.
+    validations:
+      required: true

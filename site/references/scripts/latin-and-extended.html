@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Latin and Extended Coverage - Fontlore</title>
+<meta name="description" content="How Latin coverage is tiered in practice, what subset labels like &quot;latin-ext&quot; actually promise, and how to verify diacritics render well rather than just exi...">
+<meta property="og:title" content="Latin and Extended Coverage - Fontlore">
+<meta property="og:description" content="How Latin coverage is tiered in practice, what subset labels like &quot;latin-ext&quot; actually promise, and how to verify diacritics render well rather than just exi...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Scripts</span></nav>
+<article class="doc">
+<h1>Latin and Extended Coverage</h1>
+<p>What this reference covers: How Latin coverage is tiered in practice, what subset labels like &quot;latin-ext&quot; actually promise, and how to verify diacritics render well rather than just exist. It concentrates on European Latin plus the Vietnamese edge cases that subset labels routinely hide.</p>
+<h2>The practical coverage tiers</h2>
+<p>Treat Latin coverage as five tiers and require each tier explicitly. A font that &quot;has Latin&quot; usually means tier 2, and the gap shows up the moment a Polish or Vietnamese name enters the database.</p>
+<ul><li>Tier 1, basic Latin: A-Z, a-z, digits, and core punctuation. Every font has this.</li><li>Tier 2, Latin-1 Supplement: Western European accents, German umlauts and sharp s, French guillemets, Spanish inverted marks, Icelandic thorn and eth.</li><li>Tier 3, Latin Extended-A: Polish, Czech, Slovak, Hungarian, Baltic, Turkish, Welsh, Maltese letters.</li><li>Tier 4, Latin Extended-B and Latin Extended Additional: Romanian comma-below letters, Vietnamese precomposed characters, many rare forms.</li><li>Tier 5, combining diacritical marks: needed when text arrives decomposed rather than precomposed.</li></ul>
+<p>Tier 4 is where most failures live. Vietnamese stacks two or even three marks over one letter, and a font can contain every codepoint yet place the stacked marks clumsily.</p>
+<h2>What subset labels promise</h2>
+<p>Google Fonts splits many families into unicode-range files: latin, latin-ext, cyrillic, greek, vietnamese, and script-specific subsets. The label tells you which codepoints are included, not whether they are well drawn.</p>
+<ul><li>latin covers tiers 1-2. latin-ext covers roughly tier 3 plus parts of tier 4.</li><li>The vietnamese subset flag is the reliable signal for Vietnamese support, not latin-ext.</li><li>When self-hosting a variable font file directly, subset labels do not exist; you inherit everything in the file, and you must check coverage yourself.</li></ul>
+<p>Decision rule: if any user-facing string can contain a Polish, Czech, Turkish, Romanian, or Vietnamese character, test tier 3 and tier 4 before shortlisting, not after.</p>
+<h2>Codepoint checklist for high-risk languages</h2>
+<p>Because layout QA needs something scriptable, verify these codepoints render with correct positioning, not tofu:</p>
+<ul><li>Polish: U+0105 and U+0104 (a with ogonek), U+0142 (l with stroke), U+0119 (e with ogonek), U+00F3, U+015B, U+017A, U+0107, U+0144.</li><li>Czech and Slovak: U+0159 (r with caron), U+011B (e with caron), U+0165, U+017E, U+016F, U+00FD, U+013E (l with caron).</li><li>Turkish: U+011F (g with breve), U+0131 (dotless i), U+0130 (I with dot above), U+015F (s with cedilla). The dotless i breaks naive <code>text-transform: uppercase</code>; use <code>:lang(tr)</code> so case mapping is locale-aware.</li><li>Romanian: U+0218 through U+021B (comma-below s and t). Older fonts ship only the cedilla forms U+015F and U+0163, which Romanian readers consider wrong.</li><li>Icelandic and Faroese: U+00DE (thorn), U+00F0 (eth), U+00E6, U+00F6.</li><li>German: U+00DF (sharp s) and the capital form U+1E9E, which many fonts still miss.</li><li>Vietnamese: the whole U+1EA0-1EFF range, plus U+01A0 and U+01AF (horn o and horn u). Spot check the worst stackers: e with circumflex and dot below, a with breve and hook above, u with horn and tilde.</li></ul>
+<p>For full sentences, pull real text from the Unicode consortium&#x27;s Universal Declaration of Human Rights translations at https://www.unicode.org/udhr/index.html or the language edition of Wikipedia, rather than inventing strings from memory.</p>
+<h2>Diacritics testing, step by step</h2>
+<ol><li>Paste a mixed-language sample into a specimen page at body size and at 12 px UI size.</li><li>Check horizontal balance first: do ogoneks and carons collide with descenders of the line above at your production line-height?</li><li>Check the uppercase forms: many fonts have weaker, auto-generated caps for extended letters.</li><li>Set line-height tight, around 1.15, and check for clipping; extended Vietnamese stacks are the tallest Latin forms in common use.</li><li>Test bold and italic too. Extended coverage in regular weight does not imply it in italic, and faux italic of accented caps usually looks broken.</li><li>Normalize input text to NFC in your pipeline so precomposed characters are used where the font has them.</li></ol>
+<h2>Vietnamese pitfalls in detail</h2>
+<p>Vietnamese is Latin script, but it behaves like a complex script typographically.</p>
+<ul><li>Marks stack vertically: a vowel can carry a tone mark plus a vowel-quality mark plus a dot below, so the vertical metrics demand exceeds German or French text by a wide margin.</li><li>Horn letters (o with horn, u with horn) need extra width; fonts drawn only for Western Europe squeeze them.</li><li>Some pipelines send decomposed text; if the font lacks combining-mark anchors, marks land side by side instead of stacked.</li><li>Web: the Google Fonts &quot;vietnamese&quot; subset is separate from latin-ext, so a site that loads only latin and latin-ext will fall back mid-word for Vietnamese.</li></ul>
+<p>Good open families with known Vietnamese strength include Be Vietnam Pro, Archivo, Barlow, Mulish, Source Sans 3, Roboto, Inter, and Noto Sans. Literata and Newsreader are strong text serifs with vietnamese coverage.</p>
+<h2>Common mistakes</h2>
+<ul><li>Declaring success after checking French and German, then shipping without Polish or Vietnamese testing.</li><li>Using <code>text-transform: uppercase</code> for Turkish content without a <code>lang</code> attribute, producing wrong dotted and dotless i forms.</li><li>Trusting the latin-ext label while never looking at how stacked Vietnamese marks are anchored.</li><li>Setting a tight display line-height tuned on plain English headlines, then clipping Vietnamese and Czech headlines in production.</li><li>Importing latin and latin-ext subsets but letting third-party embeds (forms, widgets) render Vietnamese with system fallback fonts, creating a visible mismatch.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Need Western Europe only: almost any reputable family works; check sharp s and guillemets.</li><li>Need Central Europe or Turkey: require latin-ext and run the codepoint checklist above.</li><li>Need Vietnamese: require the vietnamese subset or verified U+1EA0-1EFF coverage, and eyeball the stacked marks at two sizes.</li><li>Mixed audience with unknown languages: pick a family from the Noto or Source lineages, which are designed for wide coverage from the start.</li></ul>
+<h2>Comparison table</h2>
+<p>Subset reality for widely used open families. The middle columns report what the Google Fonts subset list covers; they say nothing about how well the stacked marks are drawn, which is what the eyeball pass is for:</p>
+<table><thead><tr><th>Family</th><th>Subsets on Google Fonts</th><th>Vietnamese</th><th>Notable for</th></tr></thead><tbody><tr><td>Inter</td><td>latin, latin-ext, cyrillic, cyrillic-ext, greek, greek-ext, vietnamese</td><td>yes</td><td>UI default with wide reach</td></tr><tr><td>Roboto</td><td>latin, latin-ext, cyrillic, cyrillic-ext, greek, greek-ext, vietnamese</td><td>yes</td><td>The everywhere font</td></tr><tr><td>Open Sans</td><td>latin, latin-ext, cyrillic, cyrillic-ext, greek, greek-ext, hebrew, vietnamese</td><td>yes</td><td>Adds Hebrew to the wide set</td></tr><tr><td>Source Sans 3</td><td>latin, latin-ext, cyrillic, cyrillic-ext, greek, vietnamese</td><td>yes</td><td>Humanist workhorse</td></tr><tr><td>Noto Sans</td><td>Per-script system plus Latin</td><td>yes</td><td>The connective tissue</td></tr><tr><td>Literata</td><td>latin, latin-ext, cyrillic, cyrillic-ext, greek, greek-ext, vietnamese</td><td>yes</td><td>Book serif for reading</td></tr><tr><td>Montserrat</td><td>latin, latin-ext, cyrillic, cyrillic-ext, vietnamese</td><td>yes</td><td>Display sans</td></tr><tr><td>Barlow</td><td>latin, latin-ext, vietnamese</td><td>yes</td><td>Grotesque with Vietnamese strength</td></tr><tr><td>Be Vietnam Pro</td><td>latin, latin-ext, vietnamese</td><td>yes</td><td>Drawn for Vietnamese first</td></tr><tr><td>Lato</td><td>latin, latin-ext</td><td>no</td><td>Popular, but a Central European and Vietnamese gap</td></tr></tbody></table>
+<p>Reading the table:</p>
+<ul><li>The vietnamese column is the one most teams get wrong: latin-ext alone does not cover Vietnamese, and the failures are mid-word fallbacks that only a real Vietnamese string reveals.</li><li>Subset lists expand between releases; re-check at decision time instead of relying on an old screenshot of the catalog.</li><li>Self-hosting a raw font file bypasses subset labels entirely: you inherit every codepoint in the file, and the coverage check becomes yours.</li><li>Open Sans is the rare mainstream family whose subset list includes Hebrew alongside the wide Latin set; a reminder that subset lists reward a fresh look whenever the locale list grows.</li></ul>
+<h2>Worked example</h2>
+<p>A B2B SaaS adding Polish, Czech, Turkish, and Vietnamese to an English-only product:</p>
+<ol><li>Requirements matrix: four new locales, UI labels plus user-generated names, an existing brand sans under review.</li><li>First filter: any candidate without the vietnamese subset or verified U+1EA0-1EFF coverage is out; this eliminates more candidates than any other gate.</li><li>Checklist render: the codepoint checklist for all four languages is pasted into a specimen page using only the candidate font, at 12 px and 16 px.</li><li>Clip test: line-height is forced to 1.15 and the Vietnamese stacked forms are inspected; ogonek and dot-below collisions with the line above are noted.</li><li>Turkish gate: uppercase transform is run with lang=&quot;tr&quot; set; dotless i behavior is verified against the expected dotted and undotted forms.</li><li>Bold and italic: the checklist is re-rendered in bold and italic, because extended coverage in regular does not imply it in the other styles.</li><li>Pipeline: input text is normalized to NFC so precomposed characters are used where the font has them; the normalization point is documented in the i18n layer.</li><li>Third-party audit: embedded forms and widgets are found to declare their own font stacks, so a Vietnamese fallback font is defined for each embed or the embed inherits the page stack.</li><li>Decision: the candidate with correct comma-below Romanian forms and clean Vietnamese stacks wins; the runner-up&#x27;s cedilla-form fallback is recorded as the reason.</li><li>Regression: the checklist page is added to the repo and re-run on every font version bump.</li></ol>
+<p>Outcome: a locale expansion with no mid-word fallbacks, no clipped stacks, and a repeatable gate for the next language.</p>
+<h2>Field notes</h2>
+<ul><li>Romanian comma-below versus cedilla is a dating service: fonts drawn before the U+0218-021B codepoints existed often map the Romanian letters to cedilla forms or miss them; Romanian readers consider the cedilla forms wrong.</li><li>The German capital sharp s U+1E9E is still missing in otherwise complete fonts; German uppercase text traditionally doubles the s instead, but decide the policy explicitly rather than discovering tofu.</li><li>Turkish dotless i is the classic case-mapping bug: without lang=&quot;tr&quot;, uppercase and lowercase transforms produce wrong dotted and undotted forms; the lang attribute is the entire fix.</li><li>The Catalan geminated l (l-l with middle dot U+00B7) is covered by Latin-1, so coverage is never the issue; line-breaking is, because the middle dot is not a word boundary to every engine.</li><li>Vietnamese keyboards and pipelines mostly emit precomposed NFC text, but copy-paste from some sources arrives decomposed; a font without combining-mark anchors stacks those marks side by side or misplaces them.</li><li>Tone marks survive uppercase in Vietnamese; the check is whether the diacritic anchors hold on capital letters, which is a different drawing problem than lowercase stacking.</li><li>Third-party embeds (forms, chat widgets, maps) declare their own font stacks; audit them per locale or the page&#x27;s Vietnamese coverage stops at the embed boundary.</li><li>Horn letters (o and u with horn) need width that Western-Europe-only designs never budgeted; squeeze shows up in headlines first.</li><li>Uppercase display settings tuned on English headlines are the most common clipping report: Czech and Vietnamese headlines need the tight-leading clip test at display sizes too.</li><li>Welsh is the frequent hole in otherwise-good latin-ext fonts: w and y with circumflex (U+0174-0177) are Latin Extended-A, and their absence shows as tofu in a language teams forget to list.</li><li>Maltese needs the dotted forms c with dot above, g with dot above, and z with cedilla-style z (U+010B, U+0121, U+017C) plus capitals; the g-h digraph uses plain letters, so only the dotted trio is a coverage risk.</li><li>The Nordic languages are the safe end of the scale: a, o with diaeresis and ring, slashed o, and ae are all Latin-1, so Scandinavian failures point at a genuinely broken font, not a coverage tier.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Tier gates: Latin-1 for Western Europe; latin-ext for Central Europe and Turkey; the vietnamese subset flag for Vietnamese; Latin Extended Additional (U+1E00-1EFF) coverage for the worst stackers.</li><li>Codepoint gates: Polish U+0105/U+0104 and U+0142; Czech U+0159/U+011B; Turkish U+011F/U+0131/U+0130; Romanian U+0218-021B; German U+00DF plus U+1E9E; Vietnamese U+1EA0-1EFF plus U+01A0 and U+01AF.</li><li>Language tags: lang=&quot;tr&quot; for case mapping; lang=&quot;ro&quot;, lang=&quot;vi&quot;, lang=&quot;pl&quot;, lang=&quot;cs&quot; for scoping and proofing.</li><li>CSS habits: :lang(tr) before any uppercase transform on mixed content; NFC normalization in the pipeline; clip test at line-height 1.15 for display sizes.</li><li>Subset loading: load latin, latin-ext, and vietnamese explicitly when the Google Fonts CSS is self-configured; a missing subset file is a mid-word fallback.</li><li>Test material: real sentences from the UDHR translations or the language&#x27;s Wikipedia, plus your own product strings with real names.</li><li>Edge gates worth adding when the locale list grows: Welsh U+0174-0177 and Maltese U+010B, U+0121, U+017C; Nordic needs only Latin-1 and is rarely the failure.</li><li>Verification: bold and italic included, three sizes, and the rendered-fonts inspector to catch silent substitution.</li><li>Re-audit on locale growth: subset lists change between releases, and a family that lacked Vietnamese a release ago may carry it now.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="testing-multilingual-coverage.html">Testing multilingual coverage</a></li><li><a href="../technical/subsetting-and-performance.html">Subsetting and performance</a></li><li><a href="../technical/font-face-and-css.html">Font-face and CSS</a></li><li><a href="../workflow/testing-and-comparing-shortlists.html">Testing and comparing shortlists</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

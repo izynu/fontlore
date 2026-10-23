@@ -1,0 +1,52 @@
+# Fontjoy: workflow guide
+
+What this reference covers: Fontjoy as a Fontlore workflow tool: what it is, where it sits in the selection stage, how to use it well, and what evidence to record from it.
+
+## What it is
+
+Embedding-based pairing generator with contrast sliders.
+
+- Section: pairing
+- Access: free
+- URL: https://fontjoy.com/
+
+## Where it sits in the Fontlore workflow
+
+This tool belongs to the **selection** stage. Concretely: generate pairing candidates, then validate with real copy at real sizes. It feeds records into the decision log, not opinions into the chat.
+
+## How to use it well
+
+- Go in with the project constraints written down: scripts, sizes, license scope, medium.
+- Record what the tool returned, not what you hoped it would return.
+- Prefer the tool's own primary data (files, license text, metadata) over summaries elsewhere.
+- Combine with at least one independent source before treating a fact as verified.
+- Treat outputs as candidate lists. Verification is a separate, mandatory step.
+
+## Evidence to record
+
+When this tool contributes to a decision, log: the pair tested, sample copy used, and the outcome.
+
+## Limitations and cautions
+
+Generators propose, they do not decide. Every generated pair must survive the real-copy test.
+
+## Alternatives and complements
+
+| Tool | Section | Access |
+| --- | --- | --- |
+| Fontpair | pairing | free |
+Siblings serve the same stage; pick one primary and keep one fallback in case the primary changes terms or disappears.
+
+## Common mistakes
+
+- Copying tool output into the decision log without the URL and date.
+- Letting one tool be the single source of truth for license facts.
+- Using the tool outside its stage: identification tools do not verify licenses, catalogs do not test rendering.
+
+## Cross-references
+
+- [Classification Primer](../../references/selection/classification-primer.md)
+- [Fontpair guide](./fontpair.md)
+- [Research workflow](../../references/workflow/research-workflow.md)
+- [Evaluating catalog metadata](../../references/sourcing/evaluating-catalog-metadata.md)
+Compiled 2025 as part of the Fontlore project.

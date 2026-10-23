@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Subsetting and Performance - Fontlore</title>
+<meta name="description" content="Subsetting fonts with pyftsubset and glyphhanger, combining subsets with unicode-range, realistic size budgets, latin versus latin-ext versus full coverage c...">
+<meta property="og:title" content="Subsetting and Performance - Fontlore">
+<meta property="og:description" content="Subsetting fonts with pyftsubset and glyphhanger, combining subsets with unicode-range, realistic size budgets, latin versus latin-ext versus full coverage c...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Subsetting and Performance</h1>
+<p>What this reference covers: Subsetting fonts with pyftsubset and glyphhanger, combining subsets with unicode-range, realistic size budgets, latin versus latin-ext versus full coverage costs, and how to measure actual gains rather than assume them. Subsetting is the highest-leverage performance move in web typography.</p>
+<h2>Why subset</h2>
+<p>A retail font file carries glyphs for markets you may never serve: a &quot;full&quot; Latin family can include Cyrillic, Greek, and hundreds of symbols; a variable file adds interpolation data on top. Subsetting keeps only what your content needs, cutting transfer size, parse time, and cache pressure. It also reduces risk: fewer codepoints means fewer unreviewed glyphs.</p>
+<h2>pyftsubset, the workhorse</h2>
+<p>The fonttools package provides pyftsubset. A representative command:</p>
+<ul><li>pyftsubset SourceSans3-Regular.ttf --unicodes=&quot;U+0000-00FF,U+0131,U+0152-0153,U+2013-2014,U+2018-201D,U+20AC&quot; --layout-features=&quot;*&quot; --flavor=woff2 --output-file=SourceSans3-latin-subset.woff2</li></ul>
+<p>Key points:</p>
+<ul><li>--unicodes takes explicit ranges; --text can take a string of actual content; --text-file reads a corpus. Unicode-range files for a font stack are generated this way, one call per subset.</li><li>--layout-features=&quot;*&quot; keeps OpenType features (kerning, ligatures, tabular figures). The default drops some features to save bytes; audit what the default keeps before shipping a UI font that must have tnum.</li><li>--flavor=woff2 requires the brotli package installed. Without it you get uncompressed output; do not ship that.</li><li>Keep the original file as source of truth in the repo; subsets are build artifacts, regenerated, not hand-edited.</li></ul>
+<h2>glyphhanger, subset to what you use</h2>
+<p>glyphhanger crawls your pages or text files, extracts the codepoints actually used, and can drive pyftsubset directly. It is ideal for apps with fixed copy: the subset then contains exactly the strings that can render. Its limits: user-generated content breaks the assumption, so reserve usage-based subsetting for controlled surfaces (UI chrome, marketing pages, price strings) and keep a broader subset for anything users type.</p>
+<h2>Budgets that hold up in review</h2>
+<p>Set byte budgets per surface and verify in the network panel, not in build logs:</p>
+<ul><li>UI body face, one weight, latin subset: 15 to 40 KB woff2. If a &quot;latin&quot; file is 80 KB, check what it actually contains.</li><li>Each additional style or weight: roughly the same again; a four-weight latin system is 60 to 160 KB total and is usually over-shipped.</li><li>Variable file, latin: 50 to 300 KB depending on axes; compare against the sum of statics you would actually use.</li><li>latin-ext adds a modest file if split via unicode-range; folding it into one file roughly doubles the latin cost whether or not a given page needs it.</li><li>CJK: slices of 5 to 60 KB each via unicode-range; a full weight is megabytes and is not a budget item, it is an architecture decision.</li></ul>
+<p>Total page font budget guidance: under about 100 KB for a typical marketing page, under about 200 KB for a data-heavy app is a defensible default; state your numbers in the performance budget and enforce them in CI with a bundle check.</p>
+<h2>Subset layers that work together</h2>
+<ol><li>Base latin subset: always loaded, covers the UI language plus punctuation and figures.</li><li>latin-ext file with its own unicode-range: downloads only when a Polish or Czech character appears.</li><li>Additional per-script files (cyrillic, greek, vietnamese, arabic) exactly matching your language matrix.</li><li>A monospace or display face subset only for the strings it renders (numerals, labels), not its full latin set.</li></ol>
+<p>This structure means the common case pays only for the common case, and rare scripts pay on appearance. It also maps cleanly to hosting providers that already slice this way.</p>
+<h2>Measuring gains</h2>
+<ul><li>Network panel with cache disabled: record bytes before and after, per file and total; convert to a percentage for the review document.</li><li>Lighthouse or equivalent for the second-order effects: fewer font bytes reduces contention with critical CSS and images on slow connections.</li><li>Parse cost: measure main-thread time around font loads on a mid-tier Android device; large variable files cost parse time that byte counters hide.</li><li>Caching: subsets change when content changes, so keep subsets content-stable where possible (fixed language-based subsets, not per-page subsets) or returning users re-download.</li><li>Report honestly: a 70 percent smaller file that never loads on the critical path matters less than a 10 percent saving on the face that blocks first paint.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Subsetting away glyphs the content will need later (the brand launches in Poland; the latin subset has no ogoneks) and discovering it in production. Derive subsets from the language matrix, not the homepage.</li><li>Stripping layout features with default settings, silently losing tabular figures or essential ligatures.</li><li>Hand-editing unicode-range declarations instead of generating them, creating phantom ranges and missing-glyph bugs.</li><li>Per-page micro-subsets that destroy caching; users pay again on every page.</li><li>Measuring file size on disk and calling it performance; wire size, compression, and load timing are different numbers.</li><li>Subsetting an already-subset hosted file; work from the original source files you license.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Fixed-copy surfaces (marketing, pricing, UI chrome): usage-based subsetting is worth the tooling.</li><li>UGC or search-driven content: language-based subsets plus an intentional system fallback for the rest.</li><li>Multilingual products: build the subset pipeline around the language matrix from day one; retrofitting subsets into a shipped product is migration work.</li><li>Budgets exceeded: cut weights and styles before cutting glyphs; an unused 600 weight costs more than latin-ext.</li><li>Any doubt about a subset: ship the wider subset and measure; correctness beats a few kilobytes.</li></ul>
+<h2>Code notes</h2>
+<p>The workhorse invocation, with the flags that matter:</p>
+<pre><code>pyftsubset SourceSans3-Regular.ttf \
+  --unicodes=&quot;U+0000-00FF,U+0131,U+0152-0153,U+2013-2014,U+2018-201D,U+20AC&quot; \
+  --layout-features=&quot;*&quot; \
+  --flavor=woff2 \
+  --output-file=SourceSans3-latin.woff2</code></pre>
+<ul><li>--flavor=woff2 needs the brotli package; without it the output is silently uncompressed.</li><li>--layout-features=&quot;*&quot; keeps kern, liga, tnum and company; the default drops some to save bytes.</li><li>--text and --text-file subset to actual copy; --unicodes-file reads ranges from a file.</li><li>--desubroutinize can improve compression for CFF-based fonts; measure the output before keeping it.</li></ul>
+<p>glyphhanger driving a subset from crawled copy:</p>
+<pre><code>glyphhanger https://example.com/pricing --subset=SourceSans3-Regular.ttf --formats=woff2</code></pre>
+<p>Read the output&#x27;s coverage back to derive the unicode-range declaration:</p>
+<pre><code>ttx -t cmap SourceSans3-latin.woff2</code></pre>
+<p>Keep subsets language-based, not per-page, so each URL and its cache entry stay stable across releases.</p>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Strategy</th><th>Input</th><th>Caching</th><th>Risk</th><th>Fits</th></tr></thead><tbody><tr><td>Language-based subsets</td><td>Unicode blocks per script</td><td>stable across pages</td><td>wider than strictly needed</td><td>content sites, UGC, most products</td></tr><tr><td>Usage-based subsets</td><td>the copy actually shipped</td><td>breaks when copy changes</td><td>new copy, missing glyphs</td><td>fixed UI strings, pricing</td></tr><tr><td>Per-page micro subsets</td><td>one page&#x27;s text</td><td>worst: re-downloads per page</td><td>everything</td><td>almost never</td></tr><tr><td>Hosted sliced CSS (Google Fonts)</td><td>the service&#x27;s slicing</td><td>theirs, good</td><td>third-party dependency</td><td>prototypes, internal tools</td></tr></tbody></table>
+<h2>Worked example</h2>
+<p>A product site ships English, German, and Polish from one UI family, four static weights:</p>
+<ol><li>Language matrix: en and de need latin; pl needs latin-ext, where the ogoneks and stroke l live.</li><li>Per weight, two subsets built from the original licensed files: latin and latin-ext, both with --layout-features=&quot;*&quot; and --flavor=woff2.</li><li>From each subset&#x27;s cmap, generate the unicode-range declarations; the build emits the @font-face blocks.</li><li>Budget check against the numbers above: latin at 15-40 KB per weight, latin-ext smaller; the whole system stays inside the page font budget.</li><li>Verify with cache disabled in the network panel: an English page fetches only the latin files; opening the Polish pricing page pulls latin-ext on demand.</li><li>Commit the originals and the build config; subsets are artifacts, never hand-edited.</li><li>Record the subset recipe (command, unicode lists) in the repo so the next maintainer regenerates instead of guessing.</li></ol>
+<h2>Field notes</h2>
+<ul><li>The classic incident: the brand launches in Poland, latin-only subsets ship, and ogoneks render as tofu or fall back mid-word to system fonts. Subsets derive from the language matrix, not from the homepage.</li><li>&quot;Latin&quot; is not one definition: the Google Fonts latin range includes punctuation, currency, and the common quote and dash codepoints; a hand-rolled U+0000-00FF-only subset loses typographic quotes and dashes that real copy uses.</li><li>Subsetting an already-subset file (a hosted or vendor-shipped webfont) silently loses glyphs; always subset from the originals you license.</li><li>Parse time is the second cost: large files cost main-thread time on mid-tier Android even on fast networks; measure, do not only count bytes.</li><li>When in doubt, widen: a few kilobytes of latin-ext is cheaper than a migration when the second language lands.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Default command: pyftsubset with --unicodes, --layout-features=&quot;*&quot;, --flavor=woff2, brotli installed.</li><li>Coverage to CSS: derive unicode-range from the subset&#x27;s cmap, never by hand.</li><li>Strategy: language-based subsets for content and UGC; usage-based only for fixed copy.</li><li>Budgets: latin 15-40 KB per weight as woff2; enforce in CI, verify in the network panel.</li><li>Cache: content-stable subset URLs; per-page subsets destroy caching.</li><li>Sources: always subset the original licensed files, never an already-subset webfont.</li><li>CJK: sliced unicode-range files are architecture, not an optimization knob.</li><li>Regenerate: only from originals, and only when the language matrix or the font version changes.</li><li>Gains: measured as bytes on the wire with cache disabled, not as file size on disk.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="webfont-formats.html">Webfont formats</a></li><li><a href="font-loading-pipeline.html">Font loading pipeline</a></li><li><a href="../scripts/cjk-fundamentals.html">CJK fundamentals</a></li><li><a href="../scripts/latin-and-extended.html">Latin and extended coverage</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

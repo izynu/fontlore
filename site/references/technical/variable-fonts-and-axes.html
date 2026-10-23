@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Variable Fonts and Axes - Fontlore</title>
+<meta name="description" content="How variable fonts work, the registered axes and their CSS mappings, custom axes, the gap between high-level properties and font-variation-settings, and how...">
+<meta property="og:title" content="Variable Fonts and Axes - Fontlore">
+<meta property="og:description" content="How variable fonts work, the registered axes and their CSS mappings, custom axes, the gap between high-level properties and font-variation-settings, and how...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Variable Fonts and Axes</h1>
+<p>What this reference covers: How variable fonts work, the registered axes and their CSS mappings, custom axes, the gap between high-level properties and font-variation-settings, and how axis support varies in practice. It also covers when a variable font is the wrong choice.</p>
+<h2>What a variable font is</h2>
+<p>A variable font packs a design space into one file: instead of separate 400 and 700 files, one file interpolates between them. The design space is defined by named axes with ranges. Benefits: fewer requests, continuous weights, animation possibilities, smaller total size when many weights are used. Costs: larger single files when few instances are used, and a two-layer CSS model that is easy to misuse.</p>
+<h2>The registered axes</h2>
+<p>Registered axes are lowercase and map to standard CSS properties:</p>
+<ul><li>wght, weight: typically 100 to 1000; maps to font-weight. Ranges like 100-900 are common; Inter runs 100-900, and families can define any range.</li><li>wdth, width: percentage of normal width, commonly 50-200 but often much narrower per family; maps to font-stretch.</li><li>slnt, slant: degrees of slant, negative values slant clockwise per convention; maps to font-style: oblique with an angle.</li><li>ital, italic: a binary 0 or 1 for a separate italic design within the same file; maps to font-style: italic. Many families still ship italic as a separate file instead; both patterns are legitimate.</li><li>opsz, optical size: point size the design was tuned for; maps to font-optical-sizing: auto, which sets opsz from font-size automatically. Text and display designs differ substantially in a good opsz axis (Fraunces spans 9-144; display designs get tighter spacing and higher contrast).</li></ul>
+<p>Custom axes are uppercase four-character tags, family-specific: Fraunces has SOFT (softness) and WONK (wonky letterforms); Roboto Flex exposes GRAD (grade, which adjusts stroke weight without changing metrics, useful for dark modes), plus many more. There is no CSS property for custom axes; they are reached only through font-variation-settings.</p>
+<h2>The two-layer CSS model</h2>
+<p>High-level properties (font-weight, font-stretch, font-style, font-optical-sizing) are the API: they compose, inherit normally, respond to user styles, and work with design tokens. font-variation-settings is a low-level escape hatch that sets axes directly:</p>
+<ul><li>font-variation-settings: &quot;wght&quot; 550 works, but it overrides the high-level property chain and does not cascade the way properties do: a child setting one axis does not inherit the parent&#x27;s other axis settings in an intuitive way. Mixing layers produces unpredictable results.</li><li>Rule: use high-level properties for wght, wdth, slnt/ital, and opsz. Reserve font-variation-settings for custom axes (SOFT, WONK, GRAD), ideally centralized in a token or utility class, and never scattered per element.</li><li>When both are set on the same element, font-variation-settings wins; that is the mechanism behind most &quot;my font-weight is ignored&quot; bugs.</li></ul>
+<h2>Support reality</h2>
+<ul><li>The variable font format itself is supported in all current browsers; loading, unicode-range, and the wght/wdth mappings are safe.</li><li>opsz auto behavior is broadly supported; verify in your target browsers when opsz is central to the design.</li><li>Named instances expose nicely in some tooling but are irrelevant to CSS; author against ranges, not instance names.</li><li>Animating axes with CSS transitions works for registered axes in current browsers; test on real hardware, since variable interpolation on low-end devices can jank.</li><li>Older corporate browsers may ignore ranges and render the default instance; provide static fallback faces if that audience matters, and check analytics before building on interpolation.</li></ul>
+<h2>When variable is wrong</h2>
+<ul><li>Two weights only: two static files are often smaller than one variable file, and simpler to reason about. Compare actual woff2 sizes before choosing.</li><li>Icon fonts: variable axes add nothing; use SVG.</li><li>A brand that legally or stylistically restricts itself to three fixed styles: bake them as statics; design systems often prefer fixed values anyway.</li><li>Subsetting interplay: heavy subsetting of a variable font can strip variation tables or bloat them; measure the subset output.</li></ul>
+<h2>Practical recipes</h2>
+<ul><li>UI system: one variable file, font-weight driven by tokens (400 body, 500 labels, 600 buttons, 700 headings). No font-variation-settings anywhere.</li><li>Display brand: a family with opsz and custom axes; headings get font-optical-sizing: auto plus a tokenized utility for the custom axes (for example .brand-display { font-variation-settings: &quot;SOFT&quot; 80, &quot;WONK&quot; 1; }).</li><li>Dark mode compensation: some families (Roboto Flex&#x27;s GRAD) let you add stroke weight on dark backgrounds to counteract halation; wire it to a color-scheme media query rather than per-element hacks.</li><li>Fluid display type: pair opsz with clamp()-based font-size so the optical axis tracks viewport changes naturally.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Using font-variation-settings for weight and then wondering why inherited font-weight styles from a parent or user stylesheet do nothing.</li><li>Shipping the full variable file when two static weights were used; variable files can be several times larger than the two statics actually rendered.</li><li>Declaring font-weight: 100 900 on a static face, which lies to the browser and breaks synthesis prevention.</li><li>Ignoring opsz on a display face with a strong optical axis, then complaining it looks clunky at headline sizes.</li><li>Animating wght on long body text; weight animation is for display moments and short labels, and it can hurt readability while running.</li><li>Assuming custom axes exist on a font because they exist on another family&#x27;s file; axis tags are per-family and must be checked per file.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Three or more weights, or continuous weight needs: variable.</li><li>Exactly one or two weights: statics, unless the variable file is genuinely smaller.</li><li>Display design with optical size and character: variable with opsz, custom axes tokenized.</li><li>Strict legacy support: statics with a documented upgrade path.</li><li>Any custom axis usage: centralize it, document it in the design system, and add a fallback for browsers that ignore the axis.</li></ul>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Tag</th><th>Name</th><th>Value space</th><th>CSS mapping</th></tr></thead><tbody><tr><td>wght</td><td>weight</td><td>typically 100-900; the spec permits 1-1000</td><td>font-weight</td></tr><tr><td>wdth</td><td>width</td><td>percent of normal; the range is per family</td><td>font-stretch</td></tr><tr><td>slnt</td><td>slant</td><td>angle in degrees; negative slants clockwise</td><td>font-style: oblique with an angle</td></tr><tr><td>ital</td><td>italic</td><td>0 or 1</td><td>font-style: italic</td></tr><tr><td>opsz</td><td>optical size</td><td>point size the design was tuned for</td><td>font-optical-sizing: auto</td></tr><tr><td>GRAD (custom)</td><td>grade</td><td>stroke weight with no metric change</td><td>font-variation-settings only</td></tr><tr><td>SOFT, WONK (custom)</td><td>Fraunces softness and wonk</td><td>family-specific</td><td>font-variation-settings only</td></tr></tbody></table>
+<h2>Code notes</h2>
+<p>A variable face declares its space in @font-face:</p>
+<pre><code>@font-face {
+  font-family: &quot;Inter&quot;;
+  src: url(&quot;/fonts/inter-var-latin.woff2&quot;) format(&quot;woff2&quot;);
+  font-weight: 100 900;        /* the wght span of this file */
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20AC;
+}</code></pre>
+<p>Width joins when the file carries it:</p>
+<pre><code>@font-face {
+  font-family: &quot;Roboto Flex&quot;;
+  src: url(&quot;/fonts/roboto-flex-var.woff2&quot;) format(&quot;woff2&quot;);
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-display: swap;
+}</code></pre>
+<p>Usage stays high-level; custom axes get one tokenized utility:</p>
+<pre><code>body { font-weight: 400; font-optical-sizing: auto; }
+.hero-display {
+  font-variation-settings: &quot;SOFT&quot; var(--display-soft), &quot;WONK&quot; var(--display-wonk);
+}</code></pre>
+<p>Dark-mode grade compensation, wired to the scheme rather than to elements:</p>
+<pre><code>@media (prefers-color-scheme: dark) {
+  :root { --grade-boost: 100; }   /* a value inside the family&#x27;s GRAD range */
+}
+.brand-text { font-variation-settings: &quot;GRAD&quot; var(--grade-boost, 0); }</code></pre>
+<h2>Worked example</h2>
+<p>Migrating a static four-weight UI system to one variable file without touching component code:</p>
+<ol><li>Before: inter-400, inter-500, inter-600, inter-700 files, each with its own @font-face; components set font-weight numerically.</li><li>Ship the variable file with font-weight: 100 900 in the descriptor, keeping the same family name.</li><li>Delete the static blocks. No component changes: font-weight: 600 keeps resolving, now continuously.</li><li>Compare bytes: the variable latin file against the sum of the four statics actually rendered; if it is larger, question the migration (see &quot;When variable is wrong&quot;).</li><li>Re-verify the adjusted fallback overrides and opsz behavior, then confirm in the network panel that one file loads and synthetic bold is gone.</li></ol>
+<h2>Field notes</h2>
+<ul><li>With no variation settings applied you get the default instance (usually Regular); a browser that ignores an axis renders exactly that, which is also your fallback appearance.</li><li>font-variation-settings inherits as a whole: a parent&#x27;s &quot;wght&quot; 550 silently beats a child&#x27;s font-weight: 700. This inheritance quirk is behind most &quot;my weight is ignored&quot; bugs.</li><li>Grade differs from weight: GRAD adjusts stroke thickness without moving advance widths, so text does not reflow, which is why it suits dark-mode compensation while wght does not.</li><li>Animating wght re-lays-out text every frame when advances shift; animate axes only on display-size text where reflow is acceptable.</li><li>Named instances (Thin, SemiBold Condensed) belong to design tools and specimens; CSS addresses ranges, never instance names.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Declare ranges in @font-face (font-weight: 100 900, font-stretch where the file has it); the browser interpolates inside them.</li><li>High-level properties for wght, wdth, slnt, ital, and opsz; font-variation-settings only for custom axes, centralized in one place.</li><li>font-variation-settings beats high-level properties on the same element and inherits as one block; keep it off body text hierarchies.</li><li>font-optical-sizing: auto maps font-size to opsz; leave it on for faces with a real optical axis.</li><li>Compare the variable file against the statics actually rendered before committing; variable is not automatically smaller.</li><li>Named instances are for design tools; CSS addresses ranges, never instance names.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="opentype-features.html">OpenType features</a></li><li><a href="inspecting-font-files.html">Inspecting font files</a></li><li><a href="../workflow/design-tokens-for-type.html">Design tokens for type</a></li><li><a href="../accessibility/dynamic-type-and-preferences.html">Dynamic type and preferences</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

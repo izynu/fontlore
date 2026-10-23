@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Ecommerce Typography - Fontlore</title>
+<meta name="description" content="Typography for commerce: product cards, price display mechanics, trust and legal small print, long-form product descriptions, and the mobile-first hierarchy...">
+<meta property="og:title" content="Ecommerce Typography - Fontlore">
+<meta property="og:description" content="Typography for commerce: product cards, price display mechanics, trust and legal small print, long-form product descriptions, and the mobile-first hierarchy...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Ecommerce Typography</h1>
+<p>What this reference covers: Typography for commerce: product cards, price display mechanics, trust and legal small print, long-form product descriptions, and the mobile-first hierarchy that converts. Commerce type has one job above all: make price and product name scannable at speed.</p>
+<h2>Product cards</h2>
+<ul><li>Product name: 14 to 16 px, two lines maximum with a consistent truncation rule; names are scanning anchors and must hold a fixed height across the grid.</li><li>Price: the loudest element after imagery. Tabular figures are mandatory; grids of prices misalign without them (see the numerals reference for the feature details).</li><li>Hierarchy inside the card: image, then price, then name, then meta (rating, shipping). Some shops invert price and name; either is fine, mixing per section is not.</li><li>Meta text: 12 to 13 px, single line where possible; ratings and review counts use tabular figures too.</li><li>Badges (sale, new, low stock): short strings only; tracked uppercase at 10 to 11 px with verified contrast, or pill backgrounds at 12 px.</li></ul>
+<h2>Price display mechanics</h2>
+<ul><li>Structure: large integer, smaller decimals and currency symbol (or symbol first, locale-dependent). Never one uniform string; the eye grabs the integer part.</li><li>Currency symbol placement and spacing are locale decisions: before without space in the US, after with a space in much of Europe. Handle in i18n formatting; the font just needs the symbol glyph (check U+20AC, U+00A3, U+00A5, U+20B9, U+20BA, U+20BD for your markets).</li><li>Sale displays: original price struck through with a real line-through at the same size or one step down, current price emphasized by weight and size; avoid red-everything, which fails hierarchy and accessibility at once.</li><li>Per-unit pricing (&quot;$4.50 per 100 g&quot;): the qualifier is secondary text, tabular figure aligned with the main price where they stack.</li><li>Installments and &quot;from&quot; prices: prefix words are secondary style; the numeric part keeps tabular alignment across the grid.</li><li>Never use old-style figures in price grids; they misalign by design. If the brand face defaults to onum, override with lining-nums for commerce surfaces.</li></ul>
+<h2>Trust signals and small print</h2>
+<ul><li>Reviews, guarantees, return policies: 12 to 14 px with full contrast (4.5 to 1); small print is where trust dies when it goes gray-on-white at 3:1.</li><li>Legal text (terms, shipping restrictions): 12 px minimum, lining figures, generous line-height (1.5); this text gets read precisely when something goes wrong, and that is the worst moment to be illegible.</li><li>Security cues (payment icons, certificates): icons at non-text contrast 3 to 1; text labels adjacent, not baked into images.</li></ul>
+<h2>Long descriptions and detail pages</h2>
+<ul><li>Detail-page body: 16 to 17 px, line-height 1.5 to 1.6, measure 60 to 75ch; product descriptions are long-form reading whether or not the template admits it.</li><li>Structure sells: bullet lists for specs, tables for dimensions, headings for sections. A wall of centered text reads as SEO filler and converts worse than structured content.</li><li>Specs tables: tabular figures, left-aligned labels, right-aligned or tabular-aligned values; units in a consistent column.</li><li>Mobile-first: descriptions collapse under a &quot;read more&quot; fold on mobile; typography must survive both states (no fixed heights; see the text-spacing accessibility work).</li></ul>
+<h2>Mobile-first hierarchy</h2>
+<ul><li>One column, one action: primary CTA typography (14 to 16 px, 500 to 600 weight) consistent across the funnel; button text is a promise, keep its size stable.</li><li>Touch targets sized by layout, but type in buttons stays at 14 px minimum; 44 px targets with 11 px labels waste the target.</li><li>Sticky purchase bars: price and CTA repeat at 14 to 16 px; the tabular figure requirement follows the price everywhere it goes.</li><li>Form typography (address, payment): 16 px inputs on iOS to prevent zoom-on-focus; labels above fields, not placeholders-only.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Price in a display face with old-style or proportional figures; the grid wobbles and the brand looks cheap without anyone knowing why.</li><li>Six levels of hierarchy on a product card; cards support three, maybe four.</li><li>Gray 11 px meta text failing contrast; the accessibility audit and the conversion audit find the same bug.</li><li>Centered, justified long descriptions on desktop.</li><li>Currency symbols missing from the brand font for a launch market (rupee, lira, ruble are the repeat offenders).</li><li>Truncation rules applied inconsistently, so cards in one grid hold one, two, or three lines and the grid ripples.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any numeric column or price grid: tabular lining figures, right-aligned; put it in the component once.</li><li>Price typography: integer dominates, decimals and symbol step down, locale formatting owns position.</li><li>Product name display: fixed two-line block with ellipsis; never variable height inside a grid.</li><li>Small print floor: 12 px and full contrast; if legal demands smaller, the layout is wrong, not the floor.</li><li>New market launch: currency glyph check plus the script checklist before shipping templates.</li></ul>
+<h2>Comparison table: price display patterns</h2>
+<p>Price typography is a component decision made once and reused everywhere money appears:</p>
+<table><thead><tr><th>Pattern</th><th>Anatomy</th><th>Where it belongs</th></tr></thead><tbody><tr><td>Dominant integer</td><td>integer 22 to 32 px at 600; decimals and symbol 14 to 16 px at 500</td><td>product grids and detail pages</td></tr><tr><td>Uniform tabular</td><td>single size 16 to 18 px at 500, lining tabular figures</td><td>cart lines, checkout summaries, invoices</td></tr><tr><td>Strike-and-emphasize</td><td>original struck at the same integer size but 400; current price one step up</td><td>sale rows and campaign pages</td></tr><tr><td>Per-unit qualifier</td><td>main price plus &quot;per 100 g&quot; at 12 to 13 px secondary</td><td>groceries and consumables</td></tr><tr><td>Range display</td><td>&quot;from 19.00&quot; with the prefix in secondary style, numerals tabular</td><td>listings with variant pricing</td></tr></tbody></table>
+<ul><li>Every pattern uses lining tabular figures; proportional or old-style figures make a price grid wobble and read cheap.</li><li>Currency symbol position and spacing are locale formatting decisions, not design decisions; hard-coded placement breaks the second market.</li><li>Sale color is reinforcement: the strikethrough and the weight change carry the message, because small red text usually fails 4.5 to 1 on white.</li><li>The strikethrough is a real text decoration on the same face; an SVG line breaks screen readers and survives font swaps badly.</li><li>Line-height: tight (1.1 to 1.2) inside the price group, generous between price and meta; a price is one visual unit.</li><li>Test the component against the longest realistic string (a seven-figure price with separators) and the shortest, before approving it.</li></ul>
+<h2>Worked example: a grocery storefront</h2>
+<p>Scenario: a mid-size grocery chain rebuilds its storefront with twelve locales, price grids on every page, mobile-first traffic above 70 percent, and an open-license-only font budget.</p>
+<ul><li>Foundation: Public Sans for UI, prices, and tables; tabular figures and civic plainness suit price-heavy layouts, and the license deploys freely across twelve locales.</li><li>Brand voice: Fraunces for campaign headers and category titles at 28 to 44 px, weight 600, always above the grid, never inside it.</li><li>Price component: integer 22 px at 600; decimals and symbol 14 px at 500; stacked per-unit qualifier at 12 px; font-variant-numeric: tabular-nums lining-nums on the group.</li><li>Sale rows: original at the same integer size, weight 400, real line-through, full-contrast gray; current at 600 with an 11 px tracked-caps badge checked for contrast.</li><li>Product cards: image, name at 15 px in a fixed two-line block with ellipsis, price, then meta at 12 px; rating counts tabular.</li><li>Trust layer: delivery estimates, return links, and review snippets at 13 px full contrast; legal small print at 12 px minimum with 1.5 leading.</li><li>Detail pages: body 16 px, 1.6 leading, 65ch measure; specs in tables with tabular figures and a consistent unit column.</li><li>Cart and checkout: the same price component at uniform tabular sizing; totals, subtotal, and per-line prices align as one table.</li><li>Sticky purchase bar: price and CTA repeat at 14 to 16 px; the tabular rule follows the price into overlays.</li><li>Form typography: 16 px inputs on iOS to prevent zoom-on-focus; labels above fields, never placeholder-only.</li><li>Launch checklist catch: the rupee sign was missing from the first font pick; the currency glyph check (rupee, lira, ruble on the roadmap) forced an early swap instead of a launch-week fire drill.</li><li>German strings (&quot;Inklusive MwSt.&quot;) doubled meta line lengths; the meta slot became a two-line reserve instead of a one-line ellipsis.</li><li>Rejected: a display serif for prices (brand charm where scanning was the job) and old-style figures anywhere near money.</li><li>Result: one price component everywhere, alignment complaints gone, and receipt emails recognizable even in system-font fallbacks.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Users scan price before product name in grids you test yourself; treat price typography as conversion infrastructure, not styling.</li><li>Tabular figures are invisible when present and obvious when absent; the grid tells on you.</li><li>Gray small print is where trust dies; return policies and shipping terms get read precisely when something went wrong.</li><li>Currency glyphs missing from a brand font surface late, usually in a market launch; check at template time.</li><li>Per-unit pricing prevents shrinkflation guesswork in support tickets; typography keeps the qualifier secondary.</li><li>&quot;From&quot; prices need tabular numerals across the grid or the ranges look jagged.</li><li>Cart inherits the grid&#x27;s price component; the moment checkout redraws prices differently, users smell an error.</li><li>Old-style figures in a brand face charm in headlines and misalign in invoices; override with lining-nums on commerce surfaces.</li><li>Review counts and ratings: tabular counts, and never color-only stars.</li><li>Buttons: 14 to 16 px at 500 to 600, identical across the funnel; a shrinking CTA reads as hesitation.</li><li>Badges (&quot;Sale&quot;, &quot;New&quot;) are typography too: short strings, verified contrast, one style per store.</li><li>A/B tests that change price size also change wrap points; re-test truncation when testing size.</li><li>Emails run on system stacks; design the receipt so the price hierarchy survives Calibri.</li><li>Jurisdictions regulate price presentation (strike-through history, unit pricing); typography implements the rules, it does not invent them.</li><li>Product names truncate by one rule per grid; mixed truncation makes the whole grid ripple.</li><li>Centered justified description text reads as filler and converts worse than structured content.</li><li>Stock and urgency messages (&quot;Only 3 left&quot;) take the metadata style, not a display style; urgency is a word, not a font.</li><li>The price is the only element that appears in grid, card, detail, cart, bar, and email; it earns the most careful component in the system.</li></ul>
+<h2>Quick reference: commerce floors</h2>
+<ul><li>Price grids: lining tabular figures, right-aligned, set once in the component.</li><li>Price anatomy: integer dominates; decimals and symbol step down; locale owns placement.</li><li>Product names: 14 to 16 px, fixed two-line block, one truncation rule per grid.</li><li>Meta text: 12 to 13 px, single line where possible, tabular counts.</li><li>Badges: 10 to 11 px tracked caps or 12 px pills, contrast verified.</li><li>Small print: 12 px floor, 4.5 to 1 contrast, 1.5 leading.</li><li>Detail body: 16 to 17 px, 1.5 to 1.6 leading, 60 to 75ch measure.</li><li>Buttons: 14 px floor, stable size across the funnel.</li><li>Inputs: 16 px on iOS to prevent zoom-on-focus.</li><li>Currency glyphs verified per market (rupee, lira, ruble are repeat offenders).</li><li>No old-style figures on any money surface; lining-nums override where the brand face defaults otherwise.</li><li>Sale display: real line-through at equal or one-step-down size; color as reinforcement only.</li><li>One price component everywhere money appears, including sticky bars and receipts.</li><li>Trust text at full contrast; small print is read exactly when trust is at stake.</li><li>Every new market triggers the glyph check and the script checklist before templates ship.</li><li>Ratings and review counts use tabular figures like prices; counts misalign the same way.</li><li>Per-unit qualifiers stack under the main price, aligned to its integer edge.</li><li>Installment strings keep the numeric part tabular alongside the words.</li><li>The purchase bar&#x27;s price mirrors the grid&#x27;s price component exactly; two treatments of one price read as two prices.</li><li>Free-shipping thresholds and cart totals: tabular, full contrast.</li><li>Test grids with the longest product name in the catalog, not the average.</li><li>Structured descriptions (bullets, spec tables, headings) beat walls of centered prose on every measured funnel.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="web-and-saas-interfaces.html">Web and SaaS interfaces</a></li><li><a href="../scripts/numerals-and-notation.html">Numerals and notation</a></li><li><a href="../accessibility/contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="../workflow/worked-examples.html">Worked examples</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

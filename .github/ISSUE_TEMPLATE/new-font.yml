@@ -1,0 +1,56 @@
+name: New font entry
+description: Propose an open-license font for data/fonts.json with verifiable metadata.
+labels: ["data", "new-font"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every field must be verifiable. Values you cannot verify stay null;
+        do not guess. The license must be in the accepted set
+        (OFL-1.1, Apache-2.0, UFL-1.0, ITF-FFL-1.0, MIT, Custom-OFL-based).
+  - type: input
+    id: family
+    attributes:
+      label: Family name
+      placeholder: Eczar
+    validations:
+      required: true
+  - type: input
+    id: foundry
+    attributes:
+      label: Foundry or publisher
+      description: Use "self-published" or leave null if not applicable.
+      placeholder: Rosetta
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License and evidence URL
+      description: SPDX-style identifier plus the URL of the license text or the foundry license page. https only.
+      placeholder: "OFL-1.1 - https://fonts.google.com/specimen/Eczar"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Where the font actually lives (foundry page or canonical catalog page). https only.
+      placeholder: https://fonts.google.com/specimen/Eczar
+    validations:
+      required: true
+  - type: textarea
+    id: scripts
+    attributes:
+      label: Scripts covered
+      description: Scripts the font verifiably covers, e.g. latin, latin-ext, devanagari. Be conservative; only list what you verified.
+      placeholder: "latin, latin-ext, devanagari"
+    validations:
+      required: true
+  - type: textarea
+    id: extras
+    attributes:
+      label: Extra metadata
+      description: Designer, category, classification, variable status and axes, weights, note. Anything unverified: write null.
+    validations:
+      required: false

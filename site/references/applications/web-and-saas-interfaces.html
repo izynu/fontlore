@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Web and SaaS Interfaces - Fontlore</title>
+<meta name="description" content="Typography for product UI: the working size range, dense menus and form controls, cross-platform rendering realities, and the small decisions (inheritance, t...">
+<meta property="og:title" content="Web and SaaS Interfaces - Fontlore">
+<meta property="og:description" content="Typography for product UI: the working size range, dense menus and form controls, cross-platform rendering realities, and the small decisions (inheritance, t...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Web and SaaS Interfaces</h1>
+<p>What this reference covers: Typography for product UI: the working size range, dense menus and form controls, cross-platform rendering realities, and the small decisions (inheritance, tracking, weights) that separate a crisp interface from a mushy one. This is the default context for most teams and the one with the least room for display-font indulgence.</p>
+<h2>The working sizes</h2>
+<ul><li>Body and primary UI text: 14 to 16 px. Below 14 px, test on Windows specifically; some UIs legitimately run 13 px dense tables.</li><li>Secondary text (labels, captions, metadata): 12 to 13 px. This is the floor; 11 px only for tracked uppercase micro-labels with verified contrast, never for sentences.</li><li>Buttons and inputs: 14 to 16 px, and critically at least 16 px on iOS, where smaller input font sizes trigger automatic zoom on focus.</li><li>Nav and menus: 14 to 15 px with generous hit areas; menus are scanning surfaces, so weight (500) and spacing do more work than size.</li></ul>
+<p>Rule of thumb: as sizes drop, weights rise. A 12 px label wants 500 or 600; a 16 px paragraph wants 400.</p>
+<h2>Choosing the family</h2>
+<p>UI faces are judged at 13 px, not at 64 px. What matters:</p>
+<ul><li>Solid small-size rendering: open apertures, generous x-height, sturdy strokes; Inter, Source Sans 3, IBM Plex Sans, Public Sans, and system stacks all pass this test; high-contrast display faces fail it.</li><li>Real weights: 400, 500, 600, 700 minimum for a UI system; medium and semibold carry buttons and labels so bold can stay reserved for headings.</li><li>Tabular figures: a hard requirement for any product that shows data; check before shortlisting.</li><li>Coverage: the full language matrix, including the Latin-ext tier and whatever scripts the roadmap mentions, not just what ships today.</li><li>Variable or static: either works; variable gives the weight granularity UI systems actually use (a 550 button weight is a real thing in practice).</li></ul>
+<p>The system-ui stack is a legitimate choice: zero bytes, native feel per platform, and the typographic personality of the OS. Choose it deliberately (enterprise tools, keyboard-heavy apps) or against it (brand differentiation), not by accident.</p>
+<h2>Cross-platform rendering</h2>
+<ul><li>Windows with ClearType renders hinted fonts crisply and unhinted fonts mushy at small sizes; check the candidate face at 13 px on Windows before committing. This is the single most common &quot;looks great on my Mac&quot; failure.</li><li>macOS applies heavy smoothing; thin weights look thinner on Windows than in a Mac design review.</li><li>Linux/Android render through FreeType with variable results; the big open families are tested there by enormous user bases, another argument for them.</li><li>If the product ships a desktop app (Electron or similar), the same checks apply, plus OS font smoothing settings users control; test with defaults.</li></ul>
+<h2>The small decisions that add up</h2>
+<ul><li>Inheritance: form controls do not inherit font-family by default; the reset that fixes this is the oldest CSS trick in the book and is still missed. Audit inputs, buttons, and selects after any font change.</li><li>Tracking: negative tracking on UI labels hurts at small sizes; reserve tight tracking for display. Uppercase micro-labels get positive tracking (0.05 to 0.08em), never body text.</li><li>Line-height in controls: set explicitly; font defaults differ per family and inflate buttons inconsistently across scripts.</li><li>Numbers: tabular figures everywhere data aligns; monospace for IDs and codes.</li><li>Focus and selection: the new font changes text width; verify focus rings, ellipsis, and truncation points still behave.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Shipping the brand display face for UI text because it was already licensed; display faces are built for 24 px and up.</li><li>11 px gray body text failing contrast while everyone admires how clean the spacing looks.</li><li>Negative letter-spacing on 13 px labels, visually jamming letters that were already tight.</li><li>Forgetting the form-control reset, so half the UI renders in Times on some platforms.</li><li>Choosing a face with 400 and 700 only, then synthesizing &quot;medium&quot; with faux bold or color hacks.</li><li>Testing on one platform; the Windows 13 px check is the one that predicts real users&#x27; experience.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default recommendation: Inter, Source Sans 3, IBM Plex Sans, Public Sans, or the system stack; all are proven at UI sizes with full weight ranges.</li><li>Dense data product: narrow the candidates to faces with excellent tabular figures and a true 500 and 600.</li><li>Keyboard-heavy enterprise tool: the system stack is often the right answer; spend the differentiation budget on layout.</li><li>Any face decision: render the actual product strings at 13, 14, and 16 px on Windows before sign-off; a specimen page is not evidence.</li><li>Every additional weight must justify itself in the design system; weights are tokens, and unused tokens are waste.</li></ul>
+<h2>Comparison table: the four workhorses</h2>
+<table><thead><tr><th>Family</th><th>Weights</th><th>Tabular figures</th><th>Character</th><th>Watch-outs</th></tr></thead><tbody><tr><td>Inter</td><td>100-900 variable (opsz since v4)</td><td>yes</td><td>neutral, tall x-height, the default of its decade</td><td>so common that personality must come from layout</td></tr><tr><td>Source Sans 3</td><td>200-900</td><td>yes</td><td>humanist, slightly condensed, warmer</td><td>less neutral than Inter at display sizes</td></tr><tr><td>IBM Plex Sans</td><td>100-700</td><td>yes</td><td>engineered voice with quirks; wide script family</td><td>no 800 or 900 weights; plan heroes accordingly</td></tr><tr><td>Public Sans</td><td>100-900</td><td>yes</td><td>civic plainness, Franklin-derived</td><td>personality budget low by design</td></tr><tr><td>System stack</td><td>per platform</td><td>varies</td><td>SF Pro, Segoe UI, Roboto; native feel</td><td>metrics and feature support differ per platform</td></tr></tbody></table>
+<ul><li>All four open families pass the small-size test: open apertures, tall x-height, sturdy strokes at 13 to 14 px on Windows.</li><li>tnum is dashboard insurance: Inter, Source Sans 3, IBM Plex Sans, and Public Sans all ship tabular figures; system-stack support varies per platform.</li><li>IBM Plex Sans&#x27;s 700 ceiling matters if your system uses 800 or 900 for heroes; add a display face for heroes or pick a family with the full range.</li><li>Source Sans 3 is the pick when a product feels clinical in Inter; it warms without losing transparency.</li><li>Public Sans suits government, civic, and compliance-heavy products, where plainness is a feature.</li><li>Variable files cover the weight axis cleanly; static instances exist for every family when embedding rules demand statics.</li><li>The system stack is a deliberate choice for keyboard-heavy enterprise tools; write the decision down so it never looks like an accident.</li></ul>
+<h2>Worked example: a field-service SaaS</h2>
+<p>Scenario: a scheduling and dispatch product for field teams: dense tables, keyboard-heavy workflows, Windows-first enterprise IT policies, nine locales, and a marketing site that wants its own voice.</p>
+<ul><li>Product type: Source Sans 3 variable, weights 400 to 700 in the interface; body 14 px, tables 13 px, labels and metadata 12 px at 500, page titles 22 px at 600.</li><li>Numerals: font-variant-numeric: tabular-nums on every table and status board; job codes and IDs in IBM Plex Mono at 12.5 px with copy buttons.</li><li>Forms: inputs at 16 px to stop iOS zoom-on-focus; labels above fields at 13 px 500; the form-control font-family reset audited after the swap.</li><li>Tracking: nothing negative below 20 px; uppercase micro-labels at 0.05em positive tracking, three words maximum.</li><li>Line-height: 1.5 for body and tables, 1.2 for controls and chips, declared as tokens rather than inherited from font defaults.</li><li>Marketing site: Fraunces for hero headlines at 40 to 72 px with Source Sans 3 body; the product never imports Fraunces, keeping the app payload lean.</li><li>Windows proof: the full interface at 13 px on Windows with ClearType defaults; Source Sans 3 held, where a fashion-grotesque candidate had fallen apart in trials.</li><li>Buttons: 14 to 15 px at 600 with explicit line-height tokens; the 550-weight trick from the variable axis stayed in the tokens for one component only.</li><li>Fallbacks: the stack ends in system-ui, so a blocked font degrades to something native instead of Times.</li><li>Rejected: Inter (nothing wrong with it; the team wanted visual distance from three competitor products that use it) and a condensed face for tables (saved columns, lost 13 px legibility).</li><li>Aftermath: one variable file per script subset, tokens documented, and no line-height surprises in German or Vietnamese for the localization team.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The 13 px Windows check predicts the real user experience better than any specimen page.</li><li>Form controls do not inherit font-family by default; the oldest reset in CSS is still the most forgotten.</li><li>Faux bold appears when a weight is missing; pick families with real 500 and 600 cuts.</li><li>Font swaps shift every width; re-verify ellipsis, truncation, focus rings, and column widths after any change.</li><li>Variable axes allow a 550 button weight; if the system wants it, it becomes a token, not a per-component secret.</li><li>Line-height defaults differ per family; declared tokens keep buttons and rows consistent across scripts.</li><li>Uppercase labels need positive tracking and shorter strings; negative tracking is for display, never UI text.</li><li>Tabular figures belong in the table component, so every page inherits the fix once.</li><li>Dark themes re-rank faces; what is crisp on white can smear at 12 px on near-black, so re-check both.</li><li>Localization adds height and width: Vietnamese diacritics stress line-height, German compounds stress column widths; test both.</li><li>The marketing face never leaks into the app; two payload budgets, two systems, one boundary.</li><li>Browser zoom to 200 percent is an accessibility baseline; the type system must survive zoom, not just device pixel ratios.</li><li>Subsetting per script keeps payload sane; a full unicode-range file serves glyphs the page never uses.</li><li>font-display behavior matters on flaky networks; metrics-matched fallbacks reduce layout shift while the real font loads.</li><li>Icon fonts compete with text fonts for payload and accessibility; inline SVG icons decouple the two.</li><li>Text rendered in canvas (charts, exporters) needs explicit font declarations; inheritance stops at the canvas edge.</li><li>Every additional weight is a token to maintain; unused tokens get deleted, not archived.</li><li>The interface is read at arm&#x27;s length all day; comfort at 14 px outranks personality at 64 px.</li></ul>
+<h2>Quick reference: UI type floors</h2>
+<ul><li>Body and primary UI: 14 to 16 px; dense tables 13 px, tested on Windows.</li><li>Secondary text: 12 to 13 px; 11 px only for tracked-caps micro-labels.</li><li>Inputs: 16 px on iOS to prevent zoom-on-focus.</li><li>Weights: 400 body, 500 labels, 600 emphasis and buttons, 700 page titles.</li><li>tabular-nums wherever numbers align; mono for identifiers.</li><li>Positive tracking for caps labels (0.05 to 0.08em); negative tracking only above 20 px.</li><li>Explicit line-height tokens for body, tables, and controls.</li><li>Form-control font reset audited after every family change.</li><li>Contrast 4.5 to 1 for all text, in both themes.</li><li>Shortlist: Inter, Source Sans 3, IBM Plex Sans, Public Sans, or the system stack.</li><li>Real product strings at 13, 14, and 16 px on Windows before sign-off.</li><li>One family for the product; the marketing face stays on the marketing site.</li><li>Subsets per script; unicode-range tuned; payload reviewed at each release.</li><li>Canvas and SVG text declare the UI family explicitly.</li><li>Zoom to 200 percent as part of the standard test pass.</li><li>Unused weight tokens deleted at each design-system review.</li><li>Table text 12 to 13 px with tabular-nums; row height from spacing tokens.</li><li>Nav and menu text 14 to 15 px at weight 500; spacing and hit areas do the rest.</li><li>Buttons keep one size per level; primary and secondary differ by weight and fill, not by font.</li><li>Micro-labels: 11 px only as tracked uppercase, never for sentences.</li><li>Feature settings (tnum, case) live in components; pages inherit.</li><li>Test with OS font smoothing defaults, not with a designer&#x27;s tweaked settings.</li><li>Keep the fallback stack metrics-close where possible; layout shift is a font decision.</li><li>Per-locale review (German length, Vietnamese height, Polish diacritics) before each release.</li><li>Icons via SVG; icon fonts double payload and break with text scaling.</li><li>The product&#x27;s type sizes mirror the design tokens; no per-page values.</li><li>13 px is a density choice, not a default; most UIs belong at 14 to 16 px.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="dashboards-and-data-dense-ui.html">Dashboards and data-dense UI</a></li><li><a href="../technical/font-face-and-css.html">Font-face and CSS</a></li><li><a href="../accessibility/low-vision-and-zoom.html">Low vision and zoom</a></li><li><a href="../scripts/numerals-and-notation.html">Numerals and notation</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

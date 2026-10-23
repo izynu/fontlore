@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Contrast and Hierarchy - Fontlore</title>
+<meta name="description" content="How contrast ratios work for text, the interplay between font weight, size, and contrast, and how to build hierarchy that survives without relying on color a...">
+<meta property="og:title" content="Contrast and Hierarchy - Fontlore">
+<meta property="og:description" content="How contrast ratios work for text, the interplay between font weight, size, and contrast, and how to build hierarchy that survives without relying on color a...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Contrast and Hierarchy</h1>
+<p>What this reference covers: How contrast ratios work for text, the interplay between font weight, size, and contrast, and how to build hierarchy that survives without relying on color alone. Contrast is a token-level property, but weight and size choices decide how much contrast you need and whether the design reads.</p>
+<h2>The ratios and their sizes</h2>
+<p>WCAG 1.4.3 (AA) requires a contrast ratio of at least 4.5 to 1 for normal text and 3 to 1 for large text. Large text means at least 24 px regular or 18.66 px bold. AAA (1.4.6) raises these to 7 to 1 and 4.5 to 1. The ratios apply to text against its background, including over images (with a scrim) and inside components.</p>
+<ul><li>Non-text contrast (1.4.11, 3 to 1) applies to focus indicators, input borders, and icons that carry meaning; it is separate from text contrast and often missed.</li><li>Contrast is measured between actual rendered colors: opacity, blending, dark-mode variants, and gradients all create pairs nobody measured until the audit.</li></ul>
+<h2>Weight and size interplay</h2>
+<p>The same color pair reads differently at different weights and sizes:</p>
+<ul><li>Small and light text needs the full 4.5 to 1 and is the first thing to fail in practice; a 300-weight 14 px paragraph in mid-gray fails on most brand palettes.</li><li>Thin strokes on light backgrounds effectively lower perceived contrast: the anti-aliased stroke blends with the background. A 2 px stroke at 300 weight carries less ink than a 2 px stroke at 500.</li><li>Larger text earns a lower requirement because letterforms are bigger; that is what the 24 px / 18.66 px-bold boundary encodes. Do not stretch it: 18 px at 400 weight is not large text.</li><li>On dark backgrounds, light weights get worse, not better: bright thin strokes bloom (halation). Dark mode usually wants weights one step heavier than light mode, and pure white on pure black is harsher than an off-white on near-black.</li><li>Practical mapping: body text 400-500 weight; secondary text 400 at higher contrast than you think; labels and captions 500-600; display can be lighter only because of size.</li><li>WCAG 1.4.3 exempts inactive components, but enabled controls styled to look disabled still carry real information; keep them above the floor.</li></ul>
+<h2>Hierarchy without color alone</h2>
+<p>WCAG 1.4.1 (Use of Color) forbids color as the only visual means of conveying information; the same discipline builds hierarchy that works for color-blind users, in grayscale printing, and under forced-colors modes:</p>
+<ul><li>Scale: size steps of at least 1.2x between adjacent hierarchy levels (a 1.25 modular scale is common); tiny steps like 15 to 16 px do not read as hierarchy.</li><li>Weight: real weights from the family (500, 600, 700), not synthesized bold; combine with size for the strongest signal.</li><li>Case and spacing: tracked uppercase labels are a distinct tier; keep them short (see the line-length reference for why long uppercase text fails).</li><li>Position and grouping: whitespace, alignment, and rules (hairlines) carry structure in every mode.</li><li>Decoration: for links, underline (or a weight change plus underline on hover) rather than color alone; for status, pair color with an icon or text label.</li></ul>
+<p>The grayscale test: desaturate the design (or print it) and check the hierarchy and links still read. If everything collapses into one gray, the hierarchy was color.</p>
+<h2>Dark mode specifics</h2>
+<ul><li>Do not invert the palette; re-derive it. Text at 90 to 95 percent lightness on a 8 to 12 percent lightness background passes contrast without halation.</li><li>Re-check every token pair in dark mode; many light-mode pairs that pass fail when naively flipped because perception of contrast is not symmetric.</li><li>Weights: bump thin text one step; avoid 300-weight body in dark themes.</li><li>Elevation cues (shadow) weaken on dark backgrounds; typography and borders must carry hierarchy instead.</li><li>Pure white #FFFFFF on pure black #000000 passes at 21 to 1 yet reads harsher than off-white on near-black; the criterion is a floor, not a target.</li></ul>
+<h2>Making it enforceable</h2>
+<ul><li>Define contrast at the token level: every text-on-background pair used by components is listed and tested; new pairs require a check before use.</li><li>Automate the boring part: token linters and browser extensions (and build-time checkers) verify pairs; visually verify images-with-text and gradient surfaces manually.</li><li>Include disabled, placeholder, hover, focus, and visited states in the audit; these are the states nobody checks and audits find failing.</li><li>Document the &quot;large text&quot; exceptions explicitly (which sizes and weights qualify) so designers do not assume every heading gets the 3 to 1 pass.</li><li>Store the pair list with its ratio results as a generated artifact; a token change without a fresh report is an unreviewed change.</li><li>Contrast-check the focus ring against every surface it crosses (card on page, header on content), not only the component&#x27;s own background.</li><li>Round against yourself: compute to two decimals and treat a 4.49 as a fail; tools round differently, and the criterion does not.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Placeholder text at 40 percent opacity: fails contrast and vanishes for low-vision users; placeholders are labels people need.</li><li>Gray-on-gray dark modes and low-emphasis text that quietly sits at 3.8 to 1.</li><li>Thin weights compensating for failing contrast (&quot;it looks elegant&quot;); perceived legibility drops even when a large-size ratio technically passes.</li><li>Hierarchy built from three shades of one color and nothing else; it fails grayscale, forced-colors, and color-blind users simultaneously.</li><li>Forgetting focus indicators in the re-theme: the new brand color passes for text and fails 3 to 1 as a focus ring on the background.</li><li>Checking contrast in the design tool on flat swatches, then shipping text over photos with no scrim.</li><li>Treating dark-mode text as &quot;white on black, done&quot;; the ramp examples above exist because that assumption produces halation and failing secondary text.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>New color pair: compute the ratio for its actual size class; no exceptions for &quot;it&#x27;s just a label&quot;.</li><li>Contrast fails: change the color, not the weight; thinning type to &quot;reduce visual noise&quot; makes it worse.</li><li>Building hierarchy: use at least two of size, weight, case, and position on each tier difference; color may be the accent, never the only signal.</li><li>Dark mode: re-run the full token audit; do not derive by inversion.</li><li>Image-backed text: require a scrim or overlay that guarantees the ratio across the whole text box, verified at the extremes of the image set.</li></ul>
+<h2>Quick reference: contrast math and anchor values</h2>
+<p>The ratio is (L1 + 0.05) / (L2 + 0.05), where L is relative luminance and the lighter color goes first. Anchor values worth memorizing against pure white #FFFFFF:</p>
+<table><thead><tr><th>Foreground on white</th><th>Ratio</th><th>Verdict</th></tr></thead><tbody><tr><td>#000000 black</td><td>21 to 1</td><td>Passes everything</td></tr><tr><td>#595959</td><td>about 7 to 1</td><td>AAA body text</td></tr><tr><td>#767676</td><td>about 4.5 to 1</td><td>AA body text; fails AAA</td></tr><tr><td>#949494</td><td>about 3 to 1</td><td>Large text only (24 px, or 18.66 px bold)</td></tr><tr><td>#B3B3B3</td><td>under 2.5 to 1</td><td>Decorative use at best</td></tr></tbody></table>
+<p>On near-black #121212, #E8E8E8 text lands around 15 to 1 and #A0A0A0 around 7 to 1, which is why dark-mode ramps are built lighter than a naive inversion suggests.</p>
+<p>Relative luminance is nonlinear (it is computed out of sRGB gamma), so you cannot eyeball ratios from hex brightness; compute them, and compute them on the composited result whenever opacity, blending, or gradients are involved.</p>
+<h2>Worked example: deriving a dark-mode text ramp</h2>
+<p>Surface #121212, target AA with AAA for body:</p>
+<ol><li>Body text: #E8E8E8 at weight 400, about 15 to 1; comfortably AAA.</li><li>Secondary text: #A0A0A0 at 400, about 7 to 1; AAA for body, generous for captions.</li><li>Placeholder and disabled: #8A8A8A, about 5.4 to 1; above the AA floor even though disabled components are technically exempt.</li><li>Accent as link text: the raw brand orange measures below 3 to 1 on the surface (compute your own pair); the link token is lightened until it clears 4.5 to 1, and the brand orange is reserved for fills with dark text on top.</li><li>Focus ring: a separate token at 3 to 1 minimum against every surface it can appear on.</li><li>Halation check: the lightest weight in the ramp is 400; 300 is banned in dark themes.</li></ol>
+<p>The lesson: dark mode re-derives every pair, and the accent usually needs a dedicated text variant.</p>
+<h2>Code notes: enforcing contrast in CSS</h2>
+<pre><code class="language-css">:root {
+  --ink: #1a1a1a;      /* body on light: about 16 to 1 */
+  --ink-2: #595959;    /* secondary on light: about 7 to 1, AAA */
+  --ink-3: #767676;    /* tertiary on light: about 4.5 to 1, AA floor */
+  --paper: #ffffff;
+}
+.theme-dark {
+  --paper: #121212;
+  --ink: #e8e8e8;      /* about 15 to 1 */
+  --ink-2: #a0a0a0;    /* about 7 to 1 */
+  --ink-3: #8a8a8a;    /* about 5.4 to 1; placeholder and disabled */
+}
+
+a { text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }  /* hover reinforces; color alone never signals */</code></pre>
+<p>Name tokens by role, not by value: when the palette changes, the audit re-runs against the same pair list instead of a new set of ad-hoc colors.</p>
+<h2>Comparison table: hierarchy signals and their failure modes</h2>
+<table><thead><tr><th>Signal</th><th>Works</th><th>Fails when</th></tr></thead><tbody><tr><td>Size</td><td>Steps of 1.2x or more between adjacent tiers</td><td>15 to 16 px &quot;hierarchy&quot; nobody perceives</td></tr><tr><td>Weight</td><td>Real 500, 600, 700 from the family</td><td>Synthetic bold; 300 versus 400 at small sizes</td></tr><tr><td>Case</td><td>Tracked uppercase labels as a distinct tier</td><td>Long strings in caps; case as the only signal</td></tr><tr><td>Color</td><td>Accent as reinforcement</td><td>Color as the sole carrier (a 1.4.1 failure)</td></tr><tr><td>Position</td><td>Indents, grouping, whitespace</td><td>Cramped layouts where position reads as accident</td></tr><tr><td>Decoration</td><td>Underlines for links, rules for asides</td><td>Decoration on everything, so nothing stands out</td></tr></tbody></table>
+<p>Grayscale is the arbiter: desaturate the screen or print it, and every tier that disappears was never a tier.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="line-length-and-reading.html">Line length and reading</a></li><li><a href="../applications/editorial-and-news.html">Editorial and news</a></li><li><a href="../applications/packaging-and-retail.html">Packaging and retail</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

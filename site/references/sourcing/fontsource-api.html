@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Fontsource REST API - Fontlore</title>
+<meta name="description" content="How Fontsource packages and its REST API work, and when to prefer them over the Google Fonts CDN or raw repository files. It covers npm package conventions,...">
+<meta property="og:title" content="Fontsource REST API - Fontlore">
+<meta property="og:description" content="How Fontsource packages and its REST API work, and when to prefer them over the Google Fonts CDN or raw repository files. It covers npm package conventions,...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Fontsource REST API</h1>
+<p>What this reference covers: How Fontsource packages and its REST API work, and when to prefer them over the Google Fonts CDN or raw repository files. It covers npm package conventions, the list and single-font endpoints, variable font packages, and version pinning for reproducible builds.</p>
+<p>Fontsource is a packaging layer for open-source fonts: it turns Google Fonts and other open families into npm packages you can self-host with a bundler. Because everything is versioned on npm, it is the cleanest path to reproducible typography in modern web stacks.</p>
+<h2>What Fontsource actually is</h2>
+<ul><li>Each family becomes one or more npm packages: static packages like @fontsource/inter split weights and subsets into CSS entry points, while variable packages like @fontsource-variable/inter ship a single variable file.</li><li>Packages are built from upstream sources and re-versioned as upstream releases. Checking the npm changelog is a reasonable proxy for &quot;the font changed&quot;.</li><li>Because files live in your own bundle and origin, you control caching, subsetting downstream, and availability. No third-party CDN request is required at runtime.</li><li>The project covers more than Google Fonts; several independent open-source families that never joined Google Fonts are packaged too.</li><li>Licensing travels with the package: OFL and Apache fonts include their license files, which keeps due-diligence simple.</li></ul>
+<h2>Package conventions</h2>
+<ul><li>Static families: install one package, then import weight CSS files, for example @fontsource/inter/400.css or @fontsource/inter/700.css. Each import declares font-face rules with unicode-range subsets so browsers only fetch what they render.</li><li>Subset-specific entry points exist for most families (for example latin-only or latin-ext files) when you want to trim requests further.</li><li>Variable families: @fontsource-variable/inter exposes the full weight range by default, with separate entry points for axis combinations on some families. Import once and set font-weight freely in CSS.</li><li>Italic styles in static packages are separate imports, which surprises teams used to Google&#x27;s combined requests.</li><li>Component-library authors can re-export Fontsource imports so downstream apps inherit correct licensing and files without manual font management.</li></ul>
+<h2>REST API endpoints</h2>
+<p>The Fontsource API at api.fontsource.org gives you machine-readable metadata without installing anything. Two endpoints do most of the work:</p>
+<pre><code>GET https://api.fontsource.org/v1/fonts?family=inter
+GET https://api.fontsource.org/v1/fonts/inter</code></pre>
+<ul><li>The list endpoint accepts filters such as family, subsets, weights, and styles, and returns an array of font objects. Use it to answer &quot;which families cover Latin-ext with a 300 weight&quot;.</li><li>The single-font endpoint returns one font object: the family id, category, subsets, weights, styles, and a variable flag. Treat the exact response schema as the source of truth rather than memorizing fields.</li><li>The API also exposes variable-font listings and download helpers; consult the API documentation on fontsource.org for the current endpoints instead of guessing at URLs.</li><li>The family id in the API matches the npm package suffix, which makes scripts that go from &quot;API result&quot; to &quot;install command&quot; trivial to write.</li><li>Responses are JSON and cacheable; for bulk work, paginate or cache results locally rather than hammering the endpoint in a loop.</li></ul>
+<h2>Version pinning</h2>
+<ul><li>Pin exact versions in package.json (no caret or tilde) when typography must be reproducible across environments and teammates.</li><li>Record the version you validated in your font manifest. A design review that approves version A should not be silently upgraded to version B by a dependency bump.</li><li>Renovate-style bots are useful, but route font package updates through the same review as code changes: glyph changes are user-visible.</li><li>When upstream releases a new weight or script coverage, the Fontsource package updates after the packaging pipeline runs; the API and npm can briefly lag the upstream release.</li><li>For total determinism, vendor the files into the repository and record the upstream version and license in a manifest; npm pinning is usually enough, vendoring is for regulated contexts.</li></ul>
+<h2>Choosing between delivery paths</h2>
+<ul><li>Google Fonts CDN: fastest to start, zero build integration, no version pinning, third-party origin request.</li><li>Fontsource npm packages: reproducible, in-bundle, subset-aware, easy licensing audit; requires a bundler.</li><li>google/fonts repository files: the upstream truth, good for design tools and audits; you manage formats and subsetting yourself.</li><li>Foundry self-host kits: needed for commercial fonts; Fontsource does not package proprietary families.</li><li>For most product teams the decision is CDN for prototypes and marketing sites, Fontsource or vendored files for applications.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Search the Fontsource website or the API list endpoint for the family and confirm subsets and weights match the brief.</li><li>Install the package (static or variable) and import the entry points you need.</li><li>Pin the exact version and add family, version, and license to the project font manifest.</li><li>Verify rendering at target sizes and scripts, including numeral alignment and diacritics.</li><li>Set a dependency-update policy for font packages; treat glyph-affecting updates as user-visible changes.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Importing every weight &quot;just in case&quot;; each import is real bytes in the bundle.</li><li>Mixing the CDN and Fontsource for the same family, producing two different versions in one product.</li><li>Reading the API schema from memory instead of the current documentation; fields evolve.</li><li>Forgetting that italic static styles are separate imports and shipping a family without its true italic.</li><li>Assuming a package exists because the family exists; niche independent fonts may not be packaged, and the answer is vendoring, not improvising.</li><li>Upgrading font packages silently during routine dependency sweeps.</li></ul>
+<h2>Comparison table: delivery paths</h2>
+<p>The same family usually reaches a product through one of four paths, and they differ in pinning, origin, and auditability. Mixing two paths for one family is how a codebase ships two versions of the same typeface without noticing.</p>
+<table><thead><tr><th>Path</th><th>Version pinning</th><th>Served from</th><th>Subsetting</th><th>License evidence</th></tr></thead><tbody><tr><td>Google Fonts CDN</td><td>None; always the latest revision</td><td>Google origin</td><td>Automatic unicode-range</td><td>Not shipped to you; keep your own copy</td></tr><tr><td>Fontsource npm</td><td>Exact npm version</td><td>Your bundle and origin</td><td>unicode-range plus subset entry points</td><td>License file inside the package</td></tr><tr><td>google/fonts files</td><td>You tag or vendor the commit</td><td>Your origin</td><td>You subset (pyftsubset or similar)</td><td>OFL.txt beside the file</td></tr><tr><td>Foundry self-host kit</td><td>Per foundry terms</td><td>Your origin</td><td>Per kit</td><td>Purchase documents</td></tr></tbody></table>
+<p>For product teams the pattern is CDN for prototypes and marketing pages, npm packages or vendored files for applications where reproducibility is a requirement.</p>
+<h2>Worked example: pinning a family end to end</h2>
+<p>Scenario: a product team standardizes on Inter for UI, needs weights 400 through 700, and requires reproducible builds across environments.</p>
+<ol><li>Query before installing: <code>curl https://api.fontsource.org/v1/fonts/inter</code> and read subsets, weights, styles, and the variable flag from the JSON response.</li><li>Choose static versus variable: explicit weight imports keep the payload minimal; the variable package suits systems that want intermediate weights such as 450 or 550 for hover and pressed states.</li><li>Install with an exact version in package.json (no caret, no tilde) and import only the weight CSS files the design review approved.</li><li>Add subset-scoped entry points (the latin-ext variants) when content is European multilingual, so diacritic coverage arrives without extra requests.</li><li>Record family, exact version, license (OFL-1.1 for Inter), and the review date in the font manifest.</li><li>Route future font-package updates through the same review as code changes; a dependency bot bump that shifts glyphs is a user-visible change, not housekeeping.</li><li>Verify in the browser: rendered text resolves to Inter, woff2 files load from your own origin, and no fonts.googleapis.com request appears anywhere.</li></ol>
+<h2>Quick reference: install patterns</h2>
+<pre><code>npm install @fontsource/inter --save-exact
+npm install @fontsource-variable/inter --save-exact</code></pre>
+<ul><li>Static pattern: import <code>@fontsource/inter/400.css</code>, <code>@fontsource/inter/700.css</code>, and <code>@fontsource/inter/400-italic.css</code> when a true italic is approved. Each import carries unicode-range rules, so browsers fetch only the subsets they render.</li><li>Variable pattern: one import exposes the full weight axis; confirm the default axis configuration matches the weights named in your tokens before deleting the static fallbacks.</li></ul>
+<h2>Tool notes</h2>
+<ul><li>List endpoint queries answer coverage questions before anyone falls in love with a face: a subsets query on the v1 fonts endpoint returns families with that coverage declared.</li><li><code>npm view @fontsource/inter versions --json</code> shows release cadence; the npm publish date is a legitimate &quot;the font changed&quot; signal for packaged families.</li><li>Read the LICENSE file inside <code>node_modules/@fontsource/&lt;family&gt;/</code> during review; the license travels with the package, so due diligence is a local file read rather than a web hunt.</li><li>The API&#x27;s variable listings surface variable families separately; treat that metadata as a claim, then confirm the actual axes in the shipped file with an inspector such as fontdrop or Wakamai Fondue.</li></ul>
+<h2>Signals to trust</h2>
+<ul><li>The family id in the API response matching the npm package suffix exactly; that correspondence is the API&#x27;s most reliable contract.</li><li>Declared subsets that match what the glyph grid actually shows when you open one shipped file.</li><li>Upstream release notes whose dates line up with npm publish dates.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>Memory of the response schema; fields have changed before and will again, so read the current docs or a live response.</li><li>Assuming a package exists because the family is famous; niche independent families are often unpackaged, and the right answer is vendoring, not improvising a fork.</li><li>Assuming the variable package and the static package render identically; axis defaults can differ from the named static styles.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Static italic is a separate import: an approval of weights 400 and 700 does not include a true italic unless you import it, and synthetic oblique is what ships otherwise.</li><li>Packaging lags upstream releases by days sometimes; a glyph fix you need immediately may mean vendoring from the google/fonts repository until the package catches up.</li><li>Bundle math is real: every imported weight file is bytes on the wire, so nine weights &quot;just in case&quot; is a measurable performance decision.</li><li>Version discipline pays at audit time: an exact pin plus a manifest entry turns &quot;which Inter is this?&quot; into a one-line answer.</li><li>If a family is on Fontsource but not Google Fonts, it is often an independent open-source project; verify the upstream repository yourself instead of assuming Google-grade maintenance.</li></ul>
+<h2>Questions to ask before adopting</h2>
+<ul><li>Which delivery path does this family take in each environment (local dev, CI, production), and is it the same path everywhere?</li><li>Who reviews font-package updates, and what makes a glyph change trigger a design review rather than an automatic merge?</li><li>Do we need the variable build&#x27;s full range, or would three static weights cover the system with less payload?</li><li>Which subsets do our real users need versus what the package declares?</li><li>Where does the license file live in the repository, and who owns keeping it current?</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="google-fonts-catalog.html">Google Fonts Catalog</a></li><li><a href="google-fonts-repository.html">The google/fonts repository</a></li><li><a href="evaluating-catalog-metadata.html">Evaluating catalog metadata</a></li><li><a href="../licensing/webfont-embedding-rights.html">Webfont embedding rights</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Fontshare and ITF Free Fonts - Fontlore</title>
+<meta name="description" content="How to use Fontshare, the free-font platform from the Indian Type Foundry, and how its ITF FFL license differs from true open-source licenses. It covers the...">
+<meta property="og:title" content="Fontshare and ITF Free Fonts - Fontlore">
+<meta property="og:description" content="How to use Fontshare, the free-font platform from the Indian Type Foundry, and how its ITF FFL license differs from true open-source licenses. It covers the...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Fontshare and ITF Free Fonts</h1>
+<p>What this reference covers: How to use Fontshare, the free-font platform from the Indian Type Foundry, and how its ITF FFL license differs from true open-source licenses. It covers the catalog&#x27;s notable families, ITF&#x27;s Google Fonts output, and the legal lines you should not cross with FFL fonts.</p>
+<p>Fontshare publishes high-quality retail-grade families for free, which makes it one of the best free sources in typography. The catch is licensing: ITF FFL is a free-use license, not an open-source license, and teams that confuse the two eventually get burned in audits or handoffs.</p>
+<h2>What Fontshare is</h2>
+<ul><li>Fontshare is operated by the Indian Type Foundry, a commercial foundry founded in 2014 and known for retail families and for contributions to Google Fonts.</li><li>The catalog is curated rather than exhaustive: dozens of families, nearly all contemporary sans and serif designs with strong marketing presentation, full specimens, and downloadable variable or static builds.</li><li>Families ship with clear style lists, glyph coverage, and language tags, and the site offers a hosted CSS API alongside direct downloads.</li><li>Quality is unusually consistent for a free source because these are foundry retail designs being promoted, not abandonware.</li><li>A hosted CSS endpoint in the general shape below serves requested weights; check the site for the current parameter format before scripting against it.</li></ul>
+<pre><code>https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap</code></pre>
+<h2>Notable families</h2>
+<ul><li>Satoshi and General Sans are the platform&#x27;s flagship neo-grotesque sans faces, common choices for product and marketing work.</li><li>Switzer is a Helvetica-adjacent grotesque with a wide weight range; Cabinet Grotesk is a friendlier display-leaning grotesque.</li><li>Clash Display and Melodrama are display faces for headlines; Tanker is a single-style bold display face.</li><li>Gambetta, Erode, and Boska cover serif and text-leaning needs; Author is a reading-oriented sans designed for long-form use.</li><li>Chillax and Ranade offer distinctive personality when a project needs less neutral voice.</li><li>Panchang pairs Latin with Devanagari, reflecting ITF&#x27;s bilingual design practice.</li></ul>
+<h2>ITF on Google Fonts</h2>
+<ul><li>ITF designs also appear on Google Fonts under open licenses, which is a separate, genuinely open-source channel: Poppins, the Hind series, Teko, Rajdhani, and Khand are prominent examples.</li><li>Poppins, credited to Jonny Pinhorn and Ninad Kale, became one of the most-used geometric sans faces on the platform and pairs Latin with Devanagari.</li><li>The distinction matters for licensing: the same publisher operates both a free-use store (FFL) and an open-source channel (OFL). Check which one a given file came from.</li><li>If a project requires modification or redistribution rights, prefer the ITF families that were released through Google Fonts under the OFL.</li></ul>
+<h2>ITF FFL license basics</h2>
+<ul><li>The ITF Free Font License grants use in personal and commercial projects at no cost. Attribution is not required for ordinary use.</li><li>It is not an open-source license: you may not sell the font files, and redistributing the files themselves is restricted. Host your own copies per the license terms rather than re-uploading them to public repositories.</li><li>Modification rights are limited compared to the OFL; do not assume you may derivate, subset-and-redistribute, or fork an FFL family the way you would an OFL family.</li><li>Unusual uses, such as bundling in an application or redistributing inside a design system package, deserve a careful read of the current FFL text on fontshare.com before you ship.</li><li>Record the license as ITF-FFL-1.0 in font inventories and keep a copy of the license text with the files so future maintainers do not have to guess.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Shortlist FFL families like any other source, using specimens and real copy at real sizes.</li><li>Before adoption, read the FFL text on Fontshare and map it against the project&#x27;s usage contexts: web, app, print, logo, client handoff.</li><li>If any context is restricted (modification, redistribution, app embedding), either drop the candidate or route through an OFL alternative.</li><li>Download from Fontshare directly, keep the license file alongside the fonts, and log the source URL and date.</li><li>Never commit FFL font files into public open-source repositories; that is redistribution the license does not grant.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Treating Fontshare fonts as OFL-equivalent and pushing them into open-source packages or forked builds.</li><li>Re-hosting FFL files in public repos, package registries, or design-file templates shared with the world.</li><li>Modifying letterforms and shipping the result, assuming a free font is a modifiable font.</li><li>Forgetting the license during client handoff: FFL fonts can usually be used by the client, but the handoff should still document source and license terms.</li><li>Assuming every ITF design is on Fontshare and every Fontshare font is by ITF; the platform also hosts collaborating designers, so check each family&#x27;s credits.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Need modification, redistribution, or bundling rights? Choose the OFL channel (ITF families on Google Fonts) over FFL families.</li><li>Need a distinctive retail-quality sans for a commercial project with no redistribution? Fontshare is one of the strongest free options available.</li><li>When in doubt about a FFL clause, write to the foundry; their answers are usually quick and specific, and a written answer is audit evidence.</li></ul>
+<h2>Catalog tour: matching families to jobs</h2>
+<p>Fontshare families earn their reputation in specific roles. The common failure is using a display voice where a text voice was needed.</p>
+<table><thead><tr><th>Family</th><th>Voice and best role</th><th>Watch out for</th></tr></thead><tbody><tr><td>Satoshi</td><td>Geometric-leaning flagship sans for product and marketing</td><td>Ubiquity has dulled its distinctiveness</td></tr><tr><td>General Sans</td><td>Neutral, slightly warm UI sans</td><td>Modest personality; needs strong layout</td></tr><tr><td>Switzer</td><td>Helvetica-flavored grotesque, wide weight range</td><td>Neutral voice can read as generic</td></tr><tr><td>Cabinet Grotesk</td><td>Warm display grotesque</td><td>Limited fitness for small text</td></tr><tr><td>Clash Display</td><td>High-contrast display sans for headlines</td><td>Spacing tuned for display sizes only</td></tr><tr><td>Gambetta</td><td>Old-style-flavored text serif</td><td>Lean display range</td></tr><tr><td>Erode</td><td>Soft-edged serif with a bookish texture</td><td>Test numerals in data-heavy contexts</td></tr><tr><td>Zodiak</td><td>High-contrast serif for editorial headlines</td><td>Headlines only</td></tr><tr><td>Sentient</td><td>Old-style serif with a quiet voice</td><td>Narrow weight range</td></tr><tr><td>Author</td><td>Reading-oriented sans for long-form</td><td>Small style range</td></tr><tr><td>Panchang</td><td>Bilingual Devanagari and Latin sans</td><td>Verify Devanagari shaping at your sizes</td></tr></tbody></table>
+<p>None of these are bad designs; the catalog is coherent. The job is picking the two or three whose voices match the brief instead of adopting the whole platform.</p>
+<h2>FFL versus OFL at a glance</h2>
+<p>The two ITF channels differ in rights, and the differences are exactly the ones that surface during audits and open-source work.</p>
+<table><thead><tr><th>Right</th><th>ITF FFL (Fontshare)</th><th>OFL 1.1 (Google Fonts channel)</th></tr></thead><tbody><tr><td>Use in commercial client work</td><td>Yes</td><td>Yes</td></tr><tr><td>Modify letterforms and ship the result</td><td>Restricted; read the license text</td><td>Yes, with Reserved Font Name rules</td></tr><tr><td>Redistribute the font files</td><td>No</td><td>Yes, with the license attached</td></tr><tr><td>Commit files to a public repository</td><td>No</td><td>Yes, license file included</td></tr><tr><td>Sell the font file itself</td><td>No</td><td>No</td></tr><tr><td>Attribution paperwork</td><td>Not required for ordinary use</td><td>Keep copyright and license notices</td></tr></tbody></table>
+<p>If the project plan includes an open-source design system package, a public repository, or any redistribution, the FFL column fails and the OFL column passes. That single row decides more Fontshare adoptions than any design debate.</p>
+<h2>Worked example: Satoshi and the open-source fork problem</h2>
+<p>Scenario: a startup adopts Satoshi for its product; six months later the design system is scheduled to be open-sourced, fonts included.</p>
+<ol><li>Flag the conflict early: FFL files cannot be committed to the public repository, so &quot;open-source everything&quot; is now blocked by typography.</li><li>Re-read the FFL text on fontshare.com and confirm the restriction in the current wording; do not rely on anyone&#x27;s memory, including this reference.</li><li>Decide the path: keep Satoshi and exclude fonts from the open-source release, or replace the family with an OFL equivalent.</li><li>OFL candidates with a comparable contemporary-sans voice: Hanken Grotesk, Instrument Sans, Schibsted Grotesk, Figtree. Test each against the existing Satoshi-set interfaces for metric and tone drift.</li><li>If replacement wins, re-approve headlines, labels, and numerals at real sizes; substitution is a design change, not a find-and-replace.</li><li>Record the decision and the rejected path in the manifest so the question does not reopen every quarter.</li></ol>
+<p>The lesson generalizes: the rights your roadmap will need are part of font selection, even when licensing feels like a launch-day formality.</p>
+<h2>Signals to trust</h2>
+<ul><li>Family pages that state style lists, glyph coverage, and language tags plainly; the platform&#x27;s presentation is unusually honest for a free source.</li><li>Quality consistency across the catalog: these are retail designs being promoted, not abandonware scraped from forums.</li><li>Written foundry answers to FFL questions, which are typically quick and specific.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>&quot;Free font&quot; framing that implies open source; Fontshare is free-use, which is a different legal object.</li><li>Any claim about FFL rights from memory, including from this reference; the current license text on the site is the only authority.</li><li>Assumptions that the hosted CSS endpoint is a stable contract; the parameter format can change, so self-hosting is the durable choice for production.</li><li>Credits remembered instead of checked; the platform hosts collaborating designers, so authorship varies family by family.</li></ul>
+<h2>Questions to ask before adopting</h2>
+<ul><li>Which planned uses (web, app bundling, print, client handoff, open-source release) does the FFL text actually cover, in writing?</li><li>Do we need modification rights for a planned fork, condensed variant, or re-weighted build?</li><li>Who owns keeping the license copy alongside the files we distribute internally?</li><li>Is there an OFL sibling or equivalent that removes the license question entirely?</li><li>If a foundry answer is needed, who writes to them, and where is the reply stored?</li></ul>
+<h2>Field notes</h2>
+<ul><li>Fontshare releases lean variable; many families ship variable builds, which makes weight-range-driven design systems comfortable without extra files.</li><li>Keep the license file beside every FFL font you distribute internally; future maintainers should not have to rediscover what they inherited.</li><li>ITF&#x27;s Google Fonts channel and Fontshare are separate release tracks; versions and even some design details can differ between channels, so pin whichever you adopt.</li><li>Poppins, the Hind series, Teko, Rajdhani, and Khand are the high-profile OFL names; if a brief needs ITF&#x27;s craft with open rights, start there rather than stretching FFL terms.</li><li>Never commit FFL files to npm, public Git repositories, or shared design-system packages; that is redistribution, and repository history preserves the evidence.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="open-and-independent-foundries.html">Open and independent foundries</a></li><li><a href="regional-and-script-catalogs.html">Regional and script catalogs</a></li><li><a href="../licensing/license-families-compared.html">License families compared</a></li><li><a href="../licensing/free-font-risks.html">Free font risks</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

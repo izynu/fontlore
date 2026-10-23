@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Keeping Current Safely - Fontlore</title>
+<meta name="description" content="Tracking font releases and typography news without churning production: pinning npm font packages and the Google Fonts CSS API, reviewing variable font updat...">
+<meta property="og:title" content="Keeping Current Safely - Fontlore">
+<meta property="og:description" content="Tracking font releases and typography news without churning production: pinning npm font packages and the Google Fonts CSS API, reviewing variable font updat...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>Keeping Current Safely</h1>
+<p>What this reference covers: Tracking font releases and typography news without churning production: pinning npm font packages and the Google Fonts CSS API, reviewing variable font updates for breaking axis changes, monitoring changelogs, running a quarterly review cadence, and documenting why families were adopted or deprecated. The goal is a typography stack that improves deliberately instead of drifting.</p>
+<p>Typography is a dependency like any other, with one twist: glyph changes are user-visible and never caught by unit tests. A dependency bot that bumps a font package can change every heading on the site with nobody noticing. Staying current is valuable; staying current carelessly is how a Tuesday update becomes a redesign nobody approved.</p>
+<h2>What actually changes upstream</h2>
+<ul><li>Glyph sets and language support: new subsets, fixed diacritics, revised letterforms. These change rendering for real users.</li><li>Variable axis changes: weight ranges extended or shifted, new axes added, rarely axes removed. Axis range changes are breaking changes for any layout tuned to the old range.</li><li>Metrics: a font update can shift advance widths and line spacing, which shows up as layout shift and reflowed text.</li><li>Packaging metadata: Fontsource re-versioning, subset entry points added or renamed, license file updates.</li><li>None of these arrive with a changelog unless the project keeps one, which is why monitoring is a team practice, not an individual habit.</li><li>Releases also arrive without announcement at all: packaging pipelines re-package silently, and a quiet npm version bump is sometimes the only signal that upstream moved.</li></ul>
+<h2>Pinning npm font packages</h2>
+<ul><li>Pin exact versions in package.json for every font package: no caret, no tilde. A validated design review approved version A; a range lets any fresh install ship version G.</li><li>Record the validated version in the project font manifest so the design review and the dependency list agree; the manifest lives with the license evidence.</li><li>Route font package updates through the same pull-request review as code: render the diff visually, then merge.</li><li>What the review of a font-bump pull request actually covers:</li><li>Numerals in tables and prices, because numeral revisions are the most common quiet change.</li><li>Diacritics and any non-Latin strings you ship, even one sample per script.</li><li>Weight rendering at the sizes your tokens define, especially semibold and medium.</li><li>Table alignment and line counts on a dense page, since metrics can shift.</li><li>A before/after screenshot pair attached to the pull request, so the review is of pixels, not of a version number.</li><li>Renovate-style bots are welcome if font packages are labeled and held for visual review rather than auto-merged.</li><li>For regulated contexts, vendor the files into the repository with the upstream version and license recorded. npm pinning is usually enough; vendoring is the maximal form.</li></ul>
+<h2>Pinning Google Fonts CSS v2</h2>
+<ul><li>The css2 endpoint, for example https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap, always serves the current upstream files; there is no version parameter. URL pinning does not exist on the CDN.</li><li>Treat the CDN as appropriate for prototypes and marketing pages, and self-host for anything where rendering must be reproducible.</li><li>Self-host by vendoring files from the google/fonts repository at a specific commit, or by using pinned Fontsource packages; either way the bytes stop moving until you move them.</li><li>If the CDN must stay, monitor rendering: a scheduled screenshot pass on key pages catches upstream changes within a review cycle instead of via user reports.</li><li>Record in the manifest which families are CDN-served and therefore unpinned. Unpinned is a decision, not an accident.</li></ul>
+<h2>Reviewing variable font updates</h2>
+<ul><li>Diff axes before glyph looks: extract the fvar table from old and new files (Wakamai Fondue at https://wakamaifondue.com, or fontTools in a small script) and compare axis tags, ranges, and defaults.</li><li>A widened weight range is usually safe; a shifted default or a narrowed range breaks styles that assumed the old geometry.</li><li>Check whether the update changed named-instance names or axis ordering; both can break tooling that reads fonts programmatically.</li><li>Named instances change more often than axes; any UI that offers preset instances needs re-verification after an update.</li><li>Keep the previous file in the repository until the new one passes review; rollback should be a checkout, not a research project.</li></ul>
+<h2>Changelog monitoring that works</h2>
+<ul><li>google/fonts repository: watch the family directories you depend on. The commit history per directory is the closest thing to an upstream changelog for Google Fonts families.</li><li>Independent families: watch GitHub releases on the upstream repository; Inter and JetBrains Mono both publish real release notes. Release notifications are cheap and signal-rich.</li><li>Fontsource packages: the npm version feed is a proxy for upstream change; a jump in the package version means the packaging pipeline processed something new.</li><li>Foundry newsletters for commercial faces: license terms and version entitlements change too, and those changes arrive by email, not by commit.</li><li>Aggregate the checks into one owner per review cycle; scattered individual watching is how signals get missed.</li><li>Keep the watching surface small: the ten or so families your products actually ship, not the whole catalogs you browsed once.</li><li>Archive signals into the research log when they arrive, even if no action follows; a release you noticed but did not record is a release nobody noticed.</li></ul>
+<h2>Quarterly review cadence</h2>
+<ul><li>Once a quarter, one hour with the font manifest open: for each family, compare the pinned version against the latest upstream, and record &quot;current&quot; or &quot;update pending&quot; with an owner.</li><li>Review the quarter&#x27;s incidents: layout shift reports, missing glyphs, fallback rendering screenshots from the wild.</li><li>Re-check license facts that move: pageview tiers against actual traffic, subscription renewal dates, domains covered.</li><li>Sweep for orphaned fonts: families still shipped but no longer used by any surface. These go to the deprecation process, not to silent neglect.</li><li>Output of the review is a dated note in the repository, even when the conclusion is &quot;no changes&quot;. The record of deliberate inaction is what separates review from ritual.</li></ul>
+<h2>A quarterly review, walked through</h2>
+<p>A concrete agenda for the one-hour pass, with a ten-font product as the example:</p>
+<ol><li>Open the manifest and the register side by side; confirm every family has an owner, a license, and a pinned version.</li><li>Fifteen minutes: for each family, check the upstream repository or package feed for releases since the last review; note anything newer.</li><li>Fifteen minutes: inspect the incidents list, including any layout shift or missing-glyph reports, and attach screenshots to the review note.</li><li>Ten minutes: check pageview tiers against traffic trends and subscription renewal dates against the calendar.</li><li>Ten minutes: decide. Batch the updates that passed inspection into one reviewed upgrade, or extend pins with explicit re-check dates.</li><li>Five minutes: write the dated note and post it where the team reads; file follow-up items with owners.</li></ol>
+<p>The rhythm matters more than the depth: a shallow review that always happens beats a deep one that happens twice a year.</p>
+<h2>Evaluating new releases against real needs</h2>
+<ul><li>Start from the constraint sheet the family was originally chosen against; a new release is evaluated on whether it serves those constraints better, not on whether it is new.</li><li>Improvements to scripts you do not ship are noise; improvements to your primary script and to legibility at your actual sizes are signals.</li><li>Read the release notes for intention: &quot;refined spacing&quot; is routine; &quot;revitalized the design&quot; means your approved look just changed under you.</li><li>Test the new version with the standard test copy at standard sizes; the testing reference has the method, and it applies to updates as much as to new selections.</li><li>Adopt updates on a schedule you chose, batched and reviewed, rather than one at a time as they appear.</li><li>Cap the batch: one review cycle absorbs a handful of font updates comfortably; a season of accumulated updates is a migration, and should be planned as one.</li></ul>
+<h2>News without churn</h2>
+<p>Staying informed is separate from staying current; you can read everything and change nothing.</p>
+<ul><li>Follow the field for taste and context, not for dependencies: Fonts In Use for real-world applications, Typewolf for conventions, foundry journals for what serious shops are wrestling with.</li><li>When news surfaces a family that fits a known future need, record it in the research log with the link and one line of assessment; the log, not memory, is the queue.</li><li>Distinguish reading from shopping: a font that appears in your notes three times across different projects has earned a real evaluation; one that appeared once in a roundup has not.</li><li>Keep typography news out of production conversations unless it crosses one of the defined triggers: a license change, a release for a family you ship, or a constraint change in the brief.</li></ul>
+<h2>Avoiding hype-driven swaps</h2>
+<ul><li>A new family generating attention is not evidence it serves your product; popularity is context-free and your constraints are not.</li><li>No family swaps within a settled product&#x27;s first year without a failure driving the change; identity needs time to mean anything.</li><li>Require a written rationale for any swap: what problem exists today that the current family fails, and evidence the candidate solves it better.</li><li>Beware redesign-by-font: if the case for swapping rests on novelty rather than on a measured deficiency, file the candidate in the research log and move on.</li><li>Deprecation is the honest response to a genuine mismatch, and it has its own process; swapping without it is how teams end up running two type systems.</li></ul>
+<h2>Documenting adoption and deprecation</h2>
+<ul><li>Adoption entry in the manifest: family, version, license, evidence links, the constraint match that justified it, and the date. Future maintainers inherit the reasoning, not just the dependency.</li><li>Deprecation entry: what is being replaced, why, the migration target, the removal date, and which surfaces still consume it.</li><li>When a family is deprecated because upstream changed character or terms, link the exact commit or announcement; the record should survive team turnover.</li><li>The deprecation process itself (freeze, migrate, remove with a buffer) lives in the governance reference; the documentation habit is the same: dated, owned, findable.</li><li>Review the adoption notes at every deprecation: if the original rationale no longer makes sense, the deprecation is on schedule; if it still does, question the swap.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Treating the CDN decision as permanent; a prototype that grew into a product should not keep prototype-grade delivery.</li><li>Reviewing font updates only after user complaints; by then the shift has been live for weeks.</li><li>Updating one surface (web) and leaving another (email templates, native app) on the old version, so the product renders two different fonts.</li><li>Letting dependency bots auto-merge font package bumps; glyph changes are user-visible and no test suite catches them.</li><li>Assuming the Google Fonts CDN is pinned because the URL is stable; the URL is stable, the bytes are not.</li><li>Reviewing variable font updates by eyeballing headings only; numerals, small sizes, and the axes you actually use are where breaks live.</li><li>Running reviews that produce no record; an undocumented &quot;all fine&quot; is indistinguishable from no review at all.</li><li>Adopting a new release because it is new, then shipping a blend of old and new files across surfaces.</li><li>Deprecating nothing ever: the manifest grows until nobody can tell what is real.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Pinned and reviewed beats current and surprised; freshness is only a value when the project can absorb rendering changes.</li><li>An update that changes axis ranges or defaults is a breaking change and follows the breaking-change path: review, batch, migrate.</li><li>If an upstream change would alter the approved look of the product, it is a design decision, routed to design review, not a dependency bump.</li><li>No swap without a written deficiency; no deprecation without a named replacement and a removal date.</li><li>When in doubt, extend the pin and add a re-check date; urgency in typography is almost always manufactured.</li><li>The review that finds nothing still ships a record; &quot;checked, current, no action&quot; with a date is the deliverable.</li><li>News items without a matching trigger stay in the research log; production conversations are for the families you actually ship.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="research-workflow.html">Research workflow</a></li><li><a href="css-handoff-snippets.html">CSS handoff snippets</a></li><li><a href="../technical/font-face-and-css.html">Font-face and CSS</a></li><li><a href="../licensing/license-audit-checklist.html">License audit checklist</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

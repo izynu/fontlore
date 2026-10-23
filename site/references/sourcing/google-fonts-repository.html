@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>The google/fonts Repository - Fontlore</title>
+<meta name="description" content="How to use github.com/google/fonts, the canonical source repository behind Google Fonts, for verification and deeper research. It covers repository layout, M...">
+<meta property="og:title" content="The google/fonts Repository - Fontlore">
+<meta property="og:description" content="How to use github.com/google/fonts, the canonical source repository behind Google Fonts, for verification and deeper research. It covers repository layout, M...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>The google/fonts Repository</h1>
+<p>What this reference covers: How to use github.com/google/fonts, the canonical source repository behind Google Fonts, for verification and deeper research. It covers repository layout, METADATA.pb files, license files, the axis registry, and how to trace a family back to its upstream source.</p>
+<p>The google/fonts repository is where the Google Fonts catalog actually lives. When a catalog page, an npm package, and a repository disagree, the repository is the arbiter. Reading it fluently turns vague &quot;I found it on Google Fonts&quot; claims into verifiable evidence.</p>
+<h2>Repository layout</h2>
+<ul><li>Families are organized into top-level directories by license: ofl/, apache/, and ufl/. The directory a family sits in already tells you its license.</li><li>Each family gets one directory containing font binaries (TTF, including variable builds), a METADATA.pb file, a DESCRIPTION.en_us.html, and license text such as OFL.txt.</li><li>Variable fonts are stored as single files with axis tags in the filename, for example a family name followed by wght or wdth,wght in brackets.</li><li>Git history is meaningful: blame and log on a family directory show when glyphs, axes, or metadata last changed. This is the version signal the website itself does not surface.</li><li>The repository tooling (Apache 2.0) is separate from the fonts&#x27; licenses; the fonts remain under the license in their directory.</li></ul>
+<h2>METADATA.pb fields</h2>
+<p>Every family directory carries a METADATA.pb, a protobuf-text file with the family&#x27;s catalog metadata. Fields worth reading:</p>
+<ul><li>name: the family name as served by the catalog. Mismatches between this and the font&#x27;s internal name tables are a red flag.</li><li>designer: the credited designer or designers. Often a foundry name rather than an individual.</li><li>license: ofl, apache, or ufl. This should match the top-level directory and the LICENSE file present.</li><li>category: the catalog bucket (Serif, Sans Serif, Display, Handwriting, Monospace). Trust it no more than the website&#x27;s bucket.</li><li>date_added: when the family entered the catalog. Useful for separating veterans from newcomers.</li><li>subsets and languages: coverage declarations. Newer entries favor language lists; older ones list legacy subset names.</li><li>axes: for variable families, the axis tags, ranges, and default values. Compare against the font file itself when the numbers matter.</li><li>Some entries include a source block with an upstream repository URL, which is the fastest way to find the foundry&#x27;s own project.</li></ul>
+<h2>License files</h2>
+<ul><li>OFL families carry OFL.txt with the full Open Font License text, including copyright line and any Reserved Font Name declarations. Read it, do not assume.</li><li>Apache-licensed families carry LICENSE.txt (Apache 2.0). Roboto is the classic example of an Apache family in the collection.</li><li>Ubuntu family fonts sit under ufl/ with the Ubuntu Font License text.</li><li>The copyright line inside OFL.txt tells you who to credit in legal-file inventories and who holds the rights you are relying on.</li></ul>
+<h2>The axis registry</h2>
+<ul><li>Registered axis tags live in the googlefonts/axisregistry project: wght, wdth, opsz, slnt, and italic are the core set, each with defined ranges and fallback names.</li><li>Custom axes use uppercase four-character tags chosen by the designer, like SOFT and WONK on Fraunces. They are legal but less portable across tooling.</li><li>When auditing a variable family, compare METADATA.pb axis ranges against the font file&#x27;s own fvar table; mismatches mean stale metadata or a stale file.</li><li>Axis registry entries document fallback instances, which is what tools use when a requested value is not a named style.</li></ul>
+<h2>Using the repository for verification</h2>
+<ul><li>Cross-check version signals: the font file&#x27;s internal version (from name table or font inspection tooling), METADATA.pb, the npm package version on Fontsource, and the git log date. They should tell one consistent story.</li><li>Confirm license claims from third parties. If a site says &quot;free font&quot;, find the family here or in the foundry&#x27;s own repo and read the actual OFL.txt.</li><li>Trace upstream: the source block or the foundry&#x27;s website links to the design&#x27;s origin, which matters when you need to report bugs, request glyphs, or check for updates.</li><li>When a family disappears or a file changes unexpectedly, git history answers what changed and when.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Start from the family&#x27;s catalog page; find its directory in the repo (search by family name under ofl/ first).</li><li>Read METADATA.pb: license, designer, axes, subsets, date_added.</li><li>Read OFL.txt or LICENSE.txt; note copyright holders and any Reserved Font Name lines.</li><li>Check git log for the family directory to see recent changes and the last update date.</li><li>Record repository path, commit or date inspected, and license notes in your font manifest.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Quoting &quot;from Google Fonts&quot; as a license; the license is the OFL, Apache, or UFL text in the family directory, not the fact of Google&#x27;s hosting.</li><li>Ignoring METADATA.pb and then being surprised by axes or subsets that differ from a third-party package.</li><li>Treating the latest git state as the version your users have; CDN and npm builds can lag or pin older revisions.</li><li>Missing a Reserved Font Name declaration and later shipping a renamed fork incorrectly.</li><li>Copying fonts out of the repo without the license file; a font without its license is an audit liability.</li></ul>
+<h2>Quick reference: paths and commands</h2>
+<p>The repository rewards people who can move around it without cloning the whole thing (it is large; a full clone is thousands of files).</p>
+<pre><code>git clone --depth 1 --filter=blob:none --sparse https://github.com/google/fonts
+cd fonts &amp;&amp; git sparse-checkout set ofl/fraunces ofl/inter
+git log -3 --format=&quot;%h %ci %s&quot; -- ofl/inter/
+git log -1 --format=%ci -- ofl/inter/METADATA.pb</code></pre>
+<ul><li>The sparse clone pulls just the family directories you name, which is enough to read metadata, license text, and font files locally.</li><li><code>git log</code> on a family directory is the version signal the website does not surface: last change date and what changed.</li><li>Browsing on GitHub works too: search a family name, land in its directory, and use the file view and history tab for one-off checks.</li><li>To find a Reserved Font Name declaration, read the OFL.txt in the family directory; the RFN line is a copyright statement, not a separate file.</li></ul>
+<h2>Worked example: verifying a variable family end to end</h2>
+<p>Scenario: a design system wants Fraunces for editorial headlines, and the team must record defensible evidence.</p>
+<ol><li>Locate <code>ofl/fraunces/</code> and read METADATA.pb: name, designer (Undercase Type), category, date_added, and the axes block.</li><li>Compare the declared axes against the font file&#x27;s own fvar table using a font inspector; Fraunces carries ital, opsz (9 to 144), wght (100 to 900), plus custom SOFT and WONK axes. Any mismatch means stale metadata or a stale file.</li><li>Read OFL.txt: note the copyright line and whether a Reserved Font Name is declared, since the team plans a re-weighted internal build later.</li><li>Run <code>git log</code> on the directory and record the last change date; check whether recent commits touched glyphs or only metadata.</li><li>Download the current file from the repository, not from a blog, and record the commit or date inspected in the manifest.</li><li>Cross-check the same facts against the Fontsource package version; agree on which channel is the deployment source before anyone writes CSS.</li></ol>
+<p>The output is a one-paragraph evidence record: family, license, RFN status, axes, last-change date, deployment channel. That paragraph answers every audit question in less time than one meeting.</p>
+<h2>Reading git history usefully</h2>
+<ul><li>Commit messages in the repository are terse; the diff is the information. Check whether a commit touched the font binary, METADATA.pb, or the description file.</li><li>A burst of commits usually means a version bump or a glyph fix; a silent directory means the family is stable or dormant upstream.</li><li>If a family moved between license directories or was renamed, history shows the trail; this matters when old links in blog posts stop resolving.</li><li>Upstream fixes flow into the repository after the foundry or maintainer submits them, so repo date is a floor for &quot;how new is this&quot;, not a ceiling on the foundry&#x27;s own release.</li></ul>
+<h2>Signals to trust</h2>
+<ul><li>Agreement between METADATA.pb, the license file in the directory, and the font file&#x27;s internal name table; three-way agreement is the definition of a clean record.</li><li>A source block pointing at an active upstream repository with visible issue activity.</li><li>Git history showing maintenance within the last year for a family you plan to depend on.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>Third-party download sites claiming &quot;the official Google Fonts file&quot;; go to the repository and stop guessing.</li><li>Metadata describing more axes or subsets than the shipped file contains; trust the file.</li><li>A family directory untouched for years while its category peers update; dormancy is not disqualifying, but it is a recorded risk.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The repository does not tag releases per family; &quot;version&quot; means the font file&#x27;s internal version string plus the commit date you inspected.</li><li>Some families live in the repository before they are prominent on the website, and a few website features lag the files; the repository is the leading indicator.</li><li>DESCRIPTION.en_us.html is the human-readable blurb; it is useful context, but it is editorial text, not verified metadata.</li><li>When filing a glyph bug, the source block or the foundry&#x27;s repository is the right place; the google/fonts maintainers generally route fixes upstream rather than patching in place.</li><li>Keep your own record of the commit date you downloaded from; &quot;latest&quot; is not a version, and future-you will want the number.</li></ul>
+<h2>Worked example: tracing a renamed family</h2>
+<p>Scenario: a blog post links to a Google Fonts family that no longer appears in the catalog, and a team member wants to know whether it is safe to use a downloaded copy.</p>
+<ol><li>Search the repository for the family name, including case variations; if it is not there, search git history and the foundry&#x27;s own repository.</li><li>Check the foundry&#x27;s site or repository for a rename, a version jump, or a move to a different license; families do get relicensed or superseded.</li><li>If the old file is what you have, read its internal name table and license string; the file itself says what it is, regardless of what the blog claimed.</li><li>Decide with evidence: either adopt the current version of the family from the repository with a fresh record, or drop the candidate and note the dead link in the rejection log.</li><li>Record the whole trail; a family with a history of renames deserves a fuller evidence record than a stable one.</li></ol>
+<h2>Tool notes</h2>
+<ul><li>GitHub&#x27;s web search over the repository finds family directories fast; for bulk work, a sparse clone beats the web UI.</li><li><code>git log --follow</code> on a family directory survives renames and moves within the repository.</li><li>Font inspectors open the downloaded TTF directly and read the name table, fvar table, and internal version; keep one bookmarked next to the repository tab.</li><li>For licensing questions, the search box on the OFL text is faster than any summary: search &quot;Reserved&quot; and read the line in context.</li><li>The repository&#x27;s own tooling and tests are open source too; when a metadata field confuses you, reading the tooling source settles what it means.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="google-fonts-catalog.html">Google Fonts Catalog</a></li><li><a href="evaluating-catalog-metadata.html">Evaluating catalog metadata</a></li><li><a href="../licensing/open-source-due-diligence.html">Open-source due diligence</a></li><li><a href="../licensing/ofl-reserved-font-names.html">OFL reserved font names</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

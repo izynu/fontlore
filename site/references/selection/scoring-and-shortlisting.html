@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Scoring and Shortlisting - Fontlore</title>
+<meta name="description" content="A weighted scoring rubric for typeface candidates, a bias-resistant comparison protocol using real copy, and the mechanics of picking three to five finalists...">
+<meta property="og:title" content="Scoring and Shortlisting - Fontlore">
+<meta property="og:description" content="A weighted scoring rubric for typeface candidates, a bias-resistant comparison protocol using real copy, and the mechanics of picking three to five finalists...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Selection</span></nav>
+<article class="doc">
+<h1>Scoring and Shortlisting</h1>
+<p>What this reference covers: A weighted scoring rubric for typeface candidates, a bias-resistant comparison protocol using real copy, and the mechanics of picking three to five finalists. It turns taste arguments into documented, repeatable decisions.</p>
+<p>Scoring does not replace judgment; it disciplines it. A rubric forces the team to say what matters before seeing the answers, and a fixed testing protocol keeps the loudest voice in the room from deciding by volume.</p>
+<h2>The weighted rubric</h2>
+<p>Define criteria and weights before looking at candidates. A serviceable default for product work:</p>
+<ul><li>Legibility at real sizes: 25 points. Can users actually read this at 13px in the worst supported environment?</li><li>Tone fit: 20 points. Does it express the brand words in the brief, tested with real copy?</li><li>Technical fitness: 15 points. Variable axes or the weight range you need, true italics, formats, rendering quality.</li><li>Coverage: 15 points. Scripts, diacritics, numerals modes, symbols the product actually ships.</li><li>Licensing and governance: 15 points. License scope matches every usage context; versioning and vendor health are acceptable.</li><li>System fit: 10 points. Plays well with the incumbent (or replaces it cleanly); numerals and metrics align.</li></ul>
+<p>Total 100. Adjust weights per project, but write them down first and keep them constant through the round.</p>
+<h2>Scoring protocol</h2>
+<ul><li>Score all candidates on one criterion before moving to the next (score legibility for all five, then tone for all five). This suppresses halo effects from a favorite&#x27;s early strength.</li><li>Use the same copy, same sizes, same background, same environment for every candidate; differences other than the font are noise.</li><li>Require evidence notes per score: &quot;7 because it held at 13px in low-DPI test&quot; not &quot;7, feels good&quot;.</li><li>Two scorers minimum for anything contentious; average and record disagreements rather than debating them away.</li><li>Cap the scale granularity (whole or half points). Ten-point precision on tone is theater.</li></ul>
+<h2>Comparison testing with real copy</h2>
+<ul><li>Build one specimen page with rows per candidate: headline, body paragraph, UI label row, data row, and an edge-case row (long words, diacritics, mixed scripts, numerals).</li><li>Use the product&#x27;s actual vocabulary: feature names, error messages, prices, legal snippets, and the target languages.</li><li>Test the failure modes explicitly: all-caps, tight columns, dark mode, small sizes, user-forced larger text.</li><li>Time-box the review; fatigue makes later candidates look worse than they are. Rotate row order between sessions if the review spans days.</li><li>Screenshot every state; the record feeds the evidence file and survives the meeting.</li></ul>
+<h2>Picking 3 to 5 finalists</h2>
+<ul><li>From a scored field of 8 to 12, keep three to five that lead on different axes; a mono-criteria shortlist collapses when requirements shift.</li><li>Ensure finalist diversity of trade-offs: one maximal coverage option, one best-tone option, one safest technical option. Finals are decisions between trade-off profiles, not between clones.</li><li>Each finalist gets an evidence record (source, license, version, confidence) before the final round; scoring a candidate you cannot license is wasted motion.</li><li>Name the runner-up and the reason it lost; it is the first candidate when the winner hits a licensing or technical wall.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Freeze constraints and rubric weights with the brief; get stakeholder sign-off on the weights, not just the fonts.</li><li>Assemble candidates from the sourcing shortlist; verify metadata and license before scoring.</li><li>Build the comparison specimen page and run the scoring protocol with at least two scorers.</li><li>Tally, write the trade-off narrative (three paragraphs maximum), and pick finalists.</li><li>Run finalists through the real product (a staging page, a real email) before final adoption; the lab is never quite the field.</li><li>Record the decision, the scores, and the losing candidates&#x27; reasons in the font manifest.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Inventing weights after seeing candidates, then defending the favorite with post-hoc criteria.</li><li>Scoring tone from a specimen page instead of the brand&#x27;s real sentences.</li><li>Letting one stakeholder&#x27;s laptop or monitor become the evaluation environment.</li><li>Comparing candidates at matched point sizes instead of matched x-heights (see the x-height guide).</li><li>Keeping ten &quot;finalists&quot; because nobody will do the killing; a shortlist that short is a mood board.</li><li>Skipping the licensing check until after the winner is announced, then renegotiating the whole round.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>If two candidates tie, the tiebreaker is governance: better documentation, healthier upstream, cleaner license.</li><li>If the top scorer fails licensing, promote the runner-up; do not bend the product around a license mismatch.</li><li>One strong dissent on legibility from a credible reader is a veto, not an opinion to outvote.</li><li>Re-score only when constraints change; re-scoring to reach a preferred answer corrupts the whole method.</li></ul>
+<h2>Worked example</h2>
+<p>A scored round for a B2B analytics product choosing one UI sans, run exactly as the protocol prescribes. Weights fixed before any candidate was opened: legibility 25, tone fit 20, technical fitness 15, coverage 15, licensing and governance 15, system fit 10. Two scorers, whole points only.</p>
+<table><thead><tr><th>Candidate</th><th>Legibility (25)</th><th>Tone (20)</th><th>Technical (15)</th><th>Coverage (15)</th><th>Governance (15)</th><th>System fit (10)</th><th>Total</th></tr></thead><tbody><tr><td>Inter</td><td>23</td><td>15</td><td>15</td><td>14</td><td>15</td><td>9</td><td>91</td></tr><tr><td>Source Sans 3</td><td>22</td><td>16</td><td>14</td><td>14</td><td>15</td><td>9</td><td>90</td></tr><tr><td>Work Sans</td><td>21</td><td>17</td><td>14</td><td>13</td><td>15</td><td>8</td><td>88</td></tr><tr><td>IBM Plex Sans</td><td>22</td><td>18</td><td>14</td><td>14</td><td>15</td><td>9</td><td>92</td></tr><tr><td>Public Sans</td><td>21</td><td>14</td><td>13</td><td>13</td><td>15</td><td>9</td><td>85</td></tr></tbody></table>
+<p>Reading the table the disciplined way:</p>
+<ul><li>Scores were entered criterion by criterion across all candidates; row totals were computed last, never eyeballed first.</li><li>Inter took legibility on the low-DPI test; IBM Plex Sans took tone because the product&#x27;s engineering brand wanted Plex&#x27;s angular terminals.</li><li>Work Sans lost system-fit points: its figure rhythm clashed with the incumbent&#x27;s tabular numerals in mixed tables.</li><li>The one-point spread between Inter and IBM Plex Sans is inside scorer variance; the recorded tone evidence, not the totals, decided it.</li><li>Public Sans scored high on governance and low on tone for this brand; &quot;neutral&quot; was the wrong voice for a product selling analytical confidence.</li><li>Licensing was verified before scoring, so no candidate died after the announcement; the round cost two afternoons, not two months.</li><li>Outcome: IBM Plex Sans adopted; Inter recorded as runner-up with its reason (legibility margin, tone deficit against the brand words); scorecard and screenshots filed in the manifest.</li></ul>
+<p>The scores are illustrative, not endorsements of any ranking; the pattern to copy is evidence-based scoring, not the numbers themselves.</p>
+<h2>Comparison table</h2>
+<p>The rubric as an evidence table. A criterion nobody can produce evidence for is a criterion to delete, not to guess.</p>
+<table><thead><tr><th>Criterion</th><th>Weight</th><th>The question</th><th>Evidence that earns points</th></tr></thead><tbody><tr><td>Legibility at real sizes</td><td>25</td><td>Can users read this at 13px in the worst environment?</td><td>Low-DPI screenshots at target sizes, both color modes, notes per size</td></tr><tr><td>Tone fit</td><td>20</td><td>Does it express the brand words with real copy?</td><td>Side-by-side rows with the brand&#x27;s sentences; forced-choice results</td></tr><tr><td>Technical fitness</td><td>15</td><td>Does it ship the weights, italics, and axes you need?</td><td>Feature list verified against the brief; variable instances sampled</td></tr><tr><td>Coverage</td><td>15</td><td>Does it cover the scripts and symbols you ship?</td><td>Rendered checks for every locale; diacritics, currency, math symbols</td></tr><tr><td>Licensing and governance</td><td>15</td><td>Does the license match every usage context?</td><td>License text read against use cases; upstream activity and versioning noted</td></tr><tr><td>System fit</td><td>10</td><td>Does it coexist with the incumbent?</td><td>Matched x-height check; numerals rhythm in mixed tables</td></tr></tbody></table>
+<p>Weights are project-specific: freeze them before candidates are opened, keep them constant through the round, and get stakeholder sign-off on the weights, not just the fonts.</p>
+<h2>Field notes</h2>
+<ul><li>Freeze the rubric before opening a single specimen; the first candidate you see quietly rewrites your weights.</li><li>Score one criterion across all candidates before moving on; halo effects are stronger within a row than within a column.</li><li>Whole points only: decimal precision on tone is a costume for certainty nobody has.</li><li>Two scorers with different jobs (one design, one engineering) catch different failures; same-role scorers catch the same ones.</li><li>Screenshots outlive meetings; capture every state or the evidence dies in the room.</li><li>Rotate row order between sessions; later rows look worse to tired eyes, and order bias is real.</li><li>A tie is not a problem to break with another criterion; it is a trade-off profile to present to the decision owner.</li><li>Runner-ups are assets: record why each lost and the wall it would take to bring it back.</li><li>The lab never matches the field; run finalists through a staging page or a real email before adoption.</li><li>Re-scoring after seeing results corrupts the method; constraints changed means re-run, preferences changed means stop.</li><li>Beware the candidate everyone calls &quot;safe&quot;; safety is a score on the governance line, not an excuse to skip the others.</li><li>Fatigue is measurable in scores; three candidates per session keeps the later rows honest.</li><li>Evidence notes beat adjectives: &quot;held at 13px on the 2019 laptop&quot; is a fact; &quot;readable&quot; is a mood.</li><li>If a candidate wins on tone but loses on legibility, it is a display candidate, not a body candidate; re-slot it instead of re-scoring it.</li><li>Disagreements between scorers are data; record them, average them, and let the tiebreak rules work.</li><li>The scorecard is a decision record, not a verdict on the faces; keep it humble and it stays useful.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Define weights first, in writing, with stakeholder sign-off on the weights and not just the fonts.</li><li>Default product weights: legibility 25, tone 20, technical 15, coverage 15, governance 15, system fit 10.</li><li>Score criterion-by-criterion across all candidates; compute totals last.</li><li>Require an evidence note per score; no evidence, no points.</li><li>Two scorers minimum for contentious rounds; average and record disagreements.</li><li>Whole or half points; cap the granularity.</li><li>Same copy, same sizes, same background, same environment for every candidate.</li><li>Match x-heights, not point sizes, when comparing across classes.</li><li>Shortlist three to five from eight to twelve, with diverse trade-off profiles.</li><li>Verify licensing before scoring; scoring a candidate you cannot license is wasted motion.</li><li>Name the runner-up and the reason; it is the first fallback.</li><li>One credible dissent on legibility is a veto, not an opinion to outvote.</li><li>Re-score only when constraints change, never to reach a preferred answer.</li><li>File the scorecard, screenshots, and rejection reasons in the manifest.</li><li>Run finalists in the real product before adoption; the lab is not the field.</li><li>Tiebreak on governance: documentation, upstream health, license clarity.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="choosing-body-typefaces.html">Choosing body typefaces</a></li><li><a href="personality-and-tone.html">Personality and tone</a></li><li><a href="../sourcing/building-a-font-shortlist-source.html">Building a font shortlist with sources</a></li><li><a href="../licensing/license-audit-checklist.html">License audit checklist</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

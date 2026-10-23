@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Presenting to Stakeholders - Fontlore</title>
+<meta name="description" content="Presenting font decisions to stakeholders: showing three options with tied-down rationale, converting taste arguments into testable claims, documenting the d...">
+<meta property="og:title" content="Presenting to Stakeholders - Fontlore">
+<meta property="og:description" content="Presenting font decisions to stakeholders: showing three options with tied-down rationale, converting taste arguments into testable claims, documenting the d...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>Presenting to Stakeholders</h1>
+<p>What this reference covers: Presenting font decisions to stakeholders: showing three options with tied-down rationale, converting taste arguments into testable claims, documenting the decision so it survives personnel changes, and handling the revision loop without churn. Stakeholder management is half of typography in organizations.</p>
+<h2>Present three options, not thirty</h2>
+<p>The comparison workflow produces ranked candidates; the stakeholder presentation shows three:</p>
+<ul><li>The recommended option, clearly labeled as the recommendation, with its evidence summarized.</li><li>A strong alternative that differs meaningfully (different voice or different logistics), not a near-duplicate.</li><li>A safe fallback (the system stack, or the incumbent) so the &quot;do nothing&quot; path is explicit and costed.</li></ul>
+<p>For each: one live specimen page with real copy, one line of license and cost implications, one line of coverage facts, and the two or three risks. Stakeholders decide between framed options; they do not rank forty typefaces, and showing forty signals that no work was done.</p>
+<h2>Converting taste into claims</h2>
+<p>Taste arguments (&quot;it feels more premium&quot;) cannot be decided; claims can:</p>
+<ul><li>&quot;Premium&quot; becomes: does the higher-contrast option pass legibility at our 13 px UI sizes? Show the ramp.</li><li>&quot;More friendly&quot; becomes: which brand values does each option&#x27;s voice serve, scored by the group in the matrix?</li><li>&quot;Our competitor uses it&quot; becomes: is differentiation or convergence the goal here, stated as a requirement before the meeting?</li><li>&quot;Too common&quot; becomes: is distinctiveness worth the licensing and coverage risk of the rarer option?</li></ul>
+<p>Structure every claimed property as something the specimen page can show or the matrix can score. If a claim cannot be made testable, name it as preference and let the decision owner weigh it explicitly.</p>
+<h2>The meeting format</h2>
+<ul><li>Fifteen minutes of artifacts, thirty minutes of decision; longer meetings breed redesigns.</li><li>Live specimen pages, not screenshots: stakeholders type their own names and product strings; ownership of the copy builds ownership of the choice.</li><li>Show the failure cases honestly: the language block where option B clips, the table where option C wobbles. Presenting only strengths hides the tradeoffs that will resurface as bugs.</li><li>State the constraints from the constraint sheet at the start; the meeting decides inside the envelope, not about the envelope.</li><li>End with a decision and an owner, recorded in the meeting notes; &quot;we&#x27;ll circle back&quot; is how font projects consume quarters.</li></ul>
+<h2>Documenting the decision</h2>
+<p>Write the decision record while the meeting is fresh, in a form like:</p>
+<ul><li>Context: the constraint sheet summary and the problem being solved.</li><li>Options considered: the three, with matrix scores and links to the comparison artifacts.</li><li>Decision: the family (or families), versions, licenses, and the tuning assumptions (sizes, leading, per-language rules).</li><li>Consequences: what this enables, what it forecloses, and the conditions that would reopen the decision (new market, rebrand, license change).</li><li>Links: comparison page, license documents, version records.</li></ul>
+<p>File it where design decisions live (an ADR folder, the design system repo); a decision that cannot be found will be re-litigated within a year.</p>
+<h2>Handling revisions without churn</h2>
+<ul><li>Revisions happen; the discipline is batching them: one revision round after the decision, with all feedback collected, rather than weekly drips.</li><li>Each revision request gets the same treatment: convert to a claim, test it, record the outcome. &quot;Can we try something softer&quot; becomes a scored second look at the alternative, not an open-ended search.</li><li>The decision record notes the revision and the reason; three revisions without a recorded reason means the decision was never actually made.</li><li>Post-launch, revisit on the governance cadence (quarterly or per release), not whenever someone new joins; new-stakeholder opinions enter through the request process, not through ad-hoc swaps.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Presenting specimens from foundry marketing pages: those show the font at its best and the stakeholder at their most impulsive.</li><li>Burying the recommendation among equal options; stakeholders read equality as &quot;no one did the work&quot;.</li><li>Arguing from taste in the meeting: it delegitimizes the evidence and invites every opinion to be weighed equally.</li><li>No decision owner: the loudest voice becomes the owner by default.</li><li>Skipping the license and cost slide: discovering the budget conflict after the excitement is how decisions get reversed late.</li><li>Not recording the loss: the rejected options and why are as valuable as the winner, because the same options return with the next rebrand.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any option presented must have passed every hard gate in the matrix; unviable options are not presented as variety.</li><li>If stakeholders reject the recommendation: the decision owner picks between the recorded alternatives with reasons on the record; the process survives the disagreement.</li><li>New constraints appear mid-meeting (a new market, a licensing limit): pause, update the constraint sheet, reconvene; deciding on stale constraints produces reversals.</li><li>The decision record is written before the next meeting happens; memory is not documentation.</li><li>Reopen a decided choice only through the governance process with new facts; reopen it ad hoc and every future choice inherits the instability.</li></ul>
+<h2>Worked example: a type decision for a banking app</h2>
+<p>Scenario: a retail banking app replaces its default UI font. Constraint sheet facts: WCAG 2.2 AA committed, five languages at launch including Vietnamese, a licensing budget exists, iOS and Android native.</p>
+<ol><li>The three options: the recommended (a text-first sans with tabular figures and a strong 500 weight), the alternative (a warmer humanist sans, one license tier cheaper but weaker at tiny sizes), and the fallback (keep the system font: zero cost, zero migration).</li><li>The specimen page used the app&#x27;s real strings: a balance in tabular figures, a transaction list at 13 px, an error banner, Vietnamese and Polish paragraphs, and the longest product name.</li><li>The claims: legibility at 13 px shown as a size ramp; brand voice scored 1 to 5 by the six people in the room; migration effort estimated in engineering days from the token audit.</li><li>The failure cases shown deliberately: the alternative&#x27;s Vietnamese diacritics clipped at compact leading; the recommended option&#x27;s stiffer personality. Both notes entered the record.</li><li>Decision: the recommended option, recorded with versions, license seats, and the tuning notes (600 not 700 for emphasis at small sizes, 1.45 leading in dense lists). The fallback stayed in the record as the documented &quot;do nothing&quot; path with its real cost.</li><li>The revision round: one request to see a rounder alternative; it was converted to a claim (&quot;friendlier&quot;), scored in the matrix, lost, and the record shows it.</li><li>Artifacts archived: the specimen pages, matrix scores, and screenshots stored beside the decision record, with the font versions tested named in the record.</li><li>Four weeks later: the governance review checked adoption (tokens used, no rogue weights) rather than reopening taste; the decision stayed closed.</li></ol>
+<p>The meeting ran forty-five minutes because the artifacts were ready. The same decision attempted without the matrix and the specimen page had already failed once in a prior quarter.</p>
+<p>What the record prevented: at the next rebrand the same options resurfaced by memory, and the record&#x27;s rejected-options list with their scores retired them in one paragraph instead of one meeting.</p>
+<h2>Quick reference: the six-slide deck</h2>
+<p>The presentation that works is short and artifact-driven:</p>
+<ul><li>Send a five-minute pre-read: the constraint summary and the three options with costs. Meetings that open with &quot;what are we deciding&quot; never finish on time.</li></ul>
+<table><thead><tr><th>Slide</th><th>Content</th><th>Purpose</th></tr></thead><tbody><tr><td>1. The problem</td><td>The constraint summary and what the current type fails at</td><td>Frames the decision inside the agreed envelope</td></tr><tr><td>2. The three options</td><td>One live specimen link each, with license class and cost</td><td>Shows the work without forty candidates</td></tr><tr><td>3. The evidence</td><td>Size ramps, language blocks, matrix scores</td><td>Moves the argument from taste to testable claims</td></tr><tr><td>4. The risks</td><td>Two or three honest risks per option, with mitigations</td><td>Pre-empts the objection that hides until launch</td></tr><tr><td>5. The recommendation</td><td>One option named, with tuning notes and migration steps</td><td>Stakeholders expect a recommendation, not a poll</td></tr><tr><td>6. The decision</td><td>Owner, record location, revision process</td><td>Ends the meeting with a decision on the record</td></tr></tbody></table>
+<p>Fifteen minutes of slides, then discussion. Every slide is an artifact that already exists from the comparison workflow; a deck that requires new work to build is a signal the decision is not ready to present.</p>
+<p>Keep the deck to artifacts: each slide above is a document the constraint, research, and comparison workflows already produced. Leave the last five minutes to draft the decision record in the room; a record drafted live is corrected in minutes, while one reconstructed next week is contested for months.</p>
+<h2>Field notes: questions stakeholders actually ask</h2>
+<p>Prepare a one-sentence answer for each; they recur in every organization:</p>
+<ul><li>&quot;Why not Google Fonts? They are free.&quot; Answer: quality ceiling and differentiation; the recommendation either beats the catalog on a named dimension or the fallback wins.</li><li>&quot;Can we use the font from that competitor&#x27;s site?&quot; Answer: licensing is per company and per scope; identify the face, check its license class, and note that convergence is a brand decision, not a font decision.</li><li>&quot;Will it slow the site down?&quot; Answer: the payload number from the constraint sheet, in kilobytes, against the budget.</li><li>&quot;What happens if legal objects?&quot; Answer: the license class and the evidence record; licenses in this class clear procurement routinely.</li><li>&quot;Who else uses it?&quot; Answer: the Fonts In Use entries gathered in research; evidence of context, not of quality.</li><li>&quot;My partner hates it.&quot; Answer: collect it as a revision, convert it to a claim, score it in the next round; the process absorbs opinions without reversing decisions.</li><li>&quot;It does not feel like us.&quot; Answer: voice is a scored entry in the matrix; the score, not the feeling, is what gets recorded and revisited.</li><li>&quot;Can we decide next quarter?&quot; Answer: the cost of delay from the constraint sheet (trial expiry, launch date, license renewal); a delay is a decision too, and it gets recorded as one.</li><li>&quot;Why this one over the one with the nicer &#x27;a&#x27;?&quot; Answer: the matrix scored whole families against the corpus; a single glyph is a revision request, not a decision.</li><li>&quot;Will marketing need a separate license?&quot; Answer: the license scope line from the sheet, restated; scope questions asked in the meeting get answered from the record, not guessed.</li><li>&quot;What if the font goes away?&quot; Answer: the fallback plan (the safe option, the system stack) is on the table and costed; continuity was part of the score.</li><li>&quot;Can we see it on the real dashboard first?&quot; Answer: yes, that is the pilot path written into the decision record; a time-boxed pilot with checkpoints beats an open-ended trial.</li><li>&quot;Who maintains this after launch?&quot; Answer: the owner named in the record and the governance cadence; ownership is decided here, not discovered later.</li></ul>
+<p>The pattern: every answer cites an artifact (a number, a license class, a link, a recorded score). Answers that cite only opinion train the room to treat typography as opinion.</p>
+<h2>Audit checklist: before the meeting</h2>
+<ul><li>[ ] The constraint sheet circulated in advance; no constraints introduced for the first time in the meeting.</li><li>[ ] Specimen pages load offline or on the local network; foundry hotlinks fail at the worst moment.</li><li>[ ] All three options passed every hard gate; unviable options were removed, not presented for variety.</li><li>[ ] The license and cost line verified against the current price sheet, not memory.</li><li>[ ] Failure cases prepared deliberately for each option.</li><li>[ ] The decision record template pre-filled with everything except the decision.</li><li>[ ] A named decision owner invited, and the meeting ends with their call on the record.</li><li>[ ] The revision process stated up front: one batched round, claims only, recorded outcomes.</li><li>[ ] The three options differ meaningfully; no near-duplicates presented as variety.</li><li>[ ] Cost lines include renewals and seat growth, not just year one.</li><li>[ ] The revision round has a scheduled date before the meeting ends.</li><li>[ ] The specimen pages reflect the tuning notes from the comparison phase, not browser defaults.</li><li>[ ] The matrix scores are in the pre-read so the meeting argues about weights, not about facts.</li><li>[ ] The decision record template is open on screen when the decision lands.</li><li>[ ] Anyone whose sign-off is required was invited; missing approvers reopen decisions.</li><li>[ ] The meeting is scheduled after the specimen pages were verified on local assets, not before.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="testing-and-comparing-shortlists.html">Testing and comparing shortlists</a></li><li><a href="brief-to-constraints.html">Brief to constraints</a></li><li><a href="font-governance-and-review.html">Font governance and review</a></li><li><a href="worked-examples.html">Worked examples</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Localization and RTL Accessibility - Fontlore</title>
+<meta name="description" content="The accessibility side of localized typography: lang attributes and their effect on screen reader pronunciation, the dir attribute and logical CSS properties...">
+<meta property="og:title" content="Localization and RTL Accessibility - Fontlore">
+<meta property="og:description" content="The accessibility side of localized typography: lang attributes and their effect on screen reader pronunciation, the dir attribute and logical CSS properties...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Localization and RTL Accessibility</h1>
+<p>What this reference covers: The accessibility side of localized typography: lang attributes and their effect on screen reader pronunciation, the dir attribute and logical CSS properties for right-to-left content, bidi isolation for mixed text, and the layout pitfalls that appear only in translated pages. Language tags are the cheapest accessibility feature in web typography.</p>
+<h2>Language tags: pronunciation and more</h2>
+<ul><li>WCAG 3.1.1 (Language of Page) requires a lang attribute on the html element; 3.1.2 (Language of Parts) requires lang on any content in a different language.</li><li>Screen readers select voice and pronunciation rules from lang: an untagged Arabic paragraph read by an English voice is gibberish; with lang=&quot;ar&quot; it becomes intelligible. The same applies to Cyrillic, Greek, Hebrew, Thai, and every non-Latin script, and to Latin-script languages with different pronunciation rules (German, Polish, Turkish).</li><li>lang also drives hyphenation dictionaries (hyphens: auto), locale-aware case mapping (Turkish dotted and dotless i), font selection for Han variants (zh-Hans versus zh-Hant), and the locl OpenType feature.</li><li>Use correct tags: ar for Arabic, fa for Persian, he for Hebrew, hi for Hindi, ja, ko, th, vi; zh-Hans and zh-Hant for the Chinese scripts. Region subtags are rarely needed for text rendering; language subtags carry the work.</li><li>Tag user-generated content too: a profile field, a review, a comment. dir=&quot;auto&quot; plus lang detection on render is the practical pattern; per-language lang on mixed segments is the thorough one.</li></ul>
+<h2>Direction: dir and logical properties</h2>
+<ul><li>Set dir=&quot;rtl&quot; on html or on sections for Arabic, Hebrew, Persian, Urdu; dir=&quot;ltr&quot; explicitly where needed. dir=&quot;auto&quot; on unpredictable user content lets the first strong character decide.</li><li>The dir attribute flips the inline base direction; layout follows when CSS is written logically:</li><li>Use margin-inline-start instead of margin-left; padding-inline-end instead of padding-right; text-align: start instead of left.</li><li>Flex and grid order flows with direction automatically; borders become border-inline-start, and so on.</li><li>Physical properties (left, right, top, bottom) do not flip and are the source of most RTL layout bugs.</li><li>Icons and controls that encode direction (chevrons, &quot;next&quot; arrows, progress direction) should flip under [dir=&quot;rtl&quot;] selectors; text and logos must not be mirrored.</li><li>Numbers, dates, and Latin brand names inside RTL text remain left-to-right runs; the Unicode bidirectional algorithm handles them when the text is real Unicode and the base direction is set. Do not reverse strings in code.</li></ul>
+<h2>Bidi isolation for mixed content</h2>
+<p>Mixed-direction text (an English filename inside an Arabic sentence, a Hebrew product name in a French list) is where bidi goes wrong:</p>
+<ul><li>Wrap user-generated or unpredictable segments in bdi elements, or use the Unicode isolate characters; they stop the segment&#x27;s direction from leaking into surrounding punctuation and layout.</li><li>Test the classic cases: trailing Latin punctuation in an RTL sentence; a URL in an Arabic paragraph; a phone number list in a Hebrew interface; parentheses around mixed runs.</li><li>For fields whose content is directional (filenames, IDs), dir=&quot;auto&quot; on the element plus bdi in lists covers most cases.</li></ul>
+<h2>Typography adjustments per language</h2>
+<ul><li>Line-height: scripts with tall marks need more room; scope with :lang(th) { line-height: 1.7; } and similar rules rather than inflating globally (see the per-script references).</li><li>Letter-spacing: never on Arabic or Devanagari; subtle on Latin labels only.</li><li>Justification: Arabic justification is conventionally done with kashida or word spacing by the shaper, not letter-spacing; hyphens: auto is meaningless for Arabic and harmful-looking in Thai (which has no spaces and relies on dictionary line breaking).</li><li>Measures: a 66ch English article is roughly 30 to 35 hanzi in Japanese; per-language measures are content decisions, not one number.</li><li>Fonts: per-language font stacks with unicode-range subsets; the fallback ordering is a design decision documented in tokens.</li></ul>
+<h2>Screen reader and QA specifics</h2>
+<ul><li>Verify screen reader language switching: with correct lang attributes, VoiceOver and NVDA switch voices mid-page; this is the single best test for 3.1.2.</li><li>Check heading structure in translated pages: translations lengthen (German runs 20 to 35 percent longer than English), and headings that fit one line in English wrap awkwardly elsewhere; structure must tolerate it.</li><li>Test with the actual locales: an RTL audit with English content proves nothing; audit with real Arabic or Hebrew copy.</li><li>Include localized pages in the zoom, reflow, and text-spacing audits; multilingual pages fail accessibility checks faster than English ones.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Text-align: left and margin-left throughout the stylesheet, producing mirrored pages held together by per-element overrides.</li><li>Missing lang on translated pages, so screen readers read everything in the site&#x27;s default voice.</li><li>Setting lang=&quot;ar&quot; but leaving dir=&quot;ltr&quot;, or vice versa; both attributes are needed and they do different jobs.</li><li>Reversing Arabic or Hebrew strings in JavaScript to &quot;fix&quot; rendering; it breaks selection, search, copy-paste, and screen readers simultaneously.</li><li>Forgetting lang on user-generated content, so a multilingual comment thread reads as one flat pronunciation.</li><li>Mirroring icons that contain text or logos, and flipping chevrons that indicate &quot;expand&quot; (which is often not directional) along with &quot;next&quot; (which is).</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any localized launch: lang plus dir on the page, logical properties audited, per-language leading and measure rules in tokens, screen reader spot check with real copy.</li><li>Mixed-direction UI: bdi on all user-generated list items and fields by default.</li><li>RTL support: decide at the component-library level, not page by page; retrofitting logical properties across a shipped product is a migration.</li><li>If full RTL is out of scope for a release: say so in the locale&#x27;s documentation; a half-mirrored page is worse than an honest LTR page with correct lang and fonts.</li><li>Any new script added to the product: update the accessibility audit to run on that language&#x27;s pages before launch.</li></ul>
+<h2>Code notes: tags, direction, and isolation</h2>
+<pre><code class="language-html">&lt;!-- Page level: both attributes, always --&gt;
+&lt;html lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
+
+&lt;!-- Language of parts --&gt;
+&lt;p&gt;Read the &lt;span lang=&quot;en&quot;&gt;privacy policy&lt;/span&gt; for details.&lt;/p&gt;
+
+&lt;!-- Unpredictable user content: isolation plus auto direction --&gt;
+&lt;li&gt;&lt;bdi dir=&quot;auto&quot;&gt;{{ username }}&lt;/bdi&gt;&lt;/li&gt;
+
+&lt;!-- A Latin brand name inside RTL text: no reversal, just isolation --&gt;
+&lt;p dir=&quot;rtl&quot;&gt;Product: &lt;bdi&gt;Acme Widget&lt;/bdi&gt; - 25 units&lt;/p&gt;</code></pre>
+<pre><code class="language-css">/* Logical properties: one stylesheet serves both directions */
+.nav-item { margin-inline-start: 0.5rem; text-align: start; }
+.card { border-inline-start: 3px solid var(--accent); }
+
+/* Directional icons flip; text and logos never do */
+.chevron-next { transform: scaleX(1); }
+[dir=&quot;rtl&quot;] .chevron-next { transform: scaleX(-1); }
+
+/* Per-language leading lives next to the family tokens */
+:lang(ar) { line-height: 1.7; }
+:lang(th) { line-height: 1.8; }
+:lang(hi) { line-height: 1.7; }</code></pre>
+<h2>Comparison table: per-script typography adjustments</h2>
+<table><thead><tr><th>Script</th><th>Leading floor</th><th>Letter spacing</th><th>Line breaking</th><th>Notes</th></tr></thead><tbody><tr><td>Latin</td><td>1.5</td><td>Subtle on labels only</td><td>Spaces; hyphens with lang</td><td>The default all rules are scoped against</td></tr><tr><td>Arabic, Persian</td><td>1.6 to 1.8</td><td>Never</td><td>Spaces; kashida or word-space justification</td><td>Justification belongs to the shaper</td></tr><tr><td>Hebrew</td><td>1.6</td><td>Rarely</td><td>Spaces</td><td>Vocalized (nikud) text needs more room</td></tr><tr><td>Devanagari and Indic</td><td>1.7 to 1.8</td><td>Never</td><td>Spaces</td><td>Conjuncts and matras above and below</td></tr><tr><td>Thai, Lao, Khmer</td><td>1.8</td><td>Never</td><td>Dictionary-based; no hyphens</td><td>Mark clipping is the classic failure</td></tr><tr><td>Han, Kana, Hangul</td><td>1.7 to 1.9</td><td>No</td><td>No spaces; strict rules</td><td>Count characters, not ch</td></tr></tbody></table>
+<p>The table is a floor, not a spec: verify with native readers and real copy, because within any script the demands vary by face and by content type.</p>
+<h2>Worked example: auditing an Arabic product page</h2>
+<p>A product page localized to Arabic, audited with real copy and a native reviewer:</p>
+<ol><li>Page shell: lang=&quot;ar&quot; and dir=&quot;rtl&quot; on html; the stylesheet audited for physical left and right properties; eleven margin-left and two padding-right instances found and converted to logical properties.</li><li>Bidi: the price row (&quot;AED 1,299&quot;) rendered correctly only after the amount was isolated; without bdi the trailing punctuation jumped to the wrong end.</li><li>Typography: leading raised to 1.7 via :lang(ar); letter-spacing reset to normal because the Latin label tracking had been inherited; the display face swapped for a stack partner with real Arabic coverage, because the brand face had none.</li><li>Mirroring: &quot;next&quot; chevrons flipped; the &quot;bold&quot; icon did not, because emphasis is not directional; the logo stayed unmirrored.</li><li>Overrides: the 1.4.12 sweep re-run in Arabic; taller leading plus overrides exposed the same fixed-height cards the English pass had missed.</li><li>Screen reader: VoiceOver switching voices between the Arabic sections and an embedded English testimonial; the testimonial lacked lang=&quot;en&quot; and was fixed.</li></ol>
+<p>Six checks, one afternoon, and a page that went from half-mirrored to first-class.</p>
+<h2>Quick reference: attributes and when they matter</h2>
+<table><thead><tr><th>Attribute</th><th>Where</th><th>What it does</th></tr></thead><tbody><tr><td>lang</td><td>html and any content in another language</td><td>Pronunciation, hyphenation, case mapping, font selection, locl</td></tr><tr><td>dir</td><td>html or sections</td><td>Inline base direction; pairs with logical CSS</td></tr><tr><td>dir=&quot;auto&quot;</td><td>User-generated or unpredictable text</td><td>First strong character decides</td></tr><tr><td>bdi</td><td>Usernames, filenames, mixed list items</td><td>Isolates the segment so direction cannot leak</td></tr><tr><td>translate=&quot;no&quot;</td><td>Brand names, code, product IDs</td><td>Keeps machine translation from mangling them</td></tr></tbody></table>
+<p>The last row is the quiet one: without translate=&quot;no&quot;, translators and browser translation mangle product names and code identifiers in ways that also break screen reader pronunciation and search.</p>
+<h2>Field notes: what RTL launches actually surface</h2>
+<ul><li>The physical-property audit pays instantly: one search for &quot;left&quot; and &quot;right&quot; in the CSS typically finds dozens of hits, and most are genuine bugs once dir=&quot;rtl&quot; ships, each one a mirrored-margin defect in production.</li><li>Punctuation at direction boundaries is the classic bidi bug: a trailing period or a currency sign jumps to the wrong end. Isolating the Latin or numeric run with bdi fixes it without touching the string.</li><li>Form fields are the second wave: inputs for emails and phone numbers keep LTR content direction while their labels flip; the fix is dir=&quot;ltr&quot; on those specific inputs, not on the whole form.</li><li>Carousels and steppers are where mirroring rules get debated: &quot;next&quot; flips, &quot;play&quot; does not, and the decision should be written down per icon rather than re-litigated per sprint.</li><li>Translated headings run longer and wrap: a one-line hero in English becomes two lines in German and three in Finnish, and any height-capped hero shows it first.</li><li>Screen reader voice switching is the fastest end-to-end check: one listen through a localized page with mixed content finds missing lang attributes faster than any markup review.</li><li>Numerals are a quiet decision: an interface that mixes European digits with Arabic-Indic content needs a stated policy, or each component invents its own.</li></ul>
+<h2>Audit checklist: localized launch gate</h2>
+<ul><li>[ ] html carries the correct lang and, for RTL locales, dir=&quot;rtl&quot;.</li><li>[ ] Every segment in another language carries lang; user-generated content carries bdi and dir=&quot;auto&quot;.</li><li>[ ] A search for physical properties (margin-left, margin-right, padding-left, padding-right, text-align: left, text-align: right, left, right offsets) returns zero unreviewed hits.</li><li>[ ] Directional icons flip under [dir=&quot;rtl&quot;]; text, logos, and non-directional icons do not.</li><li>[ ] :lang() rules for leading and size adjustments exist for every shipped script and live in the token layer.</li><li>[ ] Numerals policy decided (European, Arabic-Indic, script-specific) and rendering matches the decision.</li><li>[ ] Mixed-direction test cases pass: Latin product names in RTL sentences, URLs, phone numbers, quoted strings with punctuation.</li><li>[ ] translate=&quot;no&quot; on brand names, product IDs, and code identifiers.</li><li>[ ] Screen reader pass with real copy: voice switches at language boundaries; headings and lists announce sanely.</li><li>[ ] Zoom, reflow, and the 1.4.12 spacing sweep re-run on the localized templates, not just the English ones.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../scripts/arabic-script-typography.html">Arabic script typography</a></li><li><a href="../scripts/mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="testing-typography-accessibility.html">Testing typography accessibility</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

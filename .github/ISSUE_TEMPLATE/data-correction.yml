@@ -1,0 +1,42 @@
+name: Data correction
+description: A wrong or stale value in fonts.json, pairings.json, or tools.json.
+labels: ["data", "correction"]
+body:
+  - type: input
+    id: font-slug
+    attributes:
+      label: Font (or pairing or tool) identifier
+      description: The slug from fonts.json or pairings.json, or the exact tool name from tools.json.
+      placeholder: inter
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Field
+      description: The field that is wrong, e.g. designer, foundry, license, scripts, classification, weights.
+      placeholder: scripts
+    validations:
+      required: true
+  - type: textarea
+    id: current-value
+    attributes:
+      label: Current value
+      description: Paste the exact current value from the JSON.
+    validations:
+      required: true
+  - type: textarea
+    id: corrected-value
+    attributes:
+      label: Corrected value
+      description: The value you believe is correct.
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: Evidence URL
+      description: Foundry page, license text, or catalog page that proves the correction. https only.
+      placeholder: https://fonts.google.com/specimen/Inter
+    validations:
+      required: true

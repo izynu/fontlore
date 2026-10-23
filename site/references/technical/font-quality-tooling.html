@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Font Quality Tooling - Fontlore</title>
+<meta name="description" content="Building a quality practice around fonts: linting with Fontspector and fonttools, hinting and small-size rendering, missing-glyph audits, shaping verificatio...">
+<meta property="og:title" content="Font Quality Tooling - Fontlore">
+<meta property="og:description" content="Building a quality practice around fonts: linting with Fontspector and fonttools, hinting and small-size rendering, missing-glyph audits, shaping verificatio...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Font Quality Tooling</h1>
+<p>What this reference covers: Building a quality practice around fonts: linting with Fontspector and fonttools, hinting and small-size rendering, missing-glyph audits, shaping verification, and version pinning discipline. These checks prevent the quiet failures: a weight that renders mushy on Windows, an upgrade that renumbers stylistic sets, a subset that loses tabular figures.</p>
+<h2>The quality pipeline in outline</h2>
+<p>Treat fonts like any other dependency: verify on the way in, monitor over time, control upgrades. Four stages:</p>
+<ol><li>Intake: lint the file (Fontspector), check provenance (name table, license), diff coverage against your language matrix.</li><li>Integration: confirm features and metrics feed the CSS layer correctly (feature lists, fallback metrics), record the version.</li><li>Runtime verification: render real copy at real sizes on real platforms; watch shaping and small-size rendering.</li><li>Upgrade control: pin versions, review releases deliberately, re-run checks on every bump.</li></ol>
+<h2>Fontspector and fonttools checks</h2>
+<p>Fontspector (the maintained successor to FontBakery) runs a profile of checks per font: required tables present, name table sanity, license string consistency, cmap oddities, metric ranges, and script-specific checks for the systems the font claims to support. Run it at intake and in CI for any font your team maintains or regenerates.</p>
+<p>fonttools covers the manual layer:</p>
+<ul><li>ttx -t cmap file.ttf: dump coverage; diff against your required codepoint list.</li><li>ttx -t name file.ttf: version, foundry, license strings; the basis of your version register.</li><li>fonttools subset: regenerate subsets and diff the output cmap and feature list against the previous build; surprises here are release blockers.</li></ul>
+<h2>Hinting and small-size rendering</h2>
+<p>Hinting is grid-fitting instructions that make TrueType outlines render crisply at small sizes, especially on Windows with ClearType. It matters when your type lives at 12 to 14 px:</p>
+<ul><li>Fonts from major foundries and the big open catalogs (Google Fonts pipeline) are usually well hinted; fonts from small foundries or converted from other formats sometimes are not.</li><li>Check on a Windows machine (real or VM) at 12, 13, and 14 px with ClearType on: mushy strokes, uneven stems, or blurry small text indicate hinting problems.</li><li>TTFAutohint (Werner Lemberg) is the standard tool if you control the font source and need to add hinting; most teams should instead prefer better-hinted fonts rather than rehinting.</li><li>Variable fonts complicate hinting (hints apply per outline, and interpolation moves them); the practical check is the same: render small on Windows and judge.</li><li>On macOS, grayscale smoothing forgives unhinted outlines; do not judge small-size quality on a Mac alone.</li></ul>
+<h2>Missing-glyph and shaping audits</h2>
+<ul><li>Maintain the per-language codepoint checklist from the testing reference; run it against every new version, not just the first adoption. Coverage changes between releases more often than anyone expects.</li><li>Automated option: a small script that loads the cmap with fonttools and asserts your required codepoints exist; wire it into CI where fonts or subsets are built.</li><li>Shaping verification: render the shaping smoke strings (lam-alef, Devanagari conjuncts, Thai mark stacking) through hb-shape or a headless browser screenshot test; a regression here ships broken text to real users.</li><li>Watch .notdef: a subset that silently drops required glyphs produces tofu; the cmap diff catches it before users do.</li></ul>
+<h2>Version pinning discipline</h2>
+<ul><li>Record, per font in use: family, exact version string (from the name table or package version), source (foundry page, GitHub tag, Fontsource package version), files and hashes, license, and the date adopted.</li><li>Pin exactly: package.json exact versions for Fontsource; vendored files with hashes for self-hosted fonts; no floating ranges.</li><li>Subscribe deliberately: foundry release notes, GitHub releases for open families, or the Fontsource changelog. Review on a cadence (quarterly is realistic) rather than continuously.</li><li>When upgrading: diff coverage, re-run Fontspector, recompute metric fallback overrides, re-render the specimen matrix, and check that stylistic set numbers you rely on have not moved.</li><li>Keep one version across a family: mixing 1.0 files with a 1.2 italic produces weight mismatches that look like design bugs.</li></ul>
+<h2>What &quot;good enough&quot; looks like</h2>
+<p>For most teams: Fontspector clean at intake, a pinned version register, a codepoint CI check, a Windows small-size spot check, and a quarterly release review. That is an afternoon of setup and prevents the classic incidents: silent metric drift, lost features after subsetting, and coverage gaps found by users instead of CI.</p>
+<h2>Common mistakes</h2>
+<ul><li>Adopting a font from a random &quot;free fonts&quot; site without provenance checks; the file may be an old version, a clone, or worse, and every later check inherits the problem.</li><li>Judging rendering quality only on the design team&#x27;s Macs; small-size hinting failures are a Windows phenomenon.</li><li>Never recording versions, then being unable to answer &quot;which Inter is this layout tuned for&quot;.</li><li>Treating upgrades as non-events: metric overrides, feature numbers, and coverage all move between versions.</li><li>Checking glyph coverage by scrolling a specimen instead of diffing cmaps; the missing codepoint is never the one you scroll past.</li><li>Skipping the shaping strings because &quot;the font says it supports Arabic&quot;; support claims are not shaping guarantees.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any new font in the stack: full intake (lint, provenance, coverage diff, version record) before it reaches main.</li><li>Any subset regeneration: cmap and feature diff against the previous build; human review only on the diff.</li><li>Upgrade requests: batch them on the review cadence; emergency upgrades only for security or legal issues.</li><li>A check fails and the font is load-bearing: do not &quot;fix in CSS&quot;; fix the version, the subset, or the choice.</li><li>No Windows access: use a VM or CI screenshot service for the small-size check; it is the one platform-specific check that cannot be skipped.</li></ul>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Tool</th><th>Kind</th><th>Answers</th><th>Interface</th></tr></thead><tbody><tr><td>Fontspector</td><td>linter</td><td>structural health, table sanity, license strings, script checks</td><td>CLI, CI</td></tr><tr><td>fonttools / ttx</td><td>dump and fix</td><td>exact cmap coverage, name table facts, metric values</td><td>CLI</td></tr><tr><td>hb-shape</td><td>shaper probe</td><td>which glyphs HarfBuzz picks for a string</td><td>CLI</td></tr><tr><td>TTFAutohint</td><td>fixer</td><td>adds TrueType grid-fitting to unhinted fonts</td><td>CLI</td></tr><tr><td>Wakamai Fondue</td><td>inspector</td><td>features, axes, metrics, fallback suggestions</td><td>web, upload</td></tr><tr><td>FontDrop</td><td>inspector</td><td>raw tables and glyph outlines</td><td>web, upload</td></tr></tbody></table>
+<h2>Worked example</h2>
+<p>Upgrading a vendored family from v1.0 to v1.1 as a checklist that fits in a pull request:</p>
+<ol><li>Record what arrived: ttx -t name on the new file; note the version string and the file hash; the old hash stays in the manifest for comparison.</li><li>Lint: Fontspector with the profile matching the font class; new WARN and FAIL lines are findings, not noise.</li><li>Coverage diff: dump the cmaps of both versions and diff them; added codepoints are a bonus, removed ones are a release blocker until explained.</li><li>Feature diff: dump the GSUB tags of both versions; a stylistic set that moved (ss02 now means what ss03 meant) breaks shipped CSS with no error anywhere.</li><li>Metrics: recompute the adjusted fallback overrides; a small ascent change moves every line on the page.</li><li>Render: the specimen matrix at 12, 13, and 14 px plus the shaping smoke strings.</li><li>Ship: new hash, updated manifest entry, changelog note.</li></ol>
+<h2>Code notes</h2>
+<pre><code>ttx -t name MyFont-v1.1.ttf
+ttx -t cmap MyFont-v1.1.ttf
+
+hb-shape MyFont-v1.1.ttf &quot;find&quot;                      # default features
+hb-shape --features=&quot;-liga&quot; MyFont-v1.1.ttf &quot;find&quot;   # liga off</code></pre>
+<p>A CI check that required codepoints survive every build:</p>
+<pre><code>from fontTools.ttLib import TTFont
+
+REQUIRED = [0x0105, 0x0142]  # a with ogonek, l with stroke (Polish)
+missing = [hex(cp) for cp in REQUIRED
+           if cp not in TTFont(&quot;MyFont-latin.woff2&quot;).getBestCmap()]
+assert not missing, f&quot;missing glyphs: {missing}&quot;</code></pre>
+<p>fontTools reads woff2 when the brotli package is installed; wire the check next to wherever subsets are built.</p>
+<h2>Field notes</h2>
+<ul><li>Some foundries never bump the name-table version string across releases; the file hash is the only reliable identity, so track both.</li><li>Per-weight files of one family often carry identical version strings; treat the family as a single versioned unit and never mix 1.0 files with 1.1 italics.</li><li>The default pyftsubset feature set is the classic way tabular figures vanish; a diff of feature tags catches it, scrolling a specimen does not.</li><li>Fontspector findings on a font you do not maintain are still useful: they document why a file was rejected or accepted.</li><li>Web inspectors mean uploading the file; keep unreleased, client-confidential, or NDA work on the CLI tools.</li><li>Fontspector profiles differ (default, googlefonts, per-script); pick the profile that matches the font class, and treat a profile change as a check-suite upgrade to review.</li></ul>
+<h2>Common failure modes</h2>
+<ul><li>The upgrade that &quot;changed nothing&quot;: metrics moved by a percent, long articles reflowed, and nobody kept the old file to compare against. Hashes and table dumps make upgrades reviewable.</li><li>Renumbered stylistic sets after an upgrade: the CSS still compiles and the glyphs change silently. Diff GSUB tags, not only the cmap.</li><li>Subsetting dropped tabular figures: dashboards misalign a week after a &quot;size optimization&quot;. Diff feature tags alongside coverage.</li><li>Windows-only mush at small sizes: unhinted outlines from a small foundry, invisible on the design team&#x27;s Macs. The one platform check that cannot be skipped.</li><li>A shaping regression reached production: smoke strings were never re-rendered after the upgrade. Keep shaping strings on the release checklist, not in tribal memory.</li><li>The check suite runs only on fonts the team builds, so vendored third-party files never get linted; run the intake checks on every file regardless of origin.</li><li>CI passes because it asserts only cmap coverage; feature and metric diffs are missing, which is exactly where the silent regressions live.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Intake: Fontspector pass, name table read, cmap diff, version and hash recorded.</li><li>The minimum manifest entry: family, version string, source URL, file hash, license, adoption date.</li><li>Subsets: cmap diff plus feature tag diff on every rebuild.</li><li>Rendering: Windows spot check at 12-14 px; shaping strings through hb-shape.</li><li>hb-shape prints glyph names and advances; diff two runs to see exactly what a feature or version change does.</li><li>Upgrades: batched on the review cadence; emergencies only for security or legal.</li><li>One version across a family, always.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="inspecting-font-files.html">Inspecting font files</a></li><li><a href="subsetting-and-performance.html">Subsetting and performance</a></li><li><a href="../workflow/keeping-current-safely.html">Keeping current safely</a></li><li><a href="../scripts/testing-multilingual-coverage.html">Testing multilingual coverage</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

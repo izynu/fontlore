@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>License Audit Checklist - Fontlore</title>
+<meta name="description" content="A printable, repeatable license audit: building the font inventory, collecting per-font license evidence, mapping usage scope, tracking renewals, and remedia...">
+<meta property="og:title" content="License Audit Checklist - Fontlore">
+<meta property="og:description" content="A printable, repeatable license audit: building the font inventory, collecting per-font license evidence, mapping usage scope, tracking renewals, and remedia...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>License Audit Checklist</h1>
+<p>What this reference covers: A printable, repeatable license audit: building the font inventory, collecting per-font license evidence, mapping usage scope, tracking renewals, and remediating findings. Run it quarterly or before launches, and keep the output where auditors and successors can find it.</p>
+<p>A font audit is boring by design. Thirty minutes of checklist discipline prevents the expensive kind of excitement: cease-and-desist letters, emergency re-licensing, and launches blocked by legal.</p>
+<h2>The audit cadence</h2>
+<ul><li>Quarterly for products with active development; before major launches regardless of schedule; immediately after team changes that affect license coverage (new contractor-heavy phase, new platform).</li><li>Annually, run a deep audit that re-verifies license documents against sources, not just internal records.</li><li>Trigger-based audits: any new market, new platform, new use context (a logo, an app, a device) starts a scoped audit.</li><li>Assign a named owner; unowned audits silently stop happening.</li><li>Timebox it: the checklist below runs in under an hour for a typical ten-font product.</li><li>Keep the previous audit&#x27;s output; deltas between audits are the fastest findings.</li><li>Run the inventory sweep before reading any license; knowing what exists changes what questions you ask.</li><li>For products with per-tenant fonts (white-label deployments), audit one tenant fully rather than all tenants shallowly.</li></ul>
+<h2>Step 1: Inventory</h2>
+<ul><li>List every font family in use, per product and per context: web (with domains), desktop (with team), app (with platforms), print templates, marketing, email, devices.</li><li>Sources to sweep: CSS font stacks and asset folders, design files (a design tool plugin can extract used fonts), package manifests (npm font packages), and the brand guidelines.</li><li>Include the forgotten corners: email templates, PDF generators, slide templates, error pages, and third-party embeds.</li><li>Record versions and where files live; version drift between environments is an audit finding in itself.</li><li>Keep the inventory in a governed location (design repo, design system docs), not in a spreadsheet on someone&#x27;s laptop.</li><li>Automate what repeats: a script that walks CSS font-family declarations and npm dependencies catches code-side fonts faster than memory does.</li><li>Tag each entry with its owner and its last-verified date; unowned entries are how inventories rot.</li><li>Record the file paths where each font lives, because version drift between environments is a finding in itself.</li></ul>
+<h2>Step 2: Per-font license evidence</h2>
+<p>For each family, record:</p>
+<ul><li>License name, exact and unabbreviated: OFL-1.1, Apache-2.0, UFL-1.0, ITF-FFL-1.0, or the commercial license&#x27;s document title.</li><li>Where the license text lives: link to the file in the repo, the purchase email, or the stored PDF.</li><li>Rights holder: foundry or designer, plus contact path.</li><li>Version licensed and version deployed; mismatches are findings.</li><li>Purchase reference for commercial fonts: invoice number, entitlement ID, order date.</li><li>Reserved Font Name status for OFL fonts (matters before any fork).</li><li>Date last verified and by whom.</li><li>Subsets in production and the tooling that produced them; a subset without a recorded recipe is unrepeatable.</li><li>For OFL fonts, the upstream repository or foundry page as the canonical source.</li><li>For subscription fonts, the subscription terms version and the account that holds the entitlement.</li><li>Notes field for written foundry answers; paste the answer, not a summary of it.</li></ul>
+<h2>Step 3: Scope mapping</h2>
+<ul><li>For each font, list every use context from the inventory and check it against the license grant: desktop seats covered? web domains and pageview tiers covered? app platforms covered? server rendering covered? ePub covered?</li><li>Flag every context that the license does not explicitly cover; &quot;probably fine&quot; is a finding, not a pass.</li><li>Check subscription coverage dates (Adobe Fonts seats, Monotype Fonts terms) against the audit date.</li><li>For client or multi-entity situations, verify which entity holds which rights; agency licenses rarely cover client use.</li><li>Output: a scope table per font, green for covered, amber for undocumented, red for out of scope.</li><li>Attach evidence links in the scope table: the license document, the purchase email, the monitoring dashboard screenshot.</li><li>Check tier headroom arithmetic on the spot: current traffic against licensed tier against the alert threshold.</li><li>For multi-entity situations, name the entity per row; &quot;the company&quot; is not a licensee.</li></ul>
+<h2>Step 4: Renewals and expiration</h2>
+<ul><li>Subscription renewal dates and their failure modes (fonts deactivating, web serving stopping).</li><li>Pageview tier headroom: current traffic versus licensed tier, with alert thresholds.</li><li>Rental end dates (Fontstand-style) and conversion decisions pending.</li><li>Trial and evaluation fonts still present anywhere in production: automatic findings.</li><li>Contract end dates for enterprise foundry agreements, with renewal negotiation lead time noted.</li><li>Trial-font sweep results: any hit is a finding regardless of context.</li><li>Subscription seat counts against the current org chart; seats drift upward after every hiring wave.</li></ul>
+<h2>Step 5: Remediation paths</h2>
+<ul><li>Out of scope but liked: buy the upgrade before the next release, not after an incident.</li><li>Unverifiable provenance (aggregator fonts): replace with a documented open alternative; the substitution list lives in the sourcing guides.</li><li>Subscription dependencies in critical paths: migrate to perpetual or OFL alternatives where continuity matters.</li><li>Scope mismatches in client situations: reopen the handoff memo and rebuy at the right entity.</li><li>Every finding gets an owner and a date; unowned findings are how audits fail.</li><li>Findings that need money go to procurement with a deadline, not to a backlog; licensing debt compounds like any other debt.</li><li>Findings that need design work (a font replacement) get a scoped ticket with the substitution list attached.</li><li>Close the loop: the next audit verifies that each prior finding is actually remediated, not merely assigned.</li></ul>
+<h2>The printable checklist</h2>
+<ol><li>Inventory complete? Every context listed, including the forgotten corners.</li><li>License named exactly, per font, with document location?</li><li>Rights holder and purchase reference recorded for commercial fonts?</li><li>Scope table built and every context checked against grants?</li><li>Renewals, tiers, and expiration dates logged with alerts?</li><li>Findings listed with owners and dates?</li><li>Audit output stored in the governed location and shared with the team?</li><li>Next audit scheduled?</li><li>Trial fonts: zero hits?</li><li>Seat counts and tier headroom: verified against live data?</li><li>Previous audit&#x27;s findings: remediated and closed?</li></ol>
+<h2>The register, as a table</h2>
+<p>The audit&#x27;s durable output is a register. One row per font entitlement, with these columns:</p>
+<table><thead><tr><th>Field</th><th>What goes in it</th><th>Why it matters</th></tr></thead><tbody><tr><td>Family and version</td><td>Exact name, version string</td><td>Answers &quot;which Inter is this&quot;</td></tr><tr><td>License</td><td>Exact identifier (OFL-1.1, Apache-2.0, document title)</td><td>The audit&#x27;s join key</td></tr><tr><td>Rights holder</td><td>Foundry or author, with contact path</td><td>Renegotiation and verification</td></tr><tr><td>Scope</td><td>Seats, domains, tiers, platforms, contexts</td><td>The grant&#x27;s actual shape</td></tr><tr><td>Evidence</td><td>Document location or entitlement ID</td><td>Proof, not memory</td></tr><tr><td>Renewal or expiry</td><td>Date, or &quot;perpetual&quot;</td><td>The failure calendar</td></tr><tr><td>Owner</td><td>One name</td><td>Unowned rows are findings</td></tr><tr><td>Last verified</td><td>Date and checker</td><td>Staleness detector</td></tr><tr><td>Notes</td><td>Written foundry answers, constraints</td><td>The reasoning that audits ask for</td></tr></tbody></table>
+<p>A register with all nine columns answers almost every licensing question without a meeting; a register missing scope and evidence answers none of them.</p>
+<h2>Worked example: a ten-font product audit</h2>
+<p>A mid-size product runs four open families, three commercial desktop licenses, two webfont entitlements, and one subscription face. The audit in practice:</p>
+<ul><li>Inventory sweep (ten minutes): CSS and npm sweeps found the four open families plus one forgotten font in a PDF template; the design-tool plugin found the three commercial families; total eleven rows, one more than expected.</li><li>Evidence check (fifteen minutes): the open families had license files in the repo; one commercial entitlement PDF was missing, re-downloaded from the vendor portal in two minutes; the subscription face had an account screenshot for evidence.</li><li>Scope mapping (fifteen minutes): all green except the forgotten template font, which had no license at all; it was an aggregator download predating the register.</li><li>Remediation (ten minutes): the template font was replaced with a documented OFL alternative, and the incident was logged with a date and an owner.</li><li>The audit output: one red finding remediated on the spot, two ambers (a pageview tier at 74 percent, a rental approaching its decision date) assigned owners, and a dated clean record for everything else.</li><li>Total time: fifty minutes, of which the forgotten font was twenty.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The audit that finds nothing is not wasted; the dated clean record is what clients, acquirers, and enterprise procurement want to see.</li><li>Automate the sweep, human-review the scopes; tools are good at finding fonts and bad at reading licenses.</li><li>Keep audit outputs with the register, not in chat; the delta between audits is the most informative document you will produce.</li><li>When an audit finding repeats across two audits, it is a process gap, not a font problem; fix the intake, not just the font.</li><li>Small teams can run this checklist quarterly in an hour; the discipline is the same at any size, only the row count changes.</li><li>Before a launch or a funding event, run the audit early enough to remediate; a clean record the week before diligence is worth exactly nothing.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Auditing only the website and forgetting the PDF generator, email templates, and slide decks.</li><li>Recording &quot;free&quot; as the license name; audits need exact license identities.</li><li>Treating the inventory as complete when it came from one source; cross-check design files against code.</li><li>Skipping the re-verification of license documents; internal records drift from reality.</li><li>Letting findings linger without owners, converting the audit into a formality.</li><li>Running the audit as a solo hero exercise; two reviewers catch what one misses, and the second set of eyes is cheap.</li><li>Storing the register in a format nobody can edit casually; an unmaintained register is worse than none, because it looks like evidence.</li><li>Treating ambers as fine; ambers are undocumented scope, which is the audit&#x27;s middle danger zone.</li><li>Forgetting to version the register; a register without dates cannot prove what you knew and when.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any red finding blocks the next release until remediated; ambers get owners and dates.</li><li>If the inventory cannot be built in an hour, the font governance itself needs fixing; audit the governance, not just the fonts.</li><li>When two records disagree, the license document at the source wins; update the internal record.</li><li>An audit that finds nothing still produces value: the dated, clean record is what auditors and clients want to see.</li><li>Audit before procurement asks you to; an internal record outranks a scramble.</li><li>When the register grows past a page, move from checklist to tooling; the discipline stays, the storage upgrades.</li><li>Scope questions that cannot be answered from documents become written foundry questions; the audit generates the email, the owner sends it.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="free-font-risks.html">Free font risks</a></li><li><a href="client-handoff-licensing.html">Client handoff licensing</a></li><li><a href="open-source-due-diligence.html">Open-source due diligence</a></li><li><a href="../identification/documenting-identification-results.html">Documenting identification results</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

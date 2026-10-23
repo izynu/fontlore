@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Building a Font Shortlist with Sources - Fontlore</title>
+<meta name="description" content="How to turn scattered font research into a reproducible shortlist with evidence records, source logging, and confidence levels. It defines the record format...">
+<meta property="og:title" content="Building a Font Shortlist with Sources - Fontlore">
+<meta property="og:description" content="How to turn scattered font research into a reproducible shortlist with evidence records, source logging, and confidence levels. It defines the record format...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Building a Font Shortlist with Sources</h1>
+<p>What this reference covers: How to turn scattered font research into a reproducible shortlist with evidence records, source logging, and confidence levels. It defines the record format this project recommends and shows how to keep a shortlist defensible when teammates, auditors, or future you ask &quot;why this font?&quot;</p>
+<p>Most font decisions die in reproducibility: someone remembers &quot;we looked at a nice grotesque last month&quot; but not which one, from where, under what license. A source-backed shortlist fixes that with a small, disciplined record.</p>
+<h2>What a source-backed shortlist is</h2>
+<ul><li>A shortlist is not a mood board. It is a set of candidates, each carrying evidence: where it came from, what version, what license, who checked it, when, and with what result.</li><li>The evidence serves three audiences: the current decision (scoring), future maintainers (why is this here), and audits (prove the license).</li><li>Reproducibility means a teammate can retrace your path: same sources, same filters, same specimens, same conclusion or a documented disagreement.</li><li>The format below is deliberately lightweight: if keeping the record is hard, it will not be kept.</li></ul>
+<h2>Evidence records</h2>
+<p>Keep one record per candidate. Minimum fields:</p>
+<ul><li>family: name and version (or version signal, if the family does not publish versions).</li><li>source: where you found it (fonts.google.com, fontsource.org, foundry site, GitHub release) as an https URL when available.</li><li>license: exact license name and where the license file lives (repo path, purchase email, PDF copy stored with files).</li><li>checked_by and checked_on: the human and the date; stale checks are re-checks, not facts.</li><li>coverage: scripts, subsets, weights, axes actually verified, not just claimed.</li><li>notes: one paragraph of honest judgment: strengths, failures at specific sizes, tone fit.</li><li>status: shortlisted, rejected, or adopted, with one line of why.</li></ul>
+<p>A shortlist with complete records survives handoffs; one without them restarts from zero every quarter.</p>
+<h2>Source logging</h2>
+<ul><li>Log the query, not just the destination: &quot;google fonts, filter Devanagari + sans, sorted by popular&quot; is reproducible; &quot;Google Fonts&quot; is not.</li><li>Record exclusion reasons for close calls (&quot;rejected: no true italic&quot;, &quot;rejected: RFN complicates planned fork&quot;). Excluded candidates get re-proposed every few months unless the reason is written down.</li><li>Keep the raw materials: specimen screenshots with dates, type tester exports, links to the exact release. Evidence ages; label it.</li><li>Distinguish discovery sources from verification sources. Discovery is where you found it; verification is where you confirmed license and version. Both belong in the record.</li></ul>
+<h2>Confidence levels</h2>
+<p>Use three levels and define them once, project-wide:</p>
+<ul><li>verified: license file read at the source, version confirmed against the file or repository, rendering tested at target sizes. Safe to adopt.</li><li>likely: strong metadata agreement across two sources but no direct file or license inspection yet. Safe to keep on the shortlist, not to ship.</li><li>unverified: seen in a list or a screenshot, nothing checked. Treat as a lead only.</li></ul>
+<p>Downgrade confidently when anything contradicts: a mismatch between sources is worse than a single missing check. Upgrades happen by doing the missing check, not by deciding the font &quot;feels fine&quot;.</p>
+<h2>Turning research into a shortlist</h2>
+<ul><li>Start from constraints (scripts, sizes, license scope, technical needs) so the shortlist answers a question rather than collecting favorites.</li><li>Cap the list at five to eight candidates with full records; ten unvetted names is a collection, not a shortlist.</li><li>Include one free and one commercial option per role when budget is unresolved, so the decision conversation is about trade-offs, not availability.</li><li>Attach the scoring rubric you plan to use before scoring; a rubric invented after seeing the candidates quietly bends toward the favorite.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Write constraints and roles (heading face, body face, mono, script fallbacks) at the top of the working document.</li><li>Research per role using catalogs and foundries; log every source as you go, including dead ends.</li><li>Fill an evidence record for every candidate that survives a first look; assign a confidence level.</li><li>Re-verify records older than a quarter before scoring; versions and availability move.</li><li>Score, pick finalists, and freeze the shortlist with a date and an owner; future changes get dated entries.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Screenshot-only research with no source URLs, making every claim unverifiable in a month.</li><li>Recording discovery but never verification, then discovering at handoff that the &quot;free&quot; font was a trial.</li><li>Letting the shortlist grow unbounded because nothing is ever formally rejected.</li><li>Skipping dates, so stale license information gets recirculated as current.</li><li>Keeping evidence in chat threads instead of the manifest, guaranteeing it is lost at the next reorg.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>No evidence record, no shortlist slot; enthusiasm is not evidence.</li><li>Confidence below verified blocks adoption, no exceptions for deadlines; the deadline is when errors are most expensive.</li><li>When two candidates tie, prefer the one with better documentation culture (foundry or project), because future maintenance tracks it.</li><li>Any change to a frozen shortlist is a new dated entry, never an edit in place.</li></ul>
+<h2>Worked example: a filled evidence record</h2>
+<p>A record earns its keep when a stranger could act on it. Here is the format filled in for a real adoption:</p>
+<ul><li>family: Inter (variable), version 4.x pinned via @fontsource-variable/inter exact release</li><li>source: https://github.com/rsms/inter for upstream; Fontsource package for deployment</li><li>license: OFL-1.1, license file read in package directory; no Reserved Font Name issues for our use</li><li>checked_by: A. Designer; checked_on: 2025-03-14</li><li>coverage: Latin, Latin-ext, Cyrillic verified in glyph grid; Greek confirmed absent, Noto Sans Greek added as fallback</li><li>notes: x-height suits 14 to 16 px UI; numerals default to proportional, tabular figures enabled via font-feature-settings for tables; display sizes above 32 px feel neutral to the point of blandness, headings pair with Fraunces</li><li>status: adopted for product UI; rejected for marketing headlines (tone)</li></ul>
+<p>Each line answers a future question. &quot;Why is Greek missing?&quot; and &quot;can we use Inter for the campaign?&quot; are now answered by the record instead of a meeting.</p>
+<h2>Confidence levels as a table</h2>
+<table><thead><tr><th>Level</th><th>Definition</th><th>Allowed uses</th><th>Exit criteria</th></tr></thead><tbody><tr><td>verified</td><td>License read at source, version confirmed against file or repository, rendering tested at target sizes</td><td>Adoption, production, client handoff</td><td>None; re-verify after a quarter or a version change</td></tr><tr><td>likely</td><td>Two sources agree, no direct file or license inspection</td><td>Shortlist slots, budgeting, design exploration</td><td>Perform the missing checks</td></tr><tr><td>unverified</td><td>Seen in a list, a screenshot, or a chat thread</td><td>Leads for research only</td><td>Full verification pass or formal rejection</td></tr></tbody></table>
+<p>Downgrades happen on contradiction, not on elapsed time alone: a mismatch between sources is a worse signal than a single missing check. Upgrades happen by doing the check, never by deciding the font &quot;feels fine&quot;.</p>
+<h2>Source logging in practice</h2>
+<ul><li>Log the query path, not just the destination: the filter combination, the search terms, and the sort order that produced the candidate. &quot;Found on Google Fonts&quot; is not reproducible; &quot;Language: Vietnamese + Serif, sorted by popular, third page&quot; is.</li><li>Screenshot specimens with the date visible or rename files with dates; undated evidence becomes folklore within a quarter.</li><li>Record exclusions with reasons at rejection time. Unwritten rejections resurface every few months as someone&#x27;s bright idea, and the team relitigates them from zero.</li><li>Separate discovery from verification in the record: where you found it and where you confirmed it are different facts with different URLs.</li><li>Keep the raw materials linked: the type tester export, the release page, the license file path in your repository. Evidence that cannot be re-opened is not evidence.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Cap the shortlist at five to eight fully recorded candidates; a list of twenty names with no records is a mood board wearing a spreadsheet&#x27;s clothes.</li><li>Re-verify records older than a quarter before scoring; versions move, foundries fold, licenses get rewritten.</li><li>The rubric gets written before scoring, not after; a rubric invented while looking at candidates bends toward the incumbent favorite every time.</li><li>Include one commercial and one open candidate per role when budget is unresolved, so the decision conversation is about trade-offs rather than availability.</li><li>Freeze the shortlist with a date and an owner; changes after the freeze are new dated entries, never silent edits, because the audit trail is the point.</li><li>When two candidates tie on scores, prefer the better-documented project: maintenance culture predicts your future experience better than any single specimen does.</li></ul>
+<h2>Questions to ask before presenting a shortlist</h2>
+<ul><li>Can every candidate name its source, license, and version in one line, right now?</li><li>Which records are verified versus likely, and does anyone believe a likely record is ship-ready?</li><li>What did we reject this round, and is every rejection written down with a reason?</li><li>Whose approval freezes this list, and what reopens it?</li><li>If the top pick fails licensing review tomorrow, which candidate inherits its role without restarting research?</li></ul>
+<h2>Tool notes</h2>
+<ul><li>Keep the shortlist document itself in the repository next to the code it governs; a shortlist that lives only in a design tool is invisible to engineers and auditors.</li><li>A pinned evidence-record template (markdown or YAML) removes the friction of inventing fields per candidate; consistency is what makes records comparable across rounds.</li><li>Screenshots belong in a dated folder with names like candidate-family-2025-03-14.png; the filename is the metadata.</li><li>For packaged families, the Fontsource single-font endpoint can auto-fill subsets, weights, and the variable flag; automate the mechanical fields and spend human time on the judgment fields.</li><li>Diff the shortlist at each freeze: the added and removed lines tell the story of how requirements moved, which is exactly what stakeholders will ask about.</li><li>A one-page summary table (family, role, license, confidence, status) on top of the records gives leadership the answer without dragging them through the details.</li></ul>
+<h2>Signals to trust in an existing shortlist</h2>
+<ul><li>Records with dates, sources, and named checkers; authorship and timestamps are what separate evidence from opinion.</li><li>Written rejection reasons that still make sense on re-read a quarter later.</li><li>Confidence levels that match the checks actually described in the record, no more and no fewer.</li><li>A frozen list with a named owner, and dated entries for every change since the freeze.</li><li>Exclusion reasons specific enough to be wrong (for example, &quot;no true italic&quot;) rather than vague enough to be safe (&quot;did not feel right&quot;).</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="evaluating-catalog-metadata.html">Evaluating catalog metadata</a></li><li><a href="../selection/scoring-and-shortlisting.html">Scoring and shortlisting</a></li><li><a href="fontsource-api.html">Fontsource REST API</a></li><li><a href="../licensing/open-source-due-diligence.html">Open-source due diligence</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

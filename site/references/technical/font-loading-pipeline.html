@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Font Loading Pipeline - Fontlore</title>
+<meta name="description" content="The end-to-end delivery of fonts: self-hosting versus CDN, preload done correctly, Fontsource as an npm workflow, caching headers, and avoiding render-blocki...">
+<meta property="og:title" content="Font Loading Pipeline - Fontlore">
+<meta property="og:description" content="The end-to-end delivery of fonts: self-hosting versus CDN, preload done correctly, Fontsource as an npm workflow, caching headers, and avoiding render-blocki...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Font Loading Pipeline</h1>
+<p>What this reference covers: The end-to-end delivery of fonts: self-hosting versus CDN, preload done correctly, Fontsource as an npm workflow, caching headers, and avoiding render-blocking pitfalls. The pipeline, not the font choice, is where most real-world font performance is won or lost.</p>
+<h2>Self-host versus third-party CDN</h2>
+<ul><li>Self-hosting (fonts in your repo or origin): full control of caching and subsetting, no third-party requests, no privacy exposure. A German regional court ruling in 2022 made the privacy angle concrete: loading fonts from a third-party CDN exposed visitors&#x27; IP addresses, and sites moved to self-hosting en masse. Treat self-hosting as the default for production.</li><li>Third-party hosting (Google Fonts CSS API and similar): convenient, sliced per unicode-range, globally cached; but it adds a third party to every page view, a privacy dependency, and a version you do not control. Acceptable for prototypes and internal tools.</li><li>Fontsource sits in between: fonts as npm packages, self-hosted through your build, with per-weight and variable packages and consistent file naming. For bundler-based projects it is the least-friction self-hosting path: import &quot;@fontsource/inter/400.css&quot; or &quot;@fontsource-variable/inter&quot; and the build pipeline handles files and versions.</li></ul>
+<h2>Preload, done right</h2>
+<p>Preload promotes a font fetch to critical path priority:</p>
+<ul><li>link rel=&quot;preload&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; href=&quot;/fonts/inter-latin-400.woff2&quot; crossorigin</li><li>crossorigin is required even for same-origin fonts because font fetches are CORS-mode requests; omitting it causes a double download.</li><li>Preload only what first paint actually renders: usually one or two faces, one subset each (the latin body face; the heading face if it paints immediately).</li><li>The preloaded URL must match the @font-face URL exactly, including any query string. A mismatched preload is pure waste.</li><li>Do not preload CJK slices or fallback-subset files; they load on demand by design.</li></ul>
+<h2>CSS delivery matters more than the font tag</h2>
+<ul><li>Keep @font-face declarations in the main stylesheet or inline them early; a separate fonts.css fetched late delays font discovery past first paint.</li><li>Avoid @import for font CSS: it serializes requests (CSS must be fetched, parsed, then the import fetched) and is effectively a render-blocking chain. Bundle or inline instead.</li><li>font-display: swap pairs with this pipeline so text is never invisible while the (well-prioritized) font arrives.</li><li>For single-page apps, ensure the font CSS is in the initial chunk, not a lazily loaded route chunk, or the first paint falls back on every hard navigation.</li></ul>
+<h2>Caching and versioning</h2>
+<ul><li>Filenames should carry a content hash; Cache-Control: max-age=31536000, immutable makes every revisit free.</li><li>On version upgrades, the new hash forces refetch; keep the old files around briefly if you must, but immutable plus new hash is the standard pattern.</li><li>Record the font version you vendored (from the font&#x27;s name table or the package version) next to the files; silent upgrades change metrics and features.</li><li>For Fontsource, the package version in package.json plus your lockfile is the version record; pin exactly and update deliberately, not via floating ranges.</li></ul>
+<h2>A reference pipeline</h2>
+<ol><li>Choose faces and subsets from the language matrix; generate woff2 subsets with documented tooling (or take Fontsource packages).</li><li>Commit font files with license files included; record version and source URL in a fonts manifest.</li><li>Declare honest @font-face blocks with unicode-range, font-display: swap, and metric-adjusted fallbacks.</li><li>Preload the one or two faces that paint first, with crossorigin.</li><li>Serve with hashed filenames and immutable caching; exclude woff2 from recompression.</li><li>Verify under throttling: no invisible text, minimal layout shift, no duplicate downloads, no fonts on the critical path that first paint does not use.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Third-party CDN in production with no privacy review; the cost is not performance, it is data protection.</li><li>Preloading four weights and a display face, starving the CSS and JS that first paint needs.</li><li>@import chains for font CSS, then blaming the font for slow text.</li><li>Missing crossorigin on preload, doubling the download of the exact file you tried to prioritize.</li><li>Serving fonts from a cookieless different domain without CORS headers; the fetch fails silently and the fallback sticks forever.</li><li>No version pinning: a CDN-hosted family updates, metrics shift, and layouts drift with no change on your side.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Production site of any kind: self-host; use Fontsource or vendored files.</li><li>Prototype or internal tool: hosted CSS API is fine; keep the swap to self-hosting cheap by keeping declarations centralized.</li><li>App shell with known UI strings: subset to usage, preload the body face, immutable cache.</li><li>Content site with many pages and scripts: unicode-range slicing plus swap, preload only the latin body face.</li><li>Any pipeline change: re-run the throttled-load checklist; font regressions arrive quietly.</li></ul>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Delivery model</th><th>Control</th><th>Third party per view</th><th>Versioning</th><th>Fits</th></tr></thead><tbody><tr><td>Vendored files in the repo</td><td>full</td><td>none</td><td>your content hashes</td><td>production default</td></tr><tr><td>Fontsource npm packages</td><td>full</td><td>none</td><td>package.json plus lockfile</td><td>bundler projects</td></tr><tr><td>Google Fonts CSS API</td><td>low</td><td>Google sees each visitor IP</td><td>theirs, moving</td><td>prototypes, internal tools</td></tr><tr><td>Commercial hosted service</td><td>medium</td><td>the vendor</td><td>theirs</td><td>existing enterprise contracts</td></tr></tbody></table>
+<h2>Worked example</h2>
+<p>Shape of the waterfall, same page, same font, two pipelines. Times are illustrative; the order of events is the point.</p>
+<p>Self-hosted with preload:</p>
+<ol><li>t=0: HTML arrives; the head inlines the font declarations.</li><li>t=100 ms: the preload starts the font fetch at high priority, alongside CSS.</li><li>t=350 ms: CSS parsed, layout needs Inter, fetch already in flight.</li><li>t=400 ms: first paint renders with the webfont; no fallback phase exists.</li></ol>
+<p>Self-hosted behind @import:</p>
+<ol><li>t=0: HTML arrives.</li><li>t=100 ms: base CSS fetched.</li><li>t=200 ms: @import discovered; fonts.css fetched.</li><li>t=250 ms: font fetch begins, after two CSS round trips.</li><li>t=600 ms: first paint falls back; the swap lands later and reflows.</li></ol>
+<p>The fix is structural, not a faster server: inline or bundle the declarations, preload the one face first paint needs. Times vary per network; the ordering of events never does.</p>
+<h2>Code notes</h2>
+<pre><code>&lt;link rel=&quot;preload&quot; href=&quot;/fonts/inter-latin-400.woff2&quot;
+      as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</code></pre>
+<p>crossorigin is required even for same-origin files: font fetches are CORS-mode requests, and a preload without it fetches the same file twice.</p>
+<pre><code>location /fonts/ {
+  # fonts are immutable and already compressed
+  add_header Cache-Control &quot;public, max-age=31536000, immutable&quot;;
+  gzip off;
+}</code></pre>
+<pre><code>&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.example.com&quot; crossorigin&gt;</code></pre>
+<p>preconnect warms a connection to an origin you genuinely need; it is not a substitute for self-hosting, and declaring it for unused origins wastes connections.</p>
+<h2>Field notes</h2>
+<ul><li>Chrome warns in the console when a preloaded resource goes unused; that warning is how most mismatched preload URLs get discovered.</li><li>The Munich regional court ruling of January 2022 treated serving Google Fonts from Google&#x27;s CDN as transmitting personal data (the visitor&#x27;s IP address) without consent; European production sites have largely treated self-hosting as mandatory since.</li><li>Single-page apps: font declarations belong in the initial chunk. A route-level chunk means every hard navigation to that route starts the font clock late.</li><li>A CDN in front of self-hosted fonts is fine; the privacy cost appears when the third party is the font origin, not the cache.</li><li>A version bump needs no cache purge with hashed filenames: immutable plus a new hash is the entire story.</li><li>Measure on a mid-tier Android with throttling on: desktop throttling hides most font pipeline problems.</li><li>Fonts and images share one connection budget: a preloaded hero image plus two preloaded fonts is real contention on 4G, so sequence deliberately.</li><li>A font URL change in a redesign re-downloads the file for every visitor; versioning is a deliberate act, not an accident of the build.</li></ul>
+<h2>Common failure modes</h2>
+<ul><li>The font loads twice: preload without crossorigin, or a preload URL that differs from the @font-face URL. One file, one URL, byte for byte.</li><li>The fallback sticks forever: the font fetch failed (missing CORS headers on the font origin, a blocked domain, a 404) and swap has nothing to swap in. Check the network panel for the failed request before touching CSS.</li><li>Layout shifts on every route change in an SPA: font declarations live in a lazily loaded chunk, so each hard navigation re-runs discovery and loading. Move them to the initial chunk.</li><li>A &quot;performance fix&quot; moved fonts to a separate domain and made things worse: new DNS and TLS handshakes plus CORS overhead outweighed any cache sharing; same-origin wins unless the CDN is genuinely justified.</li><li>Hosted CSS API left in production: the provider&#x27;s outage or redesign becomes your text rendering; migrate declarations in-repo before launch, while the swap is still a one-file change.</li><li>Fonts load in dev but never in staging: the asset host strips CORS headers or serves a different path. Font fetch failures are silent, so assert font loading in smoke tests.</li><li>The font cache is cold on every visit: Cache-Control is missing or overridden by a CDN default. Check the response headers, not the config file.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Production: self-host (vendored files or Fontsource), hashed filenames, immutable cache.</li><li>Preload: one or two faces maximum, exact URL match, crossorigin always.</li><li>Font CSS: inline early or in the main stylesheet; never behind @import.</li><li>font-display: swap with metric-adjusted fallbacks for content text.</li><li>Never preload CJK slices or fallback-subset files; they load on demand by design.</li><li>Verify: throttled cold load, no duplicate downloads, no invisible text, minimal shift.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="font-display-strategies.html">Font display strategies</a></li><li><a href="webfont-formats.html">Webfont formats</a></li><li><a href="fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li><li><a href="../workflow/css-handoff-snippets.html">CSS handoff snippets</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

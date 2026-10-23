@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Presentations and Slides - Fontlore</title>
+<meta name="description" content="Typography for decks: the sizes that work from the back of the room, contrast and weight choices that survive projectors, how font embedding behaves in Power...">
+<meta property="og:title" content="Presentations and Slides - Fontlore">
+<meta property="og:description" content="Typography for decks: the sizes that work from the back of the room, contrast and weight choices that survive projectors, how font embedding behaves in Power...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Presentations and Slides</h1>
+<p>What this reference covers: Typography for decks: the sizes that work from the back of the room, contrast and weight choices that survive projectors, how font embedding behaves in PowerPoint, Keynote, and Google Slides, and the cross-machine safety practices that stop a deck from reflowing on the venue laptop. Slides are typography at its most constrained: one screen, one shot, unknown hardware.</p>
+<h2>Sizes for the room</h2>
+<ul><li>Body text: 24 pt minimum on a 16:9 slide; 28 to 32 pt is the comfortable zone. If a slide needs 18 pt, it is a document, and it belongs in a handout.</li><li>Titles: 36 to 54 pt; section dividers larger. Title weight at 600 to 700 with a real bold cut; thin display weights vanish from distance.</li><li>Labels, captions, sources, chart annotations: 14 to 16 pt floor; smaller text is decoration, not information.</li><li>The distance rule: if the back row cannot read it, it is not on the slide; when in doubt, cut words rather than size.</li><li>Line length on slides: 6 to 8 words per line, 3 to 4 lines per block; slides are not paragraphs. Bullets: phrase fragments, parallel structure, no wrapping if avoidable.</li></ul>
+<h2>Contrast and projectors</h2>
+<ul><li>Projectors wash out: assume the venue device is dimmer, yellower, and blurrier than your laptop. Contrast targets exceed web norms: dark text on light backgrounds or the reverse, never mid-gray on mid-gray.</li><li>Thin weights and light grays fail first on projection; bump weights one step versus print instinct.</li><li>Saturated reds and blues on dark backgrounds vibrate or disappear; test the palette by projecting it, not by looking at a laptop screen.</li><li>High ambient light (daytime, windowed rooms) favors light backgrounds; dark decks look great in a dark room and vanish in a bright one. If the venue is unknown, a light deck is the safer default.</li><li>Rooms with poor color calibration: do not encode meaning in subtle hue shifts; size and weight carry hierarchy (the same rule as the web accessibility work, for the same reasons).</li></ul>
+<h2>Embedding and cross-machine safety</h2>
+<ul><li>PowerPoint on Windows and macOS can embed fonts (File, Options, Save, Embed fonts in the file). It embeds TrueType-flavored fonts reliably; CFF/PostScript-flavored (most .otf) and variable fonts are historically unreliable or rejected. If the deck must embed, prefer TTF statics.</li><li>Keynote keeps fonts working across Macs with the same fonts installed; for machines without them, export behaviors vary, so treat embedding as unguaranteed and plan accordingly.</li><li>Google Slides renders only the Google Fonts catalog for text (plus uploads as images); custom brand fonts outside that catalog silently fall back. This is the most common &quot;my deck looks wrong&quot; cause in shared-drive workflows.</li><li>The universal safety net: export a PDF with fonts embedded for distribution and for the venue; present from PDF if the machine is unknown. PDF embedding is reliable across engines.</li><li>Bring the font files (with license permitting installation) on the presentation machine or a stick; installing takes a minute and eliminates the fallback lottery.</li><li>Charts and diagrams exported as images from other tools carry their own fonts; flatten them or accept the mismatch.</li></ul>
+<h2>Working with brand fonts in decks</h2>
+<ul><li>Template, not per-deck choices: the master slides carry the type system (title, body, caption styles), and authors inherit rather than pick.</li><li>Limit the weights shipped in the template to those licensed and needed: a deck template with twelve weights invites twelve.</li><li>If the brand face is commercial, check that the license covers presentation use and installation on employee machines; most desktop licenses do, but per-seat counting matters in enterprises.</li><li>For external decks (sales, conferences), consider a web-safe or system fallback variant of the template for recipients outside the organization.</li></ul>
+<h2>Charts, tables, and data slides</h2>
+<ul><li>Numbers in charts: tabular figures in axis labels and tables; the same tnum discipline as web dashboards applies.</li><li>Table type: 18 to 20 pt minimum in a slide table; cut rows before cutting size.</li><li>Chart text inherits the template styles in good tools; in tools that default elsewhere (matplotlib exports, spreadsheet charts), restyle before shipping or export as image.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Presenting from Google Slides with a brand font that is not in the Google catalog, then discovering the fallback on the venue screen.</li><li>Thin display weights and gray body text on a dim projector.</li><li>14 pt body text and a call to action nobody in the room can read.</li><li>Sending a .pptx relying on fonts the recipient does not own, without a PDF fallback.</li><li>One-off decks with hand-picked fonts that never enter the template, so the organization&#x27;s decks drift apart.</li><li>Embedding variable fonts and hoping; use static TTFs for embedding paths.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Unknown venue machine: present from a PDF export, or install the fonts beforehand; never present from an unverified fallback.</li><li>Template fonts: TTF statics for anything that must embed; variable fonts only where the rendering is guaranteed (your own machine).</li><li>New slide size decision: if text drops below 24 pt to fit, the content is wrong for a slide; move it to a handout.</li><li>Dark decks only for controlled dark rooms; light decks as the organizational default.</li><li>Every organizational deck flows from the master template; ad-hoc fonts require the same governance request as any other brand surface.</li></ul>
+<h2>Comparison table: where fonts survive</h2>
+<table><thead><tr><th>Surface</th><th>Custom fonts render?</th><th>Reliability</th><th>Practice</th></tr></thead><tbody><tr><td>PowerPoint with embedding</td><td>TTF statics yes</td><td>high for TTF; CFF-flavored .otf and variable fonts historically unreliable</td><td>embed before sending the deck</td></tr><tr><td>Keynote</td><td>only if installed</td><td>no reliable embedding across machines</td><td>install fleet-wide or export PDF</td></tr><tr><td>Google Slides</td><td>Google Fonts catalog only</td><td>guaranteed for that catalog; silent fallback otherwise</td><td>pick a catalog stand-in or accept images</td></tr><tr><td>PDF export</td><td>yes, embedded subsets</td><td>reliable across engines</td><td>the venue and distribution safety net</td></tr><tr><td>Flattened slide images</td><td>baked in</td><td>total</td><td>loses accessibility and editing; for social clips only</td></tr></tbody></table>
+<ul><li>The failure mode is always silent: the deck opens, the font is missing, and the fallback reflows every carefully fitted line.</li><li>OFL faces solve the license half (install anywhere, embed freely); they do not solve the rendering half, which is format and tool dependent.</li><li>If co-editing happens in Google Slides and the brand face is outside the catalog, choose the stand-in explicitly (Space Grotesk and Manrope are in the catalog) instead of accepting the default fallback.</li><li>Bring font files on a stick plus a PDF; installing two fonts takes a minute and removes the lottery.</li><li>Charts pasted from spreadsheets carry their own fonts; restyle them in the tool or flatten them knowingly.</li><li>The PDF doubles as the handout; design sizes so it reads at 100 percent on a laptop.</li></ul>
+<h2>Worked example: a conference deck</h2>
+<p>Scenario: a design lead presents at a conference on an unknown venue laptop, then distributes the deck to three hundred attendees, using a brand system of Space Grotesk and Inter.</p>
+<ul><li>Template: master slides carry the system; titles in Space Grotesk 700 at 40 to 48 pt, body Inter 400 at 26 to 28 pt, labels and sources Inter 500 at 16 pt.</li><li>Weights shipped in the template: three; a template with twelve weights invites twelve.</li><li>Embedding: static TTF instances installed and embedded through PowerPoint&#x27;s embed option; variable versions were kept off the deck machine because embedding them is historically unreliable.</li><li>The static instances were generated once and stored with the template, so every future deck embeds the same builds.</li><li>Fallback: a PDF export with embedded fonts travels with the pptx; the venue plan is to present from the PDF if the preview screen looks wrong.</li><li>Room check: the palette was projected once in a bright room and once in a dark one; 300-weight accents were bumped to 500 after the bright-room test.</li><li>Numbers: chart tables at 18 to 20 pt with tabular figures, axis labels at 16 pt; nothing below 16 pt survives the back row.</li><li>Slide discipline: six to eight words per line, three to four lines per block; if a draft needs 18 pt body text, its content moves to a handout.</li><li>Speaker notes: set in the same template at 12 to 14 pt; notes are documents, not slides.</li><li>Remote delivery: video-call compression eats thin strokes; the same 500-weight bump that survived the projector survived the codec.</li><li>Upload limits: embedding grows files, so the template ships three weights rather than the whole family.</li><li>Rejected: presenting from a borrowed machine with neither fonts installed nor a PDF fallback, thin display weights on an unknown projector, and a 4:3 remix the night before.</li><li>Aftermath: the deck rendered identically on the venue machine and in every attendee&#x27;s download; the PDF became the canonical handout.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The venue laptop is a hostile environment: unknown OS, unknown Office version, unknown aspect ratio, and a cable from another decade.</li><li>Projectors wash out contrast and saturate color; the palette must be projected, not admired on a laptop.</li><li>Light decks are the organizational default; dark decks belong to dark rooms and keynote moments.</li><li>Thin weights disappear first, then gray text, then anything under 16 pt.</li><li>Slide masters are governance: authors inherit type styles instead of picking fonts from a dropdown at 11 p.m.</li><li>Hand-picked fonts in one-off decks are how organizations grow five brand voices; the request path exists for a reason.</li><li>Embedded fonts grow files; a deck that exceeds conference upload limits fails before the projector does.</li><li>Embedding licenses: most desktop licenses permit document embedding, but verify the clause for commercial faces.</li><li>If recipients will edit the deck, they need the fonts licensed too; OFL faces make that a non-question.</li><li>Aspect ratio changes reflow everything; fit text only after the final ratio is locked.</li><li>Live captions and translation overlays eat bottom-of-slide space; keep the bottom margin clear.</li><li>Remote presentations compress aggressively; thick strokes and high contrast survive the codec.</li><li>Animated text reveals stress your leading; line-height that works statically can collide mid-animation.</li><li>The back-row test is literal: measure the room or stand at the back before finalizing sizes.</li><li>Print requests always come; a 6-per-page handout style with real 10 pt text beats scaling a slide PDF.</li><li>Kiosk and looping decks run unattended: larger sizes, higher contrast, and no reliance on hover states.</li><li>Font substitution on a client&#x27;s machine is silent; open the deck on a clean machine before shipping it.</li><li>Decks age into archives; the PDF with embedded fonts is the only version guaranteed to open correctly in five years.</li></ul>
+<h2>Quick reference: deck pre-flight</h2>
+<ul><li>Body text 24 pt minimum; 28 to 32 pt comfortable; below 24 pt means handout.</li><li>Titles 36 to 54 pt at 600 to 700; thin weights stay off the deck.</li><li>Labels, sources, captions: 14 to 16 pt floor.</li><li>Embed static TTFs in PowerPoint; install fonts locally as a second layer.</li><li>PDF export with embedded fonts travels with the deck, always.</li><li>Fonts plus a license note on the stick.</li><li>Project the palette in a bright room before finalizing.</li><li>Light background as the default; dark decks only for dark rooms.</li><li>Tabular figures in any table or chart numbers.</li><li>Chart text restyled or flattened; library defaults rejected.</li><li>Six to eight words per line; three to four lines per block.</li><li>Bottom margin kept clear for captions and overlays.</li><li>Venue aspect ratio confirmed before fitting text.</li><li>Recipients get fonts or a PDF; never a bare file with private fonts.</li><li>Notes at 12 to 14 pt in the same template.</li><li>Handout style defined once (6 per page, real 10 pt text), not improvised per request.</li><li>Preview screen checked before the audience enters the room.</li><li>Font files installed on the presenting machine even when embedded.</li><li>Charts exported as images keep their fonts; charts kept live get restyled.</li><li>Slide titles and body from master styles only; hand-picked fonts blocked by governance.</li><li>Dark rooms justify dark decks; bright daytime rooms do not.</li><li>16 pt is the floor for any text meant to be read; smaller is decoration.</li><li>Table rows cut before table text shrinks.</li><li>The PDF handout named and versioned like a release.</li><li>A rehearsal run on the venue hardware (or a stand-in) catches the reflows.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="branding-and-logotypes.html">Branding and logotypes</a></li><li><a href="../workflow/presenting-to-stakeholders.html">Presenting to stakeholders</a></li><li><a href="../accessibility/contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="dashboards-and-data-dense-ui.html">Dashboards and data-dense UI</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>WhatTheFont Workflow - Fontlore</title>
+<meta name="description" content="How to get reliable results from MyFonts&#x27; WhatTheFont: preparing the image, understanding what the tool sees, reading the candidate list honestly, and moving...">
+<meta property="og:title" content="WhatTheFont Workflow - Fontlore">
+<meta property="og:description" content="How to get reliable results from MyFonts&#x27; WhatTheFont: preparing the image, understanding what the tool sees, reading the candidate list honestly, and moving...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Identification</span></nav>
+<article class="doc">
+<h1>WhatTheFont Workflow</h1>
+<p>What this reference covers: How to get reliable results from MyFonts&#x27; WhatTheFont: preparing the image, understanding what the tool sees, reading the candidate list honestly, and moving from a match to a purchase with the right license. It also covers what to do when the tool fails.</p>
+<p>WhatTheFont is the most-used automated identifier and the first tool most people try. Used carelessly it produces confident wrong answers; used well it solves most common-case identifications in under a minute.</p>
+<h2>What the tool is</h2>
+<ul><li>WhatTheFont is MyFonts&#x27; font identification service, backed by a trained model and the MyFonts catalog, which is the largest commercial font marketplace.</li><li>It returns a ranked list of visually similar fonts from catalog inventory, each with a similarity score and a direct path to the family&#x27;s MyFonts listing.</li><li>Because results come from MyFonts inventory, a correct answer can be absent when the font is not sold there; absence of a match is information, not failure.</li><li>The tool works on letterform shapes, not on metadata: it does not know what the site claimed, only what the pixels show.</li></ul>
+<h2>Preparing the image</h2>
+<ul><li>Crop to a short string of letters, ideally 4 to 12 characters. More letters can help, but decorative or distorted glyphs hurt.</li><li>Prefer lowercase strings; lowercase shapes discriminate better than caps, which are more similar across families.</li><li>Straighten the baseline. Even a few degrees of rotation degrades segmentation.</li><li>Maximize contrast: dark letters on light background or the reverse, with minimal noise around the glyphs.</li><li>Avoid connected scripts, letters that touch, and heavy texture overlays; segmentation will fail and the results will be garbage.</li><li>If the source is a photo of a screen, re-shoot or find the digital original; moire and resampling are poison.</li></ul>
+<h2>Running the identification</h2>
+<ul><li>Upload the crop and let the tool segment the letters; check its reading. If it detected wrong characters or split letters, fix the crop rather than accepting nonsense output.</li><li>Read the candidate list from the top but never stop at the first row. The correct font frequently sits in positions two through five.</li><li>Compare candidates against your sample at matched size. Similarity scores are visual rankings, not probabilities.</li><li>Use the tool&#x27;s side-by-side comparison view to spot differences in the letters your sample actually contains.</li><li>If no candidate looks right, recrop with different letters and try again; a second, different crop is often all it takes.</li></ul>
+<h2>Reading candidates honestly</h2>
+<ul><li>Check the letters in your sample, glyph by glyph, for each of the top five: the diagnostic letters (g, a, r, y, R, Q) matter more than overall texture.</li><li>Watch for the weight trap: your sample may be a medium or bold cut of a family whose regular is being shown as the match.</li><li>Watch for the version trap: families get redesigned, and an old sample may match an older release better than the current one.</li><li>Watch for the lookalike trap: several families are near-clones of each other; provenance (where you saw it) usually disambiguates.</li><li>When the top candidates differ only in tiny details, switch from tool judgment to manual letterform analysis and foundry catalogs.</li></ul>
+<h2>From match to purchase</h2>
+<ul><li>Once you have a confident match, open the family&#x27;s MyFonts listing and verify the styles available and the current version.</li><li>Choose the license scope for your actual use: desktop, web pageviews, app, or the bundled options; see the licensing guides before clicking buy.</li><li>Buy from the foundry directly when the foundry also sells it, if you prefer supporting the source; MyFonts and foundry-direct licenses are usually equivalent in scope.</li><li>Keep the receipt and the license document with your font records; the identification log plus the receipt is your audit trail.</li></ul>
+<h2>When WhatTheFont fails</h2>
+<ul><li>Custom lettering and logos: retail fonts will not match drawn wordmarks; move to the lettering route.</li><li>Obscure or historical faces not in the catalog: use Matcherator and WhatFontIs, which index different inventories, then human routes.</li><li>Heavily stylized display faces: tools struggle with extreme personality; manual analysis wins here.</li><li>All results are plausible: the sample is too small or too generic; get more letters or more context.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Secure the best-resolution sample; archive the original.</li><li>Crop 4 to 12 straight, high-contrast letters, lowercase if possible.</li><li>Upload, verify the tool&#x27;s segmentation, read the top five candidates.</li><li>Hand-compare each candidate against the sample; eliminate on diagnostic letters.</li><li>Confirm the survivor at the foundry or on Fonts In Use.</li><li>Purchase with the correct license scope and file the evidence record.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Stopping at the first result and buying a wrong font; the first row is a starting point, not an answer.</li><li>Feeding logos and custom lettering into the tool and treating &quot;no match&quot; as a mystery.</li><li>Uploading busy, low-contrast crops and blaming the tool.</li><li>Ignoring weight and version differences between the sample and the matched family.</li><li>Buying a license scope that does not cover the project because the purchase happened at the peak of identification excitement.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Top five all fail the glyph check: recrop once, then switch tools; do not iterate forever.</li><li>Match found and hand-check passes: verify license next; identification is only half the job.</li><li>No plausible candidate twice in a row: the font is probably not in MyFonts inventory; rotate to Matcherator and WhatFontIs.</li><li>The sample is a wordmark: stop tool work and analyze the lettering instead.</li></ul>
+<h2>Comparison table</h2>
+<p>WhatTheFont against its two main rivals, with the decision rule each row implies:</p>
+<table><thead><tr><th>Dimension</th><th>WhatTheFont</th><th>Matcherator</th><th>WhatFontIs</th></tr></thead><tbody><tr><td>Inventory center</td><td>MyFonts commercial catalog</td><td>Fontspring plus free fonts</td><td>Commercial plus aggregator-indexed free</td></tr><tr><td>Segmentation</td><td>Automatic</td><td>Automatic</td><td>Automatic, then user-corrected</td></tr><tr><td>Speed to first list</td><td>Fastest</td><td>Fast</td><td>Slower; correction takes minutes</td></tr><tr><td>Free-font coverage</td><td>Weak</td><td>Strong</td><td>Strong</td></tr><tr><td>Purchase funnel</td><td>Direct to MyFonts listings</td><td>Soft; purchase optional</td><td>Soft on the free tier</td></tr><tr><td>Best role</td><td>First pass on common commercial faces</td><td>Second opinion and free candidates</td><td>Rescue pass on damaged samples</td></tr></tbody></table>
+<p>The operational summary: start with WhatTheFont for speed, bring in Matcherator when the answer must be budget-free or the first pass failed, and reserve WhatFontIs for samples whose segmentation is visibly broken. Tools are cheap; the expensive resource is your attention, so spend tool runs before spending analysis time.</p>
+<p>What the table cannot show is inventory drift: catalogs reindex, foundries move, and free fonts migrate. Re-run a failed hunt every few months if the case still matters; a no-match from last year is not a no-match today.</p>
+<h2>Worked example</h2>
+<p>A landing page headline screenshot, &quot;Payments for platform teams&quot;, clean antialiased text. The fast case, run properly:</p>
+<ol><li>Crop: &quot;Payments for&quot; gives twelve characters at native resolution; the baseline is level and the background is flat.</li><li>WhatTheFont: the top five are all UI grotesques, led by Roboto; every candidate is plausible at silhouette distance.</li><li>Hand check: the sample&#x27;s g is double-story, matching Roboto; the single-story-g candidates are out. The slightly condensed proportions and open apertures agree with Roboto&#x27;s build as well.</li><li>Cross-read: Fonts Ninja on the live page reports the CSS declaring Roboto with woff2 files served; declarations and pixels agree.</li><li>License: Roboto is Apache 2.0 in the google/fonts repository; the &quot;purchase&quot; step dissolves into a download, and the record notes that a paid lookalike would have been the wrong buy.</li><li>Record: confidence confirmed; alternatives kept with one-line losses; the tool log attached.</li></ol>
+<p>The case took under five minutes because the sample was clean and the font is common. The discipline that made it fast was the hand check at step 3: without it, &quot;Roboto or something like Roboto&quot; ships as a guess, and guesses in records metastasize into facts.</p>
+<p>The same case gone wrong is just as instructive: the top candidate accepted on sight, a MyFonts license purchased for a lookalike, and the clone discovered two sprints later when a developer compared letter widths. Every failure mode in this guide compresses into that one skipped step.</p>
+<p>Where it could have gone wrong, and what held:</p>
+<ul><li>A crop taken from a resized marketing thumbnail would have carried resampling softness into every ranking; the tools would have compared shapes against mush, confidently.</li><li>Naming the family from the tool list before the hand check would have produced the lookalike purchase that a later overlay unravels at twice the price.</li><li>Skipping the Ninja cross-read would have left &quot;probably Roboto&quot; in the record instead of a confirmed, free, Apache-licensed answer with a download path.</li></ul>
+<h2>Field notes</h2>
+<p>What repeated WhatTheFont use teaches:</p>
+<ul><li>The top result is right often enough to feel trustworthy and wrong often enough to embarrass you; positions two through five deserve a real read every time.</li><li>Lowercase crops beat caps-heavy crops; caps are too similar across families to rank reliably.</li><li>The weight trap is the most common near-miss: the sample is a medium or bold while the tool ranks the regular, and everything looks subtly off. Check the weight row before eliminating a family.</li><li>A second crop with different letters is the cheapest retry; keep two or three crop variants from the start and feed the tool the best one, not the biggest one.</li><li>Moire, JPEG artifacts, and resampled screenshots each depress ranking quality in ways that look like &quot;no good match&quot; rather than &quot;bad input&quot;.</li><li>For a free font the catalog does not carry, the tool&#x27;s near-misses still help: they describe the class, and Matcherator&#x27;s free index usually holds the actual family.</li><li>Log the run even when it fails; a dated &quot;top five, all rejected for reasons X and Y&quot; entry is what makes the eventual answer auditable.</li><li>Similarity scores near 100 percent still mean nothing on their own; near-clones score as high as the original, and provenance decides between them.</li><li>Decorative first letters lure the segmenter; crop past the display initial into the plain text whenever possible.</li><li>When everything in the top five shares one trait the sample lacks (closed apertures, flat terminals), the trait itself is a clue: the family you want sits outside the catalog, and the shared trait tells you what to search for next.</li><li>Antialiased text at very small sizes reads bolder than it is; find a larger rendering of the same face before judging weight.</li><li>Compare lowercase against candidates&#x27; lowercase first and caps second; lowercase discriminates, caps confirm.</li><li>Screenshot the candidate list with the sample visible in the same frame; the pairing reads instantly in review and settles arguments without a re-run.</li><li>WhatTheFont also runs as a mobile app pointed at the physical world; the same crop discipline applies, and packaging photos need even more care with glare and angle.</li></ul>
+<h2>Quick reference</h2>
+<p>The WhatTheFont loop, compressed:</p>
+<ol><li>Secure the best-resolution sample and archive the original untouched.</li><li>Crop 4 to 12 straight, high-contrast letters, lowercase if possible.</li><li>Upload, verify the tool&#x27;s segmentation, and read the top five candidates.</li><li>Hand-compare each candidate against the sample; eliminate on diagnostic letters.</li><li>Confirm the survivor at the foundry or on Fonts In Use.</li><li>Purchase with the correct license scope, or download if open, and file the evidence record.</li></ol>
+<p>Retry ladder when nothing fits: one recrop, then one different-crop run, then one other tool, then manual analysis. Anything past that ladder is grinding, and grinding produces confident wrong answers.</p>
+<p>Scores, ranks, and similarity badges are sorting devices; the hand check on g, a, R, t, and the numerals is the verification. The tool earns its speed only when its answer survives being read closely.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="identification-workflow-overview.html">Identification workflow overview</a></li><li><a href="matcherator-workflow.html">Matcherator workflow</a></li><li><a href="verifying-an-identification.html">Verifying an identification</a></li><li><a href="../licensing/marketplace-license-models.html">Marketplace license models</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Accessibility Audit Workflow - Fontlore</title>
+<meta name="description" content="A repeatable workflow for auditing typography accessibility as part of normal design review, not as an annual event. It defines stage gates, owners, artifact...">
+<meta property="og:title" content="Accessibility Audit Workflow - Fontlore">
+<meta property="og:description" content="A repeatable workflow for auditing typography accessibility as part of normal design review, not as an annual event. It defines stage gates, owners, artifact...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Accessibility Audit Workflow</h1>
+<p>What this reference covers: A repeatable workflow for auditing typography accessibility as part of normal design review, not as an annual event. It defines stage gates, owners, artifacts, and the checklist each gate runs, so audit results feed back into tokens and components instead of piling up as tickets.</p>
+<h2>Principles</h2>
+<ul><li>Audit early, at the artifact level: contrast pairs and type scales are design decisions; testing them on built pages finds them too late to fix cheaply.</li><li>Automate the deterministic checks (contrast ratios, rem usage, fixed heights); human-test the behavioral ones (zoom, overrides, screen readers).</li><li>Record outcomes as artifacts (screenshots, token audit reports, signed checklists), not meeting notes.</li><li>Tie every failure to a fix location: a token, a component, a template, or content. &quot;Somewhere in the page&quot; fixes never ship.</li></ul>
+<h2>The four gates</h2>
+<p>Gate 1, design stage (owner: design lead):</p>
+<ul><li>Type scale documented with roles, minimum sizes, and rem units; leading per role; measure targets for reading surfaces.</li><li>Color tokens annotated with contrast results per intended size class; large-text exceptions listed explicitly.</li><li>Hierarchy review: every tier differs by at least two of size, weight, case, position; grayscale mock passes.</li><li>Multilingual plan: which scripts ship, which leading and measure rules they need, fallback stacks defined.</li></ul>
+<p>Gate 2, component review (owner: component author plus design reviewer):</p>
+<ul><li>Component survives the four text-spacing overrides with no clipping (screenshot at override state).</li><li>Component text scales with browser font-size preference (rem check); no px type without a written exception.</li><li>Focus indicator passes 3 to 1 against both background themes and survives 200 percent zoom.</li><li>Long-content behavior: wrap, clamp with full-content path, never fixed height.</li></ul>
+<p>Gate 3, template or release review (owner: QA plus a11y champion):</p>
+<ul><li>Full template run of the typography audit: 200 percent and 400 percent zoom, font-size override, spacing bookmarklet, grayscale, forced colors.</li><li>Contrast spot-check on real rendered pairs including states (hover, focus, disabled, placeholder).</li><li>Keyboard-only pass at high zoom on the template&#x27;s key tasks.</li><li>Findings filed with screenshots and exact reproduction settings.</li></ul>
+<p>Gate 4, periodic audit (owner: a11y champion, quarterly):</p>
+<ul><li>Re-run gate 3 on the top templates plus any changed since last audit.</li><li>Token audit refresh: new pairs introduced since last cycle are tested and documented.</li><li>Screen reader spot check with real content in each shipped language.</li><li>Real-user session: at least one participant who uses zoom or spacing overrides daily, on a rotating template.</li><li>Trend review: recurring failure classes get systematic fixes (a lint rule, a component change), not another ticket.</li></ul>
+<h2>The checklist (condensed)</h2>
+<ul><li>[ ] All type in rem; no px text without a documented exception.</li><li>[ ] Unitless line-height; per-language leading rules present for shipped scripts.</li><li>[ ] Text containers use min-height or intrinsic sizing; no fixed heights on text.</li><li>[ ] 200 percent zoom: no loss of content or function.</li><li>[ ] 400 percent zoom: one-column reflow, no horizontal scrolling.</li><li>[ ] Browser font-size at 24 px: every element scales.</li><li>[ ] 1.4.12 spacing overrides: nothing clips or overlaps.</li><li>[ ] Contrast: every token pair passes for its size class, states included.</li><li>[ ] Grayscale: hierarchy and links read without color.</li><li>[ ] Forced colors: usable; tokens remap.</li><li>[ ] Focus indicators: visible, 3 to 1, unclipped at zoom.</li><li>[ ] lang and dir correct on the page and on translated segments.</li><li>[ ] Screen reader: pronunciation switches with lang; structure sane.</li></ul>
+<h2>Artifacts and records</h2>
+<ul><li>The living checklist (this file, adapted per project) with dated sign-offs per gate.</li><li>A screenshot archive: 400 percent reflow, spacing-override state, grayscale, forced colors, per template and release.</li><li>The token contrast report generated from the design tokens, regenerated when tokens change.</li><li>A decisions log for documented exceptions (px wordmark, locked hero), each with an owner and a revisit date.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Treating the audit as a one-time certification; typography regressions arrive with every redesign and rebrand.</li><li>Running only gate 3 (late testing) and skipping gate 1, so every finding is a rework of shipped CSS.</li><li>Checklists without artifacts: &quot;passed&quot; claims nobody can reproduce.</li><li>Auditing the marketing site while the app, docs, and emails (the surfaces users actually read) never get audited.</li><li>No owner: gates exist only when someone specific runs them on a cadence.</li><li>Letting exceptions pile up without revisit dates; a documented exception is a decision, an undocumented one is a bug.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>A gate fails: the artifact goes back to the owning stage; gates do not pass &quot;with known issues&quot; for typography criteria (contrast, zoom, overrides).</li><li>A component library change: gate 2 re-runs on changed components, not the whole library.</li><li>A new language ships: gates 1 and 3 re-run for that language&#x27;s templates before launch.</li><li>Quarterly audit finds a repeat failure class: promote the fix to CI (lint, token check, component change) and delete the manual check that kept catching it.</li><li>Stakeholder pressure to skip a gate: escalate with the most recent screenshot archive; artifacts beat arguments.</li></ul>
+<h2>Quick reference: WCAG 2.2 numbers the audit uses</h2>
+<table><thead><tr><th>Criterion</th><th>Requirement</th><th>What the auditor does</th></tr></thead><tbody><tr><td>1.4.3 Contrast (Minimum)</td><td>4.5:1 for normal text; 3:1 for large text (24 px regular or 18.66 px bold and above)</td><td>Measure every token pair in its size class, states included</td></tr><tr><td>1.4.6 Contrast (Enhanced)</td><td>7:1 normal text; 4.5:1 large text</td><td>Only when the project committed to AAA</td></tr><tr><td>1.4.11 Non-text contrast</td><td>3:1 for focus indicators, icons, form borders</td><td>Test focus rings against both themes</td></tr><tr><td>1.4.4 Resize text</td><td>200 percent zoom with no loss of content or function</td><td>Zoom the browser, walk the key tasks</td></tr><tr><td>1.4.10 Reflow</td><td>No two-dimensional scrolling at 320 CSS px width (400 percent zoom on a 1280 px window)</td><td>Narrow the window, check for horizontal scroll</td></tr><tr><td>1.4.12 Text spacing</td><td>Survives line-height 1.5x, paragraph spacing 2x, letter spacing 0.12x, word spacing 0.16x</td><td>Apply the overrides, screenshot every component</td></tr><tr><td>3.1.1 / 3.1.2 Language</td><td>lang on html; lang on parts in another language</td><td>View source, then the screen reader voice-switch test</td></tr><tr><td>1.4.5 Images of text</td><td>Content text is real text, not rasterized type</td><td>Check banners, social cards, and hero art for baked-in copy</td></tr><tr><td>1.4.8 Visual presentation (AAA)</td><td>Line width 80 characters or fewer; line spacing 1.5; paragraph spacing 1.5x line spacing</td><td>Only when AAA is committed; measure the reading surfaces</td></tr></tbody></table>
+<p>Pin these numbers in the audit document itself. An audit finding that says &quot;passes contrast&quot; without the ratio and the criterion number is not reproducible, and an unreproducible pass is indistinguishable from an unchecked one.</p>
+<h2>Audit checklist: the 1.4.12 sweep, step by step</h2>
+<p>The text-spacing criterion is the one typography fails most and teams test least. Run it identically every time:</p>
+<ul><li>[ ] Apply the bookmarklet or user stylesheet with the four override values (line-height 1.5x, paragraph spacing 2x, letter spacing 0.12x, word spacing 0.16x).</li><li>[ ] Walk every template at the override state, at default width and at 320 px.</li><li>[ ] Screenshot every failure: clipped button labels, truncated card text, overlapped badges, nav items colliding.</li><li>[ ] Classify each failure: fixed height, fixed width, line-clamp without an expand path, or absolute positioning. The class names the fix.</li><li>[ ] File against the component, not the page; re-run the component in isolation after the fix.</li><li>[ ] Record the sweep in the artifact archive with the date and the values used.</li><li>[ ] Include hover, focus, and disabled states in the sweep; overrides expose state styling too.</li><li>[ ] Re-run the sweep on the RTL variants of any template that ships right-to-left locales.</li><li>[ ] Confirm the override stylesheet actually applies; a page rule with higher specificity silently voids the test.</li></ul>
+<p>A component that passes this sweep almost always survives larger user font sizes too, because the failure modes are the same: containers that assume exactly one line of text.</p>
+<h2>Worked example: gate 3 on a checkout template</h2>
+<p>A checkout template (summary card, address form, payment panel) audited at gate 3:</p>
+<ol><li>Contrast: the placeholder text measured 2.9:1; placeholders are real text and were failed, then darkened in the input token. The disabled state sat at 2.6:1 and was recorded as a documented exception with the reasoning noted, since 1.4.3 exempts disabled controls.</li><li>Zoom: at 200 percent the promo-code input kept a 40 px fixed height and clipped its label; the fix converted the height to min-height in rem. At 400 percent the three-column summary reflowed to one column cleanly because the grid was already auto-fit.</li><li>Text spacing: with the overrides applied, the badge on the saved-card chip overlapped its label; the chip width was fixed in px and became padding plus intrinsic sizing.</li><li>Grayscale: the selected payment method was indicated by border color alone; grayscale made the two states identical. Added a check icon, which also satisfied 1.4.11 at 3.2:1.</li><li>Language: the address form contained a Welsh county name inside an otherwise English page; a lang=&quot;cy&quot; span was added after the screen reader mangled it in the English voice.</li><li>Leading: the summary card&#x27;s key-value rows were set at 1.3; raised to 1.4 through the role&#x27;s leading token, which also resolved the row overlap the spacing sweep had found.</li></ol>
+<p>Four component fixes, one token change, and the artifacts (six screenshots, one token diff) filed with the release. The audit took two hours; the same template without the gate 1 artifacts would have taken a day and found less.</p>
+<h2>Field notes: what audits actually find</h2>
+<p>Across repeated typography audits, the same failure classes recur, roughly in this order of frequency:</p>
+<ul><li>Placeholder and disabled text below 4.5:1: the most common contrast failure, because placeholders are styled apologetically by default.</li><li>Fixed heights on text containers: the single cause behind most 1.4.12 and zoom failures; one min-height conversion resolves whole families of tickets.</li><li>Focus indicators that pass 3:1 on the light theme only: the light theme was tested, the dark theme shipped.</li><li>Line-clamped content with no full-content path: the clamp is fine; the missing expand affordance is the failure.</li><li>px type in components built before the rem rule: audits catch them where reviews did not, usually in legacy or vendor blocks.</li><li>Missing lang on translated segments: pages pass every visual check and fail the first screen reader listen.</li><li>Tracked all-caps labels colliding when word-spacing overrides land: letter-spacing baked into non-reflowing lockups is the cause.</li><li>Data tables at 400 percent zoom: without a card-mode or scroll strategy, reflow fails first on the densest table, not on the prose.</li><li>Small print and legal copy: set below 12 px and forgotten, then the first zoom test finds a wall of 10 px text that cannot grow without breaking its container.</li></ul>
+<p>None of these are exotic. Every one is a deterministic check that gate 2 should have caught, which is the standing argument for running gates 1 and 2 at all instead of only testing built pages.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="testing-typography-accessibility.html">Testing typography accessibility</a></li><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="../workflow/font-governance-and-review.html">Font governance and review</a></li><li><a href="../workflow/design-tokens-for-type.html">Design tokens for type</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

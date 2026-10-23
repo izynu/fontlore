@@ -1,0 +1,665 @@
+{
+  "count": 66,
+  "pairings": [
+    {
+      "id": "pair-001",
+      "heading": "playfair-display",
+      "body": "source-sans-3",
+      "context": "editorial-magazine",
+      "rationale": "High-contrast didone headlines against a calm humanist sans; the reliable magazine formula.",
+      "kind": "contrast-plus-neutral",
+      "headingFamily": "Playfair Display",
+      "bodyFamily": "Source Sans 3"
+    },
+    {
+      "id": "pair-002",
+      "heading": "fraunces",
+      "body": "work-sans",
+      "context": "brand-marketing",
+      "rationale": "Wonky old-style display over a lively grotesque gives brands warmth and credibility at once.",
+      "kind": "personality-plus-neutral",
+      "headingFamily": "Fraunces",
+      "bodyFamily": "Work Sans"
+    },
+    {
+      "id": "pair-003",
+      "heading": "space-grotesk",
+      "body": "inter",
+      "context": "tech-saas",
+      "rationale": "Quirky tech headlines with a screen-neutral UI sans keep SaaS pages interesting but usable.",
+      "kind": "character-plus-workhorse",
+      "headingFamily": "Space Grotesk",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-004",
+      "heading": "dm-serif-display",
+      "body": "dm-sans",
+      "context": "marketing-hero",
+      "rationale": "Same-family logic: a didone display and geometric sans that share skeleton and color.",
+      "kind": "family-system",
+      "headingFamily": "DM Serif Display",
+      "bodyFamily": "DM Sans"
+    },
+    {
+      "id": "pair-005",
+      "heading": "montserrat",
+      "body": "merriweather",
+      "context": "corporate-longform",
+      "rationale": "Geometric headlines frame a sturdy screen serif for reports and about pages.",
+      "kind": "geometric-plus-serif",
+      "headingFamily": "Montserrat",
+      "bodyFamily": "Merriweather"
+    },
+    {
+      "id": "pair-006",
+      "heading": "archivo",
+      "body": "libre-franklin",
+      "context": "news-headlines",
+      "rationale": "Two grotesques at different temperatures: loud condensed-capable headlines, Franklin body.",
+      "kind": "grotesque-duet",
+      "headingFamily": "Archivo",
+      "bodyFamily": "Libre Franklin"
+    },
+    {
+      "id": "pair-007",
+      "heading": "poppins",
+      "body": "lato",
+      "context": "startup-landing",
+      "rationale": "Friendly geometric display with a warm humanist body; the approachable startup default.",
+      "kind": "friendly-duet",
+      "headingFamily": "Poppins",
+      "bodyFamily": "Lato"
+    },
+    {
+      "id": "pair-008",
+      "heading": "oswald",
+      "body": "open-sans",
+      "context": "sports-news",
+      "rationale": "Condensed gothic headlines above an unobtrusive humanist body.",
+      "kind": "condensed-plus-neutral",
+      "headingFamily": "Oswald",
+      "bodyFamily": "Open Sans"
+    },
+    {
+      "id": "pair-009",
+      "heading": "lora",
+      "body": "inter",
+      "context": "blog-longform",
+      "rationale": "A brush-influenced serif with the web's neutral sans; blogs read for hours in this pair.",
+      "kind": "serif-plus-sans",
+      "headingFamily": "Lora",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-010",
+      "heading": "merriweather",
+      "body": "source-sans-3",
+      "context": "news-longform",
+      "rationale": "Screen-first serif body with an Adobe humanist UI voice for chrome and captions.",
+      "kind": "screen-serif-plus-ui",
+      "headingFamily": "Merriweather",
+      "bodyFamily": "Source Sans 3"
+    },
+    {
+      "id": "pair-011",
+      "heading": "bitter",
+      "body": "open-sans",
+      "context": "documentation",
+      "rationale": "Slab headings signal structure; humanist body keeps long docs comfortable.",
+      "kind": "slab-plus-humanist",
+      "headingFamily": "Bitter",
+      "bodyFamily": "Open Sans"
+    },
+    {
+      "id": "pair-012",
+      "heading": "ibm-plex-serif",
+      "body": "ibm-plex-sans",
+      "context": "enterprise-systems",
+      "rationale": "The Plex superfamily keeps documents and UI visually aligned.",
+      "kind": "superfamily",
+      "headingFamily": "IBM Plex Serif",
+      "bodyFamily": "IBM Plex Sans"
+    },
+    {
+      "id": "pair-013",
+      "heading": "alegreya",
+      "body": "alegreya-sans",
+      "context": "humanist-editorial",
+      "rationale": "A calligraphic serif with its designed sans companion; bookish and warm.",
+      "kind": "superfamily",
+      "headingFamily": "Alegreya",
+      "bodyFamily": "Alegreya Sans"
+    },
+    {
+      "id": "pair-014",
+      "heading": "fraunces",
+      "body": "public-sans",
+      "context": "civic-government",
+      "rationale": "Approachable display warmth over deliberately neutral government-grade body.",
+      "kind": "warmth-plus-neutral",
+      "headingFamily": "Fraunces",
+      "bodyFamily": "Public Sans"
+    },
+    {
+      "id": "pair-015",
+      "heading": "newsreader",
+      "body": "inter",
+      "context": "reading-app",
+      "rationale": "Optical-size editorial serif in a product shell built on a UI grotesque.",
+      "kind": "opsz-plus-ui",
+      "headingFamily": "Newsreader",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-016",
+      "heading": "literata",
+      "body": "source-sans-3",
+      "context": "ebook-longform",
+      "rationale": "A reading-engineered serif with a quiet humanist sans for interface chrome.",
+      "kind": "reading-plus-chrome",
+      "headingFamily": "Literata",
+      "bodyFamily": "Source Sans 3"
+    },
+    {
+      "id": "pair-017",
+      "heading": "spectral",
+      "body": "work-sans",
+      "context": "culture-journal",
+      "rationale": "Efficient screen serif with a grotesque that keeps captions and metadata crisp.",
+      "kind": "editorial-duet",
+      "headingFamily": "Spectral",
+      "bodyFamily": "Work Sans"
+    },
+    {
+      "id": "pair-018",
+      "heading": "anton",
+      "body": "inter",
+      "context": "poster-hero",
+      "rationale": "One loud condensed voice against a disciplined UI sans.",
+      "kind": "loud-plus-disciplined",
+      "headingFamily": "Anton",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-019",
+      "heading": "bebas-neue",
+      "body": "roboto",
+      "context": "events-sports",
+      "rationale": "All-caps poster display with the most neutral body on the web.",
+      "kind": "poster-plus-neutral",
+      "headingFamily": "Bebas Neue",
+      "bodyFamily": "Roboto"
+    },
+    {
+      "id": "pair-020",
+      "heading": "rajdhani",
+      "body": "inter",
+      "context": "gaming-tech",
+      "rationale": "Squared Devanagari-capable display over a calm grotesque for esports and dashboards.",
+      "kind": "squared-plus-calm",
+      "headingFamily": "Rajdhani",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-021",
+      "heading": "exo-2",
+      "body": "titillium-web",
+      "context": "sci-fi-product",
+      "rationale": "Two techno voices in balance: angular display, technical body.",
+      "kind": "techno-duet",
+      "headingFamily": "Exo 2",
+      "bodyFamily": "Titillium Web"
+    },
+    {
+      "id": "pair-022",
+      "heading": "space-mono",
+      "body": "space-grotesk",
+      "context": "dev-tools",
+      "rationale": "The Space family's mono and proportional faces; code and UI in one voice.",
+      "kind": "family-system",
+      "headingFamily": "Space Mono",
+      "bodyFamily": "Space Grotesk"
+    },
+    {
+      "id": "pair-023",
+      "heading": "jetbrains-mono",
+      "body": "inter",
+      "context": "developer-docs",
+      "rationale": "Tall-x-height code font with the web's most predictable UI sans.",
+      "kind": "code-plus-ui",
+      "headingFamily": "JetBrains Mono",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-024",
+      "heading": "fira-code",
+      "body": "fira-sans",
+      "context": "code-heavy-docs",
+      "rationale": "Mozilla-era siblings: ligature-rich code and humanist prose.",
+      "kind": "family-system",
+      "headingFamily": "Fira Code",
+      "bodyFamily": "Fira Sans"
+    },
+    {
+      "id": "pair-025",
+      "heading": "ibm-plex-mono",
+      "body": "ibm-plex-sans",
+      "context": "engineering-platform",
+      "rationale": "Engineering mono with the Plex sans for spec sheets and consoles.",
+      "kind": "family-system",
+      "headingFamily": "IBM Plex Mono",
+      "bodyFamily": "IBM Plex Sans"
+    },
+    {
+      "id": "pair-026",
+      "heading": "caveat",
+      "body": "lato",
+      "context": "friendly-brand",
+      "rationale": "Handwritten accents over a warm humanist body; personal without chaos.",
+      "kind": "handwritten-plus-warm",
+      "headingFamily": "Caveat",
+      "bodyFamily": "Lato"
+    },
+    {
+      "id": "pair-027",
+      "heading": "pacifico",
+      "body": "montserrat",
+      "context": "food-leisure",
+      "rationale": "Brush script logo energy with geometric label support.",
+      "kind": "brush-plus-geometric",
+      "headingFamily": "Pacifico",
+      "bodyFamily": "Montserrat"
+    },
+    {
+      "id": "pair-028",
+      "heading": "lobster",
+      "body": "open-sans",
+      "context": "casual-retail",
+      "rationale": "Bold connected script against a body that never competes.",
+      "kind": "script-plus-quiet",
+      "headingFamily": "Lobster",
+      "bodyFamily": "Open Sans"
+    },
+    {
+      "id": "pair-029",
+      "heading": "amiri",
+      "body": "vazirmatn",
+      "context": "arabic-editorial",
+      "rationale": "Classical Naskh for text dignity with a modern Persian-Arabic UI sans.",
+      "kind": "script-duet-arabic",
+      "headingFamily": "Amiri",
+      "bodyFamily": "Vazirmatn"
+    },
+    {
+      "id": "pair-030",
+      "heading": "noto-serif",
+      "body": "noto-sans",
+      "context": "multilingual-base",
+      "rationale": "The Noto anchor pair; the safest fully-covered multilingual system.",
+      "kind": "family-system",
+      "headingFamily": "Noto Serif",
+      "bodyFamily": "Noto Sans"
+    },
+    {
+      "id": "pair-031",
+      "heading": "noto-sans-devanagari",
+      "body": "noto-sans",
+      "context": "indic-multilingual",
+      "rationale": "Devanagari UI with its Latin sibling for bilingual product shells.",
+      "kind": "script-duet-indic",
+      "headingFamily": "Noto Sans Devanagari",
+      "bodyFamily": "Noto Sans"
+    },
+    {
+      "id": "pair-032",
+      "heading": "kanit",
+      "body": "sarabun",
+      "context": "thai-media",
+      "rationale": "Loopless Thai display with document-grade Thai text.",
+      "kind": "thai-duet",
+      "headingFamily": "Kanit",
+      "bodyFamily": "Sarabun"
+    },
+    {
+      "id": "pair-033",
+      "heading": "eczar",
+      "body": "hind",
+      "context": "devanagari-editorial",
+      "rationale": "Sharp Devanagari editorial display over ITF's quiet UI humanist.",
+      "kind": "devanagari-duet",
+      "headingFamily": "Eczar",
+      "bodyFamily": "Hind"
+    },
+    {
+      "id": "pair-034",
+      "heading": "halant",
+      "body": "mukta",
+      "context": "devanagari-corporate",
+      "rationale": "Book-quiet Devanagari serif over Ek Type's publishing humanist.",
+      "kind": "devanagari-duet",
+      "headingFamily": "Halant",
+      "bodyFamily": "Mukta"
+    },
+    {
+      "id": "pair-035",
+      "heading": "cairo",
+      "body": "tajawal",
+      "context": "arabic-ui",
+      "rationale": "Geometric Arabic bridge family with an even-color geometric companion.",
+      "kind": "arabic-geometric-duet",
+      "headingFamily": "Cairo",
+      "bodyFamily": "Tajawal"
+    },
+    {
+      "id": "pair-036",
+      "heading": "reem-kufi",
+      "body": "noto-sans-arabic",
+      "context": "arabic-display",
+      "rationale": "Kufi display headlines over Noto's Arabic UI workhorse.",
+      "kind": "kufi-plus-noto",
+      "headingFamily": "Reem Kufi",
+      "bodyFamily": "Noto Sans Arabic"
+    },
+    {
+      "id": "pair-037",
+      "heading": "atkinson-hyperlegible",
+      "body": "inter",
+      "context": "accessibility-first",
+      "rationale": "A low-vision benchmark face for body with a predictable UI sans for chrome.",
+      "kind": "a11y-plus-ui",
+      "headingFamily": "Atkinson Hyperlegible",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-038",
+      "heading": "lexend",
+      "body": "source-sans-3",
+      "context": "reading-fluency",
+      "rationale": "Fluency-tuned spacing over an Adobe humanist; education products and early readers.",
+      "kind": "fluency-plus-humanist",
+      "headingFamily": "Lexend",
+      "bodyFamily": "Source Sans 3"
+    },
+    {
+      "id": "pair-039",
+      "heading": "public-sans",
+      "body": "inter",
+      "context": "gov-digital",
+      "rationale": "Deliberately neutral government sans paired with predictable UI body.",
+      "kind": "neutral-duet",
+      "headingFamily": "Public Sans",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-040",
+      "heading": "urbanist",
+      "body": "dm-sans",
+      "context": "fashion-ecommerce",
+      "rationale": "Thin-capable geometric with a calm geometric body for lookbooks and PDPs.",
+      "kind": "fashion-geometric-duet",
+      "headingFamily": "Urbanist",
+      "bodyFamily": "DM Sans"
+    },
+    {
+      "id": "pair-041",
+      "heading": "jost",
+      "body": "mulish",
+      "context": "clean-startup",
+      "rationale": "Futura flavor with a minimalist humanist body; airy and modern.",
+      "kind": "futura-plus-minimal",
+      "headingFamily": "Jost",
+      "bodyFamily": "Mulish"
+    },
+    {
+      "id": "pair-042",
+      "heading": "syne",
+      "body": "epilogue",
+      "context": "art-culture",
+      "rationale": "Experimental display with a geometric UI voice that keeps galleries usable.",
+      "kind": "experimental-plus-ui",
+      "headingFamily": "Syne",
+      "bodyFamily": "Epilogue"
+    },
+    {
+      "id": "pair-043",
+      "heading": "unbounded",
+      "body": "manrope",
+      "context": "web3-futuristic",
+      "rationale": "Wide futuristic display over a fintech-grade geometric body.",
+      "kind": "wide-plus-fintech",
+      "headingFamily": "Unbounded",
+      "bodyFamily": "Manrope"
+    },
+    {
+      "id": "pair-044",
+      "heading": "sora",
+      "body": "inter",
+      "context": "fintech-product",
+      "rationale": "Barnbrook geometry with the safest body face in the stack.",
+      "kind": "geometric-plus-safe",
+      "headingFamily": "Sora",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-045",
+      "heading": "red-hat-display",
+      "body": "red-hat-text",
+      "context": "enterprise-family",
+      "rationale": "One foundry's designed display/text split for enterprise systems.",
+      "kind": "superfamily",
+      "headingFamily": "Red Hat Display",
+      "bodyFamily": "Red Hat Text"
+    },
+    {
+      "id": "pair-046",
+      "heading": "plus-jakarta-sans",
+      "body": "inter",
+      "context": "saas-product",
+      "rationale": "Geometric SaaS headlines with a neutral workhorse body.",
+      "kind": "geometric-plus-workhorse",
+      "headingFamily": "Plus Jakarta Sans",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-047",
+      "heading": "figtree",
+      "body": "nunito-sans",
+      "context": "edtech-friendly",
+      "rationale": "Friendly geometric display with a humanist body that stays warm in long lessons.",
+      "kind": "friendly-duet",
+      "headingFamily": "Figtree",
+      "bodyFamily": "Nunito Sans"
+    },
+    {
+      "id": "pair-048",
+      "heading": "libre-baskerville",
+      "body": "karla",
+      "context": "classic-blog",
+      "rationale": "Screen-tuned Baskerville with a personality-rich grotesque body.",
+      "kind": "classic-plus-grotesque",
+      "headingFamily": "Libre Baskerville",
+      "bodyFamily": "Karla"
+    },
+    {
+      "id": "pair-049",
+      "heading": "crimson-pro",
+      "body": "source-sans-3",
+      "context": "academic-longform",
+      "rationale": "Garamond-flavored book face over Adobe's humanist; journals and papers.",
+      "kind": "academic-duet",
+      "headingFamily": "Crimson Pro",
+      "bodyFamily": "Source Sans 3"
+    },
+    {
+      "id": "pair-050",
+      "heading": "eb-garamond",
+      "body": "lato",
+      "context": "literary",
+      "rationale": "True Garamond with a warm humanist sans for paratext.",
+      "kind": "literary-duet",
+      "headingFamily": "EB Garamond",
+      "bodyFamily": "Lato"
+    },
+    {
+      "id": "pair-051",
+      "heading": "cormorant-garamond",
+      "body": "montserrat",
+      "context": "luxury-editorial",
+      "rationale": "Delicate high-contrast display over geometric labels; hotels and weddings.",
+      "kind": "luxury-duet",
+      "headingFamily": "Cormorant Garamond",
+      "bodyFamily": "Montserrat"
+    },
+    {
+      "id": "pair-052",
+      "heading": "bodoni-moda",
+      "body": "jost",
+      "context": "fashion-editorial",
+      "rationale": "Optical didone with a Futura voice; the fashion system formula.",
+      "kind": "fashion-formula",
+      "headingFamily": "Bodoni Moda",
+      "bodyFamily": "Jost"
+    },
+    {
+      "id": "pair-053",
+      "heading": "abril-fatface",
+      "body": "karla",
+      "context": "magazine-cover",
+      "rationale": "Fatface poster display with a quirky grotesque for decks and stands.",
+      "kind": "poster-plus-quirky",
+      "headingFamily": "Abril Fatface",
+      "bodyFamily": "Karla"
+    },
+    {
+      "id": "pair-054",
+      "heading": "rozha-one",
+      "body": "hind",
+      "context": "devanagari-display",
+      "rationale": "High-contrast Devanagari didone over a clean ITF body.",
+      "kind": "devanagari-display-duet",
+      "headingFamily": "Rozha One",
+      "bodyFamily": "Hind"
+    },
+    {
+      "id": "pair-055",
+      "heading": "playfair-display",
+      "body": "lora",
+      "context": "all-serif-editorial",
+      "rationale": "Didone headlines with a contemporary transitional body; two serifs in tune.",
+      "kind": "serif-duet",
+      "headingFamily": "Playfair Display",
+      "bodyFamily": "Lora"
+    },
+    {
+      "id": "pair-056",
+      "heading": "zilla-slab",
+      "body": "inter",
+      "context": "tech-blog",
+      "rationale": "Mozilla's slab voice over a neutral UI body; documentation with character.",
+      "kind": "slab-plus-ui",
+      "headingFamily": "Zilla Slab",
+      "bodyFamily": "Inter"
+    },
+    {
+      "id": "pair-057",
+      "heading": "roboto-slab",
+      "body": "roboto",
+      "context": "product-docs",
+      "rationale": "Slab headings and the Android default body; zero-surprise documentation.",
+      "kind": "family-system",
+      "headingFamily": "Roboto Slab",
+      "bodyFamily": "Roboto"
+    },
+    {
+      "id": "pair-058",
+      "heading": "archivo-black",
+      "body": "archivo",
+      "context": "poster-family",
+      "rationale": "One family, two weights apart: black display and regular body.",
+      "kind": "family-system",
+      "headingFamily": "Archivo Black",
+      "bodyFamily": "Archivo"
+    },
+    {
+      "id": "pair-059",
+      "heading": "staatliches",
+      "body": "work-sans",
+      "context": "event-poster",
+      "rationale": "Caps condensed display with an editorial grotesque for details.",
+      "kind": "poster-plus-editorial",
+      "headingFamily": "Staatliches",
+      "bodyFamily": "Work Sans"
+    },
+    {
+      "id": "pair-060",
+      "heading": "barlow-condensed",
+      "body": "barlow",
+      "context": "sports-data",
+      "rationale": "Condensed headers and scores with the family's regular for support text.",
+      "kind": "family-system",
+      "headingFamily": "Barlow Condensed",
+      "bodyFamily": "Barlow"
+    },
+    {
+      "id": "pair-061",
+      "heading": "oswald",
+      "body": "merriweather",
+      "context": "news-headlines",
+      "rationale": "Condensed gothic authority above a serious screen serif.",
+      "kind": "condensed-plus-serif",
+      "headingFamily": "Oswald",
+      "bodyFamily": "Merriweather"
+    },
+    {
+      "id": "pair-062",
+      "heading": "fraunces",
+      "body": "space-grotesk",
+      "context": "quirky-startup",
+      "rationale": "Two strong personalities that share oddness; brands that refuse neutrality.",
+      "kind": "personality-duet",
+      "headingFamily": "Fraunces",
+      "bodyFamily": "Space Grotesk"
+    },
+    {
+      "id": "pair-063",
+      "heading": "satoshi",
+      "body": "general-sans",
+      "context": "fontshare-saas",
+      "rationale": "Fontshare's flagship pair: geometric flagship with neutral UI support.",
+      "kind": "fontshare-duet",
+      "headingFamily": "Satoshi",
+      "bodyFamily": "General Sans"
+    },
+    {
+      "id": "pair-064",
+      "heading": "clash-display",
+      "body": "satoshi",
+      "context": "fontshare-brand",
+      "rationale": "Statement display over the workhorse; agency-grade brand systems.",
+      "kind": "fontshare-display-duet",
+      "headingFamily": "Clash Display",
+      "bodyFamily": "Satoshi"
+    },
+    {
+      "id": "pair-065",
+      "heading": "cabinet-grotesk",
+      "body": "switzer",
+      "context": "fontshare-editorial",
+      "rationale": "Inky display grotesque with a Swiss body; editorial brand kits.",
+      "kind": "fontshare-editorial-duet",
+      "headingFamily": "Cabinet Grotesk",
+      "bodyFamily": "Switzer"
+    },
+    {
+      "id": "pair-066",
+      "heading": "teko",
+      "body": "barlow",
+      "context": "sports-tickers",
+      "rationale": "Condensed Devanagari-capable scores over a rounded grotesque support cast.",
+      "kind": "scores-duet",
+      "headingFamily": "Teko",
+      "bodyFamily": "Barlow"
+    }
+  ]
+}

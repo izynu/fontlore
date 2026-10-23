@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Webfont Formats - Fontlore</title>
+<meta name="description" content="The real differences between WOFF2, WOFF, and raw TTF/OTF, which browsers need which format today, how unicode-range splitting changes the picture for multil...">
+<meta property="og:title" content="Webfont Formats - Fontlore">
+<meta property="og:description" content="The real differences between WOFF2, WOFF, and raw TTF/OTF, which browsers need which format today, how unicode-range splitting changes the picture for multil...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Webfont Formats</h1>
+<p>What this reference covers: The real differences between WOFF2, WOFF, and raw TTF/OTF, which browsers need which format today, how unicode-range splitting changes the picture for multilingual and CJK content, and what to actually ship. The short answer is WOFF2 only, but the details decide how well it works.</p>
+<h2>The three formats that matter</h2>
+<ul><li>TTF/OTF: the desktop formats. Uncompressed, served as-is they waste most of their bytes over the wire. They exist in web contexts mainly as the source files you convert from, and as the format iOS/Android native apps and desktop apps consume.</li><li>WOFF: zlib compression plus a wrapper with metadata; roughly 40 percent smaller than raw TTF. Its era was IE9 through IE11 and early mobile browsers.</li><li>WOFF2: Brotli compression plus font-specific table transforms; typically 20 to 30 percent smaller than WOFF and dramatically better for variable and CJK data. Support landed in Chrome 36, Firefox 39, and Safari 10, so every browser in realistic use today handles it.</li></ul>
+<p>Serving raw TTF or OTF as a webfont is a mistake in almost every case: bigger downloads, no compression benefit, and no table transforms. The only reason to keep a TTF in the pipeline is as the editable source for subsetting.</p>
+<h2>What to ship</h2>
+<ul><li>Default: WOFF2 only. Every browser your analytics will show supports it.</li><li>If a legacy browser truly matters (enterprise IE11, old Android WebView): add a WOFF fallback second in the src list. Do not add a TTF &quot;just in case&quot;.</li><li>One file per weight per style, or one variable file per family when using variable fonts; never ship both formats of the same face to the same browser.</li><li>Set correct MIME types on the server: font/woff2 for .woff2. Wrong types cause console warnings and, on some CDNs, double-compression issues.</li></ul>
+<h2>Unicode-range splitting</h2>
+<p>The @font-face rule accepts a unicode-range descriptor: the browser downloads that face only when it encounters characters in the range. This turns one big multilingual file into several small ones:</p>
+<ul><li>Google Fonts applies this automatically: a request for a family returns CSS declaring separate latin, latin-ext, cyrillic, cyrillic-ext, greek, vietnamese (and per-script) files with explicit ranges. A German page downloads only the latin file.</li><li>CJK families are split into dozens of slices for the same reason; a page using a few hundred hanzi downloads a few slices, not megabytes.</li><li>When self-hosting, replicate the pattern: split per subset (or per unicode-range slice for CJK), declare ranges precisely, and keep the mapping documented.</li><li>The browser fetches each range file independently and in parallel once needed; the CSS itself must still arrive first, so keep @font-face declarations out of render-blocking bundles where possible (see the loading pipeline reference).</li></ul>
+<h2>Compression and caching realities</h2>
+<ul><li>WOFF2 is already Brotli-compressed; server-level gzip or brotli of .woff2 files wastes CPU for no gain. Exclude font extensions from compression rules.</li><li>Fonts are cached like any static asset: hash the filename per version and serve with long-lived immutable caching. Combined with unicode-range, most returning visitors download nothing new.</li><li>The crossorigin attribute matters even for same-origin fonts because fonts are fetched in CORS mode; a preload without crossorigin fetches the font twice.</li><li>Sizes to expect, for calibration: a latin static weight of a UI sans lands around 15 to 40 KB as woff2; a full variable latin file around 50 to 300 KB depending on axis count; a CJK slice 5 to 60 KB; a full CJK weight in the megabytes. Compare against these before believing a size claim.</li></ul>
+<h2>Browser support notes that still matter</h2>
+<ul><li>Variable font support is universal in current browsers; the differences are in which named instances and axis behaviors work, not in whether the file loads.</li><li>unicode-range is supported everywhere current; no feature detection needed.</li><li>If you must support environments that cannot do WOFF2 (some webviews in kiosk hardware, ancient corporate builds), feature-detect via the CSS Font Loading API or simply accept the WOFF fallback for everyone, since the src list is evaluated per browser.</li><li>iOS Safari ignores <code>text-size-adjust</code> in some modes and applies its own font inflation to small text; that is a sizing behavior, not a format issue, but it surfaces during format testing.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Shipping TTF &quot;because the foundry&#x27;s download was a TTF&quot; without converting; every foundry offers or permits web formats for licensed web use.</li><li>Adding local() sources pointing at installed system fonts with the same family names; on machines with the font installed you get an uncontrolled version, and some browsers mishandle matching. Prefer remote sources only, unless you specifically want local reuse.</li><li>Gzipping WOFF2 files at the CDN level; it changes nothing and burns CPU.</li><li>One @font-face per weight with a new family name (&quot;InterBold&quot;), which breaks font-weight selection and synthesis logic; use one family name with weight descriptors.</li><li>Forgetting crossorigin on preload, causing a duplicate download.</li><li>Serving CJK content from a full-file self-hosted webfont because &quot;Google Fonts slices seemed hacky&quot;; the slicing is the solution, not the problem.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>New project, no legacy constraints: WOFF2 only, one family, subset deliberately.</li><li>Enterprise with IE11: WOFF2 plus one WOFF fallback, and test on the actual corporate build, not a simulator.</li><li>Multilingual site: use per-subset files with unicode-range; treat &quot;latin plus one script&quot; as the normal case, not an exception.</li><li>CJK: use a hosted sliced service or a documented self-hosted subset; never a full file for body text.</li><li>Variable font in play: confirm the file&#x27;s actual size against its static alternatives before committing; variable is not automatically smaller for a single weight.</li></ul>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Format</th><th>Compression</th><th>Table transforms</th><th>Relative size</th><th>Era and role today</th></tr></thead><tbody><tr><td>TTF/OTF</td><td>none of its own</td><td>none</td><td>baseline</td><td>source files; native apps</td></tr><tr><td>WOFF</td><td>zlib (deflate)</td><td>none</td><td>about 60% of raw TTF</td><td>IE9-IE11 era; legacy fallback only</td></tr><tr><td>WOFF2</td><td>Brotli</td><td>glyf/loca and hmtx rewritten, restored on decode</td><td>WOFF minus another 20-30%</td><td>every current browser; ship this</td></tr></tbody></table>
+<p>WOFF2&#x27;s edge is not compression alone: the transforms restructure TrueType outlines and metrics so Brotli can squeeze them further, which is why variable and CJK files benefit most. The transforms are lossless: the browser restores the original table data on decode, so WOFF2 is a container optimization, not a redraw.</p>
+<h2>Code notes</h2>
+<p>src is evaluated in order; the browser fetches the first format it supports:</p>
+<pre><code>@font-face {
+  font-family: &quot;Inter&quot;;
+  src: url(&quot;/fonts/inter-400.woff2&quot;) format(&quot;woff2&quot;),
+       url(&quot;/fonts/inter-400.woff&quot;) format(&quot;woff&quot;);
+  font-weight: 400;
+  font-display: swap;
+}</code></pre>
+<p>Modern browsers never request the WOFF line; it exists for the legacy tier you actually support, and only then. One format per face also keeps the src list honest: a woff2-only list is complete for every browser that can render the design.</p>
+<p>Server configuration: correct MIME types, no re-compression:</p>
+<pre><code>location /fonts/ {
+  types { font/woff2 woff2; font/woff woff; }
+  # already compressed; do not re-compress at the edge
+  gzip off;
+  add_header Cache-Control &quot;public, max-age=31536000, immutable&quot;;
+}</code></pre>
+<p>The CSS Fonts 4 specification adds tech() keywords (for example format(&quot;woff2&quot;) tech(&quot;variations&quot;)); plain format(&quot;woff2&quot;) remains the interoperable form and is all a static or variable face needs today.</p>
+<h2>Worked example</h2>
+<p>A two-weight family (400 and 700) goes from foundry download to production:</p>
+<ol><li>Source: the original TTFs from the foundry or the official repository; they stay in the repo as the source of truth.</li><li>Subset per the language matrix with pyftsubset --flavor=woff2; verify the output really is woff2 and not a silent uncompressed fallback.</li><li>Bytes: a latin static weight lands in the 15-40 KB range as woff2; the same files as raw TTF would be several times larger.</li><li>Declare one @font-face per weight with woff2-only src, font-display: swap, and unicode-range generated from the subsets.</li><li>Legacy tier: analytics shows IE11, so the WOFF line goes second in src and WOFF files are built for that tier only. No TTF is served.</li><li>Preload the 400 latin file with crossorigin; hashed filenames and immutable caching make repeat visits free.</li><li>Confirm in the network panel: exactly two font requests, both woff2, no WOFF fallback fetches, no TTF anywhere.</li></ol>
+<h2>Field notes</h2>
+<ul><li>If a font appears twice in the network panel, the preload URL did not match the @font-face URL, or crossorigin was missing.</li><li>WOFF files can carry XML metadata (rights and license text); pipelines usually strip it, and its presence or absence is not license evidence either way.</li><li>iOS Safari ignores text-size-adjust in some modes and inflates small text; the behavior surfaces while testing formats but is a sizing behavior, not a format issue.</li><li>Serving raw TTF to keep it simple costs several times the bytes and skips the transforms; conversion is one command with fonttools.</li><li>Never list both WOFF and WOFF2 for the same face and then serve only one: dead src entries are confusion, not compatibility.</li><li>Converting with fonttools needs the brotli package for --flavor=woff2; a missing dependency yields silently uncompressed output.</li><li>A WOFF fallback maintained out of habit, for a browser your analytics stopped showing years ago, is pure build and cache overhead; retire it deliberately.</li></ul>
+<h2>Common failure modes</h2>
+<ul><li>The WOFF fallback loads on modern browsers: woff2 was misspelled in the format hint or the order was inverted. First supported wins; check the network panel for which file actually fetched.</li><li>Text renders but looks wrong on machines with the family installed: a local() source picked up an old desktop version instead of your files. Drop local() from primary faces.</li><li>The preload downloads the font twice: crossorigin missing, or a URL mismatch down to the query string.</li><li>A giant first load on a multilingual page: one full file instead of sliced subsets; replicate the unicode-range pattern self-hosted.</li><li>WOFF2 served as application/octet-stream: wrong MIME invites wrong compression and caching behavior at edges; set font/woff2 explicitly.</li><li>A variable file declared but statics render: two @font-face blocks share the family name and weight, and the later rule wins. Keep one system per family and style.</li><li>The format list keeps a TTF third &quot;just in case&quot;: it inflates the CSS, adds maintenance, and modern browsers never touch it. Delete it.</li><li>WOFF and WOFF2 of one face drift apart in coverage: build both from the same subset recipe so the legacy tier never silently loses glyphs.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Ship WOFF2 only; add WOFF second in src only for a named legacy tier, decided from analytics and documented.</li><li>TTF and OTF are source files, not webfonts.</li><li>font/woff2 MIME type, no edge re-compression, hashed filenames, immutable cache.</li><li>WOFF2 means Brotli plus table transforms; WOFF means zlib only; TTF means neither.</li><li>Verify the format with the network panel or the file&#x27;s magic bytes (woff2 files start with wOF2), not by extension.</li><li>When a legacy tier exists, test on the actual browser build; a WOFF fallback that was never exercised is dead weight.</li><li>unicode-range splitting is orthogonal to format choice: it composes with WOFF2, WOFF, or (never) TTF alike.</li><li>One format per face per browser: a woff2-only src list is complete for every current engine.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="font-face-and-css.html">Font-face and CSS</a></li><li><a href="subsetting-and-performance.html">Subsetting and performance</a></li><li><a href="../scripts/cjk-fundamentals.html">CJK fundamentals</a></li><li><a href="font-loading-pipeline.html">Font loading pipeline</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

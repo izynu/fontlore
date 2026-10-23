@@ -1,0 +1,53 @@
+# Typographica: workflow guide
+
+What this reference covers: Typographica as a Fontlore workflow tool: what it is, where it sits in the research stage, how to use it well, and what evidence to record from it.
+
+## What it is
+
+Long-running type reviews and the yearly favorites list.
+
+- Section: education
+- Access: free
+- URL: https://typographica.org/
+
+## Where it sits in the Fontlore workflow
+
+This tool belongs to the **research** stage. Concretely: build the vocabulary needed to defend the choice to stakeholders. It feeds records into the decision log, not opinions into the chat.
+
+## How to use it well
+
+- Go in with the project constraints written down: scripts, sizes, license scope, medium.
+- Record what the tool returned, not what you hoped it would return.
+- Prefer the tool's own primary data (files, license text, metadata) over summaries elsewhere.
+- Combine with at least one independent source before treating a fact as verified.
+
+## Evidence to record
+
+When this tool contributes to a decision, log: the principle learned and the source essay URL.
+
+## Limitations and cautions
+
+Guidance ages. Prefer sources that state their premises over lists of rules without reasons.
+
+## Alternatives and complements
+
+| Tool | Section | Access |
+| --- | --- | --- |
+| I Love Typography | education | free |
+| The Font Review Journal | education | free |
+| Google Fonts Knowledge | education | free |
+Siblings serve the same stage; pick one primary and keep one fallback in case the primary changes terms or disappears.
+
+## Common mistakes
+
+- Copying tool output into the decision log without the URL and date.
+- Letting one tool be the single source of truth for license facts.
+- Using the tool outside its stage: identification tools do not verify licenses, catalogs do not test rendering.
+
+## Cross-references
+
+- [Classification Primer](../../references/selection/classification-primer.md)
+- [I Love Typography guide](./i-love-typography.md)
+- [Research workflow](../../references/workflow/research-workflow.md)
+- [Evaluating catalog metadata](../../references/sourcing/evaluating-catalog-metadata.md)
+Compiled 2025 as part of the Fontlore project.

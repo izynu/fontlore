@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Google Fonts Catalog - Fontlore</title>
+<meta name="description" content="How to use fonts.google.com as a research tool instead of a download page. It covers the filter system, specimen and type tester workflow, language coverage...">
+<meta property="og:title" content="Google Fonts Catalog - Fontlore">
+<meta property="og:description" content="How to use fonts.google.com as a research tool instead of a download page. It covers the filter system, specimen and type tester workflow, language coverage...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Google Fonts Catalog</h1>
+<p>What this reference covers: How to use fonts.google.com as a research tool instead of a download page. It covers the filter system, specimen and type tester workflow, language coverage checks, and the basics of the CSS and Developer APIs. The goal is to turn a catalog of well over a thousand families into a defensible short list.</p>
+<p>Google Fonts has been the default first stop for open-source typefaces since 2010. Every family in the catalog ships under a free license (OFL, Apache 2.0, or the Ubuntu Font License), which makes the catalog safe to test from, but its size and mixed quality mean that filters and verification matter more here than anywhere else.</p>
+<h2>Navigating with filters</h2>
+<ul><li>The Category filter buckets families into Serif, Sans Serif, Display, Handwriting, and Monospace. Treat the buckets as hints rather than ground truth; classification is fuzzy and several display faces hide inside the Serif and Sans Serif groups.</li><li>The Language filter is the most underused control in the catalog. Selecting a language such as Vietnamese, Greek, or Devanagari restricts results to families with real coverage of that script, which instantly removes hundreds of Latin-only candidates.</li><li>Fonts properties includes a Variable toggle and a Number of styles control. Variable families survive design-system weight requests without shipping a separate file per weight.</li><li>Sort orders do different jobs: Trending and Popular surface safe, heavily used families; Newest surfaces experimental work; Number of styles finds complete families suitable for editorial systems.</li><li>The search box matches family, designer, and foundry names. Searching a foundry name such as Cadson Demak or ITF is a legitimate discovery route when you trust a publisher&#x27;s quality bar.</li><li>Pairing suggestions on family pages are editorial and uneven. Use them as leads to inspect, never as conclusions to copy.</li></ul>
+<h2>Specimen pages and the type tester</h2>
+<ul><li>Every family page opens on a specimen view where you can edit the sample text and drag size, line-height, and spacing controls. Replace the default text with your real project copy before judging anything.</li><li>The type tester supports multiple rows. Build a small board: your headline, a body paragraph, a UI label row, and a numeral-heavy row with dates, prices, and account numbers.</li><li>Test at your real sizes. A family that looks brilliant at 48px in the specimen can collapse at 14px, and some quiet text faces bloom when scaled up.</li><li>The glyph grid shows the full character set. Look for real punctuation, accented characters for your languages, tabular numerals if the interface needs column alignment, and symbol coverage if the content requires it.</li><li>Download family gives you the current static fonts or the variable build. Use it for offline testing in design tools, but do not treat the download as a stable archive; versions move as upstream projects update.</li></ul>
+<h2>The About panel</h2>
+<ul><li>The About section lists the designer, the foundry or publisher, the license, and for many families the upstream repository. This is the metadata you will re-verify later against Fontsource and the google/fonts repository.</li><li>Read the license line explicitly. Google Fonts only hosts free licenses, but the exact license determines what you may do with modified versions and how you document your use.</li><li>The description often names the classification and inspiration, for example a revival of a historical design or a companion to another family. This context feeds classification and tone work.</li><li>Version information on the website is thin. The google/fonts repository and Fontsource carry stronger version signals when you need to pin.</li></ul>
+<h2>Language and script coverage</h2>
+<ul><li>The supported language count is a floor, not a verdict. A family can list a language while setting it clumsily, with poor diacritic placement or awkward spacing in accents.</li><li>For mixed-script projects, judge each script&#x27;s family separately. Many multilingual families are excellent in one script and merely adequate in the others.</li><li>Paste text in the target language into the type tester and check diacritics, numerals, and punctuation, not just the base alphabet.</li><li>If a script matters strategically, cross-check dedicated script foundries and catalogs before settling; specialist publishers often beat generalist coverage.</li></ul>
+<h2>Variable axis playground</h2>
+<ul><li>Families with axes expose sliders on the specimen page: wght and wdth are common, opsz appears on families designed with optical sizes, and custom axes such as SOFT and WONK on Fraunces appear when present.</li><li>Move one axis at a time and watch where the design holds together. Axis extremes are where otherwise good families fall apart.</li><li>If the UI needs intermediate weights like 450 or 550, a variable family avoids shipping extra weight files and keeps rendering consistent across states.</li><li>Note which axes are registered (wght, wdth, opsz, slnt, italic) versus custom; custom axes usually need explicit support in tooling.</li></ul>
+<h2>API basics</h2>
+<p>The CSS API is the delivery mechanism most projects use without thinking about it. Knowing its shape helps you debug and reason about cost.</p>
+<pre><code>https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap
+https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700</code></pre>
+<ul><li>Multiple axes are requested in alphabetical order after italic. Axis order errors are the most common reason a request returns a 400 error.</li><li>The display parameter controls font-display behavior for the served CSS. Choose a strategy deliberately instead of copying it mindlessly.</li><li>Served CSS contains unicode-range subsets, so the browser downloads only the files it needs. This makes the CDN efficient but version-unstable: you always get the latest revision of every family.</li><li>The Developer API webfonts list endpoint returns JSON for every family, including subsets, variants, axes, and file URLs. It requires an API key and is the right tool when coverage needs to be enumerated programmatically.</li><li>The CSS API offers no version pinning. If reproducibility matters, self-host via Fontsource packages or files from the google/fonts repository.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Write the brief constraints first: scripts needed, size range, tone words, and license requirements.</li><li>Filter by language and category, then by Variable and style count if the system needs ranges.</li><li>Shortlist 8 to 12 families; open each specimen and paste real copy into the type tester.</li><li>Check the About panel for designer, foundry, license, and upstream links; record them.</li><li>Eliminate families that fail at body size or lack required glyphs; keep 3 to 5 for scoring.</li><li>Log the source, the date checked, and the version signal for every candidate while the session is fresh.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Judging families on the default specimen text instead of your own content.</li><li>Trusting the category label and never verifying the classification yourself.</li><li>Assuming the largest style count is the best family; unused bloat is a cost, not a feature.</li><li>Hotlinking the CDN without deciding a font-display strategy or a fallback plan if a family changes.</li><li>Ignoring the About panel and later being unable to name the designer, foundry, or license during an audit.</li><li>Testing only headlines because they look impressive, then discovering the body setting is the weak point.</li><li>Confusing a family&#x27;s language listing with proven rendering quality in that language.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Start filters from the brief, not from taste: script coverage first, category second, properties third.</li><li>If you need pinned, reproducible builds, go straight to self-hosting and treat the catalog as a discovery layer.</li><li>When two families look interchangeable, keep the one whose weight and width ranges match the system you actually described in the brief.</li></ul>
+<h2>Filter promises versus reality</h2>
+<p>Filter labels make claims that are directionally true and individually unreliable. Read them as triage; production decisions still need specimen and glyph-grid verification.</p>
+<table><thead><tr><th>Filter result</th><th>What it actually guarantees</th><th>What it does not guarantee</th></tr></thead><tbody><tr><td>Language: Vietnamese</td><td>Code points for Vietnamese letters exist</td><td>Tone marks stack cleanly; the design was built for the language</td></tr><tr><td>Category: Sans Serif</td><td>The catalog bucket says sans</td><td>The face is neutral or text-suitable; display sanses hide here</td></tr><tr><td>Variable toggle</td><td>A variable build is served</td><td>Every axis you need is present; many builds are wght-only</td></tr><tr><td>Popular</td><td>Heavy usage across live sites</td><td>Fit for your brief; popularity tracks age as much as quality</td></tr><tr><td>Number of styles: high</td><td>Many static styles exist</td><td>True optical sizes, real italics, or the weights you need</td></tr><tr><td>Search by foundry</td><td>Families credited to that foundry</td><td>The foundry&#x27;s complete catalog; only what Google hosts</td></tr></tbody></table>
+<p>Rule of thumb: a filter result earns a slot on the shortlist; nothing earns a production slot until the specimen and the glyph grid confirm it.</p>
+<h2>Worked example: shortlisting for a Vietnamese news product</h2>
+<p>Brief: long-form reading on mobile and desktop, Vietnamese and English mixed, ad-supported so payload matters, open licenses only.</p>
+<ol><li>Apply the Language filter for Vietnamese plus the Serif category for the reading face; the result set drops from well over a thousand families to a few dozen.</li><li>Body-text candidates: Literata, Source Serif 4, Noto Serif, Lora, Merriweather. Paste three paragraphs of real Vietnamese copy at 17 to 19 px.</li><li>Check stacking on vowels that carry both a vowel mark and a tone mark, and on capitals with marks at small sizes; several candidates cramp or clip here.</li><li>Literata tends to survive this test: commissioned for Google Play Books with deliberate Vietnamese coverage and a variable optical size axis.</li><li>For UI labels, repeat with Sans Serif plus Vietnamese: Be Vietnam Pro, Source Sans 3, and a couple of Inter-class candidates, checking capital diacritics in button-sized type.</li><li>Cross-check the finalists in the google/fonts repository, then log license, version, and tested sizes in the evidence record.</li></ol>
+<p>The loop generalizes to any language brief: language filter, real copy, mark stacking at real sizes, repository verification.</p>
+<h2>Signals to trust</h2>
+<ul><li>An About panel whose designer and foundry match the foundry&#x27;s own site; consistent metadata predicts a maintained family.</li><li>A source block in the repository metadata pointing to an active upstream project with recent commits.</li><li>Variable builds whose axis ranges cover the design system without forcing the ends of the range.</li><li>Specimens that render your language correctly by default, capitals, numerals, and punctuation included.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>Pairing suggestions on family pages; they are editorial leftovers that often date from launch.</li><li>Popularity as a quality proxy; trend lists reward names that were simply early.</li><li>The Handwriting category; it mixes casual scripts, brush faces, and connected scripts with wildly different fitness for use.</li><li>Glyph grids missing ordinary punctuation variants (curly quotes, en and em dashes) on a face meant for body text; that signals a thin character set.</li></ul>
+<h2>Quick reference: request patterns</h2>
+<pre><code>css2?family=Inter:wght@400;500;700&amp;display=swap
+css2?family=Inter:ital,wght@0,400;0,700;1,400&amp;display=swap
+css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900
+css2?family=Inter&amp;text=Dashboard</code></pre>
+<ul><li>Line 1 requests discrete weights. Line 2 uses italic tuples, each tuple starting with the italic flag. Line 3 requests variable ranges; axis names must appear in alphabetical order with lowercase registered axes before uppercase custom ones (Fraunces adds SOFT and WONK after wght). Line 4 uses the text parameter to subset the served file to exact characters, the smallest possible payload for fixed strings.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The css2 endpoint rejects wrong axis ordering with a 400 but silently ignores some other malformed pieces; when a weight goes missing in production, re-read the request URL character by character before blaming the font.</li><li>Debug with curl and a real browser user agent: that shows the actual woff2 files a user&#x27;s browser downloads, not the CSS you see in the view-source of your dreams.</li><li>Families change on Google&#x27;s schedule, not yours; a glyph revision can shift a pinned headline by a pixel or two. Self-hosting is the fix, not complaint tickets.</li><li>For CJK families, the CSS API&#x27;s unicode-range slicing is what makes them usable at all; self-hosting the same monolithic file without subsetting is a performance incident waiting to happen.</li></ul>
+<h2>Questions to ask while filtering</h2>
+<ul><li>Does the brief need scripts the Language filter can express, or a tone the category filter cannot? Write the missing filter as an explicit test.</li><li>Does the variable build cover the axis ranges the design tokens demand, or only the showcase range?</li><li>Does the style count match the roles in the brief (text, display, captions, mono), or is it just big?</li><li>What is the licensing nuance: plain OFL, OFL with a Reserved Font Name, Apache, or UFL?</li><li>Is there an upstream repository to file issues against when a glyph turns out to be wrong?</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="fontsource-api.html">Fontsource REST API</a></li><li><a href="google-fonts-repository.html">The google/fonts repository</a></li><li><a href="evaluating-catalog-metadata.html">Evaluating catalog metadata</a></li><li><a href="../selection/choosing-body-typefaces.html">Choosing body typefaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

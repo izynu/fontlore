@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Variable Font Licensing - Fontlore</title>
+<meta name="description" content="Licensing notes specific to variable fonts: whether variable and static builds differ legally, what counts as a modification when you generate instances or s...">
+<meta property="og:title" content="Variable Font Licensing - Fontlore">
+<meta property="og:description" content="Licensing notes specific to variable fonts: whether variable and static builds differ legally, what counts as a modification when you generate instances or s...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>Variable Font Licensing</h1>
+<p>What this reference covers: Licensing notes specific to variable fonts: whether variable and static builds differ legally, what counts as a modification when you generate instances or subsets, how commercial foundries price variable families, and the pitfalls teams hit when shipping variable builds.</p>
+<p>Variable fonts complicate licensing less than people fear and more than people hope. The file format changes; most license logic does not. The interesting cases are instances, subsets, and commercial pricing.</p>
+<h2>The baseline: same license, different artifact</h2>
+<ul><li>For open fonts, the license covers the font software regardless of file format: an OFL variable font and its OFL static siblings are the same grant.</li><li>A variable font is one file with many instances inside; licensing it is not &quot;licensing all the styles&quot; in a way that differs from buying the static set under an open license.</li><li>Google Fonts serves variable builds under the same OFL terms as static builds; nothing special is happening legally.</li><li>Commercial foundries treat variable builds as a licensing product decision: some include VF files in standard licenses, some price them as a superset; check the family&#x27;s license options rather than assuming either way.</li><li>When a foundry&#x27;s license text predates variable fonts, the silence is ambiguity, not permission; modern foundry pages usually state VF coverage explicitly.</li><li>Record in the manifest whether the deployed file is a VF or statics; audits ask, and the file&#x27;s fvar table is the answer.</li></ul>
+<h2>When instances become modifications</h2>
+<ul><li>Generating static instances from an open variable font (freezing weights with a tool) creates derived font software.</li><li>If you keep the instances internal (render your app&#x27;s weights at build time), you are using, not redistributing; open license obligations are minimal.</li><li>If you redistribute the instances publicly (a repo, an npm package, a design resource), you are distributing Modified Versions: the OFL requires the license, the notices, and a rename if the font reserves names.</li><li>Subsetting is the same story: subsetting a variable font for web use and serving it privately is use; redistributing the subset publicly is distribution of a modification.</li><li>Practical rule of thumb: private pipelines are free; public redistribution inherits the full OFL obligations.</li><li>Instancing tools vary in how they write name tables; validate the output&#x27;s name records before treating the instance as final.</li><li>Keeping a private instance pipeline has a maintenance cost: regenerated instances must be re-validated on every upstream update, which is a recurring review task, not a one-time setup.</li></ul>
+<h2>Web serving and CDNs</h2>
+<ul><li>Serving variable fonts from your origin under an open license is ordinary use; scope worries from commercial webfont licensing do not apply.</li><li>Commercial variable fonts: webfont licenses cover the variable file the same as statics in most modern foundry licenses, but older license texts predate variable fonts; when the text is silent, ask.</li><li>Pageview tiers do not change because the file is variable; the tiers count pages, not files.</li><li>Some foundries license per-axis ranges (for example, weight range only versus full opsz range); verify which portions of the VF your license covers.</li><li>Serving a VF with more axes than the license covers is a scope breach even if the UI uses only the covered axes; trim the file or extend the grant.</li><li>The pageview tier question interacts with unicode-range subsetting: sliced variable files are still the same license object, sliced for delivery, not for rights.</li></ul>
+<h2>Commercial pricing patterns</h2>
+<ul><li>Many foundries price a variable font as equivalent to (or slightly above) the full static family, reflecting that it contains everything.</li><li>Some price by style count within the VF&#x27;s range; buying a VF and using two instances can cost more than buying two static styles, which makes the static route rational for narrow needs.</li><li>Enterprise deals increasingly prefer variable builds for their file-management simplicity; negotiate the VF explicitly in the contract rather than assuming it rides along.</li><li>Trial and early-access variable fonts carry the same trial restrictions as statics; VF trials are still trials.</li><li>When comparing static versus VF pricing, compare entitlements, not file counts: the VF may include weights and axes your static purchase would never cover.</li><li>Enterprise agreements increasingly treat VF files as the default deliverable; ask for explicit VF language even when the salesperson says it is included.</li></ul>
+<h2>Technical pitfalls with licensing consequences</h2>
+<ul><li>Instancing tools sometimes alter name tables; check that redistributed instances carry correct license metadata and renamed families where RFNs apply.</li><li>Subsetting can drop the license-friendly name table entries if done crudely; validate after processing.</li><li>Repackaging variable fonts into formats (woff2) is still redistribution of the font software when published; the same obligations apply as for any file.</li><li>App bundles: a VF inside an app is embedding; the same app-licensing logic applies as for statics, with open fonts staying simple.</li><li>Version pinning: variable fonts update as one file, so a dependency bump can change every instance at once; treat VF updates as family-wide design changes in review.</li><li>Subsetting variable fonts interacts with the license question: a subset for private serving is use, while publishing the subset is modification, and the subset may also drop feature tables the license assumed you would keep.</li><li>Keep the processing recipe (tools, flags, versions) in the manifest; license questions about processed files are answerable only with the recipe.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Record whether each adopted family is used as a VF, as instanced statics, or both, and keep the pipeline documented.</li><li>For open fonts: note RFN status before any public instance or subset redistribution; rename when required.</li><li>For commercial fonts: confirm the license covers the VF explicitly, including axis coverage if ranges are licensed separately.</li><li>Validate processed files (instanced, subsetted, converted) for intact license and name metadata before publishing anywhere.</li><li>Treat VF dependency upgrades as design-visible changes in the release process.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Assuming a public npm package of self-instanced statics needs no license attention; it is a Modified Version distribution.</li><li>Subsetting an RFN font for a public repo without renaming.</li><li>Buying a static style set and shipping the VF file in an app because &quot;it came with the download&quot;.</li><li>Ignoring per-axis commercial licensing and using axes the entitlement does not cover.</li><li>Letting one VF upgrade silently change dozens of rendered weights in production.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Public redistribution of any processed open font: run the OFL obligations checklist (license, notices, rename on RFN) before publishing.</li><li>Commercial VF in production: explicit VF coverage in the license or a written foundry answer; silence is not coverage.</li><li>Pipeline choice (instance at build time vs ship the VF): a technical decision, not a licensing one, for open fonts; for commercial fonts, check both paths&#x27; coverage.</li><li>Any doubt about whether processing counts as modification: it does; act accordingly.</li></ul>
+<h2>Comparison table: artifacts and obligations</h2>
+<table><thead><tr><th>Artifact</th><th>License view</th><th>Obligations when public</th></tr></thead><tbody><tr><td>Unmodified VF served from your origin</td><td>Use of the font</td><td>None beyond license retention for open fonts</td></tr><tr><td>Unmodified VF bundled in an app</td><td>Embedding</td><td>App-licensing logic for commercial; retention for open</td></tr><tr><td>Static instances generated at build time, kept private</td><td>Use</td><td>None</td></tr><tr><td>Instances or subsets published (npm, repo, template)</td><td>Modified Version distribution</td><td>OFL license, notices, rename if RFN</td></tr><tr><td>Subset with trimmed GSUB/GPOS</td><td>Modified Version</td><td>Same as any published modification</td></tr><tr><td>woff2 conversion published</td><td>Modified Version</td><td>Same obligations; conversion changes nothing legally</td></tr><tr><td>Commercial VF with licensed axis ranges</td><td>Contract scope</td><td>Use only the axes and ranges entitled</td></tr></tbody></table>
+<p>The table&#x27;s core message: the variable format does not create a new licensing category; the modification and redistribution questions are the same as they ever were, with more ways to modify.</p>
+<h2>Worked example: the public npm package</h2>
+<p>A platform team maintains a public npm package of webfonts for partner sites. One family is an open variable font with a declared Reserved Font Name. The walk:</p>
+<ul><li>The team&#x27;s first instinct was to publish instanced statics (400, 500, 700) generated from the VF; a check against the license showed that publishing instances is publishing Modified Versions.</li><li>The pipeline was rebuilt around three compliant options: publish the unmodified VF as-is (no rename needed), publish renamed instances with the OFL and attribution, or point users to the upstream package and vendor nothing.</li><li>The team chose shipping the unmodified VF: one file, no rename, no maintenance of a derivative, and partners get continuous weights.</li><li>Size was checked against the alternative: the VF was acceptable for the use case, and the subsetting that would have saved kilobytes would have created a rename obligation for marginal gain.</li><li>The package&#x27;s README documents the license, the upstream project, and the decision not to modify; the manifest mirrors it.</li><li>When the upstream font released a new version, the team diffed axes and metrics before bumping, because one file updates every partner at once.</li><li>The decision record ends with the general rule the team adopted: never publish a modified open font under its reserved name, and prefer not modifying at all.</li><li>Size verification was done with real network numbers, not the file&#x27;s disk size; the served woff2 was the number that mattered.</li><li>The package also ships the upstream license file and a provenance note, so partner audits find their answers inside the package instead of filing questions.</li><li>When a partner requested a trimmed subset, the team declined to publish it and instead documented the private-subsetting recipe the partner could run themselves; the line between use and distribution stayed clean.</li></ul>
+<h2>Questions to ask</h2>
+<ul><li>Does our license explicitly cover the variable file, or does the text predate variable fonts and stay silent?</li><li>If the foundry licenses axis ranges separately, which ranges are we entitled to, and are we using only those?</li><li>Are our instancing and subsetting tools preserving the name table and license metadata we depend on?</li><li>Does any public surface (npm, CDN, template marketplace) receive modified artifacts of open fonts?</li><li>When the VF updates upstream, what is our review process for a file that changes every rendered weight at once?</li><li>For commercial VFs in apps, does the embedding grant name the variable file explicitly?</li></ul>
+<h2>Field notes</h2>
+<ul><li>Foundry pricing for variable families varies more than any other licensing dimension: full-family pricing, per-style pricing, and per-axis pricing all exist; read the family&#x27;s actual license options page before comparing quotes.</li><li>Per-axis licensing is the case that catches teams: a license covering wght does not automatically cover wdth or custom axes.</li><li>VF trials are still trials; the format does not soften restrictions.</li><li>A VF dependency bump is a design event wearing a version number; route it through the same review as any family-wide change.</li><li>When packaging open VFs, unmodified shipping is almost always simpler than instancing, and it keeps you outside the RFN conversation entirely.</li><li>If your pipeline instances VFs at build time, log the tool and version in the manifest; instancing behavior differs between tool releases, and reproducibility is part of license hygiene.</li><li>For open VFs with RFNs, the cheapest compliant public artifact is the unmodified file; every processing step you add moves you toward the rename conversation.</li><li>Licenses that name axis ranges should be checked at renewal; entitlements written before an axis existed may not cover it.</li><li>The registry of truths for a VF project is short: the fvar table (what axes exist), the license (what axes are granted), and the manifest (what we shipped). When the three disagree, the license wins.</li></ul>
+<h2>Quick reference: the compliance walk for processed VFs</h2>
+<ol><li>Classify the artifact: unmodified file, private instance, or public derivative.</li><li>Private artifact: document the pipeline and move on.</li><li>Public derivative of an open font: check RFNs, rename if declared, keep the OFL and attribution.</li><li>Public artifact of a commercial font: confirm the license covers the artifact class explicitly, in writing.</li><li>Validate name tables and license metadata after every processing step.</li><li>Record tools, versions, and recipes in the manifest so the walk is repeatable.</li></ol>
+<p>Teams that internalize the walk stop treating variable fonts as a licensing mystery; the format added axes, not exemptions.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="ofl-reserved-font-names.html">OFL reserved font names</a></li><li><a href="open-font-license.html">Open Font License in practice</a></li><li><a href="license-families-compared.html">License families compared</a></li><li><a href="../technical/variable-fonts-and-axes.html">Variable fonts and axes</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

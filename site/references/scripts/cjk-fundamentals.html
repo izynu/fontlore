@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>CJK Fundamentals - Fontlore</title>
+<meta name="description" content="The structural facts of Chinese, Japanese, and Korean typography that control font decisions: glyph counts and file sizes, Han unification and the JP/KR/SC/T...">
+<meta property="og:title" content="CJK Fundamentals - Fontlore">
+<meta property="og:description" content="The structural facts of Chinese, Japanese, and Korean typography that control font decisions: glyph counts and file sizes, Han unification and the JP/KR/SC/T...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Scripts</span></nav>
+<article class="doc">
+<h1>CJK Fundamentals</h1>
+<p>What this reference covers: The structural facts of Chinese, Japanese, and Korean typography that control font decisions: glyph counts and file sizes, Han unification and the JP/KR/SC/TC variant problem, how Noto CJK is organized, subsetting strategies, and when webfonts are actually viable versus system font stacks.</p>
+<h2>Glyph counts and why size dominates</h2>
+<p>CJK fonts are an order of magnitude larger than Latin fonts, and every decision follows from that:</p>
+<ul><li>Japanese: JIS X 0208 defines 6,355 kanji; practical fonts include more, and full releases run 20,000 glyphs or more once kana and Latin are added.</li><li>Simplified Chinese: GB2312 defines 6,763 hanzi; the modern common-use table lists 3,500 for everyday literacy.</li><li>Traditional Chinese: Big5-era sets cover roughly 13,000 characters.</li><li>Korean: Hangul syllables number 11,172; a complete font covers all of them plus Hanja if desired. Hangul-only fonts are far smaller than hanzi fonts.</li></ul>
+<p>A full CJK weight is measured in megabytes per weight, not kilobytes. Nothing else in web typography has this cost structure, so CJK strategy is a size strategy first.</p>
+<h2>Han unification and the variant problem</h2>
+<p>The same Unicode codepoint can have regionally different glyph shapes: characters like the one for &quot;bone&quot; or &quot;straight&quot; are drawn differently in Japanese, Simplified Chinese, Traditional Chinese, and Korean conventions. Consequences:</p>
+<ul><li>You cannot buy one &quot;CJK font&quot;; you choose per-language faces. Noto Sans JP, Noto Sans KR, Noto Sans SC, and Noto Sans TC are separate families, not instances of one font.</li><li>Language tags matter: <code>lang=&quot;ja&quot;</code>, <code>lang=&quot;zh-Hans&quot;</code>, <code>lang=&quot;zh-Hant&quot;</code>, <code>lang=&quot;ko&quot;</code> let shaping and font selection do the right thing, and let the locl feature select regional forms inside multi-variant fonts.</li><li>Korean text mixes Hangul with spacing-based word separation; Japanese adds kana and different punctuation widths; Chinese uses fullwidth punctuation throughout. These texture differences mean a &quot;neutral&quot; choice rarely exists.</li></ul>
+<h2>Noto CJK structure</h2>
+<p>The Noto CJK releases are the open-source backbone of the ecosystem:</p>
+<ul><li>Regional families: Noto Sans CJK and Noto Serif CJK exist as SC, TC, JP, KR, and HK regional builds, sharing one design system with region-correct forms.</li><li>Google Fonts serves them as separate per-region families (Noto Sans JP, Noto Sans SC, and so on), each with its own weights.</li><li>Desktop distribution often packages several regions in one OpenType Collection (OTC) file, which is convenient for installed fonts but irrelevant to the web.</li><li>Weights: the CJK families have unusually complete weight ranges (Light through Black), which matters because faux bold in CJK looks particularly bad.</li></ul>
+<h2>Subsetting: how the web actually serves CJK</h2>
+<ul><li>Google Fonts CSS for CJK families ships dozens to over a hundred unicode-range slices; the browser downloads only the slices containing characters actually used on the page. A page with 200 unique hanzi transfers a few slices, not megabytes. This is why Google-hosted CJK webfonts are viable while self-hosting naively is not.</li><li>Self-hosting requires a deliberate subset: choose a frequency list (3,500 common hanzi for SC; 2,136 joyo kanji for Japanese; the common-use Hangul syllables for KR), then generate with pyftsubset and serve as woff2. For a UI, subsetting to the actual strings (app copy, navigation, product names) is often the winning move because the set is small and stable.</li><li>User-generated content breaks fixed subsets: if users can type arbitrary text, plan for system-font fallback of uncovered characters, and make that fallback look intentional (see the mixed-script reference).</li><li>Keep the mapping of subset to codepoints documented; a subset that silently grows is a maintenance trap.</li></ul>
+<h2>When webfonts are viable</h2>
+<ul><li>Viable: headings and brand moments (small, fixed strings); dynamic headings via unicode-range slicing from a hosted service; icons and numerals; campaigns where the copy is known.</li><li>Usually not viable as primary choice: body text in a full range of characters, especially for content sites with UGC or search results. The size cost and the fallback mismatch outweigh brand benefits.</li><li>Practical default stacks (system fonts, no download):</li><li>Simplified Chinese: &quot;PingFang SC&quot; (Apple), &quot;Microsoft YaHei&quot; (Windows), &quot;Noto Sans CJK SC&quot; (Android, Linux).</li><li>Japanese: &quot;Hiragino Kaku Gothic ProN&quot; (Apple), &quot;Yu Gothic&quot; and &quot;Meiryo&quot; (Windows), &quot;Noto Sans CJK JP&quot; (Android, Linux).</li><li>Korean: &quot;Apple SD Gothic Neo&quot; (Apple), &quot;Malgun Gothic&quot; (Windows), &quot;Noto Sans CJK KR&quot; (Android, Linux).</li><li>Serif defaults for long reading exist per platform too (Songti/SimSun traditions, Hiragino Mincho, Batang); test before promising a serif look.</li></ul>
+<h2>Layout facts that surprise Latin-trained teams</h2>
+<ul><li>Punctuation is fullwidth: a Chinese comma occupies a full em square, which changes measure calculations and wrapping.</li><li>Line breaking can occur between any two hanzi; there are no spaces to break at. Overflow and rag control work differently; avoid text-align: justify habits from Latin except where CJK convention expects flush edges.</li><li>Line-height conventions run taller than Latin body text; 1.7 to 2.0 is common for CJK reading comfort.</li><li>Vertical writing (writing-mode: vertical-rl) is a real requirement for some Japanese contexts but is complex on the web; treat it as a project of its own, not a CSS flourish.</li><li>Bold in CJK: use a real weight; synthetic bold smears strokes and is instantly recognizable.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Self-hosting a full CJK webfont for body text and wondering why the page weighs several megabytes.</li><li>Choosing Noto Sans SC for a Japanese page (or vice versa); the regional forms are wrong for the audience even though most characters &quot;work&quot;.</li><li>Serving CJK text without language tags, so mixed Latin/CJK lines pick inconsistent variant forms.</li><li>Using synthetic bold because only two weights were loaded.</li><li>Ignoring fullwidth punctuation in width calculations and measure settings.</li><li>Subsetting to the homepage copy and shipping the same subset to a knowledge base with arbitrary text.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Marketing or product site with fixed copy: hosted CJK webfont with unicode-range slicing for headings, system stack for body.</li><li>Web app with localized UI: subset to UI strings, ship woff2, fall back to the system stack per language.</li><li>Content platform with UGC: system stack for body; brand webfont only where strings are controlled.</li><li>Korean-only service: Hangul-complete fonts are affordable enough that webfonts are realistic for headings and even UI text.</li><li>Long-form CJK reading: system serif stacks or hosted serif webfonts for headings; keep line-height generous and measures around 35 to 45 characters.</li></ul>
+<h2>Comparison table</h2>
+<p>The four regional Noto families next to the system fonts they fall back to. Weights shown are the Google Fonts ranges:</p>
+<table><thead><tr><th>Region</th><th>Webfont family</th><th>Weights</th><th>macOS default</th><th>Windows default</th><th>Android/Linux default</th></tr></thead><tbody><tr><td>Japanese</td><td>Noto Sans JP</td><td>100-900</td><td>Hiragino Kaku Gothic ProN</td><td>Yu Gothic, Meiryo</td><td>Noto Sans CJK JP</td></tr><tr><td>Simplified Chinese</td><td>Noto Sans SC</td><td>100-900</td><td>PingFang SC</td><td>Microsoft YaHei</td><td>Noto Sans CJK SC</td></tr><tr><td>Traditional Chinese</td><td>Noto Sans TC</td><td>100-900</td><td>PingFang TC</td><td>Microsoft JhengHei</td><td>Noto Sans CJK TC</td></tr><tr><td>Korean</td><td>Noto Sans KR</td><td>100-900</td><td>Apple SD Gothic Neo</td><td>Malgun Gothic</td><td>Noto Sans CJK KR</td></tr></tbody></table>
+<p>Reading the table:</p>
+<ul><li>Serif counterparts exist for every row (Noto Serif JP, KR, SC, and TC, roughly 200-900), and system serifs follow the same regional split: Hiragino Mincho for Japanese, the Songti and SimSun traditions for Chinese, Batang for Korean. Test before promising a serif look, because Windows serif defaults are inconsistent.</li><li>Stack-order rule: put the Latin brand face before the CJK face. CJK system fonts include Latin glyphs of their own and will happily draw your English copy if they come first in the list.</li><li>The regional families share one design skeleton but differ in conventions for shared codepoints; substituting SC for JP (or vice versa) changes stroke forms even when the text &quot;renders fine&quot;.</li><li>On desktop, Noto CJK also ships as an OpenType Collection bundling all regions plus Noto Sans Mono CJK; that packaging is irrelevant on the web, where only per-region families and unicode-range slices exist.</li></ul>
+<h2>Worked example</h2>
+<p>A Japanese e-commerce storefront with fixed marketing copy and dynamic product data:</p>
+<ol><li>Requirements: Japanese-first, English secondary, a Latin brand sans already chosen, marketing headlines are fixed strings, product titles and descriptions arrive from a feed.</li><li>Body strategy: system stack (Hiragino Kaku Gothic ProN, Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif) - zero download cost and native reading comfort.</li><li>Heading strategy: Noto Sans JP 500 and 700 served through the hosted CSS, which slices the family into unicode-range files; a headline with a few dozen unique kanji pulls a couple of slices, not megabytes.</li><li>Language tags: lang=&quot;ja&quot; on the Japanese locale so regional forms and punctuation behavior resolve correctly; the English locale keeps its own tree.</li><li>Metrics: body line-height 1.8, measure around 35 to 45 characters, and measure math that treats fullwidth punctuation as a full em wide, or line lengths drift from the design.</li><li>Weights: 400, 500, and 700 loaded as real weights; synthetic bold was rejected after a side-by-side showed smeared strokes on dense kanji.</li><li>Dynamic-text guard: the product feed is sampled for rare kanji; uncovered characters fall back to the system stack, which was tuned so the weight seam is not visible at body sizes.</li><li>Punctuation audit: price strings, dates, and address blocks are checked for fullwidth forms and consistent spacing conventions.</li><li>Regional-form spot check: characters whose Japanese and mainland forms differ are rendered to confirm the JP family is actually serving them.</li><li>Cross-browser pass: Chromium, Firefox, and Safari verified, because the CJK fallback chain behaves differently once the webfont slices miss a character.</li></ol>
+<p>Outcome: a payload of a few slices on typical pages, native body comfort, brand-consistent headings, and no megabyte download anywhere in the waterfall.</p>
+<h2>Field notes</h2>
+<ul><li>The classic silent bug is loading Noto Sans SC for a Japanese site because it sat first in a shared stack; the text renders, but the forms are mainland conventions. Detect it with characters known to differ across regions.</li><li>Korean-only services are the affordable CJK case: Hangul-complete faces are far smaller than hanzi-bearing faces, so webfonts are realistic beyond headings.</li><li>Standard subset targets worth memorizing: 2,136 joyo kanji for Japanese, 3,500 common-use hanzi for Simplified Chinese, all 11,172 Hangul syllables for Korean.</li><li>Fullwidth digits and letters (the U+FF00 block) leak in from Japanese and Chinese office documents; a content scan for fullwidth Latin and digits catches copy-paste artifacts before they render oddly.</li><li>pyftsubset is the self-hosting path: pick a frequency list, subset, serve woff2, and document the covered codepoints; a subset that silently grows is a maintenance trap.</li><li>Vertical writing (writing-mode: vertical-rl) is real Japanese typography, not a CSS flourish; treat it as a scoped project with its own testing if the design requires it.</li><li>Justify habits from Latin do not transfer; CJK breaks between any two characters, and the punctuation-compression rules browsers approximate are part of why ragged edges are the safe default.</li><li>If a design needs monospace CJK, plan for a system mono plus a per-region CJK fallback; Noto Sans Mono CJK exists only in desktop packaging, not as a webfont.</li><li>Font-feature behavior differs per region: some CJK conventions are controlled by locl and language tags, so a page missing lang attributes can mix conventions inside one paragraph.</li><li>Text with furigana (ruby) needs the HTML ruby element and fonts whose metrics tolerate the annotation; most UI CJK faces handle it, but test dense body text.</li><li>Hong Kong is its own regional case: Noto Sans HK is a separate Google Fonts family for Traditional Chinese as used in Hong Kong, and an HK-first audience deserves that build rather than TC by default.</li><li>Self-hosting a variable CJK file means shipping megabytes; the slicing approach is what makes either the hosted CSS or a homegrown unicode-range split viable.</li><li>Large numbers in Japanese and Chinese prose lean on four-digit-based units (man and oku; wan and yi); let the i18n layer decide between plain digits and unit-based rendering, and keep table columns in plain formatted digits.</li><li>Korean jamo can arrive decomposed; NFC normalization composes conjoining jamo into precomposed syllables, so run the same NFC pipeline you use for Latin over Korean content.</li><li>Some platform CJK fonts render thin weights poorly at small sizes and in dark UI; bumping the weight one step for CJK text is a common, defensible adjustment.</li><li>Weights inside Japanese system fonts can carry unusual names across OS versions; when pinning a system stack, verify the exact family and weight names on each OS release you support.</li><li>A CJK font&#x27;s built-in Latin is serviceable but characterful; if the brand Latin must survive inside CJK pages, the stack order rule does the work, and a quick mixed-line proof confirms it.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Language tags: lang=&quot;ja&quot;, lang=&quot;zh-Hans&quot;, lang=&quot;zh-Hant&quot;, lang=&quot;ko&quot; - set them, because variant selection and punctuation behavior depend on them.</li><li>Sizes to remember: 6,355 JIS kanji; 2,136 joyo kanji; 6,763 GB2312 hanzi; 3,500 common-use hanzi; 11,172 Hangul syllables.</li><li>Reading metrics: line-height 1.7-2.0, measure 35-45 characters, no text-align: justify by default.</li><li>Weight rule: load real weights (the Noto CJK ranges run Light through Black); never ship synthetic bold to CJK text.</li><li>Delivery: hosted CSS with unicode-range slicing for anything dynamic; pyftsubset plus woff2 for fixed app strings; full files only for installed or bundled contexts.</li><li>System stacks: keep the per-region default table inside your tokens file; it is the path every real user hits when slices miss or scripts are off.</li><li>Regional-form test: include characters whose JP, SC, TC, and KR forms differ so a wrong-family substitution is visible rather than theoretical.</li><li>Measurement: count fullwidth punctuation as full em when computing measure; a Latin-calibrated character count is wrong for CJK lines.</li><li>Inline language: when the document lang is en but a run is Japanese, wrap the run in span lang=&quot;ja&quot; so variant selection still applies at the character level.</li><li>Loading: font-display: swap is the sane default for CJK slices; blocking render on a large CJK file is worse than a brief fallback flash.</li><li>Serif caveat: system serif CJK is the least consistent path across platforms; prove it per platform before designing around a serif look.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../technical/subsetting-and-performance.html">Subsetting and performance</a></li><li><a href="../technical/webfont-formats.html">Webfont formats</a></li><li><a href="mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="testing-multilingual-coverage.html">Testing multilingual coverage</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

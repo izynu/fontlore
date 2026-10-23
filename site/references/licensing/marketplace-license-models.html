@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Marketplace License Models - Fontlore</title>
+<meta name="description" content="How the major font marketplaces and platforms structure their licensing: Fontspring&#x27;s perpetual model, MyFonts and Monotype&#x27;s marketplace and subscription ap...">
+<meta property="og:title" content="Marketplace License Models - Fontlore">
+<meta property="og:description" content="How the major font marketplaces and platforms structure their licensing: Fontspring&#x27;s perpetual model, MyFonts and Monotype&#x27;s marketplace and subscription ap...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>Marketplace License Models</h1>
+<p>What this reference covers: How the major font marketplaces and platforms structure their licensing: Fontspring&#x27;s perpetual model, MyFonts and Monotype&#x27;s marketplace and subscription approaches, Adobe Fonts&#x27; streaming subscription, and Fontstand&#x27;s rental model. It maps each to the situations where it is the right buy.</p>
+<p>The same family can be bought four different ways with four different sets of obligations. Choosing the model is as consequential as choosing the font.</p>
+<h2>Fontspring: perpetual first</h2>
+<ul><li>Fontspring built its marketplace on perpetual licenses with no subscription or leasing pressure, and its license documents are unusually readable, with explicit scope tables.</li><li>Licenses are one-time purchases covering defined scope: desktop user counts, web pageview tiers, app tiers, and combinations.</li><li>Free trial fonts are available for most catalog entries, letting teams test before buying; trial terms still restrict production use.</li><li>The model suits teams that want permanence and predictable cost: buy once, deploy, audit simply.</li><li>Its Matcherator tool also makes Fontspring an identification destination, which shortens the path from &quot;what is this font&quot; to &quot;license it&quot;.</li></ul>
+<h2>MyFonts and Monotype</h2>
+<ul><li>MyFonts is the largest font marketplace, selling perpetual desktop licenses and pageview-tiered webfont licenses across hundreds of foundries.</li><li>Monotype, which owns MyFonts (and Fonts.com, Linotype, ITC), operates the Monotype Fonts subscription platform: broad library access for a recurring fee, aimed at enterprises.</li><li>The marketplace path is best for specific identified fonts; the subscription path is best when many teams need many fonts with administrative support.</li><li>Subscription fonts are usable while the subscription is active; budget continuity becomes a design-system dependency, and lapse means deactivation.</li><li>MyFonts is also where WhatTheFont identifications land, which funnels a lot of purchases; verify that the identified font&#x27;s foundry listing matches what the marketplace sells.</li></ul>
+<h2>Adobe Fonts</h2>
+<ul><li>Adobe Fonts bundles a large library into Creative Cloud subscriptions: fonts stream to desktop via the Creative Cloud app and serve on the web through Adobe-hosted kits.</li><li>You never possess files in the traditional sense; activation is account-tied, and fonts deactivate when the subscription lapses.</li><li>Web use goes through Adobe&#x27;s hosting; self-hosting the font files is not permitted, which constrains some architectures.</li><li>Contractors without seats cannot activate fonts, which complicates mixed teams.</li><li>The model suits organizations already inside Creative Cloud that need breadth and zero procurement friction; it fits poorly for permanent, self-hosted, or contractor-heavy scenarios.</li><li>Adobe Fonts includes both classic foundries and its own commissions; license scope is uniform inside the subscription and disappears outside it.</li><li>Because activation is account-tied, shared accounts are a terms problem and a security problem at once; the fix is seats, not shared logins.</li></ul>
+<h2>Fontstand</h2>
+<ul><li>Fontstand rents desktop fonts month to month, with free trials of full fonts, across many independent foundries.</li><li>Rental desktop rights mean files installed on rented terms: the font must be removed when the rental ends, which is an operational task, not a formality.</li><li>Fontstand&#x27;s trial month is full-quality and free, which makes it the honest way to test a retail font in real work before buying it anywhere.</li><li>Rental fits pitches, campaigns, and experimental brand directions: full retail quality without a large upfront buy.</li><li>Costs accumulate; a font rented forever costs more than a perpetual purchase, so convert to purchase when a font becomes permanent.</li><li>Rental is desktop-focused; web and app needs route to the foundries&#x27; own licenses.</li><li>The free trial month is genuinely useful for decision-making, but trial access still is not production licensing.</li></ul>
+<h2>Comparing the models</h2>
+<ul><li>Permanence: perpetual (Fontspring, MyFonts desktop, foundry-direct) wins; subscriptions and rentals require continued payment.</li><li>Breadth: subscriptions win (Adobe Fonts, Monotype Fonts); nobody buys 500 perpetual families casually.</li><li>Audit simplicity: perpetual with clear scope tables wins; streaming licenses complicate contractor and CI stories.</li><li>Budget shape: perpetual is capex-like (lumpy, one-time), subscription and rental are opex-like (smooth, recurring); finance teams have opinions about this.</li><li>Risk: subscription lapse deactivates fonts; perpetual lapses nothing; rental lapses when you stop paying.</li><li>Contractor access: perpetual seats are purchased per person; subscriptions cover seats while active; rentals are per account. Mixed teams should price the contractor overhead before choosing.</li><li>Evidence for audits: perpetual purchases produce entitlement documents; subscriptions produce account states; rentals produce account states. Only the first is proof that survives a vendor relationship ending.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Classify the need: one known family, broad team access, or temporary campaign.</li><li>For one known family: compare foundry-direct and marketplace perpetual prices for the full scope (desktop plus web plus app).</li><li>For broad access: model subscription cost against the 20 families the teams actually use.</li><li>For temporary work: rental or trial, with a written end date and a conversion plan.</li><li>Record model, vendor, entitlements, and renewal dates in the license inventory.</li><li>Put subscription and rental lapse dates in the same calendar as product launches, so nothing deactivates during a campaign.</li><li>Re-price annually: a subscription that exceeds the value of the faces actually used is a purchase decision waiting to happen.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Buying a subscription for one font, or a perpetual license for a need that is really a 200-font enterprise problem.</li><li>Building a brand on Adobe Fonts-activated fonts and discovering the deactivation risk when the org restructures.</li><li>Renting a font for two years without noticing a perpetual license would have been cheaper after month eight.</li><li>Assuming marketplace license summaries across vendors are equivalent; scope tables differ per foundry and per listing.</li><li>Ignoring renewal and lapse dates until the design system breaks in production.</li><li>Buying &quot;desktop&quot; from a marketplace and assuming webfonts are included; the licenses are separate products on every major platform.</li><li>Treating Google Fonts as a vendor with support; it is a catalog with a license per family, and the support channel is the repository.</li><li>Mixing models for one family across products (rental for the site, perpetual for the app) without recording which entitlement covers which surface.</li><li>Choosing a subscription because the sticker looks smaller, then renewing for five years; total cost of ownership is the comparison, not the monthly price.</li><li>Forgetting that marketplace discounts and bundles change the license tier you actually receive; the discounted scope is the scope.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Permanent brand or product foundation: perpetual, foundry-direct when possible.</li><li>Need breadth across many teams with admin support: enterprise subscription, with exit planning.</li><li>Short campaign or undecided direction: rental or trial with a scheduled decision point.</li><li>Any model: the license document attached to the entitlement is the contract; summaries are marketing.</li><li>When two models cost the same, prefer the one that leaves files and entitlement documents in your hands.</li><li>Re-evaluate the model whenever usage outgrows it; the model that fit a three-person studio rarely fits a twenty-person team at the same price shape.</li><li>For brand-critical families, prefer the model with the clearest continuity story: who holds the license if the vendor disappears?</li><li>The vendor table is worth re-reading annually; marketplaces merge, subscriptions rebrand, and rental catalogs rotate, and your register should describe the vendor that exists today.</li><li>When a stakeholder asks why the team does not just subscribe to everything, the answer is the audit column: entitlements you hold beat entitlements you rent whenever continuity matters.</li></ul>
+<h2>Quick reference: the model decision</h2>
+<ol><li>Permanent and brand-critical: perpetual, foundry-direct, entitlement documents filed.</li><li>Broad team access to many faces: enterprise subscription with an exit clause, or open packages where licenses allow.</li><li>Temporary, exploratory, or campaign-bound: rental or trial with a written end date and a conversion decision date.</li><li>Anything open-licensed: self-host via packages or vendored files; no purchase at all.</li><li>Whatever the model: one register row per entitlement, with expiry, scope, and evidence.</li></ol>
+<p>The decision takes minutes when the use case is named honestly; it takes months when the use case is &quot;we will figure it out later&quot;.</p>
+<h2>Comparison table: the vendors</h2>
+<table><thead><tr><th>Vendor</th><th>Model</th><th>Perpetual files</th><th>Web serving</th><th>Expiry risk</th><th>Best fit</th></tr></thead><tbody><tr><td>Fontspring</td><td>Marketplace, perpetual EULAs</td><td>Yes, you keep files</td><td>Via perpetual web tiers</td><td>None</td><td>Permanent deployments with clean scope tables</td></tr><tr><td>MyFonts</td><td>Marketplace (Monotype)</td><td>Yes, per purchase</td><td>Pageview tiers</td><td>None</td><td>One-off identified families</td></tr><tr><td>Monotype Fonts</td><td>Enterprise subscription</td><td>No</td><td>Per terms</td><td>Subscription lapse</td><td>Large orgs needing breadth and admin</td></tr><tr><td>Adobe Fonts</td><td>Creative Cloud streaming</td><td>No (activation)</td><td>Adobe-hosted kits only</td><td>Subscription lapse</td><td>Orgs already inside Creative Cloud</td></tr><tr><td>Fontstand</td><td>Desktop rental</td><td>No</td><td>Via foundries</td><td>Rental end</td><td>Pitches, campaigns, trials of retail quality</td></tr><tr><td>Foundry direct</td><td>Per foundry</td><td>Usually yes</td><td>Per foundry</td><td>Per contract</td><td>Brand-critical families, custom terms</td></tr><tr><td>Google Fonts</td><td>Open catalog</td><td>Yes (open licenses)</td><td>Free CDN or self-host</td><td>None</td><td>Defaults, multilingual coverage</td></tr></tbody></table>
+<p>The table is a decision aid, not a ranking; the same family can appear in several rows, and the row you choose determines your audit obligations more than the design does.</p>
+<h2>Worked example: a twenty-person team&#x27;s year</h2>
+<p>A twenty-person product team runs a brand on one commercial grotesk, dozens of open faces, and a rotating cast of campaign fonts. The year in licensing decisions:</p>
+<ul><li>The brand grotesk is bought foundry-direct as a perpetual bundle: desktop seats for the design team, a webfont tier, and an app tier, all in one negotiation that included a written answer about the upcoming TV app.</li><li>Open faces (Inter, JetBrains Mono, Literata) are vendored via Fontsource packages; no purchase, version-pinned, license files in the packages.</li><li>Two campaign microsites in Q4 rent display fonts on Fontstand with a written end date; both convert to perpetual purchases when one campaign becomes evergreen, at the month-eight mark where rental cost crosses purchase price.</li><li>A designer proposes an Adobe Fonts-activated family for a side project; it is rejected for production precisely because the deactivation risk and the no-self-hosting rule do not fit the pipeline, and the rejection is recorded.</li><li>One MyFonts purchase covers a specialty face the foundry sells only through marketplaces; the entitlement PDF is filed with the same rigor as the direct purchase.</li><li>The year ends with three kinds of records in the register: perpetual entitlements, package versions, and one rental with a decision date; the audit took forty minutes.</li><li>The lesson the team wrote down: the model follows the use. Permanence bought perpetual, breadth used open packages, and temporariness rented.</li><li>The register stores one row per entitlement regardless of model, with a &quot;dies when&quot; field that forced the team to answer the expiry question at purchase time.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Marketplace license summaries are written per listing, and foundry EULAs differ underneath them; the document attached to the entitlement is the contract, the marketplace page is merchandising.</li><li>Subscription platforms change terms over time; keep dated copies of the subscription terms your usage relies on.</li><li>Rental models are excellent for decision-making and terrible as defaults; the failure mode is the campaign that quietly becomes infrastructure.</li><li>When a foundry sells both direct and through marketplaces, direct purchases usually get faster license support, because you are the customer rather than the marketplace&#x27;s customer.</li><li>Free trials from marketplaces are for evaluation; the trial-to-purchase moment belongs in the project plan, not in someone&#x27;s memory.</li><li>Enterprise subscription negotiations should include an exit clause: what you may keep using, in what form, if the subscription ends.</li><li>Watch marketplace bundles: a &quot;full family&quot; bundle may exclude variable builds or future weights, and upgrades are priced separately.</li></ul>
+<h2>Questions to ask before choosing a model</h2>
+<ul><li>How long will this font be in production use? A year of rental equals a perpetual license in price, with none of the permanence.</li><li>Who needs to touch the font: a design team only, or engineering, contractors, and CI as well?</li><li>Does the license include the web and app scopes the product will need within twelve months, or only the scope it needs today?</li><li>What happens to our rights if the vendor, the marketplace, or the subscription changes?</li><li>Can we get the entitlement document now, in a form our audit can file, instead of a receipt?</li><li>For subscriptions: what exactly deactivates at lapse, and what is the grace period?</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="webfont-embedding-rights.html">Webfont embedding rights</a></li><li><a href="desktop-and-app-licensing.html">Desktop and app licensing</a></li><li><a href="trial-and-early-access-fonts.html">Trial and early access fonts</a></li><li><a href="../sourcing/commercial-foundries-and-catalogs.html">Commercial foundries and catalogs</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

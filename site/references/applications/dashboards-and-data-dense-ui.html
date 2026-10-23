@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Dashboards and Data-Dense UI - Fontlore</title>
+<meta name="description" content="Typography for data-heavy interfaces: tabular numerals and column alignment, monospace for identifiers, density management, status text, and the unit-and-val...">
+<meta property="og:title" content="Dashboards and Data-Dense UI - Fontlore">
+<meta property="og:description" content="Typography for data-heavy interfaces: tabular numerals and column alignment, monospace for identifiers, density management, status text, and the unit-and-val...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Dashboards and Data-Dense UI</h1>
+<p>What this reference covers: Typography for data-heavy interfaces: tabular numerals and column alignment, monospace for identifiers, density management, status text, and the unit-and-value patterns that keep numbers readable. Data UIs live or die on numeric typography; the font choice matters less than the features you enable.</p>
+<h2>Numeric typography first</h2>
+<ul><li>Tabular figures (tnum) everywhere numbers sit in columns, update in place, or get compared: tables, KPI cards, charts, timers. Proportional figures make right-aligned columns wobble and changing values &quot;breathe&quot;.</li><li>Right-align numbers on the decimal point (or on the right edge for integers); center-aligned numbers are unreadable as a column.</li><li>Consistent decimal places per column; a column mixing 1, 1.5, and 1.50 needs a formatting decision, not a font decision.</li><li>Thousands separators and negative numbers: pick conventions and let the font&#x27;s tabular figures handle alignment; the minus sign (U+2212 in careful contexts, hyphen-minus in practice) should render visibly at your sizes.</li><li>Big KPI numbers: proportional figures are acceptable for single isolated values, but tabular everywhere avoids exceptions; consistency wins.</li><li>Units: set units smaller and lighter next to the value (48 px value, 16 px unit), never baked into the number string in a way that breaks copy-paste.</li></ul>
+<h2>Monospace for identifiers and codes</h2>
+<ul><li>Order IDs, hashes, IPs, versions, log lines: monospace. It aligns, it disambiguates I/l/1 and 0/O, and it signals &quot;this is a literal value users may copy&quot;.</li><li>Choices with good UI manners: JetBrains Mono, IBM Plex Mono, Fira Code, Roboto Mono, Source Code Pro. Sizes 12 to 13 px; mono runs visually larger, so size down one step versus proportional UI text.</li><li>Disable programming ligatures (or choose a mono without them) in data contexts; fi ligatures in an order number are a support ticket.</li><li>Letter-spacing: none on mono; the face already handles rhythm.</li></ul>
+<h2>Density management</h2>
+<ul><li>Base density: 13 to 14 px body text, 11 to 12 px captions and metadata. Going below 12 px trades support tickets for pixels.</li><li>Row heights derive from typography: line-height 1.4 plus fixed vertical padding; resist 28 px rows with 12 px text and 8 px of air, which read as cramped rather than dense.</li><li>Hierarchy in dense UIs: weight contrast (500 labels versus 400 values) beats size contrast, which is expensive vertically.</li><li>Density is a setting, not a decision: offer comfortable and compact modes by scaling a spacing token, keeping type sizes constant.</li><li>Truncation rules: mid-string ellipsis for paths and IDs with a copy button and full-value tooltip; end-truncation for names. Truncation is a typography decision; document it.</li></ul>
+<h2>Status text and semantic labels</h2>
+<ul><li>Status pairs an icon or colored dot with text, never color alone (WCAG 1.4.1): &quot;Failed&quot;, &quot;Running&quot;, &quot;Queued&quot; as words, with the color as reinforcement.</li><li>Uppercase tracking for status chips works if strings are short and controlled; long status strings in caps are unreadable. Cap tracked-caps labels at a few words.</li><li>Timestamps: tabular figures, fixed format, monospace only if columns align across rows; &quot;3 minutes ago&quot; strings change width every render, so prefer absolute timestamps in tables.</li><li>Semantic colors must pass contrast at the chip&#x27;s size; amber-on-white is the classic failure.</li></ul>
+<h2>Charts and data visualization type</h2>
+<ul><li>Chart labels: 11 to 13 px, tabular where they number axes; axis labels right-aligned on the axis they measure.</li><li>In-chart text uses the UI family, not the chart library&#x27;s default; ship the font into the chart rendering context (canvas and SVG text need explicit font declarations).</li><li>Legends and tooltips inherit the tabular setting; tooltip values changing width per frame is the same &quot;breathing&quot; problem as tables.</li><li>Big number tiles: pick one scale (48/16, 40/14) and use it everywhere; ad-hoc per-card sizing reads as noise.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Proportional figures in tables and live metrics; the entire interface shimmers as values update.</li><li>Monospace with programming ligatures for identifiers.</li><li>All-caps tracked status strings for messages longer than a few words.</li><li>11 px body text and 1.2 line-height &quot;to fit more&quot;; density comes from spacing tokens, not from illegibility.</li><li>Chart text in the library&#x27;s default font, clashing with the interface around it.</li><li>Forgetting tnum in date columns; dates are numbers and wobble like them.</li><li>Copy-paste breakage: styled minus signs, narrow spaces in numbers, or units inside value strings that users then paste into tickets.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any column of numbers: tnum, right-aligned, consistent decimals; this is non-negotiable and belongs in the component, not the page.</li><li>Any identifier users copy: monospace, explicit copy affordance, ligatures off.</li><li>Any live-updating value: tabular figures and a fixed-width container if the value range is known.</li><li>Font shortlisting for a data product: tnum support and weight range outrank personality; check numerals first in Wakamai Fondue.</li><li>Density complaints: adjust spacing tokens before type sizes; if type sizes must drop, re-verify contrast and Windows rendering.</li></ul>
+<h2>Comparison table: monospace faces for values and identifiers</h2>
+<p>All monospaced faces align by construction; they differ in weight range, defaults, and voice:</p>
+<table><thead><tr><th>Face</th><th>Weights</th><th>Ligature default</th><th>Voice</th><th>Watch-outs</th></tr></thead><tbody><tr><td>JetBrains Mono</td><td>100-800</td><td>programming ligatures on</td><td>tall x-height, reads large</td><td>switch ligatures off in data cells</td></tr><tr><td>IBM Plex Mono</td><td>100-700</td><td>none</td><td>engineered, kin to Plex Sans</td><td>true italics exist; decide if you want them</td></tr><tr><td>Fira Code</td><td>300-700</td><td>programming ligatures on</td><td>the ligature-first face</td><td>wrong default for order IDs and codes</td></tr><tr><td>Roboto Mono</td><td>100-700</td><td>none</td><td>neutral, narrow, ubiquitous</td><td>personality budget near zero</td></tr><tr><td>Source Code Pro</td><td>200-900</td><td>opt-in</td><td>Adobe workhorse, kin to Source Sans 3</td><td>wider advance than peers; size down a step</td></tr></tbody></table>
+<ul><li>Mono guarantees equal advances, so the tnum conversation is over inside a mono face; it begins for proportional faces like Inter, IBM Plex Sans, Source Sans 3, and Public Sans.</li><li>Size mono one step below proportional UI text at the same row height; mono runs visually larger.</li><li>0 versus O and 1 versus l versus I: pick a face whose zero style you accept everywhere, then keep it forever; consistency is the disambiguation.</li><li>Weights: 400 for values, 500 for emphasized values; mono bold at small sizes fills counters.</li><li>Dashboard canvases (chart libraries, PDF exporters) do not inherit your font by cascade; declare it in every rendering context explicitly.</li><li>All five families are open licensed, so embedding them in exported PDF reports is uncomplicated.</li></ul>
+<h2>Worked example: a fleet logistics control tower</h2>
+<p>Scenario: a logistics company builds a control tower with live shipment tables, KPI tiles, an exception queue, and an audit log, displayed on 24 to 32 inch ops-room monitors and 13 inch laptops, by users who copy identifiers into tickets all day.</p>
+<ul><li>Foundation: IBM Plex Sans for UI text and labels; IBM Plex Mono for identifiers, audit lines, and KPI values.</li><li>KPI tiles: value in Plex Mono at weight 500, 32 px, with the unit (&quot;min&quot;, &quot;km&quot;, &quot;%&quot;) at 14 px weight 400 outside the value string.</li><li>Delta lines: &quot;+4.2% vs last week&quot; with the direction word spelled out; color is reinforcement, never the whole signal.</li><li>Shipment tables: 13 px Plex Sans with font-variant-numeric: tabular-nums on every numeric column; right-aligned numbers with right-aligned headers.</li><li>Date columns get tnum too; dates wobble like any number without it.</li><li>Exception queue: status chips with a word plus a dot (&quot;Delayed&quot;, &quot;Held&quot;), 12 px at 600; amber verified at 4.5 to 1 on both white cards and the dark header.</li><li>Audit log: 12 px Plex Mono, one ink, no mid-identifier line wrap; white-space: nowrap with mid-string ellipsis and a per-row copy button.</li><li>Timezones: absolute timestamps in tables and logs; relative strings (&quot;3 minutes ago&quot;) only in detail headers, where width changes are harmless.</li><li>Density modes: comfortable (36 px rows) and compact (28 px rows) via one spacing token; type sizes identical in both modes.</li><li>Copy-paste discipline: values carry real minus signs and no styled spaces, so pasted strings survive into tickets and spreadsheets.</li><li>Charts: Plex Sans declared inside the chart rendering context; axis labels 11 px, tabular, right-aligned to the axis they measure.</li><li>Loading: skeleton cells sized to tabular widths so rows do not reflow when data lands.</li><li>Rejected: Fira Code as the data mono (its ligatures merged characters inside IDs during the pilot), and a condensed proportional face for tables (saved columns, lost 13 px legibility on Windows).</li><li>Result: no &quot;the number moved&quot; complaints after launch, and audit-log copies round-trip into tickets unchanged.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The shimmer complaint is always proportional figures; fixing tnum once in the table component fixes every page that inherits it.</li><li>Windows at 13 px is the truth test for the proportional face; mono faces are forgiving there, proportional ones are not.</li><li>Sticky name columns with ellipsis plus right-aligned numbers is the layout that survives review; center-aligned numerals never do.</li><li>Chart libraries default to Helvetica or whatever the canvas falls back to; inject the UI family or the dashboard reads as two products.</li><li>Dark themes re-rank mono legibility; re-check the mono at weight 400 on the dark surface, not just on white.</li><li>Units live in separate elements, never inside the value string; the day finance changes the currency label, a find-and-replace should not touch values.</li><li>Negative values keep the real minus and right alignment; parentheses break both alignment and copy-paste.</li><li>Percentages, currencies, and counts each get one formatting function; per-page formatting drift is how columns stop aligning.</li><li>Thousands separators are a locale decision made once; the font renders whatever you hand it.</li><li>IDs that wrap are IDs that get mistyped; nowrap plus mid-string ellipsis plus copy is the whole fix.</li><li>Live-updating KPIs change width every frame; tabular figures plus a fixed-width container when the range is known.</li><li>Skeleton loaders sized to tabular widths stop the reflow flash when data arrives.</li><li>CSV and PDF exports must carry the same values the screen shows; styled minus signs and narrow spaces in exports are self-inflicted wounds.</li><li>Status color pairs with a word at every size; amber-on-white is the classic 3 to 1 failure.</li><li>Screen readers cannot absorb fifty value changes a minute; throttle live regions regardless of typography.</li><li>Keyboard focus on dense tables needs a visible ring at 13 px; re-verify after any font swap because widths shift.</li><li>The audit log is read during incidents at 2 a.m.; it deserves the best mono in the product and the least decoration.</li><li>Empty and zero states render differently per font; check that a lone hyphen placeholder does not vanish at 12 px in your mono.</li></ul>
+<h2>Quick reference: dashboard numbers</h2>
+<ul><li>Numeric columns: tabular-nums, right-aligned, consistent decimals, headers aligned to the numbers.</li><li>Live values: tabular figures mandatory; fixed-width containers when the range is known.</li><li>Identifiers users copy: mono, nowrap, mid-string ellipsis, copy button.</li><li>Mono shortlist: JetBrains Mono, IBM Plex Mono, Roboto Mono, Source Code Pro; ligatures off for data.</li><li>Proportional faces with solid tnum: Inter, Source Sans 3, IBM Plex Sans, Public Sans.</li><li>Mono size: 12 to 13 px, one step below proportional body text.</li><li>Body 13 to 14 px; captions and metadata 11 to 12 px; no sentences below 12 px.</li><li>Row heights from line-height 1.4 plus padding; density via spacing tokens, not font shrinkage.</li><li>Status: word plus dot, never color alone; tracked caps only for short controlled strings.</li><li>KPI tiles: one scale everywhere (32/14 or 48/16); units smaller and lighter, outside the value string.</li><li>Charts: UI family declared in the rendering context; legends and tooltips inherit tabular figures.</li><li>Timestamps: absolute and tabular in tables; relative strings only where width changes are harmless.</li><li>Contrast: 4.5 to 1 for all text including chips, verified in both themes.</li><li>Weights: 400 values, 500 labels and emphasis, 600 section heads; mono bold rarely helps.</li><li>Exports: real minus signs, no styled spaces, values identical to screen.</li><li>Copy affordances live next to anything users might retype.</li><li>Font-feature-settings live in components, not pages, so every future view inherits the fix.</li><li>Right-align headers over right-aligned numbers; centered heads over centered numbers never align with the data.</li><li>Percent columns share one decimal convention; mixing 12.4 and 12.40 in one column reads as two formats.</li><li>Test layouts with the longest realistic identifier in the first column, not the average one.</li><li>Tooltips inherit the tabular setting; a tooltip whose numbers shift per hover reads as broken.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="web-and-saas-interfaces.html">Web and SaaS interfaces</a></li><li><a href="../scripts/numerals-and-notation.html">Numerals and notation</a></li><li><a href="../technical/opentype-features.html">OpenType features</a></li><li><a href="../accessibility/contrast-and-hierarchy.html">Contrast and hierarchy</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

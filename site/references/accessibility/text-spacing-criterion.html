@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Text Spacing Criterion - Fontlore</title>
+<meta name="description" content="WCAG 1.4.12 Text Spacing: exactly what the criterion requires, the CSS architecture that makes overrides safe, how to test with bookmarklets and devtools, an...">
+<meta property="og:title" content="Text Spacing Criterion - Fontlore">
+<meta property="og:description" content="WCAG 1.4.12 Text Spacing: exactly what the criterion requires, the CSS architecture that makes overrides safe, how to test with bookmarklets and devtools, an...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Text Spacing Criterion</h1>
+<p>What this reference covers: WCAG 1.4.12 Text Spacing: exactly what the criterion requires, the CSS architecture that makes overrides safe, how to test with bookmarklets and devtools, and the component patterns that fail. The criterion is about user overrides, not about your design&#x27;s chosen spacing, and that distinction changes how you build.</p>
+<h2>What 1.4.12 actually requires</h2>
+<p>WCAG 1.4.12 (Text Spacing, AA) says: no loss of content or functionality when users set these properties:</p>
+<ul><li>Line height to at least 1.5 times the font size.</li><li>Paragraph spacing to at least 2 times the font size.</li><li>Letter spacing to at least 0.12 times the font size.</li><li>Word spacing to at least 0.16 times the font size.</li></ul>
+<p>The user (via a browser extension, user stylesheet, or assistive tech) applies these overrides globally. Your job is that the page still works: nothing clipped, nothing overlapping, no information lost. The criterion does not mandate your design use those spacings by default.</p>
+<h2>Why pages fail</h2>
+<p>Failures come from three CSS habits:</p>
+<ul><li>Fixed heights: text inside height-fixed cards, buttons, or line-clamped containers. Doubling line height overflows the box and clips or overlaps.</li><li>Pixel units: line-height: 20px does not scale with user font-size or spacing overrides the way unitless values do.</li><li>Overflow hidden on text containers: combined with the above, overrides silently hide content with no visual cue.</li><li>Decorative z-index sandwiches: absolutely positioned elements that sit above text and collide once line boxes grow.</li><li>Scroll-snap and carousel tracks with fixed item widths: spacing overrides widen text inside fixed-width slides.</li></ul>
+<p>A subtler failure: absolute-positioned overlays sized to measured text that no longer match once spacing changes, and data tables with cell heights set in px.</p>
+<h2>CSS architecture that passes</h2>
+<ul><li>Use unitless line-height (1.5, not 24px) so it scales with any font size.</li><li>Size text in rem; set heights with min-height, padding, or intrinsic sizing, never fixed height on text-bearing elements.</li><li>Prefer max-height with visible overflow for clamping, or better, line-clamp with an accessible full-text path.</li><li>Do not set letter-spacing on long body text; short tracked labels can keep their tracking, but ensure the component has room to grow.</li><li>Leave enough horizontal room in components (buttons, nav items, chips) that 0.12em letter and 0.16em word spacing cannot force wrapping into broken states; test with the override applied, not imagined.</li><li>Vertical rhythm components (list rows, form rows) should tolerate line boxes roughly doubling without breaking their layout.</li><li>Data tables get horizontal overflow with keyboard access instead of px cell heights; the reflow rules cover the reading-order requirements.</li><li>Put the override snippet in version control next to the component tests; the numbers are the criterion, so they are code, not tribal knowledge.</li></ul>
+<h2>Testing method</h2>
+<ol><li>Install or bookmark a text-spacing bookmarklet (the UK government digital service&#x27;s alphagov text-spacing bookmarklet is the standard tool) or write a DevTools snippet applying the four property overrides to all elements.</li><li>Apply it to every key template: home, content page, form, table, checkout, mobile breakpoints.</li><li>Look for: clipped text, overlapping elements, buttons that cut off labels, truncated table cells, tooltips and badges that collapse.</li><li>Test with browser font size raised as well (200 percent zoom is a separate criterion); the two overrides compound.</li><li>Record failures with screenshots per component; fix CSS architecture, not the bookmarklet.</li></ol>
+<h2>Interaction with your typography choices</h2>
+<ul><li>Tight leading (1.15-1.2) display styles survive overrides fine because the user override replaces them; nothing to do there, but verify headings do not collide with adjacent elements when 1.5 applies.</li><li>Complex scripts raise the stakes: Thai, Devanagari, and Arabic text needs more vertical room by default; when overrides add more, components designed at Latin-tight spacing break first in those languages. Test the spacing override on localized pages, not just English.</li><li>Tabular data: with letter and word spacing overridden, columns widen; horizontal scroll is acceptable for tables under reflow rules if a logical reading order survives.</li><li>Buttons and badges with uppercase micro-labels: extra letter spacing can double their width; give them flexible width.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>&quot;Fixing&quot; the criterion by designing everything at 1.5 line height and calling it done; the audit still applies user overrides and finds the fixed-height cards.</li><li>Applying overrides only to paragraph text in the test snippet and missing buttons, nav, and form labels, which are where clipping happens.</li><li>Ignoring third-party embeds (chat widgets, forms) that fail overrides; they are in scope for the page.</li><li>Treating overflow-hidden truncation as acceptable when the truncation itself hides meaning under overrides; provide a real full-content path.</li><li>Testing spacing overrides only on desktop Chrome; mobile Safari and Firefox extend/zoom behaviors differ.</li><li>Fixing a failure by editing the override snippet&#x27;s values; the values are the standard, and changing them to make a component pass is how 1.4.12 gets quietly abandoned.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any component containing text: it must survive the four overrides at your smallest supported breakpoint; that is a design-review gate, not a pre-release nicety.</li><li>Fixed height on a text container: treat as a bug in review, even when it passes visually in default conditions.</li><li>Localized product: run the spacing override on the heaviest script you ship (Thai, Khmer, Devanagari) before sign-off.</li><li>If a stakeholder design requires fixed heights: propose min-height with the same visual result; it passes both.</li><li>New component library: add the spacing-override render to the component test suite (a screenshot pass with overrides applied).</li></ul>
+<h2>Code notes: override-safe CSS patterns</h2>
+<p>Text containers grow; clamps keep a visible escape hatch:</p>
+<pre><code class="language-css">/* Intrinsic sizing: never height on text-bearing elements */
+.card { padding: 1rem; }
+
+/* Line clamp with a real full-content path elsewhere */
+.teaser {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tracked labels keep room to grow */
+.chip { padding-inline: 0.75rem; min-width: max-content; }</code></pre>
+<p>The audit snippet itself, using the exact criterion values:</p>
+<pre><code class="language-css">/* WCAG 1.4.12 overrides, verbatim */
+* {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+p { margin-bottom: 2em !important; }   /* paragraph spacing: 2x font size */</code></pre>
+<p>Note the em units: each override is a multiple of the element&#x27;s own font size, which is how the criterion is written; px approximations test something else.</p>
+<h2>Audit checklist: the 1.4.12 sweep</h2>
+<p>Run with the overrides applied, at the smallest supported breakpoint, on real content:</p>
+<ul><li>[ ] Navigation items and menus: no wrapped or clipped labels.</li><li>[ ] Buttons, chips, badges: labels fully visible, no overlap with icons.</li><li>[ ] Form labels, inputs, helper text: nothing clips; inputs grow with text.</li><li>[ ] Cards and tiles: text visible, no overlap with footers or calls to action.</li><li>[ ] Tables: cells wrap or scroll; no px cell heights anywhere.</li><li>[ ] Tabs and pagination: labels fit; controls stay operable.</li><li>[ ] Toasts, tooltips, dialogs: text visible and scrollable when taller.</li><li>[ ] Hero and overlay text: no collision with images or buttons.</li><li>[ ] Third-party embeds (chat, video, forms): same checks; they are in scope.</li><li>[ ] Localized pages: run the sweep again on the tallest script you ship.</li><li>[ ] Combinations: overrides plus 200 percent zoom; the two compound.</li></ul>
+<h2>Worked example: the pricing cards that clipped</h2>
+<p>A three-column pricing grid shipped looking immaculate at default settings. The audit applied the overrides and found:</p>
+<ul><li>The plan name, clamped to one line, pushed its overflow into the price below; the clamp hid the overflow but the layout assumed one line.</li><li>Feature list rows were 24 px tall with height instead of padding; the fourth feature overlapped the fifth.</li><li>The call-to-action label wrapped and clipped: fixed height plus white-space: nowrap.</li></ul>
+<p>Fixes, in order of cost: the plan name got a second clamp line plus a min-height; row heights became padding plus line-height; the button grew with its content and dropped nowrap. Visual diff at default settings: nearly identical. Under overrides: everything visible. That asymmetry is the whole lesson; the fixed values were invisible debt that only the override test surfaced.</p>
+<h2>Quick reference: where overrides bite first</h2>
+<p>Ranked by how often each element class fails the sweep in practice:</p>
+<ol><li>Fixed-height cards and tiles (height, not min-height).</li><li>Buttons and chips with nowrap labels.</li><li>Data tables with px cell heights.</li><li>Line-clamped titles with no full-content path.</li><li>Absolutely positioned badges and flags pinned to measured text.</li><li>Tracked uppercase micro-labels in narrow navigation items.</li><li>Toast and dialog components sized to content at default spacing.</li><li>Third-party embeds, which no amount of your own CSS can fix.</li></ol>
+<p>Items 1 through 4 are CSS architecture; 5 through 8 are component design. None are font problems, and no font change will fix any of them.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="line-length-and-reading.html">Line length and reading</a></li><li><a href="testing-typography-accessibility.html">Testing typography accessibility</a></li><li><a href="../applications/web-and-saas-interfaces.html">Web and SaaS interfaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

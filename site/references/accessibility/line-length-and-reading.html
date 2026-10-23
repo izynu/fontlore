@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Line Length and Reading - Fontlore</title>
+<meta name="description" content="The measure (characters per line) and leading choices that make long-form reading comfortable, how they scale with font size, and the WCAG requirements that...">
+<meta property="og:title" content="Line Length and Reading - Fontlore">
+<meta property="og:description" content="The measure (characters per line) and leading choices that make long-form reading comfortable, how they scale with font size, and the WCAG requirements that...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Line Length and Reading</h1>
+<p>What this reference covers: The measure (characters per line) and leading choices that make long-form reading comfortable, how they scale with font size, and the WCAG requirements that encode them. Line length is the most under-managed readability variable on the web: it costs nothing to fix and quietly degrades everything from docs to checkout flows when wrong.</p>
+<h2>The measure targets</h2>
+<p>The widely accepted comfortable range for continuous reading is 45 to 75 characters per line, with around 66 as the classic optimum. WCAG 1.4.8 (Visual Presentation, AAA) sets a maximum of 80 characters. Below 45, the eye returns to the line start too often; above 75 to 80, return sweeps lose their place and reading pace drops.</p>
+<ul><li>CSS provides the ch unit (width of the &quot;0&quot; glyph) for measure: max-width: 66ch on an article body is a good default, tuned per face because glyph widths differ.</li><li>Set the measure on the text container, not the page: sidebars, cards, and metadata columns each get their own measure.</li><li>Mobile: 30 to 45 characters is unavoidable and acceptable at larger relative sizes; do not force 66ch on a phone, do force it on desktop where designs often sprawl to 120.</li><li>Headlines have their own measure logic (8 to 12 words per line); do not cap them at 66ch and force awkward breaks.</li><li>The measure is also a mobile decision: at 30 to 45 characters, prefer the lower end of the leading band (1.5 to 1.6) so vertical rhythm does not collapse.</li></ul>
+<h2>Line height by size and role</h2>
+<p>Line height (leading) must scale inversely with size: small dense text needs relatively more leading, display sizes less.</p>
+<ul><li>Body text: 1.5 is the floor for accessibility (1.4.12 assumes users may raise it to 1.5; 1.4.8 AAA asks for at least 1.5); 1.5 to 1.7 is the comfortable band for 16 to 18 px text.</li><li>Large display: 1.1 to 1.25; tight leading is safe at display sizes and wrong for paragraphs.</li><li>Small labels and captions: 1.3 to 1.4 with generous tracking only on short strings.</li><li>Scripts with tall demands override these numbers: Thai, Devanagari, Arabic, Khmer, and Myanmar need 1.5 to 1.9 at body sizes to avoid clipped marks. Scope with :lang() rather than inflating globally.</li><li>Paragraph spacing: 1.4.8 asks for paragraph spacing at least 1.5 times the line spacing; in practice, one blank line equivalent (0.75 to 1em) reads well and satisfies it.</li></ul>
+<h2>The interplay with font choice</h2>
+<ul><li>Wide faces reach 75 characters in a narrower container; a face with wide figures and spacing inflates ch-based measures differently. Measure in ch for the actual face, not a remembered pixel width.</li><li>Typefaces with large x-heights tolerate slightly longer measures; small-x-height faces feel sparse at 75 characters and prefer 55 to 65.</li><li>Old-style figures and generous inter-word spacing (serif book faces) change perceived density; judge the measure after the feature settings are applied (tnum vs pnum changes table widths, not body measure, but tracking changes do).</li><li>Monospace faces: 66ch is far wider visually than in a proportional face; for code and mono content, 80 to 100 characters is conventional, and reading rules differ.</li><li>Comfort check: a paragraph block at 1.5 leading should occupy roughly the vertical space its measure suggests; if it looks airless at 1.5, the face is dense and large-x-height, and 1.6 to 1.7 is the fix.</li></ul>
+<h2>Beyond the line: paragraph and block rhythm</h2>
+<ul><li>Left-aligned ragged right is the default for accessibility; justification without hyphenation creates rivers and uneven word spacing that harm tracking. If justification is required, enable hyphens: auto with correct lang attributes and test.</li><li>Hyphenation: good with lang set, poor to nonexistent without it; browsers hyphenate per language dictionaries.</li><li>Constrain width, not height: never clip paragraphs into fixed boxes; use &quot;read more&quot; patterns.</li><li>Multi-column: CSS columns on the web are risky for reading order and focus; prefer single column at proper measure for accessibility-first products.</li><li>Vertical whitespace between blocks (headings, figures, pull quotes) is part of reading comfort; typography hands these values to layout as tokens.</li><li>Newsletters and email templates are reading surfaces too; a 600 px table with 90-character lines fails the same rules as a web article, and the fix is the same: a measure on the text, not on the wrapper.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Desktop article pages at 100 to 140 characters because a max-width was set on a wrapper, not the text column.</li><li>Line-height 1.2 everywhere because a display style leaked into body styles, or 1.8 everywhere because an accessibility pass over-corrected.</li><li>ch used with a different font than the one rendering the text (measure tuned on the fallback).</li><li>Justified text with hyphens: auto but no lang attribute, so the browser cannot hyphenate and the gaps balloon.</li><li>Forgetting that content editors can paste long unbroken strings (URLs, codes); overflow-wrap: anywhere on body text prevents a single token from breaking the measure.</li><li>Treating the measure as print dogma: the 66-character rule is for sustained reading; forms, tables, and UI text follow component logic instead.</li><li>Setting the measure with max-width in px after tuning it in ch; the two drift apart the moment the type size changes.</li><li>Widow and orphan wishful thinking: text-wrap: balance and text-wrap: pretty improve headings and paragraphs where supported; use them as progressive enhancement, never as the only plan.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Long-form content (docs, articles, email): 60 to 70ch, 1.5 to 1.6 leading, 17 to 18 px, left-aligned.</li><li>Product UI text: measure is set by the component; enforce minimum line-height 1.4 for anything multi-line.</li><li>Multilingual pages: per-language leading via :lang(), shared measure in ch re-checked per face per language.</li><li>If a layout demands long lines: use a sidebar, larger type, or a wider gutter with the text column capped; never &quot;just this once&quot; 120-character paragraphs.</li><li>Editorial redesigns: pick the measure first (it constrains everything), then the type size, then the family.</li></ul>
+<h2>Quick reference: values that ship</h2>
+<table><thead><tr><th>Context</th><th>Size</th><th>Leading</th><th>Measure</th><th>Alignment</th></tr></thead><tbody><tr><td>Long-form article</td><td>17 to 19 px</td><td>1.6</td><td>60 to 70ch</td><td>Left</td></tr><tr><td>Documentation</td><td>16 to 17 px</td><td>1.6</td><td>65 to 75ch</td><td>Left</td></tr><tr><td>Marketing hero copy</td><td>20 to 28 px</td><td>1.4</td><td>40 to 55ch</td><td>Left or centered, short strings only</td></tr><tr><td>UI panels and forms</td><td>14 px</td><td>1.45</td><td>component-bound</td><td>Left</td></tr><tr><td>Dense tables</td><td>13 px</td><td>1.4</td><td>cell padding decides</td><td>Left; numbers right</td></tr><tr><td>Captions and metadata</td><td>12 to 13 px</td><td>1.4</td><td>40 to 60ch</td><td>Left</td></tr><tr><td>Code blocks</td><td>13 to 14 px mono</td><td>1.5</td><td>80 to 100 columns</td><td>Left</td></tr></tbody></table>
+<p>Treat the table as starting points tied to the roles in your tokens, not as universal law; the per-face re-check (in ch, on the real font) is what makes them true.</p>
+<h2>Worked example: the 140-character article</h2>
+<p>A publication&#x27;s article page rendered 130 to 145 characters per line on desktop. Diagnosis and fix:</p>
+<ol><li>The layout wrapper had max-width: 1100px, and the article container inherited the full width; no measure was ever set on the text itself.</li><li>The fix is one rule on the prose container: max-width: 66ch, which on the body face at 18 px lands in the high 60s of characters per line.</li><li>Sidebars and figure captions get their own measures: 44ch for captions, since small sizes want shorter lines.</li><li>Pull quotes break out of the measure deliberately; breakouts are exempt, body text is not.</li><li>Verify in the CMS with the longest real article, including one with tables, because tables inside a 66ch column need their own overflow plan.</li></ol>
+<p>Result: return sweeps stop missing, reading pace recovers, and the page gains margin it can spend on pull quotes and whitespace. One rule, found by measuring characters, not pixels.</p>
+<h2>Code notes: measure and leading in practice</h2>
+<pre><code class="language-css">.prose {
+  max-width: 66ch;          /* measure on the text container, not the page */
+  font-size: 1.125rem;
+  line-height: 1.6;         /* unitless so overrides and scaling survive */
+  text-align: left;         /* ragged right by default */
+  hyphens: auto;            /* only meaningful with correct lang attributes */
+  overflow-wrap: break-word;
+}
+.caption { max-width: 44ch; font-size: 0.8125rem; line-height: 1.45; }
+
+/* Per-language leading: scoped, not global inflation */
+:lang(th) .prose, :lang(hi) .prose { line-height: 1.8; }
+:lang(ar) .prose, :lang(ja) .prose { line-height: 1.75; }
+
+/* Long unbreakable tokens (URLs, IDs) must not wreck the measure */
+.prose .token { overflow-wrap: anywhere; }</code></pre>
+<p>Measure in ch is per-font: after a family swap, re-check the rendered character count once, because 66ch in a wide face is a different line than 66ch in a narrow one.</p>
+<p>Leading floors vary by script; scope them with :lang() instead of inflating globally:</p>
+<table><thead><tr><th>Script</th><th>Body leading floor</th><th>Why</th></tr></thead><tbody><tr><td>Latin</td><td>1.5</td><td>The accessibility and comfort baseline</td></tr><tr><td>Cyrillic, Greek</td><td>1.5 to 1.6</td><td>Taller ascenders and descenders</td></tr><tr><td>Arabic, Hebrew</td><td>1.6 to 1.7</td><td>Diacritics and vertical stroke density</td></tr><tr><td>Devanagari and Indic scripts</td><td>1.7 to 1.8</td><td>Matras and conjuncts above and below the line</td></tr><tr><td>Thai, Lao, Khmer</td><td>1.8</td><td>Stacked marks above and below</td></tr><tr><td>Han scripts, Kana, Hangul</td><td>1.7 to 1.9</td><td>Dense glyph boxes; leading is the main air supply</td></tr></tbody></table>
+<h2>Comparison table: measure guidance by face class</h2>
+<table><thead><tr><th>Face class</th><th>Comfortable measure</th><th>Notes</th></tr></thead><tbody><tr><td>Proportional sans (Inter, Source Sans 3)</td><td>60 to 75ch</td><td>Forgiving; tolerates the top of the range</td></tr><tr><td>Sturdy text serif (Source Serif 4, Literata, Lora)</td><td>55 to 70ch</td><td>Classic book measure; watch long German compounds</td></tr><tr><td>High-contrast editorial serif in body duty</td><td>45 to 60ch</td><td>Fatigues at long measures; keep display work short</td></tr><tr><td>Large x-height humanist sans</td><td>up to 75ch briefly</td><td>Still under the 80-character AAA ceiling</td></tr><tr><td>Monospace (JetBrains Mono, IBM Plex Mono)</td><td>80 to 100 columns</td><td>Code convention; reading rules differ</td></tr><tr><td>CJK (Noto Sans SC/JP)</td><td>35 to 45 characters</td><td>In CJK faces 1ch is close to one hanzi; count characters</td></tr></tbody></table>
+<p>For CJK the character-count target, not the ch value, is the real control; treat ch as a convenient approximation only.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="text-spacing-criterion.html">Text spacing criterion</a></li><li><a href="contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="../applications/editorial-and-news.html">Editorial and news</a></li><li><a href="../workflow/css-handoff-snippets.html">CSS handoff snippets</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

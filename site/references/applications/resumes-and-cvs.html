@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Resumes and CVs - Fontlore</title>
+<meta name="description" content="Typography for resumes and CVs: what applicant tracking systems actually parse, why structure outranks font choice, safe families and sizes, single-file PDF...">
+<meta property="og:title" content="Resumes and CVs - Fontlore">
+<meta property="og:description" content="Typography for resumes and CVs: what applicant tracking systems actually parse, why structure outranks font choice, safe families and sizes, single-file PDF...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Resumes and CVs</h1>
+<p>What this reference covers: Typography for resumes and CVs: what applicant tracking systems actually parse, why structure outranks font choice, safe families and sizes, single-file PDF embedding, and the print-versus-screen question. The audience is dual (software first, humans second), and typography serves both differently.</p>
+<h2>The ATS reality</h2>
+<p>Applicant tracking systems parse the text layer of your document into structured fields. Implications for typography:</p>
+<ul><li>The font itself almost never breaks parsing; structure does. Multi-column layouts, tables, text boxes, headers/footers carrying contact details, and icon-based headings scramble the reading order and lose information.</li><li>Standard section headings (&quot;Work Experience&quot;, &quot;Education&quot;, &quot;Skills&quot;) help parsers; clever headings (&quot;Where I Have Made an Impact&quot;) do not.</li><li>Dates, titles, and companies as plain text lines with consistent formatting beat designed layouts where those relationships are encoded visually.</li><li>Single column, top-to-bottom, real text: that is the whole technical requirement. The typographic quality budget should therefore be spent on legibility and hierarchy, not on layout gymnastics.</li></ul>
+<h2>Font choices that work</h2>
+<ul><li>Proven, widely installed, sturdy at 10.5 to 12 pt: Calibri, Arial, Helvetica, Georgia, Verdana, Cambria, Garamond-lineage faces. For PDFs with embedded fonts, any well-hinted face works, including Inter, Source Sans 3, IBM Plex Sans, or a text serif like Source Serif 4 or PT Serif.</li><li>Size: body 10.5 to 12 pt; name 20 to 28 pt; section headings 12 to 14 pt with weight or small caps. One page at 11 pt beats two pages of 14 pt air for early-career candidates; seniority justifies length, not size.</li><li>Hierarchy via weight and size only: 400 body, 600 headings, name at 700. Color, if any, one accent at full contrast; most resumes should be black on white.</li><li>Avoid: display faces, thin weights (300 and below) which print and scan poorly, condensed faces that look cramped, and anything the reader&#x27;s machine will substitute if fonts are not embedded.</li><li>Consistency rules: one family, two weights, one size scale; resumes are read in 30 seconds and inconsistency reads as carelessness.</li></ul>
+<h2>The PDF: single file, real text, embedded fonts</h2>
+<ul><li>Export to PDF, never submit .docx-only when the system accepts PDF (and vice versa: some parsers prefer .docx; when in doubt, follow the posting&#x27;s instructions).</li><li>Real text layer: no image-based resumes, no text baked into headers as graphics; if copy-paste from the PDF returns garbage, so will the parser.</li><li>Font embedding: exports from Word, Pages, InDesign, and LaTeX embed (usually subset) fonts by default; verify in the PDF properties that fonts show as embedded-subset. This guarantees your typography survives every viewer.</li><li>File hygiene: single file, sensible filename (Firstname-Lastname-Resume.pdf), no password, no oversized assets; a resume PDF should be well under 1 MB.</li><li>Test the output: open the PDF on another machine, copy-paste the text into a plain editor, and check the order and completeness; this five-minute test predicts the parser&#x27;s view.</li></ul>
+<h2>Screen versus print</h2>
+<ul><li>Most first reads are on screen: optimize for that. Print copies are for interviews and career fairs.</li><li>Screen: 11 pt body, generous line length control (a one-column A4/Letter page is already near the right measure), real bold for scanning anchors.</li><li>Print: the same file should print cleanly; black text, no reliance on color for structure, margins at least 15 mm so nothing clips.</li><li>If a printed version matters (academic CVs, design roles), print one copy on the actual printer before the interview; home-printer scaling is a real failure mode.</li><li>Academic CVs follow different conventions (long, list-heavy, serif traditional); the parsing advice still applies, the aesthetic constraints loosen.</li></ul>
+<h2>Design roles: the exception that proves the rule</h2>
+<ul><li>Designers and typographers are judged on their documents&#x27; craft; a tasteful, typographically excellent one-column resume demonstrates skill without breaking parsers.</li><li>The demonstration budget: type scale, spacing, and hierarchy; not custom letterhead layouts that scramble text order. Portfolio links carry the visual ambition; the resume stays parseable.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Two-column templates from resume builders whose reading order interleaves columns line by line; the parser produces word soup.</li><li>Contact details in the document header or footer, which many parsers skip entirely.</li><li>Thin display faces at 10 pt failing both on screen and in print.</li><li>Icon fonts or image glyphs for phone/email markers, replacing the parseable text.</li><li>Fonts not embedded in the PDF, so the reviewer&#x27;s machine substitutes and the layout reflows.</li><li>Fake small caps or letter-spaced headings that survive rendering but garble plain-text extraction.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default recipe: one column, one family (embedded), 400 and 600 weights, 11 pt body, standard headings, real text throughout.</li><li>Any template choice: run the copy-paste test before submitting; it is the ATS in miniature.</li><li>If the posting asks for .docx: provide .docx with an installed-safe font (Calibri, Arial, Georgia) and no exotic formatting; embedding does not apply the same way.</li><li>Design-role exception: typographic excellence within the one-column parseable frame; ambition lives in the portfolio.</li><li>Every version of the resume ships as a single PDF with verified embedded-subset fonts and a clean text layer.</li></ul>
+<h2>Comparison table: safe families and their clones</h2>
+<table><thead><tr><th>Face</th><th>Class</th><th>Where it is installed</th><th>Watch-outs</th></tr></thead><tbody><tr><td>Calibri</td><td>humanist sans</td><td>every Office install since 2007</td><td>the .docx default look; open metric-compatible clone is Carlito</td></tr><tr><td>Arial</td><td>grotesque</td><td>universal on Windows and Mac Office</td><td>generic but never wrong; clone is Liberation Sans</td></tr><tr><td>Georgia</td><td>screen serif</td><td>universal</td><td>old-style figures by default, so dates vary in height</td></tr><tr><td>Verdana</td><td>screen sans</td><td>universal</td><td>runs large; use about 10 pt where you would use 11 pt</td></tr><tr><td>Cambria</td><td>serif</td><td>Office installs</td><td>lining figures; stiffer than Georgia</td></tr><tr><td>Helvetica</td><td>grotesque</td><td>macOS and print shops</td><td>Windows silently substitutes Arial</td></tr></tbody></table>
+<ul><li>Carlito and Liberation Sans are the open metric-compatible clones: documents built with them keep Calibri and Arial line breaks on any machine, which matters for Linux and LaTeX workflows.</li><li>For PDF resumes with embedded fonts, the installed-base question disappears; Inter, Source Sans 3, IBM Plex Sans, or Source Serif 4 all work because the file carries them.</li><li>Georgia&#x27;s old-style figures are a taste decision: charming in prose, wobbly in a column of dates.</li><li>One family, two weights (400 and 600), one size scale; every extra font is a chance for inconsistency to read as carelessness.</li><li>Avoid thin weights (300 and below) and condensed cuts: they print poorly, scan poorly, and substitute badly.</li><li>If the posting demands .docx, the font must be installed-safe; embedding does not transfer the same way.</li><li>Academic CVs relax the aesthetic constraints but not the parsing ones; serif tradition (Georgia, Cambria, Garamond-lineage faces) is safe there.</li></ul>
+<h2>Worked example: a mid-career engineer&#x27;s resume</h2>
+<p>Scenario: an engineer with nine years of experience applies through a portal that accepts PDF; an ATS parses it, a hiring manager reads it on a laptop, and a panel prints it.</p>
+<ul><li>Structure: one column, real text, standard headings (&quot;Experience&quot;, &quot;Education&quot;, &quot;Skills&quot;), dates as plain text lines; everything beyond that is decoration budget.</li><li>Type: Inter embedded-subset in the PDF; body 11 pt at 1.35 leading, name 24 pt at 700, headings 12 pt at 600, company lines at 11.5 pt with titles at 600.</li><li>Dates right-aligned with tab stops and tabular figures, so the column reads as a column; month names spelled consistently.</li><li>Bullets as real list items with parallel phrasing; measurable results carry numbers in tabular figures.</li><li>Contact block in the body, never in a header or footer; email and phone as plain text, not icons.</li><li>Skills section as a plain list with consistent separators; skill bars and star ratings encode information that parsers and humans both misread.</li><li>One accent color maximum, full contrast, used for section rules only; the resume stays black on white in print.</li><li>.docx twin for the one portal that demands it: Calibri 11 pt, no tables, no text boxes, standard headings; maintained alongside, not converted at the last minute.</li><li>Tests before sending: copy-paste into a plain editor (order and completeness intact), open on a second machine, print one copy, file size well under 1 MB.</li><li>Rejected: a two-column template with a skills sidebar (reading order interleaves), icon fonts for contact markers (they garble extraction), and a 300-weight name (prints faint).</li><li>Aftermath: the parser extracted every field, the manager&#x27;s laptop rendered the embedded Inter, and the panel&#x27;s printout matched the screen.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The ATS reads the text layer; typography&#x27;s job is keeping that layer clean and giving the human stage hierarchy.</li><li>Headers and footers are where contact details go to disappear; contact info lives in the body.</li><li>Multi-column layouts are the biggest single parser risk; simulate a sidebar with spacing, not columns.</li><li>Consistent date formats beat clever ones; parsers and humans both pattern-match dates.</li><li>Standard headings are extraction anchors; a synonym costs accuracy for zero aesthetic gain.</li><li>Icon fonts replace parseable text with nothing; a plain label always wins.</li><li>Letter-spaced or fake small-caps headings can garble plain-text extraction; test extraction, not just rendering.</li><li>Some systems store only extracted text, so typography serves the humans of the later stages.</li><li>A clean text layer is also what recruiters copy into their notes; garbled copy-paste garbles your record in their system.</li><li>File hygiene: sensible filename, no password, no oversized images, one file per application.</li><li>Portfolios and code links carry ambition; the resume demonstrates typographic restraint.</li><li>For design roles, a one-column frame with excellent spacing is the demonstration; a poster resume is a portfolio piece, not a resume.</li><li>Career changers: a 12 pt summary line in full contrast beats a banner; hierarchy tells the story.</li><li>Some portals re-render PDFs as previews; open your own submission in their preview when offered.</li><li>Keep the master in a format you can regenerate in five minutes; the resume that cannot be edited does not get edited.</li><li>References and &quot;available upon request&quot; lines are wasted vertical space; cut them and give the room to results.</li><li>Dense keyword blocks in white or near-white text fail contrast and read as gaming; keywords belong in real sentences.</li><li>The 30-second read is the design brief: name, title, three anchors, and dates must survive a skim.</li></ul>
+<h2>Quick reference: the resume recipe</h2>
+<ul><li>One column, real text, standard headings, plain dates.</li><li>PDF with embedded-subset fonts; .docx twin in Calibri or Arial when demanded.</li><li>Body 10.5 to 12 pt (11 pt is the sweet spot); name 20 to 28 pt; headings 12 to 14 pt.</li><li>Weights: 400 body, 600 headings, 700 name; nothing thinner than 400.</li><li>One family, two or three weights, one size scale.</li><li>Black on white; at most one accent at full contrast.</li><li>Bullets as real lists; dates tabular and consistent.</li><li>Contact details in the body, never header or footer.</li><li>Copy-paste test before every submission.</li><li>Print test on a real printer when an interview looms.</li><li>Under 1 MB, sensible filename, no password.</li><li>Display faces, thin weights, multi-column templates: rejected on sight.</li><li>Install-safe faces for .docx: Calibri, Arial, Georgia, Cambria, Verdana.</li><li>Standard heading words (&quot;Experience&quot;, &quot;Education&quot;, &quot;Skills&quot;); no synonyms.</li><li>Embedded fonts verified in the PDF properties (embedded-subset), not assumed.</li><li>Section order: contact, summary (optional), experience, education, skills; parsers expect the standard flow.</li><li>One page for early career; two pages justified by experience, not by 14 pt air.</li><li>Margins at least 15 mm so nothing clips in print.</li><li>Real bold (600) for scanning anchors; color never carries structure.</li><li>One date style for the whole document, spelled or numeric consistently.</li><li>No layout tables; a skills table is the classic word-soup generator.</li><li>Text boxes are invisible to many parsers; plain paragraphs only.</li><li>LaTeX users: check the template embeds fonts and the metric clones (Carlito, Liberation) map correctly.</li><li>The filename carries name and document type, not &quot;final_v3&quot;.</li><li>Tests rerun after every edit; a passing resume can fail after one layout tweak.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../technical/webfont-formats.html">Webfont formats</a></li><li><a href="presentations-and-slides.html">Presentations and slides</a></li><li><a href="../accessibility/contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="../workflow/common-mistakes.html">Common mistakes</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

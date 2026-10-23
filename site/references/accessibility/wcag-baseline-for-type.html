@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>WCAG Baseline for Type - Fontlore</title>
+<meta name="description" content="The WCAG 2.2 success criteria that constrain typography, separated into what a font choice can influence and what it cannot. The goal is a shared baseline fo...">
+<meta property="og:title" content="WCAG Baseline for Type - Fontlore">
+<meta property="og:description" content="The WCAG 2.2 success criteria that constrain typography, separated into what a font choice can influence and what it cannot. The goal is a shared baseline fo...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>WCAG Baseline for Type</h1>
+<p>What this reference covers: The WCAG 2.2 success criteria that constrain typography, separated into what a font choice can influence and what it cannot. The goal is a shared baseline for designers and engineers: know which requirements live in CSS, which live in font selection, and which live in neither.</p>
+<h2>The criteria that touch typography</h2>
+<ul><li>1.4.3 Contrast (Minimum), AA: text contrast at least 4.5 to 1; large text (at least 24 px, or 18.66 px bold) at 3 to 1.</li><li>1.4.6 Contrast (Enhanced), AAA: 7 to 1, or 4.5 to 1 for large text.</li><li>1.4.1 Use of Color: color cannot be the only visual means of conveying information; hierarchy and status need more than hue.</li><li>1.4.4 Resize Text, AA: text resizes to 200 percent without loss of content or functionality.</li><li>1.4.10 Reflow, AA: at 320 CSS px width (equivalent to 1280 px at 400 percent zoom), content reflows without two-dimensional scrolling.</li><li>1.4.11 Non-text Contrast, AA: UI components and graphical objects need 3 to 1; this covers focus indicators, icons, and borders around inputs.</li><li>1.4.12 Text Spacing, AA: user agents must be able to override line height, paragraph spacing, letter spacing, and word spacing without breaking content.</li><li>1.4.8 Visual Presentation, AAA: among other settings, line length at most 80 characters and line spacing at least 1.5.</li><li>3.1.1 and 3.1.2 Language of Page and Parts: lang attributes so screen readers pronounce content correctly.</li><li>1.3.1 Info and Relationships: headings, lists, and emphasis must be real structure, not styled paragraphs.</li><li>2.5.8 Target Size (Minimum), AA (new in 2.2): pointer targets, including text buttons and links, at least 24 by 24 CSS px.</li><li>2.4.11 Focus Not Obscured (Minimum), AA (new in 2.2): sticky headers, footers, and banners must not fully hide the focused element.</li></ul>
+<h2>What font choice can fix</h2>
+<p>Font selection affects legibility factors that WCAG mostly treats indirectly, but which show up in real usability:</p>
+<ul><li>Distinctive letterforms: a face where uppercase i, lowercase l, and digit 1 are distinguishable, and where 0 is distinct from O, prevents real errors in codes, serials, and addresses. Some faces ship alternates (character variants) precisely for this.</li><li>x-height and aperture: open apertures (the gap in c, e, s) and a tall x-height help at small sizes and for low-vision readers; closed, high-contrast designs hurt.</li><li>Weight availability: a family with real medium and semibold weights lets you build hierarchy without dropping contrast; thin weights at small sizes fail in practice even when the color ratio technically passes.</li><li>Script coverage: correct marks, shaping, and diacritics are an accessibility issue for multilingual audiences; tofu and broken shaping make content unreadable.</li><li>Character alternates: some faces ship alternate glyphs (a tail on lowercase l, a distinct zero form) precisely to improve disambiguation; enabling them in tokens is a font-side accessibility win.</li></ul>
+<h2>What font choice cannot fix</h2>
+<ul><li>Contrast ratios: contrast is a property of color values, not fonts. A &quot;high-legibility font&quot; does not exempt gray-on-gray text from 1.4.3.</li><li>User spacing overrides: if line-height is hardcoded in pixels or text sits in fixed-height containers, 1.4.12 fails regardless of the typeface. The fix is CSS architecture.</li><li>Zoom and reflow: px-locked layouts and horizontal scrolling at 400 percent zoom fail 1.4.4 and 1.4.10 no matter the font.</li><li>Justified text with rivers, all-caps paragraphs, and 120-character lines: these are CSS and layout decisions; 1.4.8 exists because they matter more than the face.</li><li>Pronunciation: screen readers need lang attributes; no font affects pronunciation.</li><li>Currency and punctuation coverage for launch markets: a missing rupee sign is not fixable by a fallback stack; coverage is a selection-time check, not a CSS patch.</li></ul>
+<h2>Practical baseline for a project</h2>
+<p>Adopt these as non-negotiables and put them in the design system documentation:</p>
+<ul><li>Body text at 16 px minimum with line-height at least 1.5, sized in rem.</li><li>Contrast checked at the token level: every text color pair used by components passes for its size class.</li><li>No text in fixed-height containers; use min-height or padding, so spacing overrides cannot clip.</li><li>Letter and word spacing left to the font&#x27;s defaults in body text; user overrides must survive.</li><li>lang on the html element and lang switching for translated content.</li><li>Hierarchy via size, weight, and spacing; color and case alone never carry meaning.</li><li>Record the conformance target (AA or AAA, and which criteria) next to the type tokens; audits need a target, not a vibe.</li><li>Re-verify the baseline whenever the palette or the family changes; both silently move every number above.</li><li>Treat disabled and placeholder states as part of the audited pair list even where the criterion exempts them; legibility does not take exemptions.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Treating a &quot;dyslexia-friendly&quot; or &quot;accessible&quot; font as an accessibility feature that offsets failing contrast or fixed layouts. It offsets nothing.</li><li>Meeting contrast only in default state: link hover, placeholder, disabled, and focus states fail silently.</li><li>Scaling headings but not body text under zoom, or clamping rem sizes with px bounds so user font-size preferences stall.</li><li>Reading 1.4.12 as &quot;our design must use those spacings&quot;; the criterion is about user overrides working, which is different.</li><li>Auditing with automated tools only: contrast and structure are checkable, but zoom behavior and spacing overrides need human testing.</li><li>Reading the large-text allowance as &quot;anything bold at 18 px&quot;; the criterion means 18.66 px bold, and synthetic bold does not qualify.</li><li>Citing a Lighthouse score as conformance for typography criteria; it does not test the behavioral criteria at all.</li><li>Treating the baseline as one-time setup; criteria evolve (WCAG 2.2 added the target-size floor), so the baseline needs a review date.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Choosing between two faces: if both pass license and coverage, prefer the one with better small-size rendering (open apertures, taller x-height, real bold range), because that is the accessibility contribution a font can make.</li><li>If contrast fails with the brand color: change the color token, not the font, and never thin the weight to compensate.</li><li>If a criterion conflicts with a visual requirement (fixed-height cards, tracked-out caps body text): the criterion wins; redesign the component.</li><li>Anything below 16 px in a UI: re-check contrast (smaller text needs the full 4.5 to 1) and test the specific face at that size on Windows.</li></ul>
+<h2>Quick reference: the numbers that matter</h2>
+<table><thead><tr><th>Criterion</th><th>Level</th><th>The number</th><th>Where it is fixed</th></tr></thead><tbody><tr><td>1.4.3 Contrast (Minimum)</td><td>AA</td><td>4.5 to 1; 3 to 1 for text at least 24 px, or 18.66 px bold</td><td>Color tokens</td></tr><tr><td>1.4.6 Contrast (Enhanced)</td><td>AAA</td><td>7 to 1; 4.5 to 1 for large text</td><td>Color tokens</td></tr><tr><td>1.4.11 Non-text Contrast</td><td>AA</td><td>3 to 1 for focus indicators, icons, and input borders</td><td>Component CSS</td></tr><tr><td>1.4.12 Text Spacing</td><td>AA</td><td>1.5 line height, 2 paragraph spacing, 0.12 letter spacing, 0.16 word spacing (multiples of font size)</td><td>CSS architecture</td></tr><tr><td>1.4.4 Resize Text</td><td>AA</td><td>200 percent enlargement without loss of content or function</td><td>Units and layout</td></tr><tr><td>1.4.10 Reflow</td><td>AA</td><td>One-column behavior at 320 CSS px width (1280 px viewport at 400 percent zoom)</td><td>Layout</td></tr><tr><td>1.4.5 Images of Text</td><td>AA</td><td>Real text instead of text baked into images, except logos and essential cases</td><td>Content and design</td></tr><tr><td>1.4.8 Visual Presentation</td><td>AAA</td><td>Measure at most 80 characters; line height at least 1.5</td><td>Layout and tokens</td></tr></tbody></table>
+<p>Read the table as a division of labor: no font swap satisfies any row by itself, but font choice decides how comfortably each row is met, through real weights for hierarchy, open apertures at small sizes, and tabular figures for aligned data.</p>
+<h2>Comparison table: what the font contributes</h2>
+<table><thead><tr><th>Criterion</th><th>Font contribution</th><th>Honest size of it</th></tr></thead><tbody><tr><td>1.4.3 and 1.4.6 Contrast</td><td>None; ratios are a property of colors</td><td>Zero</td></tr><tr><td>1.4.12 Text Spacing</td><td>None directly; loose default spacing tolerates overrides slightly better</td><td>Minor; the CSS architecture decides</td></tr><tr><td>1.4.4 and 1.4.10 Resize and Reflow</td><td>None; units and layout decide</td><td>Zero</td></tr><tr><td>3.1.1 and 3.1.2 Language</td><td>None; lang attributes decide</td><td>Zero</td></tr><tr><td>1.4.11 Non-text Contrast</td><td>Indirect: sturdier strokes keep icons and rings legible</td><td>Minor</td></tr><tr><td>Perceived legibility (not scored by WCAG)</td><td>Large: x-height, apertures, distinct 1/l/I and 0/O, real bolds</td><td>The row where the typeface leads</td></tr></tbody></table>
+<p>The last row is the trap and the opportunity: WCAG scores pass-fail on things fonts barely touch, while day-to-day usability depends heavily on things WCAG barely scores. Both halves are mandatory.</p>
+<h2>Worked example: one settings screen, end to end</h2>
+<p>A product settings page: a title, four labeled inputs, a save button, a footnote. This audit order finds the most failures first:</p>
+<ol><li>Token contrast: the footnote gray measures 3.9 to 1 at 13 px and fails 1.4.3; the pair is re-tokened, not the weight reduced.</li><li>Structure: labels exist only as placeholder text, which disappears on input; real labels are added and placeholders demoted to hints.</li><li>Units: one caption is hardcoded 13 px; converted to rem, it now scales with the browser font-size preference.</li><li>Containers: the save row is height: 40px; under the 1.4.12 overrides the button label clips; min-height with padding replaces the fixed height.</li><li>Spacing overrides: the four criterion values are applied; the footnote collides with the button row; fixed positioning gives way to spacing tokens.</li><li>Zoom: at 400 percent the two-column form forces horizontal scrolling; a narrow-width media query stacks the columns.</li><li>Focus: the ring passes 3 to 1 on the light theme and fails on dark; a second ring token is added per theme.</li><li>Language: the page also ships in German; lang=&quot;de&quot; plus a translated template run through the same seven checks.</li></ol>
+<p>Total CSS changed: about four rules. Nothing about the typeface changed, because the typeface was never the failure; the audit exists to locate the real fault before someone &quot;fixes&quot; the font.</p>
+<h2>Tool notes and field notes</h2>
+<p>Tools, and what each one actually catches:</p>
+<ul><li>Browser DevTools contrast checkers (Chrome, Firefox, Edge): rendered pairs including opacity compositing; check per state, not per token.</li><li>axe DevTools, Lighthouse, and WAVE: structure and static contrast; they catch missing labels, missing lang, and plain-background failures; they cannot test zoom, overrides, or forced colors.</li><li>The alphagov text-spacing bookmarklet: applies the exact 1.4.12 values to every element; the standard first pass for that criterion.</li><li>Wakamai Fondue: inspects what the chosen file actually ships (tabular figures, alternates, weight range) before you commit.</li><li>WebAIM contrast checker and similar web checkers: token-level sign-off before components exist.</li><li>Forced-colors emulation in DevTools, or Windows High Contrast mode: the only real test that tokens remap sanely.</li><li>NVDA, VoiceOver, TalkBack: a five-minute lang and structure spot check, not a full navigation audit.</li></ul>
+<p>Where audits find the real failures:</p>
+<ul><li>Placeholder-only labels, whose contrast and programmatic association both vanished into the placeholder.</li><li>Enabled controls styled to look disabled; 1.4.3 exempts inactive components, but gray-out-as-hierarchy fails real text.</li><li>Focus rings dropped in a rebrand because the new accent fails 3 to 1 and nobody re-tested on dark backgrounds.</li><li>Fixed-height rows in pricing tables, found only because the bookmarklet ran on the pricing page and not on the demo page.</li><li>Missing lang on embedded translated quotes, so screen readers switch voices mid-sentence, or never switch when they should.</li><li>Everything passing until the browser default font size was raised; px-locked metadata stayed invisible until that check.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="text-spacing-criterion.html">Text spacing criterion</a></li><li><a href="contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="low-vision-and-zoom.html">Low vision and zoom</a></li><li><a href="../technical/fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

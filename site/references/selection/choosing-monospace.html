@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Choosing Monospace - Fontlore</title>
+<meta name="description" content="How to choose a monospace face for code, data tables, terminals, and technical branding. It covers the criteria that matter (digit and letter disambiguation,...">
+<meta property="og:title" content="Choosing Monospace - Fontlore">
+<meta property="og:description" content="How to choose a monospace face for code, data tables, terminals, and technical branding. It covers the criteria that matter (digit and letter disambiguation,...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Selection</span></nav>
+<article class="doc">
+<h1>Choosing Monospace</h1>
+<p>What this reference covers: How to choose a monospace face for code, data tables, terminals, and technical branding. It covers the criteria that matter (digit and letter disambiguation, ligature options, vertical rhythm), named examples across free and commercial sources, and the zero-style and ligature decisions teams argue about.</p>
+<p>Monospace is the rare category where technical constraints and aesthetics genuinely intertwine. The right choice depends on what the text is: code, numbers, receipts, or identity.</p>
+<h2>Where monospace belongs</h2>
+<ul><li>Code editors and terminal UIs: alignment is structural, so equal widths are functional, not stylistic.</li><li>Data tables and financial figures: tabular alignment prevents digit jitter; a mono companion for numerals is often cleaner than forcing a proportional face into tabular mode.</li><li>Receipts, logs, invoices, and status output: mono signals &quot;machine truth&quot; and reads as credible for raw data.</li><li>Technical branding: a mono accent (labels, eyebrows, metadata) communicates engineering care without committing the whole system.</li><li>Where monospace does not belong: body paragraphs, marketing copy, and anything long-form. Uniform width fights reading rhythm; use it as an accent, not a foundation.</li></ul>
+<h2>The criteria that matter</h2>
+<ul><li>Disambiguation is the core test: I (capital i), l (lowercase L), and 1 (one) must be instantly distinct, as must O (letter) and 0 (zero). Faces fail their users here first.</li><li>Punctuation needs presence: braces, brackets, and semicolons carry syntax; cramped punctuation makes code harder to scan than font choice ever helps.</li><li>Vertical rhythm: editors stack lines tightly, so the face needs consistent line metrics and no clipped diacritics or box-drawing glyphs.</li><li>Box-drawing and powerline glyph coverage matters for terminal customization; check coverage before standardizing on a face for CLI tooling.</li><li>Weight range: a bold that is clearly bolder at code-comment sizes, and ideally a light for commentary; most monos ship 400 and 700 only.</li><li>Italic exists in modern monos (JetBrains Mono, IBM Plex Mono) and matters for editor syntax themes.</li><li>Variable builds are rare in mono because spacing constraints limit axes; do not expect a wdth axis.</li></ul>
+<h2>Named examples</h2>
+<ul><li>JetBrains Mono: tall x-height, ligature support, generous character set, free and open source; a strong default for editors.</li><li>Fira Code: the face that popularized programming ligatures; extended by the community from Fira Mono (Erik Spiekermann&#x27;s Fira family for Mozilla).</li><li>Cascadia Code: Microsoft&#x27;s editor face for Windows Terminal and Visual Studio, with ligature variants and an italic.</li><li>IBM Plex Mono: part of the IBM Plex system; ideal when the brand already speaks Plex, and distinctive in marketing contexts.</li><li>Source Code Pro: Adobe&#x27;s mono companion to Source Sans; quiet, professional, widely packaged.</li><li>Space Mono: Colophon Foundry&#x27;s quirky mono for Google Fonts; a branding favorite when personality is wanted.</li><li>Consolas (Lucas de Groot) and Menlo (Bitstream Vera lineage): the platform defaults many users already know; familiarity is a feature.</li><li>Ubuntu Mono: compact and distinctive; tuned for Ubuntu&#x27;s ecosystem.</li><li>Berkeley Mono: a commercial success story showing mono-as-brand demand; proprietary and paid.</li><li>Courier: historically foundational and still ubiquitous in printing conventions; too thin and light for modern screens as a body face.</li></ul>
+<h2>Ligatures</h2>
+<ul><li>Programming ligatures merge glyph sequences like !=, =&gt;, and &gt;= into single joined glyphs. Fira Code made them mainstream; JetBrains Mono and Cascadia Code offer them with toggles.</li><li>They are a preference, not a feature upgrade: teams split roughly in half, so make the choice configurable in editor settings rather than mandated.</li><li>Ligatures can obscure what is literally in the file, which matters in code review, interviews, and teaching contexts; many educators disable them.</li><li>For data display (not code), avoid ligatures entirely; sequences like =&gt; or != in logs should render as the characters they are.</li><li>Stylistic sets usually provide a no-ligature variant; document the chosen set in editor config or font-feature-settings so the team sees the same screen.</li></ul>
+<h2>Zeros and lookalikes</h2>
+<ul><li>Zero styles: slashed (a diagonal stroke through the 0), dotted (a dot inside), or plain. Slashed is the most common in modern monos; dotted appears in some platform faces.</li><li>Choose one convention and hold it across the product; a slashed zero in the terminal and a dotted zero in the UI is the kind of inconsistency users notice without being able to name.</li><li>Many faces expose the alternate zero via a stylistic set or character variant; verify in the feature list rather than assuming.</li><li>The same discipline applies to I/l/1 designs: some faces serif the capital I, some slab the 1, some add tails; pick the treatment that survives your smallest size.</li></ul>
+<h2>Terminal aesthetics and branding</h2>
+<ul><li>A mono accent layer (labels, code snippets, IDs, timestamps) is a cheap way to add technical credibility to marketing pages and documentation.</li><li>Pair the mono with the system&#x27;s sans carefully: IBM Plex Mono with IBM Plex Sans shares DNA; Space Mono with almost anything creates deliberate friction that can either sharpen or clash.</li><li>In dashboards, mono numerals plus tabular proportional text is often better than all-mono; test both with real data density.</li><li>Terminal-themed branding (fake shells, ASCII decoration) dates quickly; the mono choice should outlive the gimmick it came with.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default editor face for a team: JetBrains Mono or Fira Code, with ligature policy written down.</li><li>Data-heavy product: proportional UI face plus a mono companion for IDs and figures; decide which fields get mono, not everything.</li><li>Brand with engineering identity: a distinctive mono (Space Mono, Berkeley Mono, IBM Plex Mono) as the accent voice.</li><li>If the face fails the I/l/1 or O/0 test at your smallest size, it fails, regardless of reputation.</li></ul>
+<h2>Workflow</h2>
+<ol><li>List every mono context in the product: editor, terminal, tables, receipts, marketing accents.</li><li>Shortlist three faces covering the strictest context; check character coverage (box drawing, powerline, math) against that context.</li><li>Run the disambiguation gauntlet: I l 1 O 0 rn m at target sizes, in the real rendering stack.</li><li>Decide ligature and zero policies; encode them in configs and design tokens.</li><li>Verify licensing and packaging (Fontsource or vendored files) and record versions in the manifest.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Shipping ligature-enabled faces into data displays and logs where sequences must read literally.</li><li>Choosing a mono for its specimen beauty and discovering missing box-drawing or math glyphs in production terminals.</li><li>Inconsistent zero styles across products and platforms.</li><li>Using Courier out of habit and suffering thin strokes on modern displays.</li><li>Mono for body text because &quot;it looks technical&quot;, exhausting readers within a paragraph.</li><li>Forgetting italic availability, then faking italics in editor themes.</li></ul>
+<h2>Comparison table</h2>
+<p>Orientation across widely used monos. &quot;Ligatures&quot; means programming ligatures designed into the face; editor settings toggle the rendering behavior either way.</p>
+<table><thead><tr><th>Face</th><th>Origin</th><th>Italic</th><th>Programming ligatures</th><th>Standing</th></tr></thead><tbody><tr><td>JetBrains Mono</td><td>JetBrains</td><td>Yes</td><td>Yes</td><td>Tall x-height, 8 weights, built for code reading</td></tr><tr><td>Fira Code</td><td>Community extension of Fira Mono (the Fira family for Mozilla)</td><td>No</td><td>Yes, the trend-setter</td><td>Ligature-first design</td></tr><tr><td>Cascadia Code</td><td>Microsoft</td><td>Yes, in recent versions</td><td>Yes, with variants</td><td>Ships with Windows Terminal</td></tr><tr><td>IBM Plex Mono</td><td>IBM with Bold Monday</td><td>Yes</td><td>No</td><td>The Plex system voice; distinctive in marketing</td></tr><tr><td>Source Code Pro</td><td>Adobe (Paul D. Hunt)</td><td>Yes</td><td>No</td><td>Quiet professional default; widely packaged</td></tr><tr><td>Space Mono</td><td>Colophon Foundry for Google Fonts</td><td>Yes</td><td>No</td><td>Branding personality with deliberate friction</td></tr><tr><td>Roboto Mono</td><td>Google</td><td>Yes</td><td>No</td><td>Neutral companion to Roboto; widely packaged</td></tr><tr><td>Ubuntu Mono</td><td>Tuned for the Ubuntu ecosystem</td><td>Yes</td><td>No</td><td>Compact width, distinctive shapes</td></tr><tr><td>Consolas</td><td>Lucas de Groot</td><td>Yes</td><td>No</td><td>Windows platform default users already know</td></tr><tr><td>Menlo</td><td>Bitstream Vera lineage</td><td>Yes</td><td>No</td><td>macOS platform default</td></tr><tr><td>Courier</td><td>Typewriter ancestor, open revivals</td><td>Yes</td><td>No</td><td>Historically foundational; too light for modern screens</td></tr><tr><td>Berkeley Mono</td><td>Berkeley Graphics, commercial</td><td>Check the license terms</td><td>Check the spec</td><td>The mono-as-brand success case</td></tr></tbody></table>
+<p>Check glyph coverage (box drawing, powerline, math) against your strictest terminal context before standardizing; a beautiful face missing box-drawing glyphs breaks CLI layouts in ways no specimen reveals.</p>
+<h2>Worked example</h2>
+<p>Choosing a mono for a data-heavy B2B product with audit logs, invoices, and a terminal-styled status page. Constraints: dark mode, 12px minimum table figures, and no ligatures anywhere data is displayed.</p>
+<ol><li>Contexts listed: code blocks in docs, a log viewer, invoice figures, and the status page accent layer. The strictest context is the log viewer at 12px on low-DPI displays.</li><li>Shortlist: JetBrains Mono, Source Code Pro, IBM Plex Mono; all three pass the I/l/1 and O/0 gauntlet at 12px in the real rendering stack.</li><li>Ligature policy: logs must read literally, so ligature features are disabled in the log viewer config and left available in editor config; the policy lives in shared font-feature-settings tokens, not personal preferences.</li><li>Coverage check: box-drawing and powerline glyphs are verified for the status page; JetBrains Mono covers both, which closes the accent-layer decision.</li><li>Invoice figures: worst-case amounts are set in both the mono and the incumbent sans with tabular figures; the mono aligns without jitter and wins amounts, IDs, and timestamps.</li><li>Zero policy: slashed zero chosen once, recorded in the design tokens, and verified in every context where the mono appears.</li><li>Italic check: editor themes want a true italic for comments and strings; all three finalists ship one, and the check is recorded so nobody fakes it later.</li><li>Packaging: the mono is vendored with a pinned version and an exact license file; the version goes in the manifest so editor updates cannot drift silently.</li><li>Editor rollout: the default profile sets the face at 13px, line-height 1.5, ligatures per the policy; the config file is shared, so the whole team sees the same screen.</li><li>Marketing accent: the same mono at 14 to 16px for labels and IDs on the status page, paired with the system sans; the mono is never used for body copy.</li><li>Outcome: one mono across editor, logs, invoices, and accents, with ligature, zero-style, and size policies written down and enforced by config rather than taste.</li></ol>
+<p>The reusable pattern: list contexts, shortlist against the strictest one, decide ligature and zero policies once, verify coverage, pin the version.</p>
+<h2>Field notes</h2>
+<ul><li>The zero-style argument is a governance problem wearing an aesthetics costume; decide once, encode it, stop relitigating it.</li><li>Editors re-render ligatures per theme and plugin, so the only reliable policy is one written into shared config, not into a wiki page.</li><li>Mono at 12px is where hinting quality shows; test on the worst screen before standardizing.</li><li>Teams underestimate italic demand: review comments, syntax themes, and teaching material all want a true italic eventually.</li><li>A mono accent layer (labels, IDs, timestamps) is the cheapest technical credibility a marketing page can buy.</li><li>If a face&#x27;s specimen shows only code, assume its prose punctuation was an afterthought; check quotation marks before using it in accents.</li><li>Numeric-heavy screens benefit more from a tabular-figure sans than from an all-mono layout; test both with real data density.</li><li>Platform defaults (Consolas, Menlo) are familiarity features; switching away costs user goodwill for marginal beauty.</li><li>Character width, not point size, determines how much code fits; compare faces by characters per line at your editor size.</li><li>Bold in mono is for errors and highlights; if bold does not read distinctly at 12px, the face is out.</li><li>Ligature discussions reach religious intensity; the escape is policy, not persuasion.</li><li>Terminal themes recolor everything; test the face against your actual theme backgrounds, including high-contrast modes.</li><li>Licensing for mono includes app embedding; verify the license covers bundling if the mono ships inside a desktop app or CLI.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Disambiguation first: I, l, and 1 must separate cleanly, as must O and 0, at your smallest size.</li><li>Ligatures: available in editors by choice, disabled in logs and data displays by rule.</li><li>Zero style: pick slashed or dotted once; encode it in tokens; verify the alternate via stylistic sets.</li><li>Coverage: box drawing, powerline, and math glyphs verified before CLI standardization.</li><li>Sizes: 12 to 14px for code and tables; 14 to 16px for mono accents in marketing.</li><li>Line-height: 1.45 to 1.6 for code blocks; tight enough to stack, loose enough to avoid clipped diacritics.</li><li>Italic: require a true italic if editor themes or documentation will ever need it.</li><li>Bold: must read distinctly at your smallest size for errors and highlights.</li><li>Weight range: 400 and 700 minimum; more only if rendering proves they earn it.</li><li>Pairing: mono with its own system sans (Plex with Plex) shares DNA; a quirky mono anywhere is a deliberate friction choice.</li><li>Packaging: pin the version, keep the license file, record both in the manifest.</li><li>Never body text: uniform width fights reading rhythm; mono is an accent, not a foundation.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="classification-primer.html">Classification primer</a></li><li><a href="width-density-and-spacing.html">Width, density, and spacing</a></li><li><a href="superfamily-and-family-systems.html">Superfamily and family systems</a></li><li><a href="choosing-body-typefaces.html">Choosing body typefaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

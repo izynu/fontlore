@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Design Tokens for Type - Fontlore</title>
+<meta name="description" content="Turning a type system into design tokens: family, size, weight, line-height, and tracking tokens; primitive versus semantic layers; responsive and multi-bran...">
+<meta property="og:title" content="Design Tokens for Type - Fontlore">
+<meta property="og:description" content="Turning a type system into design tokens: family, size, weight, line-height, and tracking tokens; primitive versus semantic layers; responsive and multi-bran...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>Design Tokens for Type</h1>
+<p>What this reference covers: Turning a type system into design tokens: family, size, weight, line-height, and tracking tokens; primitive versus semantic layers; responsive and multi-brand variations; syncing with CSS variables and Tailwind; and versioning tokens without breaking consumers. The goal is a type system that survives redesigns, theming, and handoffs because the decisions live in named tokens, not in scattered CSS.</p>
+<h2>Primitive and semantic layers</h2>
+<ul><li>Primitive tokens are the raw facts: font families, a size scale, weight values, line-height values. They are named by position or scale step (size-300), never by role.</li><li>Semantic tokens are the roles: heading, body, data, caption, code. Each resolves to primitives and is the only layer components consume.</li><li>Components reference semantic tokens only. When the brand swaps its serif, no component CSS changes; one primitive behind the heading token changes.</li><li>Keep the mapping one-directional: semantic references primitive, never the reverse. Circular or reverse references make themes impossible to reason about.</li><li>This layering is the same idea as the constraint sheet in selection work: decisions recorded once, consumed everywhere.</li></ul>
+<h2>Family tokens</h2>
+<ul><li>One token per family in the system: family-sans, family-serif, family-mono. The value is the full CSS stack, including metrics-sensible fallbacks.</li><li>Put generic keywords last in every stack (sans-serif, serif, monospace) so unknown environments still land in the right classification.</li><li>Do not create family tokens per weight (font-sans-bold); weight is its own dimension and multiplying family tokens by weight creates a matrix you cannot maintain.</li><li>For multi-script systems, token the script order too: a hindi-body token whose value is a stack ordering Devanagari coverage first, so locale differences are a token swap, not a CSS hunt.</li></ul>
+<h2>Size scale tokens (rem-based)</h2>
+<ul><li>Build the scale in rem so user font-size preferences scale the whole system; the browser default of 16px is the reference, not a value to hard-code.</li><li>Use a small named set of steps rather than arbitrary values: 0.75, 0.875, 1, 1.125, 1.25, 1.5625, 2, 2.5, 3.25rem is a workable product scale (12 through 52px at default root size).</li><li>Name steps by number (size-100 through size-800), not by use; &quot;size-small&quot; breaks the moment small changes meaning.</li><li>Constrain consumers to the scale: if a component needs 1.4rem, the scale is missing a step, and the fix is a token, not an exception.</li><li>Keep step ratios deliberate: a 1.2-1.25 ratio suits dense product UI; a 1.333 ratio suits editorial scale. The scale encodes the typographic voice as much as the family does.</li></ul>
+<h2>Weight tokens</h2>
+<ul><li>One token per weight actually used, named for the weight: weight-regular (400), weight-medium (500), weight-semibold (600), weight-bold (700).</li><li>The token list is also a shipping contract: every weight token must correspond to a font file or variable axis range you actually load. A weight-800 token with no 800 file renders faux-bold or nothing.</li><li>For variable fonts, weight tokens map to points inside the loaded axis range; record the axis range alongside the tokens so nobody tokenizes a weight the font cannot produce.</li><li>Map weights to roles in the semantic layer (emphasis, heading, data) so accessibility review can check that hierarchy is not weight-only; the wcag-baseline reference explains why weight must never be the only signal.</li></ul>
+<h2>Line-height tokens</h2>
+<ul><li>Token line-heights as unitless numbers (1.15, 1.3, 1.4, 1.6), named by purpose: tight, heading, normal, reading, dense.</li><li>Bind line-height to size steps at the semantic layer (body = size-300 plus reading), because the same numeric line-height reads differently at 12px and at 24px.</li><li>Reserve a dense token for tables and data UI; dense text at 1.2-1.3 is fine for numerals and labels, and wrong for paragraphs.</li><li>For multi-script products, allow locale overrides: Devanagari and other Brahmic scripts need taller leading than Latin; the devanagari-script reference explains the anatomy behind the number.</li></ul>
+<h2>Tracking tokens</h2>
+<ul><li>Token the few tracking values you actually use: tight (-0.01 to -0.02em) for large headings, normal (0), wide (0.05-0.08em) for small caps and labels.</li><li>Express tracking in em, never px, so it scales with size; a fixed px letter-spacing at small sizes crushes the text.</li><li>Pair tracking tokens with size tokens at the semantic layer: display sizes get tight tracking, caps-label gets wide. Tracking applied globally is a common way teams ruin a text face at body sizes.</li><li>Note in the token description when a value exists to compensate for a specific family&#x27;s spacing; that context disappears otherwise.</li></ul>
+<h2>Responsive tokens</h2>
+<ul><li>Two honest options: fixed steps with breakpoint-scoped semantic mappings, or fluid tokens using clamp() for headline sizes.</li><li>Fluid pattern: --text-display: clamp(2.5rem, 5vw + 1rem, 4rem); keep fluid behavior to display sizes where drift is safe, and keep body sizes stable for reading comfort.</li><li>Encode the same policy in the semantic layer: heading tokens may be fluid, body and data tokens are fixed steps.</li><li>Document responsive intent in the token description (&quot;display scales 40 to 64px between 375 and 1440&quot;) so implementers do not re-derive it.</li></ul>
+<h2>Naming conventions</h2>
+<ul><li>Pattern: namespace-dimension-step, with hyphens only: type-size-300, type-weight-semibold, type-line-height-reading.</li><li>Reserve the semantic namespace for roles: type-heading, type-body, type-data, type-caption. Consumers see these; primitives exist for theming.</li><li>Never encode appearance in semantic names: type-heading-blue is how tokens rot. Semantic names encode role; primitives encode value.</li><li>Keep names stable across brands: the semantic layer is identical everywhere, and only primitive values differ. That is what makes multi-brand theming cheap.</li></ul>
+<h2>Multi-brand font stacks</h2>
+<ul><li>Primitive values are per-brand: brand A resolves type-family-serif to a licensed commercial face, brand B resolves the same token to an OFL serif. Everything downstream is untouched.</li><li>Ship brand differences as value sets (a theme file per brand), not as forked token names; forks multiply maintenance linearly with brands.</li><li>License scope is a token-level fact worth documenting: record in the brand theme which families are OFL and which are commercial, so the license register and the tokens agree.</li><li>When brands share a product but not families, keep metrics compatible: fallback stacks and layout components assume similar x-heights and widths, or text reflows between brands.</li></ul>
+<h2>Syncing with CSS variables and Tailwind</h2>
+<p>Emit primitives as CSS custom properties and let semantic tokens reference them:</p>
+<pre><code class="language-css">:root {
+  --type-family-sans: &quot;Inter&quot;, ui-sans-serif, system-ui, sans-serif;
+  --type-family-serif: &quot;Source Serif 4&quot;, Georgia, serif;
+  --type-size-300: 1rem;
+  --type-line-height-reading: 1.6;
+  --type-weight-semibold: 600;
+}
+body {
+  font-family: var(--type-family-sans);
+  font-size: var(--type-size-300);
+  line-height: var(--type-line-height-reading);
+}</code></pre>
+<p>In Tailwind v3, map tokens into the theme config so utilities and tokens cannot diverge:</p>
+<pre><code class="language-js">module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: [&quot;Inter&quot;, &quot;ui-sans-serif&quot;, &quot;system-ui&quot;, &quot;sans-serif&quot;],
+        serif: [&quot;Source Serif 4&quot;, &quot;Georgia&quot;, &quot;serif&quot;],
+      },
+      fontSize: {
+        body: [&quot;1rem&quot;, { lineHeight: &quot;1.6&quot; }],
+        &quot;display-lg&quot;: [&quot;3.25rem&quot;, { lineHeight: &quot;1.1&quot;, letterSpacing: &quot;-0.02em&quot; }],
+      },
+      fontWeight: { regular: &quot;400&quot;, semibold: &quot;600&quot; },
+    },
+  },
+};</code></pre>
+<p>Tailwind v4 moves this into CSS with @theme variables (--font-sans, --text-body and its line-height modifier); the principle is identical: one source of truth, generated utilities, no hand-typed values in components.</p>
+<h2>Example token JSON</h2>
+<p>A design-tokens format (DTCG-style) export that tools and style pipelines can consume:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: {
+    &quot;family&quot;: {
+      &quot;sans&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;Inter, ui-sans-serif, system-ui, sans-serif&quot; },
+      &quot;serif&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;Source Serif 4, Georgia, serif&quot; },
+      &quot;mono&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;JetBrains Mono, ui-monospace, monospace&quot; }
+    },
+    &quot;size&quot;: {
+      &quot;200&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;0.875rem&quot; },
+      &quot;300&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;1rem&quot; },
+      &quot;400&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;1.25rem&quot; },
+      &quot;700&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;2.5rem&quot; },
+      &quot;800&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;3.25rem&quot; }
+    },
+    &quot;lineHeight&quot;: {
+      &quot;tight&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: 1.15 },
+      &quot;normal&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: 1.4 },
+      &quot;reading&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: 1.6 },
+      &quot;dense&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: 1.3 }
+    },
+    &quot;weight&quot;: {
+      &quot;regular&quot;: { &quot;$type&quot;: &quot;fontWeight&quot;, &quot;$value&quot;: 400 },
+      &quot;medium&quot;: { &quot;$type&quot;: &quot;fontWeight&quot;, &quot;$value&quot;: 500 },
+      &quot;semibold&quot;: { &quot;$type&quot;: &quot;fontWeight&quot;, &quot;$value&quot;: 600 }
+    },
+    &quot;tracking&quot;: {
+      &quot;tight&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;-0.02em&quot; },
+      &quot;normal&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;0em&quot; },
+      &quot;caps&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;0.06em&quot; }
+    }
+  },
+  &quot;semantic&quot;: {
+    &quot;heading&quot;: {
+      &quot;family&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;{type.family.serif}&quot; },
+      &quot;size&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;{type.size.800}&quot; },
+      &quot;lineHeight&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: &quot;{type.lineHeight.tight}&quot; },
+      &quot;tracking&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;{type.tracking.tight}&quot; }
+    },
+    &quot;body&quot;: {
+      &quot;family&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;{type.family.sans}&quot; },
+      &quot;size&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;{type.size.300}&quot; },
+      &quot;lineHeight&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: &quot;{type.lineHeight.reading}&quot; }
+    },
+    &quot;data&quot;: {
+      &quot;family&quot;: { &quot;$type&quot;: &quot;fontFamily&quot;, &quot;$value&quot;: &quot;{type.family.mono}&quot; },
+      &quot;size&quot;: { &quot;$type&quot;: &quot;dimension&quot;, &quot;$value&quot;: &quot;{type.size.200}&quot; },
+      &quot;lineHeight&quot;: { &quot;$type&quot;: &quot;number&quot;, &quot;$value&quot;: &quot;{type.lineHeight.dense}&quot; }
+    }
+  }
+}</code></pre>
+<h2>Versioning and deprecating tokens</h2>
+<ul><li>Version the token file like code; a token change is a user-visible typographic change and goes through the same review as a font update.</li><li>Deprecate by addition: introduce the replacement, mark the old token deprecated with a pointer, migrate consumers, then remove in the next major. Silent renames strand every consumer.</li><li>Keep a changelog entry per release: added, deprecated, removed, value changes. &quot;Value changes&quot; is the dangerous category; a quiet change to type-size-300 reflows the product.</li><li>Record the font versions each token release was validated against, so token history and font history stay coupled.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Semantic tokens named by appearance instead of role, which breaks at the first rebrand.</li><li>Tokens for weights or sizes no font file can render; the token list and the shipped files must agree.</li><li>Hard-coding px sizes alongside a token system, quietly exempting parts of the product from user preferences.</li><li>Letting components consume primitive tokens directly, which makes the semantic layer decorative.</li><li>Tracking tokens applied globally instead of bound to size steps, crushing body text.</li><li>Multi-brand forks that duplicate token names instead of varying values.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../technical/font-face-and-css.html">Font-face and CSS</a></li><li><a href="css-handoff-snippets.html">CSS handoff snippets</a></li><li><a href="../applications/web-and-saas-interfaces.html">Web and SaaS interfaces</a></li><li><a href="../accessibility/wcag-baseline-for-type.html">WCAG baseline for type</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

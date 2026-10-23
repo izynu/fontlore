@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Amiri: implementation guide - Fontlore</title>
+<meta name="description" content="shipping Amiri on the web: install paths, CSS setup, variable axis usage, font-display strategy, fallbacks, and a pre-launch checklist.">
+<meta property="og:title" content="Amiri: implementation guide - Fontlore">
+<meta property="og:description" content="shipping Amiri on the web: install paths, CSS setup, variable axis usage, font-display strategy, fallbacks, and a pre-launch checklist.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#fonts">Browse</a><span class="crumb-sep">/</span><span aria-current="page">Fonts</span></nav>
+<article class="doc">
+<h1>Amiri: implementation guide</h1>
+<p>What this reference covers: shipping Amiri on the web: install paths, CSS setup, variable axis usage, font-display strategy, fallbacks, and a pre-launch checklist.</p>
+<h2>Install paths</h2>
+<ul><li>npm: <code>npm install @fontsource/amiri</code></li><li>Import per weight: <code>import &#x27;@fontsource/amiri/400.css&#x27;;</code></li></ul>
+<p>CDN stylesheet, no install:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/fontsource/css/amiri@latest/index.css&quot;&gt;</code></pre>
+<p>Self-hosting beats the CDN for production: it removes a third-party dependency, lets you control cache headers, and keeps font bytes on your own domain.</p>
+<h2>CSS setup</h2>
+<pre><code class="language-css">:root {
+  --font-brand: &#x27;Amiri&#x27;;
+  --font-brand-fallback: Georgia, &#x27;Times New Roman&#x27;, serif;
+}
+
+.brand-type { font-family: var(--font-brand), var(--font-brand-fallback); }</code></pre>
+<h2>Weight and axis strategy</h2>
+<p>Amiri serves static weights. Recorded available weights: 400, 700.</p>
+<pre><code class="language-css">/* request exactly the weights the family ships */
+.weight-400 { font-weight: 400; }
+.weight-700 { font-weight: 700; }</code></pre>
+<p>If a design calls for a weight between two statics, choose the nearest available weight deliberately; browsers synthesize the rest and the fake weights are always worse than the honest nearest neighbor.</p>
+<h2>font-display strategy</h2>
+<ul><li>Body text: <code>font-display: swap</code> keeps content readable during load at the cost of a brief fallback flash.</li><li>Display headlines: <code>swap</code> is usually acceptable; <code>optional</code> suits cases where layout stability outranks brand type on first paint.</li><li>Avoid <code>block</code> for anything above the fold; invisible text is the worst outcome for readers.</li></ul>
+<h2>Subset and performance notes</h2>
+<p>Declared subsets: arabic, latin. Load only the subsets the page actually renders; the Fontsource packages and the Google Fonts CSS API split coverage with unicode-range so browsers fetch what they need.</p>
+<p>Budget guidance: audit the network tab after wiring the family up. If the font payload exceeds roughly 100 KB for a Latin-only page, question whether every requested weight earns its bytes.</p>
+<h2>Fallback strategy</h2>
+<p>The recommended fallback stack above picks system faces that share the serif category, so the swap flash changes letterforms but not layout category. For tighter control, measure the fallback with size-adjust and ascent-override rather than eyeballing it.</p>
+<h2>Pre-launch checklist</h2>
+<ul><li>[ ] Weights requested match weights shipped; no synthetic bold in the UI.</li><li>[ ] font-display chosen deliberately for body and display roles.</li><li>[ ] Only needed subsets load; network tab audited.</li><li>[ ] Fallback stack renders the page without layout shift during swap.</li><li>[ ] License verified at the source page for the current project scope.</li><li>[ ] Real copy tested at real sizes, including numerals and punctuation.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Importing the whole package when one stylesheet would do; tree shaking does not apply to CSS.</li><li>Hard-coding px everywhere and losing the variable optical sizing benefit.</li><li>Forgetting <code>font-optical-sizing: auto</code> on optical-size families, which pins the wrong optical cut.</li><li>Shipping the CDN stylesheet in production and eating the third-party request.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="./amiri-overview.html">Amiri overview</a></li><li><a href="../../references/technical/font-face-and-css.html">@font-face and CSS reference</a></li><li><a href="../../references/technical/font-display-strategies.html">font-display strategies</a></li><li><a href="../../references/technical/fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Generated from the Fontlore data layer. <a href="../../browse.html#fonts">Back to all fonts</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

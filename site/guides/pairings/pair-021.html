@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Exo 2 + Titillium Web: pairing guide - Fontlore</title>
+<meta name="description" content="the documented pairing of Exo 2 for headings and Titillium Web for body text: why it works, where it fits, how to implement it, and what to test before shipp...">
+<meta property="og:title" content="Exo 2 + Titillium Web: pairing guide - Fontlore">
+<meta property="og:description" content="the documented pairing of Exo 2 for headings and Titillium Web for body text: why it works, where it fits, how to implement it, and what to test before shipp...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#pairings">Browse</a><span class="crumb-sep">/</span><span aria-current="page">Pairings</span></nav>
+<article class="doc">
+<h1>Exo 2 + Titillium Web: pairing guide</h1>
+<p>What this reference covers: the documented pairing of Exo 2 for headings and Titillium Web for body text: why it works, where it fits, how to implement it, and what to test before shipping.</p>
+<h2>The pair at a glance</h2>
+<table><thead><tr><th>Role</th><th>Family</th><th>Classification</th><th>License</th><th>Variable</th></tr></thead><tbody><tr><td>Heading</td><td>Exo 2</td><td>techno</td><td>OFL-1.1</td><td>yes</td></tr><tr><td>Body</td><td>Titillium Web</td><td>humanist</td><td>OFL-1.1</td><td>no</td></tr></tbody></table>
+<p>Pairing kind: <code>techno-duet</code>. In practice, two technical voices balanced so the page reads engineered, not gimmicky.</p>
+<h2>Why this pair works</h2>
+<p>Two techno voices in balance: angular display, technical body.</p>
+<p>The mechanism is complementary contrast: techno headlines bring a different structure than the humanist body, while both agree on overall color and proportion enough to sit on one page without arguing.</p>
+<h2>Where to use it</h2>
+<p>This pairing targets techno products and speculative brands.</p>
+<ul><li>Landing pages that need the headline voice to land in one glance.</li><li>Content products where the body voice must survive thousands of words.</li><li>Design systems that want a documented default before teams improvise.</li></ul>
+<h2>How to set it up</h2>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/fontsource/css/exo-2@latest/index.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/fontsource/css/titillium-web@latest/index.css&quot;&gt;</code></pre>
+<pre><code class="language-css">:root {
+  --font-heading: &#x27;Exo 2&#x27;;
+  --font-body: &#x27;Titillium Web&#x27;;
+}
+
+h1, h2, h3 { font-family: var(--font-heading), serif; font-weight: 600; }
+body { font-family: var(--font-body), sans-serif; font-size: 1rem; line-height: 1.6; }</code></pre>
+<p>Self-host both families in production and drop the CDN links; the snippet above is for quick evaluation only.</p>
+<h2>Hierarchy suggestions</h2>
+<ul><li>Display: Exo 2 at 40 to 72 px, tightened tracking above 1.2 ratios.</li><li>Section heads: Exo 2 at 24 to 32 px, or switch to Titillium Web at 600 for dense UIs.</li><li>Body: Titillium Web at 15 to 17 px with 1.5 to 1.7 line height.</li><li>Captions and metadata: the body family at 12 to 13 px, medium weight, muted color.</li><li>Code and numerals in tables: add a monospace; this pair does not cover those roles.</li></ul>
+<h2>Alternatives with the same logic</h2>
+<p>No other pairing in the data layer shares this exact logic; browse the pairings tab of the library for adjacent kinds.</p>
+<h2>Testing checklist</h2>
+<ul><li>[ ] Real headline copy at final sizes; check the heading voice does not collapse.</li><li>[ ] Real body copy for three paragraphs minimum; no rhythmic snags.</li><li>[ ] Numerals in both faces match the product&#x27;s needs (tabular vs proportional).</li><li>[ ] Both licenses cover the project scope; record URLs in the decision log.</li><li>[ ] Fallback stacks chosen per role so a slow load never swaps both faces at once.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Letting the heading face appear in running text; contrast faces tire fast at small sizes.</li><li>Matching weights instead of roles: 700 heading vs 400 body beats 600 vs 500 every time.</li><li>Forgetting the caption style, which silently becomes the third voice on the page.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../fonts/exo-2-overview.html">Exo 2 overview</a></li><li><a href="../fonts/titillium-web-overview.html">Titillium Web overview</a></li><li><a href="../../references/selection/classification-primer.html">Classification primer</a></li><li><a href="../../references/workflow/testing-and-comparing-shortlists.html">Testing and comparing shortlists</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Generated from the Fontlore data layer. <a href="../../browse.html#pairings">Back to all pairings</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

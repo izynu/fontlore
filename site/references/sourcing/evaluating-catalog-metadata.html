@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Evaluating Catalog Metadata - Fontlore</title>
+<meta name="description" content="How to compare metadata across catalogs and packages, spot stale or wrong metadata, pin versions, and run a verification workflow against the Fontsource API...">
+<meta property="og:title" content="Evaluating Catalog Metadata - Fontlore">
+<meta property="og:description" content="How to compare metadata across catalogs and packages, spot stale or wrong metadata, pin versions, and run a verification workflow against the Fontsource API...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Evaluating Catalog Metadata</h1>
+<p>What this reference covers: How to compare metadata across catalogs and packages, spot stale or wrong metadata, pin versions, and run a verification workflow against the Fontsource API and the google/fonts repository. It is the difference between &quot;I found a font&quot; and &quot;I have evidence about this font.&quot;</p>
+<p>Every catalog displays metadata, and every catalog gets some of it wrong: stale versions, wrong designers, missing axes, optimistic subset claims. Cross-checking three independent sources catches most of it in minutes.</p>
+<h2>The fields that matter</h2>
+<ul><li>Version: the font file&#x27;s internal version string, the npm package version, and the repository commit date. Three names for the same underlying fact, and they drift.</li><li>License: the exact license name (OFL-1.1, Apache-2.0, UFL-1.0, ITF-FFL-1.0), not the word &quot;free&quot;. The license determines every downstream decision.</li><li>Designer and foundry: needed for credits, audits, and contacting humans. Verify against the foundry site or the OFL copyright line.</li><li>Subsets and languages: what the family claims to cover. Cross-check against specimen glyphs, because listings overstate.</li><li>Axes: for variable fonts, the declared tags and ranges. Compare against the font file&#x27;s fvar table.</li><li>Date fields: catalog date_added, npm publish dates, repository git dates. Freshness of metadata is itself a quality signal.</li></ul>
+<h2>Comparing across catalogs</h2>
+<ul><li>The same family commonly shows different versions on the Google Fonts site, in the google/fonts repo, on Fontsource, and on the foundry&#x27;s own page. Differences of a minor revision are normal; divergent axes or weights lists are not.</li><li>npm versions on Fontsource track upstream releases, so the npm changelog is a legitimate version signal for packaged families.</li><li>Foundry-direct pages usually carry the newest version; catalogs lag by days or months. For commercial fonts, the foundry page is the version of record.</li><li>Aggregator sites (blogs, free-font lists) almost never carry version data at all; that absence is the reason their links rot.</li></ul>
+<h2>Spotting stale or wrong metadata</h2>
+<ul><li>A family page whose described styles do not match the downloadable files (page lists 12 styles, download has 8) means the metadata or the files are stale; trust the files.</li><li>Wrong or missing designer credits: cross-check the OFL copyright line and the foundry&#x27;s site. Catalog typos propagate widely because sites copy each other.</li><li>Variable flag mismatches: a site calling a family variable when only a subset of axes is served, or listing axes that the actual file lacks.</li><li>Subset overclaiming: a family marked as covering a language where the specimens show missing diacritics or unshaped script behavior.</li><li>Dead upstream links: a METADATA.pb or catalog entry pointing at a vanished repository means maintenance risk, and you should record that risk.</li><li>License mislabels: &quot;free for commercial use&quot; pasted onto what is actually a trial or personal-use license. This single error causes most free-font incidents.</li></ul>
+<h2>Version pinning strategies</h2>
+<ul><li>npm: pin exact versions in package.json for font packages; a caret on a font dependency is an unreviewed glyph change waiting to ship.</li><li>Self-hosted files: name files with the version (acme-sans-2.3.0.woff2) or keep a manifest mapping files to versions, sources, and dates.</li><li>Record the version you approved in the design system&#x27;s documentation; a review that approved version 2.1 should be re-opened when 2.4 lands.</li><li>For CDN usage you cannot pin; that limitation is one of the strongest arguments for self-hosting in production.</li><li>When upstream releases meaningful changes (new scripts, axis changes), schedule the upgrade as a visible design change, not a silent dependency bump.</li></ul>
+<h2>Verification workflow</h2>
+<ol><li>Collect the claims: catalog page, package metadata (npm or API), and repository metadata (METADATA.pb or foundry release).</li><li>Compare version signals; note the newest and the one you actually deploy.</li><li>Compare weights, styles, axes, and subsets across all three; every mismatch goes into the notes.</li><li>Open the license file at the source (OFL.txt, LICENSE.txt, or the foundry&#x27;s license PDF) and record the exact license name and any Reserved Font Names.</li><li>Spot-check rendering claims in specimens: weights that exist, diacritics that render, numerals that align.</li><li>Write the evidence record: sources, dates, versions, discrepancies, and the confidence level you can defend.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Trusting one source because it is the most convenient; convenience is not corroboration.</li><li>Recording &quot;Google Fonts&quot; as the license instead of OFL, Apache, or UFL.</li><li>Comparing the CDN&#x27;s current rendering against a pinned npm version and concluding the font &quot;changed randomly&quot;.</li><li>Ignoring date fields, then defending a decision with metadata two years older than the font.</li><li>Copying catalog descriptions into internal docs instead of writing evidence-based summaries.</li><li>Treating subset listings as verified coverage without opening the glyph grid once.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Two sources agree, third disagrees: investigate the third; do not average.</li><li>Metadata conflict on license or designer: the license file and the foundry win over any catalog.</li><li>Version conflict without explanation: assume the newest repository commit is current and treat others as lagging, but verify in the actual file.</li><li>If verification takes more than a few minutes, the missing fact becomes a named task with an owner, not a footnote.</li></ul>
+<h2>Cross-check matrix</h2>
+<table><thead><tr><th>Claim</th><th>Check it at</th><th>What confirms it</th></tr></thead><tbody><tr><td>License</td><td>OFL.txt or LICENSE.txt in the google/fonts directory, or the foundry&#x27;s license PDF</td><td>Exact license name and any Reserved Font Name line</td></tr><tr><td>Version</td><td>Font file&#x27;s internal version string, git log date, npm publish date</td><td>Three signals telling one consistent story</td></tr><tr><td>Designer</td><td>Foundry site plus the OFL copyright line</td><td>Agreement across both, not a catalog&#x27;s typo</td></tr><tr><td>Axes</td><td>The font file&#x27;s fvar table via a font inspector</td><td>Tags and ranges match the metadata claims</td></tr><tr><td>Subsets</td><td>The glyph grid of an actual shipped file</td><td>Real glyphs, not a list on a page</td></tr><tr><td>Language support</td><td>Specimen text in that language</td><td>Correct diacritics and shaped text, not a count</td></tr><tr><td>Variable flag</td><td>The served file, opened in an inspector</td><td>Declared axes exist in the file you deploy</td></tr></tbody></table>
+<p>Any row that cannot be checked becomes a named risk in the record, not a silent assumption.</p>
+<h2>Worked example: resolving a version conflict</h2>
+<p>Scenario: a team sees different kerning between the CDN version of a family and their pinned npm package, and someone claims &quot;the font changed randomly&quot;.</p>
+<ol><li>Collect the three signals: the npm package version and publish date, the git log date of the family directory in google/fonts, and the font file&#x27;s internal version string from the deployed file.</li><li>Compare axes and weights lists across sources; a missing axis or weight in one source usually explains the visual difference without any mystery.</li><li>Check the upstream release notes or issue tracker for the family; glyph and kerning fixes are usually documented somewhere between upstream and the packaging layer.</li><li>Conclude with a decision, not a shrug: pin both environments to the same channel and version, or accept and document the drift deliberately.</li><li>Write the incident into the font manifest so the next person knows the CDN and the npm package were on different revisions, and why the team standardized.</li></ol>
+<p>The resolution is always organizational in the end: one channel of record per family per product, and a review path for version changes.</p>
+<h2>Signals to trust</h2>
+<ul><li>The license file read at the source, with the exact license name and Reserved Font Names recorded.</li><li>Three-way agreement between repository metadata, package metadata, and the font file&#x27;s own tables.</li><li>Foundry-direct pages for commercial fonts; they carry the newest version and the authoritative scope.</li><li>Dated evidence: records that say when each fact was checked.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>Three sources agreeing when two of them copied the third; catalogs and aggregators syndicate descriptions widely, so apparent corroboration can be one claim echoed.</li><li>&quot;Free for commercial use&quot; as a license name; it is a marketing phrase, and its most common referent is a trial license.</li><li>Aggregator sites for version data; their absence of version information is the reason their links rot.</li><li>Subset and language listings treated as coverage; listings overstate, specimens do not.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Date fields deserve more attention than they get: a catalog page describing a family accurately but two years stale is still a liability during an audit.</li><li>The npm changelog is the cheapest version proxy for packaged families; for unpackaged families, git log in the source repository does the same job.</li><li>When a foundry and a catalog disagree on designer credit, the OFL copyright line usually settles it in one read.</li><li>Keeping a three-column comparison (catalog, package, repository) as a screenshot with the date visible is a five-minute habit that rescues months-later arguments.</li><li>Metadata quality tracks maintenance quality; families with sloppy metadata tend to be families with slow fixes, which is itself selection information.</li></ul>
+<h2>Questions to ask during verification</h2>
+<ul><li>Which of these sources is actually authoritative for this field, and does everyone on the team know that?</li><li>What version is deployed right now, and can you name it without opening a ticket?</li><li>If the license turned out to be different tomorrow, what breaks first?</li><li>Which mismatch on this list blocks launch, and which is a documented quirk?</li><li>Who signs off that the verification is complete, and where does the record live?</li></ul>
+<h2>Tool notes</h2>
+<ul><li>Font inspectors (fontdrop, Wakamai Fondue, or a desktop font inspector) read the deployed file directly, which is the only way to settle axes and version questions.</li><li><code>git log</code> against the google/fonts family directory gives the last-change date in seconds; it is the cheapest verification step in this entire reference.</li><li>The npm CLI answers package-side questions locally: exact installed version, publish date, and file list without opening a browser.</li><li>Keep a saved diff or side-by-side screenshot when versions disagree; the visual evidence is what persuades the meeting that &quot;it looks the same to me&quot; is not a resolution.</li></ul>
+<h2>Mismatch triage</h2>
+<table><thead><tr><th>Mismatch found</th><th>Most likely cause</th><th>Action</th></tr></thead><tbody><tr><td>Version differs by a minor revision</td><td>Normal packaging lag</td><td>Note it; pin one channel of record</td></tr><tr><td>Weights list differs</td><td>Metadata stale or partial package</td><td>Trust the shipped file; file an issue upstream if wrong</td></tr><tr><td>Axes present in metadata, absent in file</td><td>Stale metadata or wrong file deployed</td><td>Re-verify deployment source immediately</td></tr><tr><td>Language listed but diacritics broken</td><td>Coverage overclaim</td><td>Record as risk; test with native reader before launch</td></tr><tr><td>License named differently across sources</td><td>Syndicated summaries</td><td>Read the license file; the file wins</td></tr></tbody></table>
+<h2>Cross-references</h2>
+<ul><li><a href="google-fonts-repository.html">The google/fonts repository</a></li><li><a href="fontsource-api.html">Fontsource REST API</a></li><li><a href="building-a-font-shortlist-source.html">Building a font shortlist with sources</a></li><li><a href="../licensing/open-source-due-diligence.html">Open-source due diligence</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

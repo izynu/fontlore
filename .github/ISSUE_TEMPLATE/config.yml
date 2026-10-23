@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and usage help
+    url: https://github.com/izynu/fontlore/discussions
+    about: Ask how to use the skill, the data, or decide.py results.
+  - name: Pairing and identification help
+    url: https://github.com/izynu/fontlore/discussions
+    about: Get help pairing a shortlist or identifying a font from a specimen.

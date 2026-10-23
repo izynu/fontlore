@@ -1,0 +1,60 @@
+name: New tool entry
+description: Propose a tool for data/tools.json.
+labels: ["data", "new-tool"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+      description: Exact name as the tool calls itself.
+      placeholder: Wakamai Fondue
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Must start with https.
+      placeholder: https://wakamaifondue.com/
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      description: Which tools.json section this belongs to.
+      options:
+        - catalogs
+        - apis
+        - source-repos
+        - identification
+        - licensing
+        - technical
+        - tooling
+        - pairing
+        - discovery
+        - foundries
+        - scripts
+        - accessibility
+        - education
+        - evidence
+        - creation
+        - commercial
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What it does
+      description: One factual sentence. No marketing language.
+      placeholder: "Inspects a dropped font file and reports its axes, features, and glyph coverage."
+    validations:
+      required: true
+  - type: input
+    id: access
+    attributes:
+      label: Access model
+      description: free, freemium, paid, or similar.
+      placeholder: free
+    validations:
+      required: true

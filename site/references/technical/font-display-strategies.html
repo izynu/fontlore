@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Font Display Strategies - Fontlore</title>
+<meta name="description" content="What each font-display value does with real timing, the FOUT versus FOIT tradeoff in practical terms, how preload changes outcomes, and how to match a strate...">
+<meta property="og:title" content="Font Display Strategies - Fontlore">
+<meta property="og:description" content="What each font-display value does with real timing, the FOUT versus FOIT tradeoff in practical terms, how preload changes outcomes, and how to match a strate...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Technical</span></nav>
+<article class="doc">
+<h1>Font Display Strategies</h1>
+<p>What this reference covers: What each font-display value does with real timing, the FOUT versus FOIT tradeoff in practical terms, how preload changes outcomes, and how to match a strategy to page type. This is a small API with outsized UX consequences; most sites should use swap, some should use optional, almost none should use block.</p>
+<h2>The values and their timing</h2>
+<p>font-display is set per @font-face and controls what happens in the gap between page render and font arrival:</p>
+<ul><li>auto: browser default behavior, effectively block in practice. Choose it only by conscious omission, not by habit.</li><li>block: the text is invisible (rendered with an invisible fallback) for a block period, up to about 3 seconds in current browsers, then swaps. Highest risk: blank text on slow networks.</li><li>swap: essentially no block period; text renders in the fallback font immediately and swaps when the webfont arrives. Layout shifts once, text is never invisible.</li><li>fallback: a short block period (around 100 ms), then fallback text, then swap if the font arrives within about 3 seconds. A compromise that avoids both blank text and permanent unstyled flashes for marginal fonts.</li><li>optional: a very short block period (around 100 ms); if the font is not ready, the fallback is used for this page view, and the browser may download the font in the background for subsequent views. Designed for near-zero layout impact.</li></ul>
+<p>FOUT (flash of unstyled text) is what swap produces; FOIT (flash of invisible text) is what block produces. The 2016-era debate ended with a consensus: invisible text is worse than a font swap for content, which is why swap became the default recommendation.</p>
+<h2>Matching strategy to context</h2>
+<ul><li>Content and marketing pages: swap. Reading is the product; invisible text is a failure. Pair with metric-matched fallbacks to make the swap small.</li><li>Web apps and dashboards: swap or fallback. The first paint is usually the chrome; a single small shift on text-heavy panes is acceptable if fallbacks are metric-matched.</li><li>Fonts that are pure brand polish (a display face for a logo-like wordmark in the page): optional. If it does not arrive instantly, the fallback is fine, and returning visitors get the real thing from cache.</li><li>Fonts above the fold on a conversion funnel: swap plus preload, and measure; the goal is arrival before first paint so no swap is visible at all.</li><li>Icon fonts and pictogram faces: avoid them entirely; inline SVG removes the problem. If unavoidable, block or swap with a fixed-size container so layout cannot shift.</li></ul>
+<h2>Preload changes the math</h2>
+<p>A preloaded font starts downloading immediately with the CSS rather than after layout discovers it needs it:</p>
+<ul><li>With preload and correct subset paths, swap and fallback usually complete the swap before first paint, making the choice mostly moot; the strategy then matters only on cache misses and slow devices.</li><li>optional plus preload behaves like &quot;use it if it&#x27;s instant&quot;, which on repeat views is exactly what you want for brand faces; many teams standardize on optional plus preload for display fonts and swap for body fonts.</li><li>Preload only the exact files first paint needs (usually one or two faces, one subset each). Preloading six faces delays the CSS that is also on the critical path.</li><li>The preloaded URL must match the @font-face URL byte for byte, including unicode-range implications; preloading a full file while the CSS requests a subset wastes the preload.</li></ul>
+<h2>Measuring instead of guessing</h2>
+<ul><li>Test with DevTools network throttling (Slow 4G and a simulated cold cache) and watch when text paints and when it re-renders.</li><li>Track layout shift: Cumulative Layout Shift attributed to font swaps shows up in field data (web vitals). If font swaps dominate CLS, fix fallback metrics before touching font-display.</li><li>Watch the swap period behavior: with fallback/optional on a fast connection the font almost always wins the race; on a slow connection the fallback sticks around, which is the point.</li><li>Test repeat views with the font cached; optional degrades gracefully only if caching is configured so the font actually persists.</li></ul>
+<h2>Interaction with fallback metrics</h2>
+<p>font-display choices are half the story; the other half is how different the fallback looks:</p>
+<ul><li>A metric-matched fallback (via size-adjust, ascent-override, descent-override) shrinks the visible jump under swap and fallback to near-nothing, which is what makes swap safe on content pages.</li><li>With an unmatched system fallback, swap on a slow connection shows a full typographic re-layout, which users read as brokenness even when CLS stays under thresholds.</li><li>For CJK and other large-subset content, optional is often the only sane choice for self-hosted fonts, because the slices may arrive late; the system stack looks native anyway.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>font-display: block everywhere &quot;so the brand always shows&quot;; on a slow day the page is a blank wall.</li><li>font-display: optional without preload and without caching headers, so the font essentially never appears on first view and sometimes not after.</li><li>Leaving auto in place while believing a strategy was chosen; auto is not a neutral, it is block in practice.</li><li>Preloading every weight &quot;to be safe&quot;, delaying first paint and wasting bytes on faces first paint never uses.</li><li>Judging strategies on a fast office connection; the differences only appear under throttling and real mobile conditions.</li><li>Pairing swap with an unstyled fallback and measuring nothing; the strategy is only as good as the fallback behind it.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default to swap for any text users came to read, with metric-matched fallbacks.</li><li>Use optional only for faces where absence is acceptable (brand flourishes, decorative numerals) and only with preload plus long-lived caching.</li><li>Use fallback when you want a compromise without per-face tuning, and verify behavior under throttling.</li><li>Never ship block on user-facing content; if a stakeholder demands it, show them the blank-page recording first.</li><li>Re-evaluate whenever the font stack changes: strategies that fit a 30 KB latin file do not fit a 300 KB variable one.</li></ul>
+<h2>Comparison table</h2>
+<table><thead><tr><th>Value</th><th>Block period</th><th>Swap window</th><th>Invisible text?</th><th>Layout shift</th><th>Fits</th></tr></thead><tbody><tr><td>auto</td><td>browser-chosen (block in practice)</td><td>-</td><td>possible</td><td>yes</td><td>nothing deliberate</td></tr><tr><td>block</td><td>about 3 s</td><td>infinite</td><td>yes, until font or timeout</td><td>yes</td><td>nothing user-facing</td></tr><tr><td>swap</td><td>effectively 0</td><td>infinite</td><td>no</td><td>one reflow on arrival</td><td>body and content text</td></tr><tr><td>fallback</td><td>about 100 ms</td><td>about 3 s</td><td>a blink</td><td>small</td><td>text where absence is tolerable</td></tr><tr><td>optional</td><td>about 100 ms</td><td>none</td><td>a blink</td><td>none after the block</td><td>brand polish, returning visitors</td></tr></tbody></table>
+<p>Two derived behaviors worth memorizing:</p>
+<ul><li>optional is the only value that cannot shift layout after first paint: if the font misses the block window it is not used for this page load at all, and the browser may keep downloading it for the next visit.</li><li>fallback degrades to &quot;system font for good&quot; on slow connections: once the about-3-s swap window closes, a late font never swaps in. That is stability by design, and a trap for faces you promised the reader.</li></ul>
+<h2>Worked example</h2>
+<p>Cold cache, throttled to Slow 4G: CSS at 300 ms, first paint at 350 ms, body font at 1.5 s. Same page, four strategies:</p>
+<ul><li>swap: text paints at 350 ms in the fallback; one reflow at 1.5 s. With a metric-adjusted fallback the reflow is invisible; without one, the column rewraps.</li><li>block: the column is blank until 1.5 s. The reader sees a header and nothing else.</li><li>fallback: fallback text from 350 ms; the 1.5 s arrival is inside the 3 s window, so the swap happens and the result matches swap.</li><li>optional: the font misses the 100 ms race on this cold load; the page stays on the system font and looks native. The download continues in the background for next time.</li></ul>
+<p>Repeat the visit with the font cached and all four converge, which is why cold and warm loads must be tested separately; the strategies differ only when something is late.</p>
+<h2>Code notes</h2>
+<p>One strategy per face, declared explicitly:</p>
+<pre><code>@font-face {
+  font-family: &quot;Inter&quot;;
+  src: url(&quot;/fonts/inter-latin-400.woff2&quot;) format(&quot;woff2&quot;);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;          /* content text */
+  unicode-range: U+0000-00FF, U+2000-206F, U+20AC;
+}
+
+@font-face {
+  font-family: &quot;Brand Display&quot;;
+  src: url(&quot;/fonts/brand-display-latin.woff2&quot;) format(&quot;woff2&quot;);
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;      /* polish face; absence acceptable */
+}</code></pre>
+<p>Preload only the face first paint needs, and only when the strategy benefits:</p>
+<pre><code>&lt;link rel=&quot;preload&quot; href=&quot;/fonts/inter-latin-400.woff2&quot;
+      as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</code></pre>
+<h2>Field notes</h2>
+<ul><li>The display timeline starts when layout first needs the face, not at navigation; a font discovered late (fonts.css fetched after render) starts its clock late too.</li><li>Very old engines ignore font-display entirely and behave like auto; every claim here is a current-browser claim.</li><li>The Google Fonts CSS API exposes the choice as the display query parameter (display=swap); self-hosted CSS must set font-display explicitly on every face.</li><li>font-display on a metric-adjusted fallback face is meaningless: that face is local() and never downloads.</li><li>Under HTTP/2 or HTTP/3, preloaded fonts contend with CSS and images for connection bandwidth; preload fewer faces on multiplexed protocols, not more.</li><li>A screen recording of block on a throttled cold load ends stakeholder debates about &quot;the brand must always show&quot; faster than any argument.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Body text users came to read: swap, with metric-adjusted fallback.</li><li>Display face whose absence is survivable: optional, with preload and immutable caching.</li><li>Compromise without per-face tuning: fallback, verified under throttling.</li><li>Never block on user-facing content; never auto by omission.</li><li>Measure cold and warm loads separately; they are different products.</li></ul>
+<h2>Common failure modes</h2>
+<ul><li>Blank text for seconds on a content page: font-display: block (or untouched auto) plus a slow font. Switch to swap and invest in the fallback instead.</li><li>The webfont never appears with optional: no preload, or cache headers that expire the file between visits. optional is a contract that requires both.</li><li>A visible double render on every load even with swap: the &quot;fallback&quot; is the generic serif the browser picked, not a designed system font. Name a real fallback before the generic keyword.</li><li>CLS persists after adding metric overrides: the shift source is not the font swap; check images without dimensions, injected banners, and late CSS before blaming typography.</li><li>Preload works locally but not in production: the CDN rewrites font URLs (versioned paths, query strings) so the preloaded URL and the @font-face URL no longer match byte for byte.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="font-loading-pipeline.html">Font loading pipeline</a></li><li><a href="fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li><li><a href="font-face-and-css.html">Font-face and CSS</a></li><li><a href="../accessibility/low-vision-and-zoom.html">Low vision and zoom</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

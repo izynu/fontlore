@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Dynamic Type and Preferences - Fontlore</title>
+<meta name="description" content="How user-level font-size preferences work across browsers and operating systems, why prefers-reduced-motion is not a typography setting, and how to build flu...">
+<meta property="og:title" content="Dynamic Type and Preferences - Fontlore">
+<meta property="og:description" content="How user-level font-size preferences work across browsers and operating systems, why prefers-reduced-motion is not a typography setting, and how to build flu...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Dynamic Type and Preferences</h1>
+<p>What this reference covers: How user-level font-size preferences work across browsers and operating systems, why prefers-reduced-motion is not a typography setting, and how to build fluid type that scales with preferences instead of against them. The theme: the user&#x27;s size preference is an input to your type system, not a rival to it.</p>
+<h2>Clearing up the motion confusion</h2>
+<p>prefers-reduced-motion is a motion media query: it exists so animation and transitions can be dialed back for users with vestibular sensitivities. It has nothing to do with typography; there is no standard &quot;prefers larger text&quot; media query to detect a user&#x27;s size preference. Teams conflate these and end up with a motion toggle where a text-size control was needed. Treat motion and type as separate preference systems.</p>
+<h2>Where size preferences live</h2>
+<ul><li>Browser default font size: changes the rem base; affects all rem-based CSS. This is the primary web mechanism and it must simply work.</li><li>Browser text-only zoom (Firefox) and page zoom elsewhere: scale rendered text; page zoom scales layout px too.</li><li>iOS Dynamic Type: system-level text sizes; native apps expose them via text styles. Safari on iOS does not directly map Dynamic Type to web rem, but Safari&#x27;s own text size controls (and page zoom) do; iOS also auto-zooms form fields whose font-size is below 16 px, which is a preference mechanism in disguise.</li><li>Reader modes and reading extensions (browser reader views, pocket-style extractors): they re-render your content in their own type system, which is a feature for your readers and a reason your semantic HTML must be clean.</li><li>Android font size and display size settings: scale apps; Chrome on Android respects page zoom and font size settings similarly.</li><li>Windows and macOS display scaling: change the effective CSS px density; pages built in rem and relative units scale cleanly.</li></ul>
+<p>Practical rule: honor the browser mechanisms (rem, zoom, sane inputs) and do not try to reimplement OS settings in JavaScript.</p>
+<h2>Building a type system that respects preferences</h2>
+<ul><li>All type in rem; one --font-size-root or default 16 px base; never px for text.</li><li>Fluid display type via clamp() with rem bounds: clamp(2rem, 1.2rem + 3vw, 4.5rem). The rem terms keep user preferences in the calculation; a px-based middle term or bounds would ignore them.</li><li>Minimum floors: never set readable text below 16 px equivalent unless it is a deliberate, contrast-checked micro-label; and even then leave it scalable.</li><li>Line-height unitless and tuned per role; when a user doubles sizes, leading scales automatically, keeping the same relative texture.</li><li>Components must tolerate growth: buttons wrap or grow, not clip; nav items reflow; the text-spacing override test covers this from the other direction.</li><li>If the design demands fixed proportions (a wordmark, a hero), lock only those elements, and let everything around them scale.</li><li>Give every locked exception a written reason, an owner, and a revisit date; locked-without-a-date becomes permanently frozen.</li><li>When testing preferences, also test with a user stylesheet or extension that forces a larger base; power-user setups are legal configurations, not edge cases.</li></ul>
+<h2>Fluid type without breaking preferences</h2>
+<p>The classic mistake: fluid scales that look great at 1440 px and become unreadably small on phones because the vw term dominates. Design the scale so:</p>
+<ul><li>The preferred term (the vw part) is a nudge, not the whole size; the rem base term carries the bulk.</li><li>The minimum is a readable size at the smallest supported viewport and the largest user preference.</li><li>Test at three configurations: default preferences, maximum browser font size, and minimum supported viewport width with maximum font size. The third combination is where most fluid systems fail.</li><li>Keep the fluid middle term rem-dominant; a vw-dominant term makes the design a slave to viewport width and a stranger to the user&#x27;s preference.</li></ul>
+<h2>Detecting and offering control</h2>
+<ul><li>There is no reliable CSS media query for user font-size preference; do not fake one by measuring computed styles and rewriting everything.</li><li>For products with long reading sessions (documentation, reader modes), offer an explicit text-size control that adjusts a root variable; it composes with, rather than replaces, browser mechanisms.</li><li>Persist the choice; respect it across the product; document it as part of the design system rather than a page-local hack.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>px-based type with a rem only for headings, so user preferences scale headlines while body text stays frozen.</li><li>clamp() built entirely in px, silently capping the preference.</li><li>A &quot;large text&quot; toggle implemented by multiplying font sizes in JavaScript per element, fighting cascade and missing half the UI.</li><li>Confusing prefers-reduced-motion with type preferences and shipping the wrong control.</li><li>iOS input zoom bugs &quot;fixed&quot; with maximum-scale=1, which blocks zoom for everyone (see the zoom reference).</li><li>Designing and reviewing only at default settings; preference-respecting behavior is invisible unless you change the settings during review.</li><li>Shipping a text-size control that multiplies per-element sizes while the root stays capped by px media queries; the control fights itself.</li><li>Building five size steps when three serve; more options is more QA surface, not more accessibility.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Every text element: rem or em, no exceptions without a written reason.</li><li>Fluid scales: rem-bounded clamp, preferred term dominated by rem, tested with maxed user font size.</li><li>Long-form reading surfaces: add an explicit size control; do not rely on users discovering browser settings.</li><li>Form inputs: 16 px minimum font-size, which prevents iOS auto-zoom and serves the preference at once.</li><li>Review artifacts: include screenshots at default and 200 percent font size; if the design looks wrong at 200 percent, the design is wrong.</li></ul>
+<h2>Code notes: preference-safe patterns</h2>
+<pre><code class="language-css">/* The base: a percent root keeps the user&#x27;s default and allows an in-product control */
+html { font-size: 100%; }
+
+/* Everything textual is rem; spacing that wraps text is too */
+body { font-size: 1rem; line-height: 1.5; }
+.button { font-size: 1rem; padding: 0.5rem 1rem; min-height: 2.75rem; }
+
+/* Fluid display type: rem terms so preferences keep working */
+.display-1 { font-size: clamp(2rem, 1.3rem + 2.5vw, 4rem); }
+
+/* An in-product control shifts the base; browser preferences still compose */
+html[data-text-size=&quot;lg&quot;] { font-size: 112.5%; }
+html[data-text-size=&quot;xl&quot;] { font-size: 125%; }
+
+/* Inputs: 16 px equivalent prevents iOS focus zoom and serves preferences */
+input, select, textarea { font-size: 1rem; }</code></pre>
+<p>Unitless line-height travels with any size change. If a token system fixes leading in px next to px sizes, both are wrong together; convert the pair to rem plus unitless in one migration.</p>
+<h2>Comparison table: preference mechanisms</h2>
+<table><thead><tr><th>Mechanism</th><th>What it scales</th><th>Your obligation</th></tr></thead><tbody><tr><td>Browser default font size</td><td>The rem base</td><td>Type and text-wrapping spacing in rem</td></tr><tr><td>Browser page zoom</td><td>CSS px wholesale</td><td>Nothing fixed-height; reflow at 320 px</td></tr><tr><td>Firefox text-only zoom</td><td>rem-based text only</td><td>rem for text, or this preference finds nothing to move</td></tr><tr><td>OS display scaling</td><td>Effective CSS px density</td><td>Relative units throughout</td></tr><tr><td>iOS Dynamic Type</td><td>Native app text styles</td><td>Not the web&#x27;s mechanism; Safari text size and zoom are</td></tr><tr><td>Reader modes and extensions</td><td>Re-render in their own type</td><td>Keep semantic HTML so extraction stays clean</td></tr><tr><td>In-product text-size control</td><td>Your root percentage</td><td>Tokens on rem; persist the choice</td></tr></tbody></table>
+<p>No single mechanism reaches every user; the rem base plus page zoom plus a product control covers the realistic set without JavaScript reimplementations of any of them.</p>
+<h2>Worked example: a docs site text-size control</h2>
+<p>A documentation site with long sessions added a three-step control in the sidebar:</p>
+<ul><li>Implementation: a data attribute on html setting the root to 100, 112.5, or 125 percent; the choice persisted and applied pre-paint.</li><li>Scope: everything, because the whole type system is rem; one rule changed one number.</li><li>Composition: a user with the browser default font size raised still got their preference multiplied in; the control shifts the base, it does not replace it.</li><li>Guards: line-clamped code snippets gained an &quot;expand&quot; affordance because lines grow; the sidebar became collapsible at the top step on small screens.</li><li>Verification: the test matrix ran default, maxed browser preference, and xl control plus 200 percent zoom; the third cell is where the sidebar first broke.</li></ul>
+<p>Ship the control with the type tokens, documented as part of the design system, so the next product surface inherits it rather than reinventing a per-page toggle.</p>
+<h2>Field notes: what breaks when sizes grow</h2>
+<p>Raise the browser font size to 24 px on any mature product and a predictable sequence appears:</p>
+<ul><li>Navigation bars overflow first; items were sized to fit at 16 px with no wrap strategy.</li><li>Buttons stay button-sized because their labels were px; the mismatch reads as a bug at a glance.</li><li>Badge and chip text overflows its pill because the pill width was fixed.</li><li>Modals with px max-widths clip the content that grew; max-width in rem or min() keeps them honest.</li><li>Tables hold their layout while cell text wraps to three lines; row-height tokens absorb it only if they are rem-based.</li><li>Hero headings, rem-based, grow beautifully while the px-tagged caption under them stays small; the hierarchy inverts.</li><li>Tooltips anchored to measured text drift off their triggers.</li></ul>
+<p>Every one of these is a px value where a relative value belonged. The audit is one setting change and one scroll; the fix is usually one unit swap.</p>
+<h2>Quick reference: the preference test matrix</h2>
+<p>Run every reading surface through these five configurations and keep a screenshot per cell:</p>
+<table><thead><tr><th>Configuration</th><th>How to set it</th><th>What must hold</th></tr></thead><tbody><tr><td>Default</td><td>Fresh profile, default font size</td><td>The design as intended</td></tr><tr><td>Browser font size raised</td><td>Default font size up two sensible steps (for example a 24 px base)</td><td>All text scales; nothing clips or overlaps</td></tr><tr><td>Page zoom 200 and 400 percent</td><td>Ctrl or Cmd plus</td><td>1.4.4 holds at 200 percent; reflow holds at 400 percent on a 1280 px window (320 CSS px)</td></tr><tr><td>Text-spacing overrides</td><td>1.4.12 bookmarklet: line-height 1.5x, paragraph spacing 2x, letter spacing 0.12x, word spacing 0.16x</td><td>No clipped or overlapping text</td></tr><tr><td>Max font size at 320 px width</td><td>The two stress settings combined</td><td>Body text stays readable and inside its container</td></tr></tbody></table>
+<p>The last cell is the honest one: a fluid type scale that only works at desktop width and default preferences is a specimen, not a system.</p>
+<h2>Audit checklist: preference respect</h2>
+<ul><li>[ ] Every font-size declaration is rem, em, or percent; grep for px font sizes and justify each hit in writing.</li><li>[ ] clamp() bounds and preferred terms are rem-based; no px bounds anywhere.</li><li>[ ] Root font-size is percent or rem, never a px value that caps the user base.</li><li>[ ] Form controls at 1rem or larger (16 px equivalent) so iOS does not zoom inputs on focus.</li><li>[ ] No maximum-scale or user-scalable=no in the viewport meta tag.</li><li>[ ] Text containers sized by content (min-height at most); no fixed heights.</li><li>[ ] Long-reading surfaces have an in-product text-size control that persists and applies before first paint.</li><li>[ ] prefers-reduced-motion is wired only to motion, never to type.</li><li>[ ] The five-configuration matrix above has current screenshots on file.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="low-vision-and-zoom.html">Low vision and zoom</a></li><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="../workflow/design-tokens-for-type.html">Design tokens for type</a></li><li><a href="../technical/variable-fonts-and-axes.html">Variable fonts and axes</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

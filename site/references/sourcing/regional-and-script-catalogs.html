@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Regional and Script Catalogs - Fontlore</title>
+<meta name="description" content="Foundries and catalogs that lead in non-Latin scripts: India (ITF, Ek Type), Thailand (Cadson Demak), and multi-script specialists like Rosetta, TypeTogether...">
+<meta property="og:title" content="Regional and Script Catalogs - Fontlore">
+<meta property="og:description" content="Foundries and catalogs that lead in non-Latin scripts: India (ITF, Ek Type), Thailand (Cadson Demak), and multi-script specialists like Rosetta, TypeTogether...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Regional and Script Catalogs</h1>
+<p>What this reference covers: Foundries and catalogs that lead in non-Latin scripts: India (ITF, Ek Type), Thailand (Cadson Demak), and multi-script specialists like Rosetta, TypeTogether, Boutros, and 29LT, plus practical pointers for Arabic, Hebrew, and Thai sourcing. Latin-only teams get the audit skills to judge script quality honestly.</p>
+<p>Script expertise is not evenly distributed. A foundry that has designed within a script&#x27;s traditions for decades will beat a Latin foundry adding a script for checkbox coverage. This guide maps who to trust for which scripts and how to evaluate their work.</p>
+<h2>Why script specialization matters</h2>
+<ul><li>Complex scripts carry shaping rules, conjuncts, contextual forms, and historical styles that cannot be improvised from a Latin design.</li><li>Coverage counts lie: a font can include Devanagari code points while setting them with broken conjuncts or mismatched optical weight against its Latin.</li><li>Specialist foundries publish in both directions (script plus Latin) because real documents mix them, which is exactly the pairing quality generalist catalogs miss.</li></ul>
+<h2>India: ITF and Ek Type</h2>
+<ul><li>The Indian Type Foundry built its reputation on Indian scripts plus Latin. Its Google Fonts work includes Poppins (with Jonny Pinhorn and Ninad Kale) and the Hind series, all pairing Devanagari with Latin under open licenses.</li><li>Fontshare, ITF&#x27;s free platform, carries bilingual families such as Panchang alongside retail-grade Latin-only designs like Satoshi.</li><li>Ek Type, the Mumbai collective, published Baloo (a multi-script heavy rounded family) and Mukta (Devanagari plus Latin) on Google Fonts.</li><li>When a project needs Devanagari with Latin that actually matches in color and scale, start here rather than with a Latin family&#x27;s token Devanagari.</li></ul>
+<h2>Thailand: Cadson Demak</h2>
+<ul><li>Cadson Demak is the reference Thai foundry, with a long catalog of Google Fonts families including Prompt, Kanit, Mitr, Chakra Petch, Bai Jamjuree, and Sarabun.</li><li>Thai type divides into looped traditional styles and loopless modern styles; Cadson Demak helped define the contemporary loopless genre that suits UI and signage.</li><li>Thai rendering interacts with tone marks and vowels above and below the base line; verify mark positioning at small sizes and with stacked combinations, not just single characters.</li></ul>
+<h2>Multi-script independents</h2>
+<ul><li>Rosetta, founded by David Brezina, specializes in multi-script families built from research (Skolar is its best-known system), with genuine attention to how scripts harmonize.</li><li>TypeTogether (Veronika Burian and partners) publishes text-focused families like Bree, Adelle, and Literata, the latter commissioned for Google Play Books, with a track record in script extensions.</li><li>Boutros brings decades of Arabic and Latin corporate typography, with emphasis on Arabic-Latin compatibility for brand systems.</li><li>29LT, founded by Pascal Zoghbi, publishes contemporary Arabic families such as Bukra and Zarid designed natively in Arabic rather than adapted from Latin.</li><li>These foundries price like commercial foundries because the engineering is commercial-grade; budget accordingly instead of forcing a free fallback.</li></ul>
+<h2>Arabic, Hebrew, and Thai pointers</h2>
+<ul><li>Arabic: 29LT and Boutros for brand-grade work; Google Fonts&#x27; Arabic filter for open options; verify shaping in a browser, not a design tool.</li><li>Hebrew: the open-source Culmus project collects Hebrew fonts; Google Fonts Hebrew filter for modern faces; check niqqud (vowel point) handling if liturgical or educational text is in scope.</li><li>Thai: Cadson Demak&#x27;s catalog plus the Google Fonts Thai filter; test line breaking, since Thai has no spaces between words and relies on dictionary-based breaking.</li><li>For depth beyond catalogs, Noto provides a structural baseline per script, and SIL covers literacy-oriented depth for some languages.</li></ul>
+<h2>Workflow</h2>
+<ol><li>List the scripts and languages in the brief, including growth markets, not just current content.</li><li>For each script, shortlist one specialist source and one generalist fallback (Noto layer).</li><li>Test with real paragraphs in the script, at real sizes, in the real rendering stack.</li><li>Check numerals policy: Arabic-Indic vs European digits, and whether the family offers both.</li><li>Record the specialist foundry, license, and version for each script in the manifest.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Treating Arabic as right-to-left Latin and shipping a face with graceful Latin and cramped Arabic.</li><li>Judging script quality from glyph coverage listings instead of shaped paragraphs.</li><li>Ignoring vertical metrics mismatches between scripts, which wreck line rhythm in mixed-script paragraphs.</li><li>Assuming a Latin family&#x27;s &quot;supports Devanagari&quot; claim means quality Devanagari; it usually means coverage.</li><li>Skipping the numerals question until localization QA fails.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>One dominant non-Latin script with brand importance: hire or license the specialist foundry for that script.</li><li>Long tail of many scripts: Noto layers for structure, specialists for the two or three scripts users see most.</li><li>Budget-constrained and multilingual: prefer open-source families designed by specialists (ITF, Ek Type, Cadson Demak on Google Fonts) over Latin-first families with token coverage.</li><li>Any mixed-script system: define per-script stacks deliberately; never let a single font-family declaration try to do everything.</li></ul>
+<h2>Comparison table: scripts and specialists</h2>
+<table><thead><tr><th>Script</th><th>Specialist sources</th><th>Open-source starting points</th><th>What to test</th></tr></thead><tbody><tr><td>Devanagari</td><td>ITF, Ek Type</td><td>Poppins, Hind, Mukta, Baloo 2, Tiro Devanagari Hindi</td><td>Conjuncts, matras, danda, Latin-Devanagari color match</td></tr><tr><td>Tamil and other Indic</td><td>Ek Type&#x27;s Mukta series branches</td><td>Mukta Malar (Tamil), Mukta Mahee (Gurmukhi), Mukta Vaani (Gujarati), Noto per-script</td><td>shaping of reph and vowel signs, numerals</td></tr><tr><td>Thai</td><td>Cadson Demak</td><td>Prompt, Sarabun, Mitr, Chakra Petch, IBM Plex Sans Thai</td><td>Tone-mark stacking, looped versus loopless style, word breaking</td></tr><tr><td>Arabic</td><td>29LT, Boutros</td><td>Cairo, Amiri, IBM Plex Sans Arabic, Almarai, Noto Naskh Arabic</td><td>Shaping in a browser, RTL punctuation, digit policy</td></tr><tr><td>Hebrew</td><td>Culmus project</td><td>David Libre, Frank Ruhl Libre, Heebo, Rubik</td><td>Niqqud placement if liturgical or educational text is in scope</td></tr><tr><td>Vietnamese</td><td>TypeTogether and text foundries</td><td>Be Vietnam Pro, Literata, Source Sans 3</td><td>Stacked tone marks on lowercase and capitals at small sizes</td></tr></tbody></table>
+<p>The Mukta series is the pattern to notice: one design language expressed per script by a specialist team, which is exactly the bilingual quality generalist catalogs rarely hit.</p>
+<h2>How to audit a script you cannot read</h2>
+<ul><li>Recruit a native reader before the audit, not after; a thirty-minute review with a real reader beats a week of glyph-grid staring.</li><li>Compare against reference setting: national newspapers, government portals, and leading publishers in that language show what competent setting looks like.</li><li>Test in the browser with the production stack. Design tools apply their own fallbacks and hide shaping failures that users will hit.</li><li>Push the extremes: stacked marks, long unbroken strings, all-caps Latin next to the script, numerals inside the script&#x27;s text, and the smallest size the UI will ever use.</li><li>Check vertical metrics by paragraph, not by glyph: line rhythm between scripts is where mismatched ascenders and descenders show up.</li><li>Write down what the reader approved and at what sizes; &quot;a native speaker said it looks fine&quot; is only evidence when it is dated and specific.</li></ul>
+<h2>Worked example: Arabic-Latin brand system</h2>
+<p>Scenario: a brand designed in Latin needs equal-quality Arabic across signage, web, and packaging.</p>
+<ol><li>Decide the pairing strategy: a bilingual family designed natively in both scripts (29LT families pair Arabic with Latin by design), or a matched pair such as IBM Plex Sans Arabic with IBM Plex Sans, engineered as companions.</li><li>Reject any Arabic that is a Latin design with added Arabic code points; the toothpaste-tube tell is disconnected letters with Latin rhythm and cramped joins.</li><li>Test mixed-direction paragraphs: Latin product names inside Arabic sentences, punctuation at direction boundaries, and numerals in both policies (Arabic-Indic and European digits).</li><li>Verify optional diacritics behavior if religious or educational content might appear, since diacritic placement quality separates serious Arabic faces from marketing ones.</li><li>Confirm the license covers the markets and media in the brand plan; several specialist foundries price regions and media separately.</li><li>Record the Arabic and Latin families as one system decision with one evidence trail, because they will be replaced together if either fails.</li></ol>
+<h2>Field notes</h2>
+<ul><li>Cadson Demak&#x27;s reach extends beyond Thai: the studio has contributed open Thai-Latin systems like IBM Plex Sans Thai in looped and loopless variants, which is why IBM&#x27;s Thai presence looks native rather than appended.</li><li>Sarabun descends from the Thai government&#x27;s official document face lineage; for bureaucratic contexts it reads as native infrastructure, which can be a feature.</li><li>Amiri, by Khaled Hosny, revives the Bulaq Press type tradition; it is the reference open Naskh for book-length Arabic and religious scholarship.</li><li>Ek Type&#x27;s Baloo began as a single heavy rounded design and later grew into the multi-script Baloo 2; check which generation your source ships, since the old single-style files still circulate.</li><li>Thai has no spaces between words, so line breaking depends on dictionary-based algorithms; test paragraph-level breaking, not just glyph-level rendering.</li></ul>
+<h2>Signals to trust</h2>
+<ul><li>Foundries whose teams live inside the script&#x27;s traditions: published research, native-speaker designers, and catalogs spanning decades of the script.</li><li>Bilingual families designed in both directions at once, where Latin and script share weight structure and optical scale by design.</li><li>Google Fonts entries from specialist foundries (ITF, Ek Type, Cadson Demak): open licenses plus specialist craft is the best value in multilingual typography.</li><li>Reference setting in the target language&#x27;s leading publications, which shows the traditions your choice will be judged against.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>Coverage checkboxes on Latin-first families; &quot;supports Arabic&quot; often means code points, not craft.</li><li>Specimen images instead of live text; images hide shaping and can be generated in any tool.</li><li>Claims of unified multilingual families that behave identically everywhere; per-script strengths and weaknesses are the norm, not the exception.</li><li>Rendering tests done only in design tools; shaping engines differ, and browsers are where most users live.</li></ul>
+<h2>Questions to ask a specialist foundry</h2>
+<ul><li>Which weights and styles exist for the non-Latin scripts, and do they match the Latin range we need?</li><li>How does the family handle mixed-script paragraphs: are vertical metrics tuned for them, or do we adjust line height per script?</li><li>What numeral policies are supported (European digits, script digits, both), and how are they selected?</li><li>Is there guidance for our rendering stack (web, iOS, Android, print), and who has shipped this family at scale in our context?</li><li>What does support look like when a shaping bug appears: response time, fix path, and version policy?</li></ul>
+<h2>Quick reference: the contact sheet</h2>
+<p>A one-look version of who leads where, with the first question to put to each:</p>
+<table><thead><tr><th>Script</th><th>First contacts</th><th>Ask first about</th></tr></thead><tbody><tr><td>Devanagari plus Latin</td><td>Indian Type Foundry, Ek Type</td><td>Bilingual weight matching and conjunct quality at UI sizes</td></tr><tr><td>Other Indic scripts</td><td>Ek Type&#x27;s Mukta branches; Tiro Typeworks&#x27; open releases</td><td>Per-script designs, not one pan-Indic file</td></tr><tr><td>Thai</td><td>Cadson Demak</td><td>Looped versus loopless choice and mark stacking at small sizes</td></tr><tr><td>Arabic</td><td>29LT, Boutros</td><td>Native Arabic design, digit policy, brand-grade weight range</td></tr><tr><td>Hebrew</td><td>Culmus project, Google Fonts Hebrew filter</td><td>Niqqud handling if vowelized text is in scope</td></tr><tr><td>Multi-script systems</td><td>Rosetta, TypeTogether</td><td>Vertical metric tuning across scripts in mixed paragraphs</td></tr><tr><td>Structural baseline</td><td>Noto, SIL</td><td>Fallback coverage beneath the specialist faces</td></tr></tbody></table>
+<p>Tiro Typeworks&#x27; open releases (the Tiro Devanagari and sibling families on Google Fonts) are reference-grade starting points for several Indic scripts, which is why they appear in the comparison table above even though the studio is not a volume retailer.</p>
+<h2>Audit checklist: non-Latin adoption gate</h2>
+<ul><li>[ ] Each script in the brief has a named specialist source and a named fallback (the Noto layer) in the manifest.</li><li>[ ] Real paragraphs, not glyph grids, tested in the production browser stack at production sizes.</li><li>[ ] A native reader reviewed the setting; the review is dated and specific about sizes and content.</li><li>[ ] Mixed-script paragraphs checked for line rhythm: ascender and descender clashes between Latin and the script.</li><li>[ ] Mark stacking tested with two- and three-level combinations, not single characters.</li><li>[ ] Numerals policy decided per script and confirmed available in the family.</li><li>[ ] Weights and italics available in the script match the Latin token scale, or the gap is documented.</li><li>[ ] Vertical metrics of the chosen faces compared; per-script line-height rules written as tokens.</li><li>[ ] License verified per script family; specialist faces are frequently priced per script or per region.</li><li>[ ] Failure plan recorded: which face covers glyphs the primary lacks, declared in the CSS stack.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="noto-and-sil-fonts.html">Noto and SIL fonts</a></li><li><a href="fontshare-and-itf.html">Fontshare and ITF free fonts</a></li><li><a href="../licensing/license-families-compared.html">License families compared</a></li><li><a href="../selection/choosing-body-typefaces.html">Choosing body typefaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

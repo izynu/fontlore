@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Documenting Identification Results - Fontlore</title>
+<meta name="description" content="How to record identification work so it survives handoffs and audits: evidence fields, confidence levels, alternative candidates worth keeping, and the licen...">
+<meta property="og:title" content="Documenting Identification Results - Fontlore">
+<meta property="og:description" content="How to record identification work so it survives handoffs and audits: evidence fields, confidence levels, alternative candidates worth keeping, and the licen...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Identification</span></nav>
+<article class="doc">
+<h1>Documenting Identification Results</h1>
+<p>What this reference covers: How to record identification work so it survives handoffs and audits: evidence fields, confidence levels, alternative candidates worth keeping, and the license implications that flow from what you identified. Documentation turns a private hunch into a reusable organizational asset.</p>
+<p>Identifications get re-litigated every time the record is missing. The person who finds the font next year should inherit your evidence, not your mystery.</p>
+<h2>Why the record matters</h2>
+<ul><li>Identification drives money: purchases, license scopes, and design-system decisions all ride on what you concluded.</li><li>Unwritten conclusions decay; in six months, &quot;I think it was that grotesque from the finance deck&quot; is worthless, while a record with crops and tool outputs is decisive.</li><li>Records enable reuse: the same font will be asked about again in a different project, and a good record answers instantly.</li><li>In agency settings, the record protects the team: it shows diligence when a client disputes a later license finding.</li></ul>
+<h2>The evidence record fields</h2>
+<ul><li>subject: what was identified, with the artifact (screenshot, photo, print piece) and its source.</li><li>sample: the archived original image and the crops used, with dates.</li><li>tools: every identifier run, each tool&#x27;s top candidates, and the date.</li><li>analysis: the letterform evidence you observed (terminals, g and a forms, numerals) and what eliminated candidates.</li><li>conclusion: the identified family, version impression, and the foundry or publisher.</li><li>verification: overlay results, specimen checks, any foundry or community confirmation, and Fonts In Use links.</li><li>confidence: the tier (confirmed, probable, possible, unknown) with one sentence of justification.</li><li>license: what you learned about the license at the source, and whether it fits the intended use.</li><li>next actions: purchase path, open questions, or the reason the case was closed as unresolved.</li></ul>
+<p>Keep the template short enough that people actually fill it; a record that takes an hour will not get written twice.</p>
+<h2>Confidence levels</h2>
+<ul><li>Confirmed: foundry confirmation or overlay-identical evidence. Act on it.</li><li>Probable: multiple independent signals agree; no contradictions. Act with a paper trail.</li><li>Possible: one signal, or partial agreement. Do not purchase; keep hunting or label every downstream use as provisional.</li><li>Unknown: memory, heavy stylization, or unresolved contradictions. Document the dead end so it is not retraced.</li><li>Downgrade on any contradiction; a single mismatched diagnostic letter outweighs three agreeing tools.</li></ul>
+<h2>Recording alternatives</h2>
+<ul><li>Keep the top three to five candidates from the tools, not just the winner; projects change budgets and the runner-up often becomes the adoption.</li><li>Note which alternatives are free and open (OFL or similar) versus commercial; a budget cut should not reopen the investigation.</li><li>Record why each alternative lost, in one line each; these notes are the difference between a decision and a coin flip next time.</li><li>For custom lettering conclusions, record the closest retail relatives and what distinguishes the lettering from them.</li></ul>
+<h2>License implications of the result</h2>
+<ul><li>The identification determines the purchase path: an identified commercial font leads to foundry or marketplace licensing with scope decisions; an identified open font leads to license-file verification and self-hosting.</li><li>If the identified font is commercial, record the scope the project needs (desktop, web pageviews, app, logo) before contacting anyone; quotes depend on scope.</li><li>If the identified font is free, verify the license at the source (not the aggregator) and record the exact license name; &quot;free&quot; is not a license.</li><li>If the conclusion is custom lettering, no font license applies to the logo itself, but the supporting system still needs licensed fonts; separate the two in the record.</li><li>If the identification is uncertain, purchases wait; a wrong-font purchase is a sunk cost that also creates a false audit entry.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Fill the record as you work, not after; tool outputs and observations are perishable.</li><li>Attach the original sample, crops, and screenshots of tool results.</li><li>Assign the confidence tier with a one-sentence justification.</li><li>Record alternatives with reasons, and the license findings at the source.</li><li>Close the case with next actions and an owner, or file it as unresolved with what would resolve it.</li><li>Store records where the team actually looks (the font manifest or design repo), not in personal notebooks.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Writing the conclusion without the evidence, producing an assertion nobody can check.</li><li>Recording the winner only, losing the alternatives that become relevant when budgets change.</li><li>Marking memory-based conclusions as confirmed because the stakeholder nodded.</li><li>Forgetting the license field entirely; identification without license status is half a record.</li><li>Storing evidence in chat threads or personal drives, guaranteeing loss at the next reorg.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>No confidence tier, no record: an untiered conclusion is a rumor.</li><li>Possible or unknown tiers block purchases automatically.</li><li>If two records contradict (two people identified different fonts for the same artifact), the record with verification evidence wins, and the loser gets re-run.</li><li>Re-open a closed record only with new evidence; opinions are not evidence.</li></ul>
+<h2>Comparison table</h2>
+<p>Confidence tiers, their evidence bars, and what each permits downstream:</p>
+<table><thead><tr><th>Tier</th><th>Evidence bar</th><th>Permitted actions</th></tr></thead><tbody><tr><td>Confirmed</td><td>Foundry confirmation in writing, or overlay-identical metrics and shapes</td><td>Purchase, adopt, add to the design system</td></tr><tr><td>Probable</td><td>Two or more independent signals agree; hand check passes</td><td>Proceed with a paper trail; purchases allowed with a note</td></tr><tr><td>Possible</td><td>One signal, or partial agreement, no contradictions</td><td>No purchases; label every downstream use as provisional</td></tr><tr><td>Unknown</td><td>Memory, heavy stylization, or unresolved contradictions</td><td>Document the dead end; nothing downstream may depend on it</td></tr></tbody></table>
+<p>Read the tiers as ratchets, not grades: corroboration moves a record up, contradiction moves it down, and time moves it nowhere. A probable tier plus a documented foundry inquiry functions almost like confirmed in practice, because the attempt itself is evidence.</p>
+<p>The second axis worth tabulating is evidence type, because mixing them is how records rot: tool output, letterform observation, provenance documents, and human testimony are different currencies, and a record should name which currency each claim is paid in. &quot;Two tools agree&quot; is weaker than &quot;two tools agree and the g matches by hand&quot;, and both are weaker than a written foundry reply.</p>
+<h2>Worked example</h2>
+<p>A filled record for a screenshot of a SaaS pricing page headline, condensed to show what &quot;enough&quot; looks like:</p>
+<ul><li>subject: pricing page headline, screenshot from the vendor&#x27;s marketing site, captured the day the request came in.</li><li>sample: original PNG archived in the project evidence folder, plus two crops: one wide for tools, one tight on g, a, and t for the hand check.</li><li>tools: WhatTheFont&#x27;s top five led with Inter, Roboto, and three near-identical UI sans faces; Matcherator returned Inter first and Roboto second; Fonts Ninja read the live page as declaring Inter with woff2 files served.</li><li>analysis: the sample&#x27;s g is single-story, which eliminates Roboto (double-story g) and the grotesque candidates; apertures are open and the x-height is very tall, both consistent with Inter.</li><li>conclusion: Inter, regular weight, by Rasmus Andersson; the site serves the current open release.</li><li>verification: Ninja&#x27;s declared family agrees with the pixel evidence, and a metrics overlay of the headline against Inter Regular matched widths across the full string.</li><li>alternatives: Roboto lost on the g form; the three lookalike faces lost on aperture and x-height; each carries a one-line reason in the record.</li><li>confidence: confirmed; two tools, one DOM read, and one overlay agree with no contradictions.</li><li>license: SIL OFL 1.1, verified at the Inter GitHub repository rather than through an aggregator page.</li><li>next actions: case closed; the record lives in the team font manifest under the vendor&#x27;s name.</li></ul>
+<p>Note the shape of the analysis entry: every claim names a letter or a measurement. &quot;Looked like Inter&quot; is worthless in a record; &quot;single-story g, which Roboto&#x27;s double-story g rules out&quot; is checkable by anyone in ten seconds.</p>
+<p>The same case, done badly, for contrast:</p>
+<ul><li>conclusion only: &quot;It&#x27;s Inter.&quot; No tools, no dates; six months later nobody can tell whether the g was ever checked.</li><li>evidence replaced by memory: &quot;I ran a few identifiers.&quot; Which ones, on what crop, is gone.</li><li>winner-only logging: the Roboto candidate and the reasons it lost are missing, so a budget change reopens the entire hunt.</li><li>license field blank: the team learns at adoption time that nothing was verified at the source.</li><li>confidence omitted: the reader cannot tell confirmed from a hunch, so they either distrust everything or trust everything.</li></ul>
+<p>The bad version takes two minutes to write and costs the next person the whole investigation; the good version takes ten minutes and never needs writing twice.</p>
+<h2>Field notes</h2>
+<p>Practices that separate records people trust from records people ignore:</p>
+<ul><li>Capture tool outputs as screenshots at run time; rankings shift as catalogs change, and a dated screenshot is evidence while a retelling is not.</li><li>Name the weight impression early; a large share of identification disputes turn out to be about weight, not family.</li><li>Record what the artifact is made of (screen render, print scan, photo of signage), because it sets the ceiling on what any tool could prove.</li><li>When a stakeholder &quot;recognizes&quot; the font, log it as context, not verification; recognition is a lead, not evidence.</li><li>Write the license field even when the answer is unknown at this time; an explicit unknown invites the follow-up, a blank field hides it.</li><li>Store the record next to the artifact it describes, not in the thread where the question was asked; threads scroll, repositories do not.</li><li>When a case closes unresolved, write down the one piece of evidence that would settle it; dead ends with exit signs are the most valuable records of all.</li><li>Version-note the conclusion: &quot;Inter as served in early 2025&quot; ages honestly, while a bare family name quietly claims timelessness it does not have.</li></ul>
+<h2>Quick reference</h2>
+<p>The minimum record as a checklist; nine fields, one line each, five minutes total:</p>
+<ol><li>subject: what was identified and where it came from, with the artifact named.</li><li>sample: where the original image and the crops are archived.</li><li>tools: which identifiers ran, their top candidates, and the dates.</li><li>analysis: the letterform evidence, naming actual letters.</li><li>conclusion: family, weight impression, foundry or publisher.</li><li>verification: overlays, specimens, confirmations, Fonts In Use links.</li><li>confidence: the tier plus a one-sentence justification.</li><li>license: the license name verified at the source, and its fit for the use.</li><li>next actions: owner, purchase path, or the closed-unresolved note.</li></ol>
+<p>Rules of thumb that keep records honest:</p>
+<ul><li>Write the analysis field before the conclusion field; the order forces evidence first.</li><li>If a field has nothing to say, write why rather than leaving it blank.</li><li>One screen per record; anything longer gets skipped by the next reader.</li><li>Attach the artifacts (crops, tool screenshots, confirmation emails) rather than describing them.</li><li>Revisit dates go on any record below confirmed, since sources, versions, and URLs drift.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="verifying-an-identification.html">Verifying an identification</a></li><li><a href="identification-workflow-overview.html">Identification workflow overview</a></li><li><a href="../licensing/license-audit-checklist.html">License audit checklist</a></li><li><a href="../licensing/free-font-risks.html">Free font risks</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

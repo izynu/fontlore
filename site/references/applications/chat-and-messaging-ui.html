@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Chat and Messaging UI - Fontlore</title>
+<meta name="description" content="Typography for chat and messaging interfaces: small-size legibility in bubbles, metadata and timestamps, emoji handling in font stacks, the case for system f...">
+<meta property="og:title" content="Chat and Messaging UI - Fontlore">
+<meta property="og:description" content="Typography for chat and messaging interfaces: small-size legibility in bubbles, metadata and timestamps, emoji handling in font stacks, the case for system f...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Chat and Messaging UI</h1>
+<p>What this reference covers: Typography for chat and messaging interfaces: small-size legibility in bubbles, metadata and timestamps, emoji handling in font stacks, the case for system fonts, and the mixed-script and RTL realities of real conversations. Chat is the most intimate text surface in software: users read it constantly and notice everything.</p>
+<h2>Bubble typography</h2>
+<ul><li>Message body: 14 to 15 px (16 px is comfortable, 13 px is the floor for dense products); weight 400, line-height 1.35 to 1.45. Chat text is read in volume at arm&#x27;s length; do not shrink it below your product&#x27;s floor.</li><li>Bubbles size to content with padding, not fixed heights; long messages wrap within a max-width (roughly 60 to 70 percent of the viewport) and the measure rules from long-form reading apply loosely at small sizes.</li><li>Links inside messages: underlined and colored with full contrast; link previews reflow around them.</li><li>Code, paths, and technical strings in chat: monospace with a background chip; this is where a mono face earns its place in a messaging product.</li><li>Grouped messages: consecutive messages from one sender tighten spacing; a new sender block gets a gap. The rhythm is typographic even when the model is temporal.</li></ul>
+<h2>Metadata, senders, and system lines</h2>
+<ul><li>Timestamps and read receipts: 11 to 12 px, tabular figures, secondary contrast passing 4.5 to 1 (metadata at 3:1 is the most common contrast miss in chat UIs).</li><li>Sender names in groups: 12 to 13 px, weight 500 or 600, colored per participant only as reinforcement, never as the sole identity signal.</li><li>System and event lines (&quot;Today&quot;, &quot;Alice joined&quot;): 11 to 12 px, centered or left, distinct style; tracked uppercase works for very short system words but check contrast and length.</li><li>Unread indicators, typing indicators: pair any color with a label or icon; color alone fails the basic accessibility rule and confuses new users.</li></ul>
+<h2>The system font argument</h2>
+<p>Chat is the strongest case for system fonts:</p>
+<ul><li>Zero font payload on the surface users spend the most time in; chat apps are performance-sensitive and battery-sensitive.</li><li>Native feel: SF Pro on Apple platforms, Roboto on Android, Segoe UI on Windows; users perceive the chat as part of the OS.</li><li>Emoji, multilingual input, and system text features (dynamic type, magnification) integrate for free.</li><li>The stack: -apple-system, &quot;Segoe UI&quot;, Roboto, system-ui, plus per-script fallbacks the OS provides automatically.</li></ul>
+<p>The counter-case: brand differentiation and cross-platform consistency, which a webfont buys. Many chat products accept the system look for body messages and use a brand face only for headings, empty states, and onboarding.</p>
+<h2>Emoji and special characters</h2>
+<ul><li>Emoji come from platform fonts (Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji); never force your own emoji font for user content, and ensure the stack lets them resolve (put text fonts first; emoji codepoints fall through automatically).</li><li>Emoji presentation selectors (the variation selector that forces text versus emoji presentation of symbols like the heart) exist; test symbol-plus-emoji sequences rather than assuming.</li><li>Cross-platform differences are a fact: the same emoji renders differently per OS; do not promise pixel parity, and do not render skin-tone or ZWJ sequences (family, flag compositions) without testing; ZWJ sequences are the classic partial-support failure.</li><li>Reactions, stickers, and GIF overlays sit outside text flow; keep them from resizing bubbles.</li></ul>
+<h2>Mixed script and RTL conversations</h2>
+<ul><li>Real conversations mix scripts, names, and directions: a message in Arabic next to one in English in the same thread. Per-message dir=&quot;auto&quot; (first strong character decides) is the standard behavior; bubble alignment follows the direction, which means Arabic bubbles hug the right edge with mirrored tails.</li><li>User names in Latin script inside RTL metadata lines: wrap in bdi to stop bidi leaks.</li><li>The system font stack handles most scripts via OS fallback; if the product self-hosts fonts, the mixed-script fallback planning applies in full.</li><li>Input fields: 16 px on iOS to prevent zoom-on-focus; the compose field is the most-used input in the product.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>11 px timestamps at gray 3:1 contrast, unreadable for anyone over 40.</li><li>A custom display face for message bodies: personality where legibility was the job.</li><li>Forcing a bundled emoji font and shipping broken or outdated emoji where the OS had perfect ones.</li><li>Fixed bubble widths chopping long words and URLs; use overflow-wrap and let bubbles grow.</li><li>No dir handling, so Arabic messages align left with Latin punctuation floating wrongly.</li><li>Notification text rendered in a different type than the chat, or in a face the OS cannot render, so notifications show tofu.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default to the system stack for message bodies; add a brand face only for non-conversational surfaces.</li><li>Metadata: 11 to 12 px, tabular figures, full contrast; metadata is information, not decoration.</li><li>Every bubble: content-sized, max-width capped, dir=&quot;auto&quot;, overflow-wrap safe.</li><li>Emoji: platform fonts, tested ZWJ sequences for your markets, no bundled emoji for user content.</li><li>Any new language launch: re-run the chat-specific checks (bubble alignment, compose input, notifications) with real conversations, not sample strings.</li></ul>
+<h2>Comparison table: font strategies for a chat surface</h2>
+<p>The font decision for chat is a strategy decision first and a family decision second:</p>
+<table><thead><tr><th>Strategy</th><th>Payload</th><th>Where it shines</th><th>Main risk</th></tr></thead><tbody><tr><td>System stack (SF Pro, Segoe UI, Roboto)</td><td>zero</td><td>consumer chat, performance-sensitive surfaces</td><td>no cross-platform parity; the brand is invisible</td></tr><tr><td>One webfont, two weights (Inter, Source Sans 3)</td><td>one subsetted file</td><td>branded support widgets, in-app chat in a SaaS product</td><td>payload policing; host-page CSP can block the font</td></tr><tr><td>Hybrid: system body, brand face for chrome</td><td>one small subset</td><td>products needing brand presence without chat payload</td><td>two voices need rules or they read as drift</td></tr><tr><td>Self-hosted per-script families</td><td>highest</td><td>markets where OS fallback fails the script</td><td>fallback chains, shaping tests, RTL verification</td></tr></tbody></table>
+<ul><li>The big three system faces all support tabular figures, so timestamps align even on the zero-payload path.</li><li>A webfont for chat is subsetted to the scripts actually served; a bundle with eleven scripts is a maintenance burden, not a feature.</li><li>Two weights (400 body, 600 names) cover almost every chat UI; add 500 only if the design system already uses it.</li><li>Support widgets live inside other people&#x27;s pages: design so a blocked font load degrades to the system stack with zero layout breakage.</li><li>The document.fonts API gives a load signal; a one-line fallback check beats discovering the fallback from a screenshot.</li><li>Emoji always resolve from platform fonts; the custom text font must never sit before the emoji fonts in the stack.</li><li>One mono face (JetBrains Mono or IBM Plex Mono) covers code and error chips in technical chat; 12 to 13 px on a tinted background.</li><li>RTL planning belongs to the font decision: per-message dir=&quot;auto&quot; is behavior, but a self-hosted family must still shape Arabic or Hebrew correctly.</li><li>Chat notification text renders with OS styling no matter what the app ships; do not spend brand budget there.</li><li>One-time-code and password fields linked from chat flows read better in mono input styling; six digits at 16 px mono parse in one glance.</li></ul>
+<h2>Worked example: an embeddable support chat widget</h2>
+<p>Scenario: a B2B SaaS ships an embeddable support widget that runs inside customer pages, where its script is third-party, every kilobyte is argued over, and content security policies vary by host.</p>
+<ul><li>Message body: the system stack at 14 px, line-height 1.4, weight 400; the widget renders hundreds of short messages per session and the native face keeps it fast and familiar.</li><li>Sender names: 12 px at weight 600; agent names carry a team label word, never color alone.</li><li>Timestamps: 11 px, secondary color at 4.5 to 1 contrast, tabular figures via font-variant-numeric so stacked timestamps align.</li><li>Read receipts share the line; their state words (&quot;Sent&quot;, &quot;Seen&quot;) are fixed strings with reserved room, so the bubble edge does not breathe.</li><li>Code and error strings: JetBrains Mono at 12 px on a tinted chip with a copy affordance; the one bundled font, and it earned its bytes.</li><li>Brand presence: Inter carries only the header, greeting, and CTA, loaded as one Latin subset covering two weights (400 and 600).</li><li>CSP defense: the widget listens for the font load promise and silently stays on the system stack when a host blocks the file.</li><li>Compose field: 16 px on iOS to prevent zoom-on-focus; the placeholder matches the message size so nothing jumps.</li><li>Bubbles: content-sized with a max-width of 70 percent of the panel; overflow-wrap: anywhere keeps long URLs inside their bubbles.</li><li>Grouping: consecutive messages from one sender tighten to 2 px; a new sender block gets 12 px. The rhythm is typographic even though the model is temporal.</li><li>Unread badge: a count in tabular figures at 11 px on the accent color, contrast checked against the accent, not against white.</li><li>Typing indicator: three dots plus the name at 12 px; the name renders in the sender style so attribution stays consistent.</li><li>RTL: dir=&quot;auto&quot; per message; Arabic canned replies tested with Latin product names wrapped in bdi elements.</li><li>Rejected: a brand display face for message bodies (personality where legibility was the job) and a bundled emoji font (the OS already had newer, better ones).</li><li>Result: one small font file, clean CSP audits across hosts, and a chat that reads native on every platform.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Timestamps are the most-read text in chat and the most under-designed; align them, contrast them, stop treating them as decoration.</li><li>Metadata at 3 to 1 gray is the most common contrast miss in chat; it fails for anyone over 40 and for every low-vision user.</li><li>Grouping rhythm does more for scannability than any typeface change; tighten within a sender, space between senders.</li><li>Long URLs are the stress test: overflow-wrap plus max-width keeps bubbles intact, and default word-break rules chop words mid-syllable.</li><li>Emoji-only messages render at implicit larger sizes on some platforms; test reaction rows and reply quotes around them instead of fighting it.</li><li>Dark mode flips chat surfaces fast; the timestamp gray that passed on white usually fails on near-black, so verify both.</li><li>Edited and ephemeral states append words to metadata lines; reserve the room instead of reflowing the timestamp.</li><li>Link previews pull titles at 13 to 14 px and descriptions at 12 to 13 px; cap each at two lines or the preview outweighs the message.</li><li>Multi-tenant embeds inherit host fonts by accident; set font-family explicitly on every text node in widgets.</li><li>Search results render message snippets at metadata sizes; the same tabular and truncation rules apply there.</li><li>The compose field is the most-typed-into box in the product; the iOS 16 px rule is not negotiable, and the zoom it prevents looks like a bug.</li><li>Dynamic type and OS font scaling resize bubbles live; test at maximum accessibility sizes before shipping.</li><li>Voice notes and attachment captions follow metadata styling; invent no new style for them.</li><li>Mobile keyboards produce smart quotes; never run a replace-all that mangles user content to keep a specimen look.</li><li>Notifications inherit the OS, so a face the OS cannot render shows tofu on the lock screen; system fonts there are a correctness choice.</li><li>Reaction chips and sticker rows sit outside text flow; keep them from resizing bubbles or shifting baselines.</li><li>Unread counts, badges, and drafts all want tabular figures; counters that change width on every update read as jitter.</li><li>The strongest chat type systems are boring: one body style, one metadata style, one mono chip; personality lives in chrome, not conversations.</li></ul>
+<h2>Quick reference: chat numbers that hold up</h2>
+<ul><li>Message body: 14 to 15 px, weight 400, line-height 1.35 to 1.45.</li><li>Sender names: 12 to 13 px, weight 500 to 600.</li><li>Timestamps and receipts: 11 to 12 px, tabular figures, 4.5 to 1 contrast.</li><li>System lines: 11 to 12 px, short strings, distinct style.</li><li>Code chips: 12 to 13 px mono on a tinted background with copy.</li><li>Bubble max-width: 60 to 70 percent of the viewport.</li><li>Grouping: tight within a sender, a clear gap between senders.</li><li>Compose input: 16 px on iOS to prevent zoom-on-focus.</li><li>dir=&quot;auto&quot; on every message; bdi around user names in mixed-direction lines.</li><li>Emoji from platform fonts; test ZWJ sequences for your markets.</li><li>Weight budget: 400 body, 500 or 600 names; stop there.</li><li>Timestamps absolute when precision matters; relative strings only where width changes are harmless.</li><li>Metadata contrast checked in light and dark themes.</li><li>No bundled emoji font for user content, ever.</li><li>Fallback rule: if the webfont fails, the system stack must look intentional, not broken.</li><li>New-language launches re-run the bubble, compose, and notification checks with real conversations.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="web-and-saas-interfaces.html">Web and SaaS interfaces</a></li><li><a href="../scripts/mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="../accessibility/dynamic-type-and-preferences.html">Dynamic type and preferences</a></li><li><a href="../accessibility/localization-and-rtl-accessibility.html">Localization and RTL accessibility</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

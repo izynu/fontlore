@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Width, Density, and Spacing - Fontlore</title>
+<meta name="description" content="How to choose between condensed, normal, and extended widths; how tracking and line spacing should change with size and medium; and how density decisions pla...">
+<meta property="og:title" content="Width, Density, and Spacing - Fontlore">
+<meta property="og:description" content="How to choose between condensed, normal, and extended widths; how tracking and line spacing should change with size and medium; and how density decisions pla...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Selection</span></nav>
+<article class="doc">
+<h1>Width, Density, and Spacing</h1>
+<p>What this reference covers: How to choose between condensed, normal, and extended widths; how tracking and line spacing should change with size and medium; and how density decisions play out in interfaces and dense documents. Width is one of the most underused tools in typography.</p>
+<p>Width choices change how much text fits, how it reads, and what it signals. Most teams inherit one width and never decide again. The rules below make width, tracking, and leading into explicit decisions.</p>
+<h2>The width spectrum</h2>
+<ul><li>Condensed faces fit more characters per line and read as urgent, dense, or editorial. League Gothic is the classic free condensed; IBM Plex Sans Condensed brings the treatment to a system.</li><li>Extended or expanded faces occupy more horizontal space and read as confident, graphic, and calm at large sizes; they fail quickly at small sizes and in narrow columns.</li><li>Normal width is not a default to sleep through; it is a decision that most content most of the time should receive.</li><li>Variable fonts with a wdth axis (Archivo, for example) make width a continuous dial; decide the stops you will actually use (two or three, named in the system).</li></ul>
+<h2>Choosing width by context</h2>
+<ul><li>Narrow columns, data-dense tables, and tall headline stacks: condensed earns its place; verify small-size legibility because compression punishes open apertures.</li><li>Signage, hero sections, and poster-like moments: extended provides presence without extra weight.</li><li>Long-form body text: normal width, almost always. Condensed body text fatigues; extended body text wastes measure.</li><li>Bilingual or b Script layouts (Latin plus Arabic or Devanagari): remember width choices apply per script; a condensed Latin with a normal Arabic looks like two brands.</li></ul>
+<h2>Tracking by size</h2>
+<ul><li>Display sizes tolerate negative tracking; letters have room to spare. Tighten cautiously, a few thousandths of an em at a time.</li><li>Text sizes need neutral to slightly positive tracking; negative tracking at 12px is a legibility self-own.</li><li>All-caps settings want positive tracking at any size; caps lack the ascender rhythm that separates lowercase words.</li><li>Small caps and overlines benefit from tracking that scales down with size, not up.</li></ul>
+<h2>Line spacing by size and medium</h2>
+<ul><li>Display headlines: line-height around 1.0 to 1.15. Tight leading binds multi-line headlines into a block.</li><li>Body text on screens: 1.4 to 1.6 is the common range; taller x-heights and longer measures push toward the upper end.</li><li>Print body text runs tighter than screen body text; do not carry print leading into CSS unchanged.</li><li>Dense UI (tables, code, logs): 1.3 to 1.45 keeps rows scannable without collisions; check ascender and descender overlap explicitly.</li><li>User-controlled spacing (accessibility settings, ebook readers) must survive your layout; fixed line-heights that assume one size break when users override.</li></ul>
+<h2>Density in interfaces</h2>
+<ul><li>Dashboards and tables want restraint: normal width, moderate x-height, tabular numerals, and consistent row rhythm. Personality comes from the display layer, not the cells.</li><li>Density is a system property: if one screen is dense and the next is airy with no reason, the product feels unstable.</li><li>Condensed widths in dense UIs trade horizontal space for vertical crowding; test the trade with real data, including the worst-case long strings.</li><li>Numerals and monospace companions (see the monospace guide) solve alignment more honestly than cramming a proportional face does.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Default to normal width for anything users read in paragraphs; deploy condensed and extended deliberately and locally.</li><li>Two named width stops beat a free wdth axis nobody governs.</li><li>Tighten leading only as size grows; loosen it as size shrinks. The ratio is the design, not the absolute value.</li><li>If a layout needs extreme tracking or width tweaks to &quot;fit&quot;, the problem is usually the layout or the column measure, not the face.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Shipping one width everywhere because the variable font made every width available.</li><li>Condensed faces in body text; compression plus small size destroys apertures.</li><li>Negative tracking inherited from a display style sheet into small UI labels.</li><li>Fixed line-heights that break when users increase text size (a plain accessibility failure).</li><li>Mixing condensed and normal widths at the same hierarchy level, which reads as inconsistency rather than intent.</li><li>Forgetting that wide faces blow out narrow mobile columns even at headline sizes.</li></ul>
+<h2>Comparison table</h2>
+<p>Starting values by context. Tracking values are starting points; the face&#x27;s native spacing is the authority, and these override it only with cause. The line-height column tightens as size grows and loosens as it shrinks.</p>
+<table><thead><tr><th>Context</th><th>Width</th><th>Tracking</th><th>Line-height</th><th>Measure</th></tr></thead><tbody><tr><td>Hero display, 48 to 96px</td><td>Normal or extended</td><td>0 to -0.01em</td><td>1.0 to 1.15</td><td>3 to 8 words per line</td></tr><tr><td>Section headline, 24 to 40px</td><td>Normal</td><td>0 to -0.01em</td><td>1.1 to 1.25</td><td>Up to 10 words</td></tr><tr><td>UI labels, 11 to 13px</td><td>Normal</td><td>0</td><td>1.2 to 1.35</td><td>One line, truncate</td></tr><tr><td>All-caps eyebrows, 11 to 13px</td><td>Normal</td><td>+0.04 to +0.08em</td><td>1.2 to 1.35</td><td>2 to 5 words</td></tr><tr><td>Body text, 14 to 16px</td><td>Normal</td><td>0</td><td>1.4 to 1.6</td><td>45 to 75 characters</td></tr><tr><td>Long-form reading, 16 to 20px</td><td>Normal</td><td>0</td><td>1.5 to 1.7</td><td>50 to 75 characters</td></tr><tr><td>Dense tables, 12 to 14px</td><td>Normal or condensed</td><td>0</td><td>1.3 to 1.45</td><td>Column-driven</td></tr><tr><td>Code and logs, 12 to 14px</td><td>Mono, fixed</td><td>0</td><td>1.45 to 1.6</td><td>Container-driven</td></tr><tr><td>Footnotes and legal, 11 to 12px</td><td>Normal</td><td>0</td><td>1.4 to 1.5</td><td>45 to 65 characters</td></tr><tr><td>User-controlled reading</td><td>Normal</td><td>0</td><td>User setting; layout must survive</td><td>Reflow must survive</td></tr></tbody></table>
+<p>The principle behind the columns: width changes track hierarchy or context, tracking goes negative only at display sizes and positive for caps, and line-height is a ratio decision, not an absolute number.</p>
+<h2>Worked example</h2>
+<p>A dashboard density pass. The dashboard renders 14 columns of usage data, and the incumbent layout wastes a fifth of the viewport on spacing inherited from a display stylesheet.</p>
+<ol><li>Audit first: the stylesheet sets letter-spacing -0.02em globally, a display decision leaking into 12px table cells.</li><li>Rule applied: negative tracking never below 24px; the global override is removed.</li><li>Width decision: normal width retained; the condensed experiment compressed apertures at 12px and failed the small-size gate.</li><li>Line-height set to 1.35 for table rows: tight enough for density, loose enough that ascenders and descenders never collide.</li><li>Row rhythm check with the worst-case strings: long IDs in the mono companion, tabular figures in the sans for amounts.</li><li>Measure discipline: table cells truncate with an ellipsis beyond 30 characters rather than wrapping; wrapping is reserved for the detail pane.</li><li>Numerals: tabular figures enabled in the sans for all numeric columns; jitter disappears without going all-mono.</li><li>Condensed width earns exactly one job: the date-range picker labels, at 13px caps with +0.04em tracking, on the principle that caps want positive tracking.</li><li>The marketing hero keeps its extended display cut at 72px and 1.05 line-height; density rules stop at the marketing boundary.</li><li>User override test: browser text-size increase to 125 percent; the table reflows without clipping because line-heights are unitless.</li><li>Dark mode re-check: 1.35 line-height holds; the light-on-dark spread does not cause row collisions at this spacing.</li><li>Tokens recorded: table-line-height 1.35, label-tracking +0.04em for caps only, display-tracking -0.01em at 48px and up.</li><li>The audit report names the original sin (global display tracking) so the next stylesheet does not repeat it.</li></ol>
+<p>The reusable pattern: audit inherited values, apply the size-based rules, verify with worst-case strings and user overrides, then encode the results as tokens.</p>
+<h2>Field notes</h2>
+<ul><li>Width is the most underused dial in product typography; most teams inherit one width and never decide again.</li><li>Extended reads confident at 72px and broken at 14px; width choices are size-bound decisions, not brand constants.</li><li>Condensed buys characters per line and pays in apertures; at small sizes the payment is unaffordable.</li><li>Negative tracking inherited from display stylesheets is the most common typographic bug in design systems.</li><li>Caps without tracking is a defect, not a style; all-caps want positive tracking at every size.</li><li>Unitless line-heights survive user overrides; fixed pixel line-heights are accessibility failures waiting for a resize.</li><li>Two named width stops beat a free wdth axis nobody governs.</li><li>If a layout needs extreme tracking or width tweaks to fit, the layout or the measure is the problem, not the face.</li><li>Tables want rhythm, not personality; density comes from spacing discipline, not from squeezing glyphs.</li><li>Justified text in narrow columns creates rivers; left-aligned rag is the honest setting below 60 characters.</li><li>Condensed and normal at the same hierarchy level reads as inconsistency; width changes should track hierarchy or context, not whim.</li><li>Print leading does not survive the trip to CSS unchanged; screens need looser leading than ink.</li><li>Check ascender and descender collisions explicitly when tightening line spacing on long-extender faces.</li><li>Bilingual layouts apply width per script; a condensed Latin beside a normal Arabic reads as two brands.</li><li>Density is a system property: one dense screen next to an airy one with no reason makes the product feel unstable.</li><li>Monospace companions solve alignment more honestly than cramming a proportional face does.</li><li>The wdth axis tempts continuous fiddling; freeze the stops in tokens and delete the dial from daily use.</li><li>Measure failures masquerade as font failures; check the 45 to 75 character window before blaming the typeface.</li><li>Spacing tokens are load-bearing: one tracking token reused across every size is how display tracking leaks into 12px labels.</li><li>Width and case interact: condensed caps read denser than condensed lowercase; test the combination, not the width alone.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Default to normal width for anything users read in paragraphs.</li><li>Condensed for narrow columns and tall headline stacks; verify small-size legibility first.</li><li>Extended for signage, heroes, and poster moments; never for body or narrow columns.</li><li>Display tracking: 0 to -0.01em, tightened a few thousandths of an em at a time.</li><li>Body tracking: 0; negative tracking at 12px is a legibility self-own.</li><li>All-caps tracking: +0.04 to +0.08em depending on size; caps need separation, not tightening.</li><li>Display line-height: 1.0 to 1.15.</li><li>Body line-height: 1.4 to 1.6; tall x-heights and long measures push to the top.</li><li>Dense UI line-height: 1.3 to 1.45; verify ascender and descender collisions.</li><li>Measure: 45 to 75 characters; the low 60s for articles.</li><li>Table cells: truncate rather than wrap; wrapping belongs to detail panes.</li><li>Tabular figures for numeric columns before reaching for a mono.</li><li>Unitless line-heights only; user text-size overrides must survive.</li><li>Two named width stops in tokens; the rest of the wdth axis is off-limits without a review.</li><li>Width changes track hierarchy or context, never whim.</li><li>Re-test width decisions in dark mode; optical spread changes with polarity.</li><li>Print leading does not transfer to CSS unchanged; re-derive for screens.</li><li>When layout fights the type, fix the layout or the measure first.</li><li>Eyebrows and overlines: caps with positive tracking; never inherit the headline&#x27;s negative tracking.</li><li>Legal and footnote text keeps body line-height ratios; do not compress spacing because the size is small.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="x-height-and-legibility.html">X-height and legibility</a></li><li><a href="choosing-monospace.html">Choosing monospace</a></li><li><a href="choosing-display-typefaces.html">Choosing display typefaces</a></li><li><a href="choosing-body-typefaces.html">Choosing body typefaces</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

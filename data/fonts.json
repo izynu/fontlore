@@ -1,0 +1,5331 @@
+{
+  "count": 165,
+  "fonts": [
+    {
+      "slug": "inter",
+      "family": "Inter",
+      "designer": "Rasmus Andersson",
+      "foundry": "RSMS",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Inter",
+      "specimen": "https://fonts.google.com/specimen/Inter",
+      "note": "screen-first UI sans designed for computer displays; tall x-height and open forms",
+      "tags": [
+        "ui",
+        "sans",
+        "neutral",
+        "variable"
+      ]
+    },
+    {
+      "slug": "roboto",
+      "family": "Roboto",
+      "designer": "Christian Robertson",
+      "foundry": "Google",
+      "license": "Apache-2.0",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Roboto",
+      "specimen": "https://fonts.google.com/specimen/Roboto",
+      "note": "Android default for a decade; neutral double-storey forms with slightly condensed rhythm",
+      "tags": [
+        "android",
+        "default",
+        "neutral"
+      ]
+    },
+    {
+      "slug": "open-sans",
+      "family": "Open Sans",
+      "designer": "Steve Matteson",
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "hebrew",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "hebrew",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Open+Sans",
+      "specimen": "https://fonts.google.com/specimen/Open+Sans",
+      "note": "humanist workhorse with wide language coverage; a safe body face for mixed audiences",
+      "tags": [
+        "humanist",
+        "body",
+        "workhorse"
+      ]
+    },
+    {
+      "slug": "lato",
+      "family": "Lato",
+      "designer": "Lukasz Dziedzic",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        100,
+        300,
+        400,
+        700,
+        900
+      ],
+      "source": "https://fonts.google.com/specimen/Lato",
+      "specimen": "https://fonts.google.com/specimen/Lato",
+      "note": "warm humanist sans with semi-rounded details; famous 100/300/400/700/900 weight set",
+      "tags": [
+        "warm",
+        "body",
+        "friendly"
+      ]
+    },
+    {
+      "slug": "montserrat",
+      "family": "Montserrat",
+      "designer": "Julieta Ulanovsky",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Montserrat",
+      "specimen": "https://fonts.google.com/specimen/Montserrat",
+      "note": "geometric sans inspired by Buenos Aires signage; strong at headlines and labels",
+      "tags": [
+        "geometric",
+        "headline",
+        "signage"
+      ]
+    },
+    {
+      "slug": "poppins",
+      "family": "Poppins",
+      "designer": "Indian Type Foundry",
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/poppins",
+      "specimen": "https://www.fontshare.com/fonts/poppins",
+      "note": "monolinear geometric sans with Devanagari sibling; popular for startup landing pages",
+      "tags": [
+        "geometric",
+        "startup",
+        "devanagari"
+      ]
+    },
+    {
+      "slug": "noto-sans",
+      "family": "Noto Sans",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans",
+      "note": "the connective tissue of the Noto project; pairs with Noto siblings for global coverage",
+      "tags": [
+        "multilingual",
+        "fallback",
+        "noto"
+      ]
+    },
+    {
+      "slug": "source-sans-3",
+      "family": "Source Sans 3",
+      "designer": "Frank Griesshammer",
+      "foundry": "Adobe",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Source+Sans+3",
+      "specimen": "https://fonts.google.com/specimen/Source+Sans+3",
+      "note": "Adobe's humanist UI sans; clear italics, tabular figures, and excellent weight range",
+      "tags": [
+        "humanist",
+        "ui",
+        "adobe"
+      ]
+    },
+    {
+      "slug": "ibm-plex-sans",
+      "family": "IBM Plex Sans",
+      "designer": "Bold Monday",
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Sans",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Sans",
+      "note": "enterprise sans with engineered character; anchors the IBM Plex multi-script superfamily",
+      "tags": [
+        "enterprise",
+        "plex",
+        "humanist"
+      ]
+    },
+    {
+      "slug": "work-sans",
+      "family": "Work Sans",
+      "designer": "Wei Huang",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Work+Sans",
+      "specimen": "https://fonts.google.com/specimen/Work+Sans",
+      "note": "grotesque made for editorial and UI use; comfortable at text sizes and lively in display",
+      "tags": [
+        "grotesque",
+        "editorial",
+        "ui"
+      ]
+    },
+    {
+      "slug": "fira-sans",
+      "family": "Fira Sans",
+      "designer": "Carrois Apostel",
+      "foundry": "Mozilla",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Fira+Sans",
+      "specimen": "https://fonts.google.com/specimen/Fira+Sans",
+      "note": "Firefox OS legacy sans; pairs naturally with Fira Code for code-heavy products",
+      "tags": [
+        "mozilla",
+        "humanist",
+        "code-pair"
+      ]
+    },
+    {
+      "slug": "rubik",
+      "family": "Rubik",
+      "designer": "Hubert and Fischer",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "hebrew"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "hebrew"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Rubik",
+      "specimen": "https://fonts.google.com/specimen/Rubik",
+      "note": "slightly rounded corners give this grotesque a friendly technical voice",
+      "tags": [
+        "rounded",
+        "grotesque",
+        "friendly"
+      ]
+    },
+    {
+      "slug": "nunito",
+      "family": "Nunito",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "rounded",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Nunito",
+      "specimen": "https://fonts.google.com/specimen/Nunito",
+      "note": "well-rounded terminators make it the default friendly face for education products",
+      "tags": [
+        "rounded",
+        "friendly",
+        "education"
+      ]
+    },
+    {
+      "slug": "nunito-sans",
+      "family": "Nunito Sans",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Nunito+Sans",
+      "specimen": "https://fonts.google.com/specimen/Nunito+Sans",
+      "note": "less rounded sibling of Nunito; keeps warmth while behaving better in long text",
+      "tags": [
+        "humanist",
+        "friendly",
+        "body"
+      ]
+    },
+    {
+      "slug": "raleway",
+      "family": "Raleway",
+      "designer": "Matt McInerney",
+      "foundry": "The League of Moveable Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Raleway",
+      "specimen": "https://fonts.google.com/specimen/Raleway",
+      "note": "elegant thin-to-bold geometric with a distinctive w; a display classic for fashion and luxury",
+      "tags": [
+        "elegant",
+        "display",
+        "fashion"
+      ]
+    },
+    {
+      "slug": "manrope",
+      "family": "Manrope",
+      "designer": "Mikhail Sharanda",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Manrope",
+      "specimen": "https://fonts.google.com/specimen/Manrope",
+      "note": "semi-geometric with open apertures; a modern default for fintech and SaaS",
+      "tags": [
+        "fintech",
+        "geometric",
+        "modern"
+      ]
+    },
+    {
+      "slug": "dm-sans",
+      "family": "DM Sans",
+      "designer": "Colophon Foundry",
+      "foundry": "Colophon Foundry",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/DM+Sans",
+      "specimen": "https://fonts.google.com/specimen/DM+Sans",
+      "note": "low-contrast geometric based on Poppins skeleton but calmer; now with optical sizes",
+      "tags": [
+        "geometric",
+        "calm",
+        "opsz"
+      ]
+    },
+    {
+      "slug": "plus-jakarta-sans",
+      "family": "Plus Jakarta Sans",
+      "designer": "Tokotype",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Plus+Jakarta+Sans",
+      "specimen": "https://fonts.google.com/specimen/Plus+Jakarta+Sans",
+      "note": "geometric with a hint of grotesque muscle; popular for SaaS dashboards",
+      "tags": [
+        "saas",
+        "geometric",
+        "dashboard"
+      ]
+    },
+    {
+      "slug": "figtree",
+      "family": "Figtree",
+      "designer": "Erik Kennedy",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Figtree",
+      "specimen": "https://fonts.google.com/specimen/Figtree",
+      "note": "geometric designed for UI clarity at small sizes; friendly without being casual",
+      "tags": [
+        "ui",
+        "geometric",
+        "friendly"
+      ]
+    },
+    {
+      "slug": "outfit",
+      "family": "Outfit",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Outfit",
+      "specimen": "https://fonts.google.com/specimen/Outfit",
+      "note": "pure geometric with even strokes; reads as contemporary and neutral in marketing sites",
+      "tags": [
+        "geometric",
+        "neutral",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "archivo",
+      "family": "Archivo",
+      "designer": "Omnibus-Type",
+      "foundry": "Omnibus-Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Archivo",
+      "specimen": "https://fonts.google.com/specimen/Archivo",
+      "note": "grotesque built for headlines and data; width axis spans condensed to expanded",
+      "tags": [
+        "grotesque",
+        "headline",
+        "variable-width"
+      ]
+    },
+    {
+      "slug": "space-grotesk",
+      "family": "Space Grotesk",
+      "designer": "Florian Karsten",
+      "foundry": "Florian Karsten",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Space+Grotesk",
+      "specimen": "https://fonts.google.com/specimen/Space+Grotesk",
+      "note": "Space Mono's proportional sibling; quirky details make it a tech-brand favorite",
+      "tags": [
+        "tech",
+        "quirky",
+        "headline"
+      ]
+    },
+    {
+      "slug": "instrument-sans",
+      "family": "Instrument Sans",
+      "designer": "Rodrigo Fuenzalida",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Instrument+Sans",
+      "specimen": "https://fonts.google.com/specimen/Instrument+Sans",
+      "note": "grotesque with confident spacing; a current favorite for product sites",
+      "tags": [
+        "product",
+        "grotesque",
+        "modern"
+      ]
+    },
+    {
+      "slug": "public-sans",
+      "family": "Public Sans",
+      "designer": null,
+      "foundry": "USWDS",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Public+Sans",
+      "specimen": "https://fonts.google.com/specimen/Public+Sans",
+      "note": "US government UI sans derived from Libre Franklin; built for clarity and neutrality",
+      "tags": [
+        "government",
+        "neutral",
+        "civic"
+      ]
+    },
+    {
+      "slug": "libre-franklin",
+      "family": "Libre Franklin",
+      "designer": "Impallari Type",
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Libre+Franklin",
+      "specimen": "https://fonts.google.com/specimen/Libre+Franklin",
+      "note": "Franklin Gothic revival; a newspaper feel that still works on screens",
+      "tags": [
+        "newspaper",
+        "grotesque",
+        "revival"
+      ]
+    },
+    {
+      "slug": "barlow",
+      "family": "Barlow",
+      "designer": "Jeremy Tribby",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Barlow",
+      "specimen": "https://fonts.google.com/specimen/Barlow",
+      "note": "slightly rounded grotesque family with condensed and semi-condensed siblings",
+      "tags": [
+        "grotesque",
+        "family",
+        "condensed"
+      ]
+    },
+    {
+      "slug": "barlow-condensed",
+      "family": "Barlow Condensed",
+      "designer": "Jeremy Tribby",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Barlow+Condensed",
+      "specimen": "https://fonts.google.com/specimen/Barlow+Condensed",
+      "note": "the condensed cut of Barlow; sports, scores, and dense data labels",
+      "tags": [
+        "condensed",
+        "sports",
+        "scores"
+      ]
+    },
+    {
+      "slug": "karla",
+      "family": "Karla",
+      "designer": "Jonathan Ball",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Karla",
+      "specimen": "https://fonts.google.com/specimen/Karla",
+      "note": "grotesque with personality in the details; a favorite for friendly-but-serious brands",
+      "tags": [
+        "friendly",
+        "grotesque",
+        "brand"
+      ]
+    },
+    {
+      "slug": "cabin",
+      "family": "Cabin",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Cabin",
+      "specimen": "https://fonts.google.com/specimen/Cabin",
+      "note": "humanist sans inspired by Edward Johnston; sturdy and unobtrusive",
+      "tags": [
+        "humanist",
+        "sturdy",
+        "quiet"
+      ]
+    },
+    {
+      "slug": "quicksand",
+      "family": "Quicksand",
+      "designer": "Andrew Paglinawan",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "rounded",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Quicksand",
+      "specimen": "https://fonts.google.com/specimen/Quicksand",
+      "note": "rounded geometric; playful headers for consumer and children products",
+      "tags": [
+        "rounded",
+        "playful",
+        "consumer"
+      ]
+    },
+    {
+      "slug": "urbanist",
+      "family": "Urbanist",
+      "designer": "Corey Hu",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Urbanist",
+      "specimen": "https://fonts.google.com/specimen/Urbanist",
+      "note": "low-contrast geometric with graceful thin weights; fashion and lifestyle favorite",
+      "tags": [
+        "fashion",
+        "geometric",
+        "thin"
+      ]
+    },
+    {
+      "slug": "sora",
+      "family": "Sora",
+      "designer": "Jonathan Barnbrook",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Sora",
+      "specimen": "https://fonts.google.com/specimen/Sora",
+      "note": "geometric system commissioned for Ethereum ecosystem; futuristic but readable",
+      "tags": [
+        "fintech",
+        "web3",
+        "geometric"
+      ]
+    },
+    {
+      "slug": "lexend",
+      "family": "Lexend",
+      "designer": "Bonnie Shaver-Troup",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Lexend",
+      "specimen": "https://fonts.google.com/specimen/Lexend",
+      "note": "designed to improve reading proficiency; generous spacing aids beginning readers",
+      "tags": [
+        "reading",
+        "fluency",
+        "education"
+      ]
+    },
+    {
+      "slug": "red-hat-display",
+      "family": "Red Hat Display",
+      "designer": null,
+      "foundry": "Red Hat",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Red+Hat+Display",
+      "specimen": "https://fonts.google.com/specimen/Red+Hat+Display",
+      "note": "display half of Red Hat's enterprise family; pairs with Red Hat Text",
+      "tags": [
+        "enterprise",
+        "superfamily",
+        "display"
+      ]
+    },
+    {
+      "slug": "red-hat-text",
+      "family": "Red Hat Text",
+      "designer": null,
+      "foundry": "Red Hat",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Red+Hat+Text",
+      "specimen": "https://fonts.google.com/specimen/Red+Hat+Text",
+      "note": "text half of Red Hat's enterprise family; comfortable for UI and docs",
+      "tags": [
+        "enterprise",
+        "superfamily",
+        "text"
+      ]
+    },
+    {
+      "slug": "overpass",
+      "family": "Overpass",
+      "designer": "Delve Withrington",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Overpass",
+      "specimen": "https://fonts.google.com/specimen/Overpass",
+      "note": "based on Highway Gothic signage; road-tested legibility for UI",
+      "tags": [
+        "signage",
+        "humanist",
+        "legible"
+      ]
+    },
+    {
+      "slug": "jost",
+      "family": "Jost",
+      "designer": "Owen Earl",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Jost",
+      "specimen": "https://fonts.google.com/specimen/Jost",
+      "note": "Futura-flavored geometric; pairs well with didones for fashion systems",
+      "tags": [
+        "futura",
+        "geometric",
+        "fashion"
+      ]
+    },
+    {
+      "slug": "mulish",
+      "family": "Mulish",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Mulish",
+      "specimen": "https://fonts.google.com/specimen/Mulish",
+      "note": "minimalist humanist with clean curves; quiet body text for modern sites",
+      "tags": [
+        "minimalist",
+        "quiet",
+        "body"
+      ]
+    },
+    {
+      "slug": "asap",
+      "family": "Asap",
+      "designer": "Omnibus-Type",
+      "foundry": "Omnibus-Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Asap",
+      "specimen": "https://fonts.google.com/specimen/Asap",
+      "note": "slightly rounded grotesque tuned for small UI text and data",
+      "tags": [
+        "ui",
+        "small-text",
+        "grotesque"
+      ]
+    },
+    {
+      "slug": "chivo",
+      "family": "Chivo",
+      "designer": "Omnibus-Type",
+      "foundry": "Omnibus-Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Chivo",
+      "specimen": "https://fonts.google.com/specimen/Chivo",
+      "note": "argentine grotesque with a mechanical streak; good for data-heavy layouts",
+      "tags": [
+        "grotesque",
+        "data",
+        "argentina"
+      ]
+    },
+    {
+      "slug": "epilogue",
+      "family": "Epilogue",
+      "designer": "Etcetera Type Company",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Epilogue",
+      "specimen": "https://fonts.google.com/specimen/Epilogue",
+      "note": "geometric with slight quirk; editorial-friendly UI voice",
+      "tags": [
+        "geometric",
+        "editorial",
+        "ui"
+      ]
+    },
+    {
+      "slug": "sen",
+      "family": "Sen",
+      "designer": "Philipp Nurullin",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Sen",
+      "specimen": "https://fonts.google.com/specimen/Sen",
+      "note": "geometric-humanist hybrid with distinct angular details",
+      "tags": [
+        "geometric",
+        "angular",
+        "distinct"
+      ]
+    },
+    {
+      "slug": "commissioner",
+      "family": "Commissioner",
+      "designer": "Kostas Bartsokas",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "slnt",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Commissioner",
+      "specimen": "https://fonts.google.com/specimen/Commissioner",
+      "note": "grotesque with flared options; adjustable voice across interfaces",
+      "tags": [
+        "grotesque",
+        "variable",
+        "voice"
+      ]
+    },
+    {
+      "slug": "familjen-grotesk",
+      "family": "Familjen Grotesk",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Familjen+Grotesk",
+      "specimen": "https://fonts.google.com/specimen/Familjen+Grotesk",
+      "note": "swedish-flavored grotesque; sturdy text voice with display confidence",
+      "tags": [
+        "swedish",
+        "grotesque",
+        "sturdy"
+      ]
+    },
+    {
+      "slug": "schibsted-grotesk",
+      "family": "Schibsted Grotesk",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Schibsted+Grotesk",
+      "specimen": "https://fonts.google.com/specimen/Schibsted+Grotesk",
+      "note": "newsroom-grade grotesque from Schibsted; strong at headline sizes",
+      "tags": [
+        "newsroom",
+        "grotesque",
+        "headline"
+      ]
+    },
+    {
+      "slug": "onest",
+      "family": "Onest",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Onest",
+      "specimen": "https://fonts.google.com/specimen/Onest",
+      "note": "grotesque balancing Cyrillic and Latin; calm interface voice",
+      "tags": [
+        "grotesque",
+        "cyrillic",
+        "calm"
+      ]
+    },
+    {
+      "slug": "geist",
+      "family": "Geist",
+      "designer": null,
+      "foundry": "Vercel",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Geist",
+      "specimen": "https://fonts.google.com/specimen/Geist",
+      "note": "Vercel's interface sans; designed for developer-facing products",
+      "tags": [
+        "developer",
+        "vercel",
+        "ui"
+      ]
+    },
+    {
+      "slug": "inter-tight",
+      "family": "Inter Tight",
+      "designer": "Rasmus Andersson",
+      "foundry": "RSMS",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Inter+Tight",
+      "specimen": "https://fonts.google.com/specimen/Inter+Tight",
+      "note": "display-tuned Inter with tighter spacing for headlines",
+      "tags": [
+        "display",
+        "inter",
+        "headline"
+      ]
+    },
+    {
+      "slug": "kumbh-sans",
+      "family": "Kumbh Sans",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Kumbh+Sans",
+      "specimen": "https://fonts.google.com/specimen/Kumbh+Sans",
+      "note": "geometric with mathematical grid feel; quiet marketing voice",
+      "tags": [
+        "geometric",
+        "marketing",
+        "quiet"
+      ]
+    },
+    {
+      "slug": "wix-madefor-display",
+      "family": "Wix Madefor Display",
+      "designer": null,
+      "foundry": "Wix",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Wix+Madefor+Display",
+      "specimen": "https://fonts.google.com/specimen/Wix+Madefor+Display",
+      "note": "display half of Wix's two-family system; pairs with Madefor Text",
+      "tags": [
+        "display",
+        "system",
+        "wix"
+      ]
+    },
+    {
+      "slug": "wix-madefor-text",
+      "family": "Wix Madefor Text",
+      "designer": null,
+      "foundry": "Wix",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Wix+Madefor+Text",
+      "specimen": "https://fonts.google.com/specimen/Wix+Madefor+Text",
+      "note": "text half of Wix's system; tuned for paragraphs on screen",
+      "tags": [
+        "text",
+        "system",
+        "wix"
+      ]
+    },
+    {
+      "slug": "atkinson-hyperlegible",
+      "family": "Atkinson Hyperlegible",
+      "designer": null,
+      "foundry": "Braille Institute",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Atkinson+Hyperlegible",
+      "specimen": "https://fonts.google.com/specimen/Atkinson+Hyperlegible",
+      "note": "designed for low vision with differentiated letterforms; an accessibility benchmark",
+      "tags": [
+        "accessibility",
+        "low-vision",
+        "legible"
+      ]
+    },
+    {
+      "slug": "mukta",
+      "family": "Mukta",
+      "designer": null,
+      "foundry": "Ek Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Mukta",
+      "specimen": "https://fonts.google.com/specimen/Mukta",
+      "note": "Devanagari + Latin humanist family in ten weights; made for Indian publishing",
+      "tags": [
+        "devanagari",
+        "humanist",
+        "publishing"
+      ]
+    },
+    {
+      "slug": "hind",
+      "family": "Hind",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/hind",
+      "specimen": "https://www.fontshare.com/fonts/hind",
+      "note": "ITF's Devanagari + Latin UI family; clean at small sizes",
+      "tags": [
+        "devanagari",
+        "ui",
+        "itf"
+      ]
+    },
+    {
+      "slug": "catamaran",
+      "family": "Catamaran",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "tamil"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "tamil"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Catamaran",
+      "specimen": "https://fonts.google.com/specimen/Catamaran",
+      "note": "Tamil + Latin family with wide weight range",
+      "tags": [
+        "tamil",
+        "latin",
+        "family"
+      ]
+    },
+    {
+      "slug": "vazirmatn",
+      "family": "Vazirmatn",
+      "designer": "Saber Rastikerdar",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Vazirmatn",
+      "specimen": "https://fonts.google.com/specimen/Vazirmatn",
+      "note": "Persian and Arabic UI sans; the default choice for Farsi interfaces",
+      "tags": [
+        "persian",
+        "arabic",
+        "ui"
+      ]
+    },
+    {
+      "slug": "ibm-plex-sans-arabic",
+      "family": "IBM Plex Sans Arabic",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Sans+Arabic",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Sans+Arabic",
+      "note": "Plex voice for Arabic; engineered for enterprise interfaces",
+      "tags": [
+        "arabic",
+        "enterprise",
+        "plex"
+      ]
+    },
+    {
+      "slug": "ibm-plex-sans-hebrew",
+      "family": "IBM Plex Sans Hebrew",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Sans+Hebrew",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Sans+Hebrew",
+      "note": "Plex voice for Hebrew; metrically coordinated with Plex Sans",
+      "tags": [
+        "hebrew",
+        "enterprise",
+        "plex"
+      ]
+    },
+    {
+      "slug": "ibm-plex-sans-devanagari",
+      "family": "IBM Plex Sans Devanagari",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Sans+Devanagari",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Sans+Devanagari",
+      "note": "Plex voice for Devanagari; matches Latin Plex metrics",
+      "tags": [
+        "devanagari",
+        "enterprise",
+        "plex"
+      ]
+    },
+    {
+      "slug": "noto-sans-arabic",
+      "family": "Noto Sans Arabic",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "arabic"
+      ],
+      "subsets": [
+        "arabic"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+Arabic",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+Arabic",
+      "note": "Arabic member of Noto; wide weight range for UI systems",
+      "tags": [
+        "arabic",
+        "noto",
+        "ui"
+      ]
+    },
+    {
+      "slug": "noto-sans-hebrew",
+      "family": "Noto Sans Hebrew",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "hebrew"
+      ],
+      "subsets": [
+        "hebrew"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+Hebrew",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+Hebrew",
+      "note": "Hebrew member of Noto; predictable metrics with other Noto faces",
+      "tags": [
+        "hebrew",
+        "noto",
+        "ui"
+      ]
+    },
+    {
+      "slug": "noto-sans-devanagari",
+      "family": "Noto Sans Devanagari",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "devanagari"
+      ],
+      "subsets": [
+        "devanagari"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+Devanagari",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+Devanagari",
+      "note": "Devanagari member of Noto; safe default for Indic UI",
+      "tags": [
+        "devanagari",
+        "noto",
+        "ui"
+      ]
+    },
+    {
+      "slug": "noto-sans-thai",
+      "family": "Noto Sans Thai",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "thai"
+      ],
+      "subsets": [
+        "thai"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+Thai",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+Thai",
+      "note": "Thai member of Noto; handles tall stacked marks",
+      "tags": [
+        "thai",
+        "noto",
+        "ui"
+      ]
+    },
+    {
+      "slug": "noto-sans-jp",
+      "family": "Noto Sans JP",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "gothic",
+      "scripts": [
+        "japanese",
+        "latin"
+      ],
+      "subsets": [
+        "japanese",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+JP",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+JP",
+      "note": "Japanese gothic member of Noto CJK; the default for Japanese UI",
+      "tags": [
+        "japanese",
+        "cjk",
+        "noto"
+      ]
+    },
+    {
+      "slug": "noto-sans-kr",
+      "family": "Noto Sans KR",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "gothic",
+      "scripts": [
+        "korean",
+        "latin"
+      ],
+      "subsets": [
+        "korean",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+KR",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+KR",
+      "note": "Korean gothic member of Noto CJK",
+      "tags": [
+        "korean",
+        "cjk",
+        "noto"
+      ]
+    },
+    {
+      "slug": "noto-sans-sc",
+      "family": "Noto Sans SC",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "gothic",
+      "scripts": [
+        "chinese-simplified",
+        "latin"
+      ],
+      "subsets": [
+        "chinese-simplified",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Sans+SC",
+      "specimen": "https://fonts.google.com/specimen/Noto+Sans+SC",
+      "note": "Simplified Chinese gothic member of Noto CJK",
+      "tags": [
+        "chinese",
+        "cjk",
+        "noto"
+      ]
+    },
+    {
+      "slug": "sarabun",
+      "family": "Sarabun",
+      "designer": null,
+      "foundry": "Cadson Demak",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Sarabun",
+      "specimen": "https://fonts.google.com/specimen/Sarabun",
+      "note": "Thai government documents favorite; readable Thai with Latin support",
+      "tags": [
+        "thai",
+        "documents",
+        "humanist"
+      ]
+    },
+    {
+      "slug": "kanit",
+      "family": "Kanit",
+      "designer": null,
+      "foundry": "Cadson Demak",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Kanit",
+      "specimen": "https://fonts.google.com/specimen/Kanit",
+      "note": "loopless Thai with geometric Latin; strong headlines for Thai products",
+      "tags": [
+        "thai",
+        "geometric",
+        "headline"
+      ]
+    },
+    {
+      "slug": "prompt",
+      "family": "Prompt",
+      "designer": null,
+      "foundry": "Cadson Demak",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Prompt",
+      "specimen": "https://fonts.google.com/specimen/Prompt",
+      "note": "geometric Thai + Latin; a modern Thai marketing face",
+      "tags": [
+        "thai",
+        "geometric",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "heebo",
+      "family": "Heebo",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Heebo",
+      "specimen": "https://fonts.google.com/specimen/Heebo",
+      "note": "Hebrew + Latin grotesque derived from Roboto forms",
+      "tags": [
+        "hebrew",
+        "grotesque",
+        "roboto-derived"
+      ]
+    },
+    {
+      "slug": "assistant",
+      "family": "Assistant",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "hebrew",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Assistant",
+      "specimen": "https://fonts.google.com/specimen/Assistant",
+      "note": "Hebrew + Latin UI family; common in Israeli product design",
+      "tags": [
+        "hebrew",
+        "ui",
+        "product"
+      ]
+    },
+    {
+      "slug": "tajawal",
+      "family": "Tajawal",
+      "designer": null,
+      "foundry": "Boutros",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "arabic",
+        "latin"
+      ],
+      "subsets": [
+        "arabic",
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Tajawal",
+      "specimen": "https://fonts.google.com/specimen/Tajawal",
+      "note": "geometric Arabic + Latin with even color; modern Gulf brand voice",
+      "tags": [
+        "arabic",
+        "geometric",
+        "gulf"
+      ]
+    },
+    {
+      "slug": "cairo",
+      "family": "Cairo",
+      "designer": "Mohamed Gaber",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "arabic",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Cairo",
+      "specimen": "https://fonts.google.com/specimen/Cairo",
+      "note": "Arabic + Latin family bridging Kufi structure with sans behavior",
+      "tags": [
+        "arabic",
+        "latin",
+        "bridge"
+      ]
+    },
+    {
+      "slug": "baloo-2",
+      "family": "Baloo 2",
+      "designer": null,
+      "foundry": "Ek Type",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "rounded",
+      "scripts": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Baloo+2",
+      "specimen": "https://fonts.google.com/specimen/Baloo+2",
+      "note": "heavy rounded Devanagari + Latin; friendly display for Indian brands",
+      "tags": [
+        "devanagari",
+        "rounded",
+        "display"
+      ]
+    },
+    {
+      "slug": "varela-round",
+      "family": "Varela Round",
+      "designer": "Joe Prince",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "rounded",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "hebrew"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "hebrew"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Varela+Round",
+      "specimen": "https://fonts.google.com/specimen/Varela+Round",
+      "note": "single-weight rounded classic; also covers Hebrew",
+      "tags": [
+        "rounded",
+        "hebrew",
+        "single-weight"
+      ]
+    },
+    {
+      "slug": "comfortaa",
+      "family": "Comfortaa",
+      "designer": "Johan Aakerlund",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "rounded",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Comfortaa",
+      "specimen": "https://fonts.google.com/specimen/Comfortaa",
+      "note": "geometric rounded display; decorative voice for consumer brands",
+      "tags": [
+        "rounded",
+        "geometric",
+        "decorative"
+      ]
+    },
+    {
+      "slug": "alegreya-sans",
+      "family": "Alegreya Sans",
+      "designer": "Juan Pablo del Peral",
+      "foundry": "Huerta Tipografica",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Alegreya+Sans",
+      "specimen": "https://fonts.google.com/specimen/Alegreya+Sans",
+      "note": "sans companion to Alegreya; calligraphic skeleton keeps literary warmth",
+      "tags": [
+        "humanist",
+        "literary",
+        "companion"
+      ]
+    },
+    {
+      "slug": "ibm-plex-sans-condensed",
+      "family": "IBM Plex Sans Condensed",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Sans+Condensed",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Sans+Condensed",
+      "note": "condensed Plex for dense enterprise layouts",
+      "tags": [
+        "enterprise",
+        "condensed",
+        "plex"
+      ]
+    },
+    {
+      "slug": "playfair-display",
+      "family": "Playfair Display",
+      "designer": "Claus Eggers Sorensen",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Playfair+Display",
+      "specimen": "https://fonts.google.com/specimen/Playfair+Display",
+      "note": "transitional-didone display serif with high contrast; the editorial headline classic",
+      "tags": [
+        "editorial",
+        "didone",
+        "headline"
+      ]
+    },
+    {
+      "slug": "merriweather",
+      "family": "Merriweather",
+      "designer": null,
+      "foundry": "Sorkin Type",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Merriweather",
+      "specimen": "https://fonts.google.com/specimen/Merriweather",
+      "note": "designed for screens: sturdy serifs, large x-height, generous spacing",
+      "tags": [
+        "screen",
+        "body",
+        "sturdy"
+      ]
+    },
+    {
+      "slug": "lora",
+      "family": "Lora",
+      "designer": null,
+      "foundry": "Cyreal",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Lora",
+      "specimen": "https://fonts.google.com/specimen/Lora",
+      "note": "brush-influenced contemporary serif; the default blog body serif",
+      "tags": [
+        "blog",
+        "contemporary",
+        "body"
+      ]
+    },
+    {
+      "slug": "source-serif-4",
+      "family": "Source Serif 4",
+      "designer": "Frank Griesshammer",
+      "foundry": "Adobe",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Source+Serif+4",
+      "specimen": "https://fonts.google.com/specimen/Source+Serif+4",
+      "note": "Adobe's text serif with optical sizes; pairs with Source Sans 3",
+      "tags": [
+        "adobe",
+        "transitional",
+        "pairing"
+      ]
+    },
+    {
+      "slug": "pt-serif",
+      "family": "PT Serif",
+      "designer": null,
+      "foundry": "ParaType",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/PT+Serif",
+      "specimen": "https://fonts.google.com/specimen/PT+Serif",
+      "note": "Public Types of Russian Federation project; economic and robust for Cyrillic",
+      "tags": [
+        "cyrillic",
+        "robust",
+        "public"
+      ]
+    },
+    {
+      "slug": "crimson-pro",
+      "family": "Crimson Pro",
+      "designer": "Jacques Le Bailly",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Crimson+Pro",
+      "specimen": "https://fonts.google.com/specimen/Crimson+Pro",
+      "note": "old-style book face inspired by Garamond; academic longform favorite",
+      "tags": [
+        "academic",
+        "book",
+        "old-style"
+      ]
+    },
+    {
+      "slug": "eb-garamond",
+      "family": "EB Garamond",
+      "designer": "Octavio Pardo",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/EB+Garamond",
+      "specimen": "https://fonts.google.com/specimen/EB+Garamond",
+      "note": "Garamond revival with true italics; literary and academic settings",
+      "tags": [
+        "literary",
+        "garamond",
+        "academic"
+      ]
+    },
+    {
+      "slug": "cormorant-garamond",
+      "family": "Cormorant Garamond",
+      "designer": "Christian Thalmann",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Cormorant+Garamond",
+      "specimen": "https://fonts.google.com/specimen/Cormorant+Garamond",
+      "note": "delicate high-contrast Garamond display; luxury and wedding aesthetics",
+      "tags": [
+        "luxury",
+        "delicate",
+        "display"
+      ]
+    },
+    {
+      "slug": "libre-baskerville",
+      "family": "Libre Baskerville",
+      "designer": "Impallari Type",
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Libre+Baskerville",
+      "specimen": "https://fonts.google.com/specimen/Libre+Baskerville",
+      "note": "Baskerville revival tuned for screens; classic blog body",
+      "tags": [
+        "baskerville",
+        "blog",
+        "classic"
+      ]
+    },
+    {
+      "slug": "libre-caslon-text",
+      "family": "Libre Caslon Text",
+      "designer": "Impallari Type",
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Libre+Caslon+Text",
+      "specimen": "https://fonts.google.com/specimen/Libre+Caslon+Text",
+      "note": "Caslon built for body text on screens",
+      "tags": [
+        "caslon",
+        "body",
+        "screen"
+      ]
+    },
+    {
+      "slug": "spectral",
+      "family": "Spectral",
+      "designer": null,
+      "foundry": "Production Type",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Spectral",
+      "specimen": "https://fonts.google.com/specimen/Spectral",
+      "note": "designed for screen reading with efficient spacing; cultural and editorial use",
+      "tags": [
+        "screen",
+        "reading",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "newsreader",
+      "family": "Newsreader",
+      "designer": null,
+      "foundry": "Production Type",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Newsreader",
+      "specimen": "https://fonts.google.com/specimen/Newsreader",
+      "note": "editorial family with optical sizes; headlines to captions in one system",
+      "tags": [
+        "editorial",
+        "opsz",
+        "news"
+      ]
+    },
+    {
+      "slug": "literata",
+      "family": "Literata",
+      "designer": null,
+      "foundry": "TypeTogether",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Literata",
+      "specimen": "https://fonts.google.com/specimen/Literata",
+      "note": "Google Play Books default; a reading-optimized serif with personality",
+      "tags": [
+        "ebook",
+        "reading",
+        "google"
+      ]
+    },
+    {
+      "slug": "petrona",
+      "family": "Petrona",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Petrona",
+      "specimen": "https://fonts.google.com/specimen/Petrona",
+      "note": "versatile text serif with sturdy proportions",
+      "tags": [
+        "text",
+        "versatile",
+        "sturdy"
+      ]
+    },
+    {
+      "slug": "fraunces",
+      "family": "Fraunces",
+      "designer": "Undercase Type",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght",
+        "SOFT",
+        "WONK"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Fraunces",
+      "specimen": "https://fonts.google.com/specimen/Fraunces",
+      "note": "old-style display with adjustable softness and wonk; a brand voice machine",
+      "tags": [
+        "display",
+        "wonky",
+        "brand"
+      ]
+    },
+    {
+      "slug": "dm-serif-display",
+      "family": "DM Serif Display",
+      "designer": "Colophon Foundry",
+      "foundry": "Colophon Foundry",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/DM+Serif+Display",
+      "specimen": "https://fonts.google.com/specimen/DM+Serif+Display",
+      "note": "didone display companion to DM Sans; confident marketing headlines",
+      "tags": [
+        "didone",
+        "marketing",
+        "display"
+      ]
+    },
+    {
+      "slug": "dm-serif-text",
+      "family": "DM Serif Text",
+      "designer": "Colophon Foundry",
+      "foundry": "Colophon Foundry",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/DM+Serif+Text",
+      "specimen": "https://fonts.google.com/specimen/DM+Serif+Text",
+      "note": "text-weight didone for quieter editorial moments",
+      "tags": [
+        "didone",
+        "text",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "bodoni-moda",
+      "family": "Bodoni Moda",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Bodoni+Moda",
+      "specimen": "https://fonts.google.com/specimen/Bodoni+Moda",
+      "note": "didone with optical sizes from caption to display; fashion editorial standard",
+      "tags": [
+        "fashion",
+        "didone",
+        "opsz"
+      ]
+    },
+    {
+      "slug": "abril-fatface",
+      "family": "Abril Fatface",
+      "designer": null,
+      "foundry": "TypeTogether",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Abril+Fatface",
+      "specimen": "https://fonts.google.com/specimen/Abril+Fatface",
+      "note": "poster-fat didone; magazine cover energy",
+      "tags": [
+        "poster",
+        "fatface",
+        "magazine"
+      ]
+    },
+    {
+      "slug": "rozha-one",
+      "family": "Rozha One",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://www.fontshare.com/fonts/rozha-one",
+      "specimen": "https://www.fontshare.com/fonts/rozha-one",
+      "note": "high-contrast Devanagari + Latin display didone",
+      "tags": [
+        "devanagari",
+        "didone",
+        "display"
+      ]
+    },
+    {
+      "slug": "bitter",
+      "family": "Bitter",
+      "designer": "Sol Matas",
+      "foundry": "Huerta Tipografica",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Bitter",
+      "specimen": "https://fonts.google.com/specimen/Bitter",
+      "note": "contemporary slab for text; sturdy on low-DPI screens",
+      "tags": [
+        "slab",
+        "text",
+        "sturdy"
+      ]
+    },
+    {
+      "slug": "arvo",
+      "family": "Arvo",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Arvo",
+      "specimen": "https://fonts.google.com/specimen/Arvo",
+      "note": "geometric slab with matching sans energy; classic pairing for tech-brutalist sites",
+      "tags": [
+        "slab",
+        "geometric",
+        "tech"
+      ]
+    },
+    {
+      "slug": "roboto-slab",
+      "family": "Roboto Slab",
+      "designer": null,
+      "foundry": "Google",
+      "license": "Apache-2.0",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Roboto+Slab",
+      "specimen": "https://fonts.google.com/specimen/Roboto+Slab",
+      "note": "slab companion to Roboto; documentation and product education default",
+      "tags": [
+        "slab",
+        "documentation",
+        "product"
+      ]
+    },
+    {
+      "slug": "zilla-slab",
+      "family": "Zilla Slab",
+      "designer": null,
+      "foundry": "Typotheque",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Zilla+Slab",
+      "specimen": "https://fonts.google.com/specimen/Zilla+Slab",
+      "note": "Mozilla's brand slab; contemporary and tech-editorial",
+      "tags": [
+        "mozilla",
+        "slab",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "aleo",
+      "family": "Aleo",
+      "designer": "Alessio Laiso",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Aleo",
+      "specimen": "https://fonts.google.com/specimen/Aleo",
+      "note": "slab with semi-rounded details; friendly alternative to geometric slabs",
+      "tags": [
+        "slab",
+        "friendly",
+        "rounded"
+      ]
+    },
+    {
+      "slug": "ibm-plex-serif",
+      "family": "IBM Plex Serif",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Serif",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Serif",
+      "note": "Plex serif; transitional forms engineered for enterprise documents",
+      "tags": [
+        "enterprise",
+        "plex",
+        "documents"
+      ]
+    },
+    {
+      "slug": "noto-serif",
+      "family": "Noto Serif",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Serif",
+      "specimen": "https://fonts.google.com/specimen/Noto+Serif",
+      "note": "Noto's Latin serif anchor; pairs with the whole Noto script range",
+      "tags": [
+        "multilingual",
+        "serif",
+        "noto"
+      ]
+    },
+    {
+      "slug": "noto-serif-jp",
+      "family": "Noto Serif JP",
+      "designer": null,
+      "foundry": "Google",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "mincho",
+      "scripts": [
+        "japanese",
+        "latin"
+      ],
+      "subsets": [
+        "japanese",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Noto+Serif+JP",
+      "specimen": "https://fonts.google.com/specimen/Noto+Serif+JP",
+      "note": "Japanese Mincho member of Noto CJK",
+      "tags": [
+        "japanese",
+        "mincho",
+        "cjk"
+      ]
+    },
+    {
+      "slug": "gentium-plus",
+      "family": "Gentium Plus",
+      "designer": null,
+      "foundry": "SIL",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Gentium+Plus",
+      "specimen": "https://fonts.google.com/specimen/Gentium+Plus",
+      "note": "SIL's scholarly serif with exceptional IPA and diacritic coverage",
+      "tags": [
+        "scholarly",
+        "ipa",
+        "coverage"
+      ]
+    },
+    {
+      "slug": "charis-sil",
+      "family": "Charis SIL",
+      "designer": null,
+      "foundry": "SIL",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Charis+SIL",
+      "specimen": "https://fonts.google.com/specimen/Charis+SIL",
+      "note": "SIL text serif for literacy and linguistics work",
+      "tags": [
+        "literacy",
+        "linguistics",
+        "sil"
+      ]
+    },
+    {
+      "slug": "vollkorn",
+      "family": "Vollkorn",
+      "designer": "Friedrich Althausen",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Vollkorn",
+      "specimen": "https://fonts.google.com/specimen/Vollkorn",
+      "note": "dark old-style with quietGerman character; comfortable longform",
+      "tags": [
+        "longform",
+        "dark",
+        "quiet"
+      ]
+    },
+    {
+      "slug": "alegreya",
+      "family": "Alegreya",
+      "designer": "Juan Pablo del Peral",
+      "foundry": "Huerta Tipografica",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Alegreya",
+      "specimen": "https://fonts.google.com/specimen/Alegreya",
+      "note": "calligraphic old-style with angular energy; award-winning book face",
+      "tags": [
+        "book",
+        "calligraphic",
+        "angular"
+      ]
+    },
+    {
+      "slug": "marcellus",
+      "family": "Marcellus",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "inscriptional",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Marcellus",
+      "specimen": "https://fonts.google.com/specimen/Marcellus",
+      "note": "flared Roman inscriptional caps; classical luxury accents",
+      "tags": [
+        "roman",
+        "inscriptional",
+        "luxury"
+      ]
+    },
+    {
+      "slug": "prata",
+      "family": "Prata",
+      "designer": null,
+      "foundry": "Cyreal",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Prata",
+      "specimen": "https://fonts.google.com/specimen/Prata",
+      "note": "didone with old-style warmth; editorial fashion alternates",
+      "tags": [
+        "didone",
+        "editorial",
+        "fashion"
+      ]
+    },
+    {
+      "slug": "trirong",
+      "family": "Trirong",
+      "designer": null,
+      "foundry": "Cadson Demak",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "thai",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Trirong",
+      "specimen": "https://fonts.google.com/specimen/Trirong",
+      "note": "Thai + Latin didone; high contrast headlines for Thai media",
+      "tags": [
+        "thai",
+        "didone",
+        "media"
+      ]
+    },
+    {
+      "slug": "yeseva-one",
+      "family": "Yeseva One",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Yeseva+One",
+      "specimen": "https://fonts.google.com/specimen/Yeseva+One",
+      "note": "soft didone display with personality; boutique and packaging",
+      "tags": [
+        "boutique",
+        "packaging",
+        "display"
+      ]
+    },
+    {
+      "slug": "eczar",
+      "family": "Eczar",
+      "designer": "Vaibhav Singh",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Eczar",
+      "specimen": "https://fonts.google.com/specimen/Eczar",
+      "note": "Devanagari + Latin with sharp energy; editorial and advocacy",
+      "tags": [
+        "devanagari",
+        "editorial",
+        "advocacy"
+      ]
+    },
+    {
+      "slug": "halant",
+      "family": "Halant",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "old-style",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "devanagari"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/halant",
+      "specimen": "https://www.fontshare.com/fonts/halant",
+      "note": "quiet Devanagari + Latin book serif from ITF",
+      "tags": [
+        "devanagari",
+        "book",
+        "quiet"
+      ]
+    },
+    {
+      "slug": "frank-ruhl-libre",
+      "family": "Frank Ruhl Libre",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "transitional",
+      "scripts": [
+        "hebrew",
+        "latin"
+      ],
+      "subsets": [
+        "hebrew",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Frank+Ruhl+Libre",
+      "specimen": "https://fonts.google.com/specimen/Frank+Ruhl+Libre",
+      "note": "Hebrew + Latin serif based on the classic Frank-Ruhl forms",
+      "tags": [
+        "hebrew",
+        "serif",
+        "classic"
+      ]
+    },
+    {
+      "slug": "amiri",
+      "family": "Amiri",
+      "designer": "Khaled Hosny",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "naskh",
+      "scripts": [
+        "arabic",
+        "latin"
+      ],
+      "subsets": [
+        "arabic",
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Amiri",
+      "specimen": "https://fonts.google.com/specimen/Amiri",
+      "note": "Naskh revival for classical Arabic text; scholarly and Quranic use",
+      "tags": [
+        "arabic",
+        "naskh",
+        "classical"
+      ]
+    },
+    {
+      "slug": "scheherazade-new",
+      "family": "Scheherazade New",
+      "designer": null,
+      "foundry": "SIL",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "naskh",
+      "scripts": [
+        "arabic"
+      ],
+      "subsets": [
+        "arabic"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Scheherazade+New",
+      "specimen": "https://fonts.google.com/specimen/Scheherazade+New",
+      "note": "SIL's generous Naskh with wide dialect coverage",
+      "tags": [
+        "arabic",
+        "naskh",
+        "coverage"
+      ]
+    },
+    {
+      "slug": "harmattan",
+      "family": "Harmattan",
+      "designer": null,
+      "foundry": "SIL",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "naskh",
+      "scripts": [
+        "arabic"
+      ],
+      "subsets": [
+        "arabic"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Harmattan",
+      "specimen": "https://fonts.google.com/specimen/Harmattan",
+      "note": "West African Arabic style from SIL",
+      "tags": [
+        "arabic",
+        "west-africa",
+        "sil"
+      ]
+    },
+    {
+      "slug": "padauk",
+      "family": "Padauk",
+      "designer": null,
+      "foundry": "SIL",
+      "license": "OFL-1.1",
+      "category": "serif",
+      "classification": "myanmar",
+      "scripts": [
+        "myanmar",
+        "latin"
+      ],
+      "subsets": [
+        "myanmar",
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Padauk",
+      "specimen": "https://fonts.google.com/specimen/Padauk",
+      "note": "SIL's Myanmar face with broad register support",
+      "tags": [
+        "myanmar",
+        "sil",
+        "coverage"
+      ]
+    },
+    {
+      "slug": "el-messiri",
+      "family": "El Messiri",
+      "designer": "Mohamed Gaber",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "humanist",
+      "scripts": [
+        "arabic",
+        "latin"
+      ],
+      "subsets": [
+        "arabic",
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/El+Messiri",
+      "specimen": "https://fonts.google.com/specimen/El+Messiri",
+      "note": "Arabic display with contemporary humanist details",
+      "tags": [
+        "arabic",
+        "display",
+        "humanist"
+      ]
+    },
+    {
+      "slug": "reem-kufi",
+      "family": "Reem Kufi",
+      "designer": "Khaled Hosny",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "kufi",
+      "scripts": [
+        "arabic",
+        "latin"
+      ],
+      "subsets": [
+        "arabic",
+        "latin"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Reem+Kufi",
+      "specimen": "https://fonts.google.com/specimen/Reem+Kufi",
+      "note": "geometric Kufi display; pairs with Naskh text faces",
+      "tags": [
+        "arabic",
+        "kufi",
+        "geometric"
+      ]
+    },
+    {
+      "slug": "satoshi",
+      "family": "Satoshi",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "sans-serif",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/satoshi",
+      "specimen": "https://www.fontshare.com/fonts/satoshi",
+      "note": "Fontshare's flagship geometric-grotesque hybrid; modern startup voice",
+      "tags": [
+        "fontshare",
+        "startup",
+        "modern"
+      ]
+    },
+    {
+      "slug": "general-sans",
+      "family": "General Sans",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/general-sans",
+      "specimen": "https://www.fontshare.com/fonts/general-sans",
+      "note": "Fontshare's neutral UI family; quiet confidence at small sizes",
+      "tags": [
+        "fontshare",
+        "ui",
+        "neutral"
+      ]
+    },
+    {
+      "slug": "switzer",
+      "family": "Switzer",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/switzer",
+      "specimen": "https://www.fontshare.com/fonts/switzer",
+      "note": "Helvetica-inspired grotesque from Fontshare",
+      "tags": [
+        "fontshare",
+        "grotesque",
+        "helvetica-like"
+      ]
+    },
+    {
+      "slug": "cabinet-grotesk",
+      "family": "Cabinet Grotesk",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/cabinet-grotesk",
+      "specimen": "https://www.fontshare.com/fonts/cabinet-grotesk",
+      "note": "display grotesque with inky details; strong brand voice from Fontshare",
+      "tags": [
+        "fontshare",
+        "display",
+        "brand"
+      ]
+    },
+    {
+      "slug": "clash-display",
+      "family": "Clash Display",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "display",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/clash-display",
+      "specimen": "https://www.fontshare.com/fonts/clash-display",
+      "note": "Fontshare's statement display face; sharp apertures and tension",
+      "tags": [
+        "fontshare",
+        "display",
+        "statement"
+      ]
+    },
+    {
+      "slug": "clash-grotesk",
+      "family": "Clash Grotesk",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "sans-serif",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/clash-grotesk",
+      "specimen": "https://www.fontshare.com/fonts/clash-grotesk",
+      "note": "text-weight sibling of Clash Display",
+      "tags": [
+        "fontshare",
+        "grotesque",
+        "sibling"
+      ]
+    },
+    {
+      "slug": "zodiak",
+      "family": "Zodiak",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "serif",
+      "classification": "didone",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/zodiak",
+      "specimen": "https://www.fontshare.com/fonts/zodiak",
+      "note": "Fontshare's fat didone for editorial display",
+      "tags": [
+        "fontshare",
+        "didone",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "besley",
+      "family": "Besley",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "ITF-FFL-1.0",
+      "category": "serif",
+      "classification": "slab",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/besley",
+      "specimen": "https://www.fontshare.com/fonts/besley",
+      "note": "Fontshare's Clarendon-flavored slab",
+      "tags": [
+        "fontshare",
+        "slab",
+        "clarendon"
+      ]
+    },
+    {
+      "slug": "jetbrains-mono",
+      "family": "JetBrains Mono",
+      "designer": null,
+      "foundry": "JetBrains",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/JetBrains+Mono",
+      "specimen": "https://fonts.google.com/specimen/JetBrains+Mono",
+      "note": "tall x-height coding font with 138 code ligatures; tuned for long sessions",
+      "tags": [
+        "code",
+        "ligatures",
+        "ide"
+      ]
+    },
+    {
+      "slug": "ibm-plex-mono",
+      "family": "IBM Plex Mono",
+      "designer": null,
+      "foundry": "IBM",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/IBM+Plex+Mono",
+      "specimen": "https://fonts.google.com/specimen/IBM+Plex+Mono",
+      "note": "Plex mono; enterprise code voice",
+      "tags": [
+        "enterprise",
+        "code",
+        "plex"
+      ]
+    },
+    {
+      "slug": "fira-code",
+      "family": "Fira Code",
+      "designer": "Nikita Prokopov",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Fira+Code",
+      "specimen": "https://fonts.google.com/specimen/Fira+Code",
+      "note": "the ligature pioneer; widely loved for symbol-rich code",
+      "tags": [
+        "code",
+        "ligatures",
+        "pioneer"
+      ]
+    },
+    {
+      "slug": "fira-mono",
+      "family": "Fira Mono",
+      "designer": null,
+      "foundry": "Mozilla",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Fira+Mono",
+      "specimen": "https://fonts.google.com/specimen/Fira+Mono",
+      "note": "Fira Sans's monospace sibling without ligatures",
+      "tags": [
+        "code",
+        "mozilla",
+        "plain"
+      ]
+    },
+    {
+      "slug": "space-mono",
+      "family": "Space Mono",
+      "designer": "Colophon Foundry",
+      "foundry": "Colophon Foundry",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Space+Mono",
+      "specimen": "https://fonts.google.com/specimen/Space+Mono",
+      "note": "quirky retro-futurist mono; editorial data captions",
+      "tags": [
+        "quirky",
+        "retro",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "roboto-mono",
+      "family": "Roboto Mono",
+      "designer": null,
+      "foundry": "Google",
+      "license": "Apache-2.0",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Roboto+Mono",
+      "specimen": "https://fonts.google.com/specimen/Roboto+Mono",
+      "note": "Roboto's monospace; a safe neutral for code and data",
+      "tags": [
+        "neutral",
+        "code",
+        "data"
+      ]
+    },
+    {
+      "slug": "source-code-pro",
+      "family": "Source Code Pro",
+      "designer": "Paul D. Hunt",
+      "foundry": "Adobe",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Source+Code+Pro",
+      "specimen": "https://fonts.google.com/specimen/Source+Code+Pro",
+      "note": "Adobe's coding classic; pairs with Source Sans 3",
+      "tags": [
+        "code",
+        "adobe",
+        "pairing"
+      ]
+    },
+    {
+      "slug": "azeret-mono",
+      "family": "Azeret Mono",
+      "designer": null,
+      "foundry": "Displaay",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Azeret+Mono",
+      "specimen": "https://fonts.google.com/specimen/Azeret+Mono",
+      "note": "sturdy mono with display-friendly details",
+      "tags": [
+        "mono",
+        "display",
+        "sturdy"
+      ]
+    },
+    {
+      "slug": "fragment-mono",
+      "family": "Fragment Mono",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Fragment+Mono",
+      "specimen": "https://fonts.google.com/specimen/Fragment+Mono",
+      "note": "Helvetica-flavored monospace; cool editorial captions",
+      "tags": [
+        "mono",
+        "helvetica",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "geist-mono",
+      "family": "Geist Mono",
+      "designer": null,
+      "foundry": "Vercel",
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "greek"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Geist+Mono",
+      "specimen": "https://fonts.google.com/specimen/Geist+Mono",
+      "note": "Vercel's mono companion to Geist",
+      "tags": [
+        "code",
+        "vercel",
+        "mono"
+      ]
+    },
+    {
+      "slug": "courier-prime",
+      "family": "Courier Prime",
+      "designer": null,
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "monospace",
+      "classification": "mono",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400,
+        700
+      ],
+      "source": "https://fonts.google.com/specimen/Courier+Prime",
+      "specimen": "https://fonts.google.com/specimen/Courier+Prime",
+      "note": "screenplay-grade Courier redesign; typewriter authenticity",
+      "tags": [
+        "screenplay",
+        "typewriter",
+        "courier"
+      ]
+    },
+    {
+      "slug": "bebas-neue",
+      "family": "Bebas Neue",
+      "designer": "Ryoichi Tsunekawa",
+      "foundry": "Dharma Type",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Bebas+Neue",
+      "specimen": "https://fonts.google.com/specimen/Bebas+Neue",
+      "note": "all-caps condensed display; sports and poster staple",
+      "tags": [
+        "caps",
+        "condensed",
+        "sports"
+      ]
+    },
+    {
+      "slug": "anton",
+      "family": "Anton",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Anton",
+      "specimen": "https://fonts.google.com/specimen/Anton",
+      "note": "heavy condensed sans; loud headlines with minimal effort",
+      "tags": [
+        "heavy",
+        "condensed",
+        "loud"
+      ]
+    },
+    {
+      "slug": "oswald",
+      "family": "Oswald",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Oswald",
+      "specimen": "https://fonts.google.com/specimen/Oswald",
+      "note": "gothic condensed; news headlines and labels with authority",
+      "tags": [
+        "condensed",
+        "gothic",
+        "news"
+      ]
+    },
+    {
+      "slug": "archivo-black",
+      "family": "Archivo Black",
+      "designer": "Omnibus-Type",
+      "foundry": "Omnibus-Type",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Archivo+Black",
+      "specimen": "https://fonts.google.com/specimen/Archivo+Black",
+      "note": "the heavy grotesque companion to Archivo",
+      "tags": [
+        "heavy",
+        "grotesque",
+        "companion"
+      ]
+    },
+    {
+      "slug": "staatliches",
+      "family": "Staatliches",
+      "designer": "Brian LaRossa",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "condensed",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Staatliches",
+      "specimen": "https://fonts.google.com/specimen/Staatliches",
+      "note": "caps display with condensed body-friendly companion in the same family",
+      "tags": [
+        "caps",
+        "display",
+        "event"
+      ]
+    },
+    {
+      "slug": "syne",
+      "family": "Syne",
+      "designer": null,
+      "foundry": "Bonjour Monde",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "geometric",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "greek"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "greek"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Syne",
+      "specimen": "https://fonts.google.com/specimen/Syne",
+      "note": "art-institution display with experimental wide weights",
+      "tags": [
+        "art",
+        "experimental",
+        "wide"
+      ]
+    },
+    {
+      "slug": "unbounded",
+      "family": "Unbounded",
+      "designer": null,
+      "foundry": "NaN",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "wide",
+      "scripts": [
+        "cyrillic",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "cyrillic",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Unbounded",
+      "specimen": "https://fonts.google.com/specimen/Unbounded",
+      "note": "Polkadot brand family; futuristic wide display",
+      "tags": [
+        "web3",
+        "wide",
+        "futuristic"
+      ]
+    },
+    {
+      "slug": "teko",
+      "family": "Teko",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "condensed",
+      "scripts": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/teko",
+      "specimen": "https://www.fontshare.com/fonts/teko",
+      "note": "Devanagari + Latin condensed for scores and tickers",
+      "tags": [
+        "devanagari",
+        "condensed",
+        "scores"
+      ]
+    },
+    {
+      "slug": "rajdhani",
+      "family": "Rajdhani",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "squared",
+      "scripts": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/rajdhani",
+      "specimen": "https://www.fontshare.com/fonts/rajdhani",
+      "note": "squared Devanagari + Latin; esports and dashboards",
+      "tags": [
+        "squared",
+        "esports",
+        "dashboards"
+      ]
+    },
+    {
+      "slug": "exo-2",
+      "family": "Exo 2",
+      "designer": "Natanael Gama",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "techno",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Exo+2",
+      "specimen": "https://fonts.google.com/specimen/Exo+2",
+      "note": "technological sans with a full weight range; gaming adjacent",
+      "tags": [
+        "techno",
+        "gaming",
+        "variable"
+      ]
+    },
+    {
+      "slug": "titillium-web",
+      "family": "Titillium Web",
+      "designer": null,
+      "foundry": "Accademia di Belle Arti di Urbino",
+      "license": "OFL-1.1",
+      "category": "sans-serif",
+      "classification": "humanist",
+      "scripts": [
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Titillium+Web",
+      "specimen": "https://fonts.google.com/specimen/Titillium+Web",
+      "note": "campus-designed technical sans; sci-fi flavored but readable",
+      "tags": [
+        "technical",
+        "scifi",
+        "readable"
+      ]
+    },
+    {
+      "slug": "bricolage-grotesque",
+      "family": "Bricolage Grotesque",
+      "designer": "Mathieu Triay",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "grotesque",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "opsz",
+        "wdth",
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Bricolage+Grotesque",
+      "specimen": "https://fonts.google.com/specimen/Bricolage+Grotesque",
+      "note": "anti-neutral grotesque with expressive axes; editorial display playground",
+      "tags": [
+        "expressive",
+        "axes",
+        "editorial"
+      ]
+    },
+    {
+      "slug": "caveat",
+      "family": "Caveat",
+      "designer": null,
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "casual",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "cyrillic-ext",
+        "greek",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Caveat",
+      "specimen": "https://fonts.google.com/specimen/Caveat",
+      "note": "casual pen handwriting that stays legible; annotations and friendly notes",
+      "tags": [
+        "handwriting",
+        "casual",
+        "notes"
+      ]
+    },
+    {
+      "slug": "dancing-script",
+      "family": "Dancing Script",
+      "designer": null,
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "script",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": true,
+      "axes": [
+        "wght"
+      ],
+      "weights": null,
+      "source": "https://fonts.google.com/specimen/Dancing+Script",
+      "specimen": "https://fonts.google.com/specimen/Dancing+Script",
+      "note": "lively bouncy script; invitations and casual branding",
+      "tags": [
+        "script",
+        "lively",
+        "invitations"
+      ]
+    },
+    {
+      "slug": "pacifico",
+      "family": "Pacifico",
+      "designer": "Vernon Adams",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "brush",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Pacifico",
+      "specimen": "https://fonts.google.com/specimen/Pacifico",
+      "note": "brush script with surf-shop charm; food and leisure brands",
+      "tags": [
+        "brush",
+        "surf",
+        "food"
+      ]
+    },
+    {
+      "slug": "lobster",
+      "family": "Lobster",
+      "designer": null,
+      "foundry": "Impallari Type",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "script",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Lobster",
+      "specimen": "https://fonts.google.com/specimen/Lobster",
+      "note": "bold connected script; the poster script of the 2010s",
+      "tags": [
+        "bold",
+        "script",
+        "poster"
+      ]
+    },
+    {
+      "slug": "permanent-marker",
+      "family": "Permanent Marker",
+      "designer": null,
+      "foundry": "Font Diner",
+      "license": "Apache-2.0",
+      "category": "handwriting",
+      "classification": "marker",
+      "scripts": [
+        "latin"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Permanent+Marker",
+      "specimen": "https://fonts.google.com/specimen/Permanent+Marker",
+      "note": "marker-drawn display; announcements with attitude",
+      "tags": [
+        "marker",
+        "attitude",
+        "announcements"
+      ]
+    },
+    {
+      "slug": "indie-flower",
+      "family": "Indie Flower",
+      "designer": "Kimberly Geswein",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "casual",
+      "scripts": [
+        "latin"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Indie+Flower",
+      "specimen": "https://fonts.google.com/specimen/Indie+Flower",
+      "note": "friendly pencil handwriting; education and journals",
+      "tags": [
+        "pencil",
+        "education",
+        "journal"
+      ]
+    },
+    {
+      "slug": "patrick-hand",
+      "family": "Patrick Hand",
+      "designer": "Patrick Wagesreiter",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "casual",
+      "scripts": [
+        "latin"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Patrick+Hand",
+      "specimen": "https://fonts.google.com/specimen/Patrick+Hand",
+      "note": "neat hand-printed style; approachable UI accents",
+      "tags": [
+        "hand-printed",
+        "approachable",
+        "ui"
+      ]
+    },
+    {
+      "slug": "great-vibes",
+      "family": "Great Vibes",
+      "designer": null,
+      "foundry": "TypeSETit",
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "script",
+      "scripts": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext",
+        "cyrillic",
+        "vietnamese"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Great+Vibes",
+      "specimen": "https://fonts.google.com/specimen/Great+Vibes",
+      "note": "formal flowing calligraphy; weddings and luxury",
+      "tags": [
+        "formal",
+        "calligraphy",
+        "wedding"
+      ]
+    },
+    {
+      "slug": "shadows-into-light",
+      "family": "Shadows Into Light",
+      "designer": "Kimberly Geswein",
+      "foundry": null,
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "casual",
+      "scripts": [
+        "latin"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Shadows+Into+Light",
+      "specimen": "https://fonts.google.com/specimen/Shadows+Into+Light",
+      "note": "thin, airy handwriting; scrapbook and journaling",
+      "tags": [
+        "thin",
+        "airy",
+        "scrapbook"
+      ]
+    },
+    {
+      "slug": "kalam",
+      "family": "Kalam",
+      "designer": null,
+      "foundry": "Indian Type Foundry",
+      "license": "OFL-1.1",
+      "category": "handwriting",
+      "classification": "casual",
+      "scripts": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin",
+        "latin-ext"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": null,
+      "source": "https://www.fontshare.com/fonts/kalam",
+      "specimen": "https://www.fontshare.com/fonts/kalam",
+      "note": "Devanagari + Latin handwriting; notes and cultural warmth",
+      "tags": [
+        "devanagari",
+        "handwriting",
+        "notes"
+      ]
+    },
+    {
+      "slug": "modak",
+      "family": "Modak",
+      "designer": null,
+      "foundry": "Ek Type",
+      "license": "OFL-1.1",
+      "category": "display",
+      "classification": "rounded",
+      "scripts": [
+        "devanagari",
+        "latin"
+      ],
+      "subsets": [
+        "devanagari",
+        "latin"
+      ],
+      "variable": false,
+      "axes": [],
+      "weights": [
+        400
+      ],
+      "source": "https://fonts.google.com/specimen/Modak",
+      "specimen": "https://fonts.google.com/specimen/Modak",
+      "note": "ultra-rounded Devanagari + Latin display; festive and fun",
+      "tags": [
+        "devanagari",
+        "festive",
+        "rounded"
+      ]
+    }
+  ]
+}

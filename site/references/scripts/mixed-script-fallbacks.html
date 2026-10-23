@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Mixed Script Fallbacks - Fontlore</title>
+<meta name="description" content="Building font stacks for pages where a single line can contain Latin, Cyrillic, Arabic, Devanagari, Thai, or CJK; how per-character fallback actually works;...">
+<meta property="og:title" content="Mixed Script Fallbacks - Fontlore">
+<meta property="og:description" content="Building font stacks for pages where a single line can contain Latin, Cyrillic, Arabic, Devanagari, Thai, or CJK; how per-character fallback actually works;...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Scripts</span></nav>
+<article class="doc">
+<h1>Mixed Script Fallbacks</h1>
+<p>What this reference covers: Building font stacks for pages where a single line can contain Latin, Cyrillic, Arabic, Devanagari, Thai, or CJK; how per-character fallback actually works; metric and baseline matching between fonts; and how Noto serves as connective tissue. This is the reference for multilingual products, not for single-language sites.</p>
+<h2>How fallback really works</h2>
+<p>The browser resolves fonts per character (effectively per grapheme cluster), walking the font-family list and then the system&#x27;s fallback mechanism until one font covers the character. Three consequences:</p>
+<ul><li>You cannot assign a font &quot;per element&quot; and be done: an Arabic user name inside an English sentence gets its glyphs from whatever covers Arabic on that element.</li><li>A missing entry in your list is not fatal; the system will substitute something. The question is whether the substitute is coherent with your design or visibly alien.</li><li>Punctuation, digits, and spaces usually come from your primary font even inside foreign-script words, which is usually what you want.</li></ul>
+<p>Your explicit font-family list is therefore a design decision about which fonts should cover which characters, in priority order, for that element.</p>
+<h2>The three stacking strategies</h2>
+<p>Strategy 1, one multilingual family: families like Noto Sans cover Latin, Cyrillic, and Greek in a single file; many others cover specific script pairs. Lowest effort, moderate personality, guaranteed internal coherence. Best default for UI chrome.</p>
+<p>Strategy 2, primary brand font plus Noto connective tissue: your Latin brand face first, Noto Sans second, then per-script Noto faces (Noto Sans Arabic, Noto Sans Hebrew, Noto Sans Devanagari, Noto Sans Thai, and so on). The brand font shapes Latin; Noto catches everything else with a design that was made to match across scripts. This is the pragmatic standard for multilingual products.</p>
+<p>Strategy 3, curated per-script pairing: separate families per script, deliberately matched (for example, a Latin editorial serif with a matched Arabic Naskh). Highest quality ceiling, highest maintenance; each pair needs its own size, weight, and line-height tuning, usually via <code>:lang()</code> scoped rules.</p>
+<h2>Metric and baseline matching</h2>
+<p>Mixed-script lines align on a shared baseline, and differences in vertical metrics cause visible wobble:</p>
+<ul><li>Check x-height/proportion: set a mixed Latin-Arabic line, then Latin-Devanagari; letters should sit in one visual row, not bounce.</li><li>Arabic and Nastaliq fonts often carry enormous default line boxes; in single-line controls (buttons, list rows, inputs) that inflates element height. Test controls per language, and set explicit line-height on controls rather than trusting defaults.</li><li>Pick the page&#x27;s line-height from the tallest demand in the content languages: Latin around 1.4-1.5, Thai and Devanagari 1.5-1.7, Khmer and Myanmar 1.7+. If one page serves all of them, either accept the tall leading or scope leading by language with <code>:lang()</code>.</li><li>Weight parity: a 600 in the primary font must not sit next to a visually heavier 700 fallback. Compare real mixed strings in bold.</li><li>The size-adjust, ascent-override, and descent-override descriptors exist to nudge fallback metrics toward a primary font (for reducing layout shift); they can also reconcile a slightly oversized fallback, but prefer choosing better-matched fonts first.</li></ul>
+<h2>A worked stack template</h2>
+<p>For a multilingual web app with a Latin brand sans (Inter, say) and content in many languages:</p>
+<ul><li>font-family: Inter, &quot;Noto Sans&quot;, &quot;Noto Sans Arabic&quot;, &quot;Noto Sans Hebrew&quot;, &quot;Noto Sans Devanagari&quot;, &quot;Noto Sans Thai&quot;, &quot;Noto Sans CJK SC&quot;, sans-serif</li><li>Load only the Noto faces for scripts your analytics or content requirements actually show; each additional face is real bytes.</li><li>Add <code>:lang(ar)</code> and <code>:lang(th)</code> etc. rules for line-height and any size bumps.</li><li>Let emoji resolve to the platform emoji font; do not try to control emoji in the stack.</li></ul>
+<p>For a Latin-plus-one-script product (English plus Vietnamese, say), you often need no fallback font at all: choose a primary family with proper Vietnamese coverage and skip strategy 2 entirely.</p>
+<h2>Common mistakes</h2>
+<ul><li>Assuming one <code>font-family</code> declaration &quot;supports&quot; every script because a fallback appears; untested fallbacks are usually the wrong weight and proportion.</li><li>Forgetting that digits and punctuation come from the primary font inside foreign text; a tabular-figures table can still wobble if Cyrillic text uses a different font&#x27;s digits.</li><li>One global line-height chosen for Latin, clipping Arabic marks, Thai tone stacks, or Devanagari matras.</li><li>Loading ten Noto faces &quot;to be safe&quot; and shipping megabytes; load per-script faces deliberately.</li><li>Mixing a display face for Latin with a Noto fallback for other scripts in headlines; display Latin plus neutral Cyrillic in one headline reads as a rendering bug.</li><li>Testing mixed-script rendering only in one browser; shaping engines differ and occasionally disagree.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>UI chrome, many languages: strategy 2 (brand Latin plus Noto per-script) is the default; document the stack in tokens so every surface uses it.</li><li>Single extra script: find one family covering both scripts well (many exist for Latin-plus-Vietnamese, Latin-plus-Cyrillic, Latin-plus-Greek) before adding fallback complexity.</li><li>Editorial with an Arabic or Hebrew audience: strategy 3, with a per-script size and leading plan reviewed by a reader of that language.</li><li>Control elements (buttons, inputs, nav): fix line-height explicitly per script; never leave control height to font default metrics.</li><li>Anything user-generated: design the fallback on purpose, because the substitute fonts will be seen.</li></ul>
+<h2>Comparison table</h2>
+<p>The three strategies compared side by side, then the per-script faces that strategy 2 leans on:</p>
+<table><thead><tr><th>Strategy</th><th>Effort</th><th>Coherence</th><th>Byte cost</th><th>Use when</th></tr></thead><tbody><tr><td>One multilingual family</td><td>Lowest</td><td>Guaranteed within the family</td><td>One file per weight</td><td>UI chrome, moderate script count</td></tr><tr><td>Brand Latin plus Noto per-script</td><td>Moderate</td><td>Strong: brand voice up front, neutral elsewhere</td><td>Per-script files, real bytes each</td><td>Multilingual products, unknown future locales</td></tr><tr><td>Curated per-script pairing</td><td>Highest</td><td>Highest ceiling</td><td>Several tuned faces</td><td>Editorial and brand surfaces with few scripts</td></tr></tbody></table>
+<p>Per-script Noto faces and what they demand from the layout. Extra leading is relative to a 1.4 Latin baseline:</p>
+<table><thead><tr><th>Script</th><th>Noto face</th><th>Extra leading</th><th>Watch-outs</th></tr></thead><tbody><tr><td>Arabic</td><td>Noto Sans Arabic</td><td>Tall, 1.6+</td><td>Joins, no tracking, RTL</td></tr><tr><td>Hebrew</td><td>Noto Sans Hebrew</td><td>Moderate</td><td>Sofit forms, niqqud when pointed</td></tr><tr><td>Devanagari</td><td>Noto Sans Devanagari</td><td>Tall, 1.5-1.7</td><td>Shirorekha weight, conjuncts</td></tr><tr><td>Thai</td><td>Noto Sans Thai</td><td>Tall, 1.5-1.7</td><td>Tone mark stacks</td></tr><tr><td>Khmer</td><td>Noto Sans Khmer</td><td>Very tall, 1.7-1.9</td><td>Coeng subscripts, three-level stacks</td></tr><tr><td>Myanmar</td><td>Noto Sans Myanmar</td><td>Very tall, 1.7+</td><td>Legacy Zawgyi content, size bump</td></tr><tr><td>CJK</td><td>Noto Sans JP/KR/SC/TC</td><td>Tall, 1.7-2.0</td><td>Region choice, fullwidth punctuation</td></tr></tbody></table>
+<h2>Worked example</h2>
+<p>A global HR product: English UI, employee-generated content in Arabic, Thai, Japanese, Hindi, and Polish:</p>
+<ol><li>Inventory: locale analytics and support tickets list the scripts actually seen; unknown future locales are assumed, which rules out strategy 1.</li><li>Strategy: number 2 - the Inter brand face first, Noto Sans second for Latin-adjacent coverage, then Noto Sans Arabic, Noto Sans Hebrew, Noto Sans Devanagari, Noto Sans Thai, Noto Sans JP, sans-serif.</li><li>Loading discipline: only the per-script faces the inventory justifies are loaded; each additional face is real bytes, so Myanmar waits until a Myanmar-speaking market exists.</li><li>Tokens: the stack lives in a design token, and leading lives in per-language tokens - Latin 1.4, Arabic and Hindi 1.6, Thai 1.7, Japanese 1.8 - applied through :lang() rules.</li><li>Controls: buttons, inputs, and list rows get fixed heights and explicit line-height, because the Arabic and Thai line boxes resize controls when the interface language flips.</li><li>Bidi: dir=&quot;auto&quot; on user-generated fields and bdi around displayed names; one mixed-name list renders a Latin first name next to a Thai surname as a clean row.</li><li>Verification: each locale is opened with the rendered-fonts inspector to confirm which face drew each run; bold parity is checked in mixed strings; Chromium, Firefox, and WebKit all pass.</li><li>Documentation: the stack, the per-language leading tokens, and the per-script faces with their rationale are recorded in the tokens file so new surfaces inherit the system instead of inventing one.</li></ol>
+<p>Outcome: one stack that survives a new locale arriving mid-quarter, with fallback that looks intentional because it was designed.</p>
+<h2>Field notes</h2>
+<ul><li>Digits and punctuation usually come from the primary font even inside foreign-script words; usually right, but a Cyrillic or Arabic run inside a tabular-figures table deserves a glance at the digit shapes.</li><li>The rendered-fonts inspector shows font per run; document.fonts.check() offers programmatic verification when you need the check in tests rather than in a browser panel.</li><li>A Linux CI screenshot can render different fallbacks than a user&#x27;s macOS; test the no-webfont path on purpose on each platform you support.</li><li>Emoji: let the platform emoji font win; forcing emoji coverage into the stack costs bytes and never keeps up with the Unicode cadence.</li><li>size-adjust, ascent-override, and descent-override can reconcile a slightly oversized fallback face; prefer choosing better-matched fonts first and keep overrides as the last-mile tool.</li><li>Loading every Noto script &quot;to be safe&quot; is the most common sizing mistake in multilingual products; the fallback chain works, but the download bill is real.</li><li>Display faces plus neutral fallbacks collide hardest in headlines: a characterful Latin display next to neutral Noto Cyrillic reads as a rendering bug, so scope display fonts to scripts they genuinely cover.</li><li>Stack order encodes policy: primary Latin first, then a Latin-wide family, then script-specific faces, then the generic family. Every reorder is a decision, not a cleanup.</li><li>bdi is the HTML tool and the Unicode isolate characters are the string-level tool; both prevent a foreign run from flipping surrounding punctuation.</li><li>When a locale is added, re-run the whole verification loop: the incumbent stack was tuned for its original script list, and seams appear at the new script&#x27;s boundaries.</li><li>Fallback resolves per grapheme cluster, not per codepoint: a Devanagari conjunct or a Thai stack is one user-perceived character, so a font can cover the codepoints and still not shape the cluster. That is why shaping smoke tests ride along with coverage tests.</li><li>Punctuation inside foreign runs usually comes from the primary face; a guillemet inside Russian text drawn by your Latin face is normally the right call, but it deserves one glance per script.</li><li>A roster of real names (Arabic, Thai, Polish, and Japanese in one list) is the standing stress test; it exercises fallback, bidi, leading, and sorting in one screen.</li><li>Type IME input in real inputs, not just pasted text: partial clusters render mid-composition, and input behavior differs from paste in ways that paste tests never see.</li><li>Copying and exporting (PDF generation, document export) re-picks fonts outside the browser; test the export path with multilingual content or the exports will ship with different typography than the app.</li><li>Self-hosted unicode-range stacks: generate the ranges from the subset files and confirm on the network panel that each locale loads only its expected slices.</li><li>Reflow and text-resize obligations apply to every script: zoom tests at 200 percent with tall-leading languages catch clipping that Latin-only reflow passes hide.</li><li>text-align: start and end beat left and right in anything that can flip direction; hard-coded left/right values are the bugs that appear only in the Arabic locale.</li><li>Figure and feature requests apply to whatever face draws the text: a fallback face that lacks tabular figures silently ignores the request, so numeric columns in multilingual tables need per-script verification.</li><li>Bidi selection is logical-order: selecting an Arabic phrase inside an English sentence and copying it out surprises people; test copy-out, because ticket systems and logs receive what the clipboard holds.</li><li>Search normalization (NFC, case folding) parallels the font pipeline; a search box that finds nothing for decomposed text is a data bug that surfaces in the same QA pass.</li><li>When row height follows content, Arabic and Thai list rows run taller and lists visibly breathe; fixed row heights are the quiet fix.</li><li>The font-display swap flash shows the system font for a moment; in mixed-script apps that moment is per script, so preview it per locale instead of judging it on the English page.</li><li>Self-hosted subset files deserve checked-in manifests: file name mapped to codepoints and locale, because mystery font files outlive their authors.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Stack template: primary Latin face, &quot;Noto Sans&quot;, then per-script Noto faces (Arabic, Hebrew, Devanagari, Thai, CJK per region), then sans-serif.</li><li>Load rule: one face per script you actually serve; add a script only when a locale justifies it.</li><li>Leading tokens per language via :lang(): Latin 1.4, Arabic and Devanagari 1.6, Thai 1.7, Khmer and Myanmar 1.7-1.9, CJK 1.7-2.0.</li><li>Controls: fixed heights and explicit line-height on buttons, inputs, and rows; never trust font default metrics for control height.</li><li>Direction hygiene: dir=&quot;auto&quot; on unpredictable fields, bdi on displayed user names, dir=&quot;ltr&quot; on computed numeric output that scrambles.</li><li>Verification kit: rendered-fonts inspector per locale, mixed-line wobble check, bold parity in real strings, three browser engines.</li><li>Metrics last resort: size-adjust and the ascent/descent-override descriptors, used to reconcile a near-miss fallback, documented when applied.</li><li>Documentation: stack, faces, leading tokens, and the per-script rationale live in the design tokens, not in one component&#x27;s CSS.</li><li>Standing stress test: a real-names roster page covering every served script, refreshed from customer data each release.</li><li>IME gate: Thai and Devanagari typed into real inputs, verified for composition behavior, not just pasted.</li><li>Export gate: the PDF or document export path renders the same roster, because export re-picks fonts outside the browser.</li><li>Alignment: start and end over left and right anywhere direction can flip.</li><li>Multilingual tables: verify each script&#x27;s fallback face honors the tabular-figures request.</li><li>List rows: fixed heights so Arabic and Thai rows do not breathe taller than Latin rows.</li><li>Manifest: every self-hosted subset file mapped to its codepoints and locale in a checked-in file.</li><li>Swap flash: preview font-display behavior per locale, because the fallback moment differs per script.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="../technical/fallback-metrics-and-cls.html">Fallback metrics and CLS</a></li><li><a href="testing-multilingual-coverage.html">Testing multilingual coverage</a></li><li><a href="../accessibility/localization-and-rtl-accessibility.html">Localization and RTL accessibility</a></li><li><a href="cjk-fundamentals.html">CJK fundamentals</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

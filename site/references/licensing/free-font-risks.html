@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Free Font Risks - Fontlore</title>
+<meta name="description" content="The specific hazards of free fonts from aggregator sites: pirated uploads, fake licenses, missing or wrong metadata, and version rot. It ends with a verify-b...">
+<meta property="og:title" content="Free Font Risks - Fontlore">
+<meta property="og:description" content="The specific hazards of free fonts from aggregator sites: pirated uploads, fake licenses, missing or wrong metadata, and version rot. It ends with a verify-b...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Licensing</span></nav>
+<article class="doc">
+<h1>Free Font Risks</h1>
+<p>What this reference covers: The specific hazards of free fonts from aggregator sites: pirated uploads, fake licenses, missing or wrong metadata, and version rot. It ends with a verify-before-use checklist and a map of free sources that do not carry these risks.</p>
+<p>Free is a price, not a license. The fonts that cause real legal incidents are almost never the ones from careful sources; they are the ones grabbed from the first search result.</p>
+<h2>How aggregator sites fail you</h2>
+<ul><li>Sites in the DaFont and 1001Fonts tradition aggregate uploads from anyone; the uploader is rarely the rights holder, and piracy is documented repeatedly across the industry.</li><li>License labels on aggregators range from accurate to invented; &quot;free for commercial use&quot; is frequently pasted onto fonts that are trials, demos, or outright pirated retail fonts.</li><li>Metadata rots: versions are old, charsets are incomplete, and the original foundry&#x27;s fixes never arrive; you inherit bugs as features.</li><li>Files are repackaged: renamed zips, stripped license files, and converted formats that break feature support.</li><li>Malware risk is low but nonzero; font files have been used as infection vectors historically, and random re-packaging increases it.</li><li>The &quot;latest version&quot; on an aggregator can be years behind the source; every rendering bug you debug in that gap is work the source already fixed.</li><li>Aggregator pages often strip the sample text and feature lists that foundries provide, so you evaluate the font with less information than the license assumes.</li><li>Charset integrity matters: some aggregator uploads are trimmed demos of larger families, and the missing glyphs surface only in production strings.</li></ul>
+<h2>The classic failure pattern</h2>
+<ul><li>A designer grabs a nice font from an aggregator for a client project.</li><li>The font is actually a commercial family&#x27;s trial or a pirated cut.</li><li>The project ships, the foundry&#x27;s monitoring (they do monitor) or a designer&#x27;s eagle eye finds it.</li><li>The client receives a cease-and-desist years later, retroactive licensing is negotiated at painful rates, and the agency&#x27;s reputation takes the real damage.</li><li>Every step was preventable at minute one with a source check.</li><li>The audit trail was the second failure: nobody could say where the file came from, because the download predated the team&#x27;s records. Provenance questions have a shelf life.</li><li>The remediation chose replacement over retroactive licensing for a second reason beyond cost: the stripped file&#x27;s version was so old that the licensed original would have changed the layout anyway.</li><li>The team&#x27;s intake rule now names the two artifacts required before any font enters the repo: the license document and the source URL, both checked by someone other than the downloader.</li></ul>
+<h2>Fake and misleading &quot;free&quot; categories</h2>
+<ul><li>Trial and demo fonts labeled as free: they are marketing samples with restricted rights; see the trial fonts guide.</li><li>Personal-use-only fonts uploaded to aggregators with the personal-use notice stripped.</li><li>Clone fonts: near-copies of retail designs released under new names; using them is legally murkier and reputationally worse than licensing the original.</li><li>&quot;Free&quot; versions of retail families that are actually limited charset demos.</li><li>Abandoned freeware whose author cannot be traced: the license may say free, but provenance cannot be verified, which fails due diligence for serious projects.</li><li>fonts that are free but only in one weight, marketed under the full family&#x27;s name; the missing weights are the upsell.</li><li>Look-alike fonts that borrow a famous name with one letter changed; the game is SEO, and the license is whatever the mimic wrote.</li></ul>
+<h2>Verify-before-use checklist</h2>
+<ol><li>Find the origin: search the font name plus &quot;foundry&quot; or &quot;designer&quot;. If the origin is a foundry page, read the actual license there.</li><li>Read the license text, not the badge: the license name (OFL, FFL, custom), the rights granted, and the conditions.</li><li>Check the version: compare the aggregator&#x27;s file against the source&#x27;s current release; old versions are a quality and legal signal.</li><li>Check the file: inspect the font&#x27;s name table and embedded license/copyright strings; they should match the source&#x27;s claims.</li><li>Prefer canonical sources outright: Google Fonts, Fontsource, the foundry&#x27;s own site, the designer&#x27;s repository, or Fontshare for ITF work.</li><li>Record the source URL and date in the manifest; unverifiable provenance fails audits even when the font is lovely.</li><li>Cross-check the name table against the source&#x27;s claims with a tool like FontDrop; two minutes that catch stripped files instantly.</li><li>Re-run the check when the font moves between projects, and when a new version appears at the source; yesterday&#x27;s verification does not transfer.</li></ol>
+<h2>Safe free sources, recapped</h2>
+<ul><li>Google Fonts: open licenses (OFL, Apache, UFL), curated, versioned through the google/fonts repository.</li><li>Fontsource: npm-packaged open fonts with version pinning; provenance is clean.</li><li>Fontshare: ITF&#x27;s own platform; free-use under ITF FFL with honest labeling.</li><li>SIL: the OFL&#x27;s author, with literacy-grade fonts and meticulous licensing.</li><li>Independent open foundries (Velvetyne, The League of Moveable Type, and similar): OFL with upstream repos.</li><li>The pattern: a source that identifies the rights holder and ships the license text is safe; a source that ships only the file is not.</li><li>Variable-font-focused repositories and open foundry collectives (Velvetyne, OSP, and peers) publish source files and licenses together, which is the gold standard for verifiability.</li><li>University and government releases (Public Sans from the US Web Design System, for example) carry institutional licensing discipline worth copying.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Before any free font enters the project, run the checklist above; five minutes maximum.</li><li>If the origin is an aggregator but the font traces to a clean source, re-download from the source.</li><li>If the origin cannot be traced, treat the font as unusable for commercial work; find a documented alternative.</li><li>Record license, version, source, and checker in the manifest.</li><li>Re-verify when the font moves between projects; yesterday&#x27;s verification does not transfer automatically.</li><li>When a font fails the checklist mid-project, log the replacement decision with the date; the record is what turns an incident into a policy.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Trusting the aggregator&#x27;s &quot;100% free&quot; tag over the absence of any license document.</li><li>Using a pirated retail font unknowingly and defending it with &quot;it was on a free fonts site&quot;.</li><li>Keeping unverified fonts in shared asset libraries where they silently propagate into every new project.</li><li>Ignoring version rot: fixing rendering bugs caused by ancient files instead of updating from the source.</li><li>Assuming malware is the only risk and skipping the license check.</li><li>Reusing a verified font&#x27;s license notes for a different file from the same site; verification is per file, not per site.</li><li>Treating the manifest entry as done when the URL is recorded but the license document is not stored; links rot, documents persist.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>No traceable rights holder: do not use, regardless of how good the font is.</li><li>Traces to a clean source: re-source from the clean origin and verify there.</li><li>Only available via aggregator with no origin: find an open alternative; the substitution cost is lower than the incident cost.</li><li>When in doubt, the open-source ecosystem now covers enough ground that &quot;we could not find a legit version&quot; is rarely true.</li><li>For heritage freeware that matters to a project, the honest paths are contacting the author or replacing the font; hope is not a license path.</li><li>Anything that will ship to users under your brand gets the full checklist; internal-only experimentation can be lighter, but the files must be marked as unverified so they never migrate outward silently.</li><li>Free does not mean anonymous: the free fonts with the cleanest histories are the ones whose authors stayed findable for a decade.</li><li>When aggregators are the only mirror of a legitimately free font, cite the original author&#x27;s page as the source in the manifest, not the mirror.</li></ul>
+<h2>Quick reference: the two-minute triage</h2>
+<ol><li>Does the file have a license document with it? No: stop.</li><li>Does the name table name a real designer or foundry? No: stop.</li><li>Does the source resolve to a canonical origin (foundry, google/fonts, Fontsource, designer repo)? No: stop.</li><li>Does the license class match the use (commercial product, client work)? No: find an alternative.</li><li>Record license, version, source URL, date, checker: done.</li></ol>
+<p>Most rejected fonts fail at step 1 or 2, which is why the triage is fast; the expensive failures are the ones that skip the triage entirely.</p>
+<h2>Signals to trust</h2>
+<ul><li>A license file with the font, naming a rights holder that exists and matches the name table.</li><li>A canonical source: the foundry&#x27;s own site, the google/fonts repository, Fontsource, Fontshare, or the designer&#x27;s own repository, with the license text visible.</li><li>Version history: releases with changelogs and dates suggest a living project rather than an abandoned upload.</li><li>A name table whose family, designer, and license fields agree with the source&#x27;s claims.</li><li>An issue tracker or contact path where someone actually answers.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>&quot;100% free&quot; badges on sites that ship no license document; badges are content, not grants.</li><li>File names that differ from the family&#x27;s real name, or zips renamed to dodge detection of pirated retail fonts.</li><li>A font that is clearly a retail design (a well-known grotesk, a famous serif) offered free by a third party; famous designs are almost never free.</li><li>Metadata stripped out: a font with an empty or generic name table has had its provenance deliberately removed.</li><li>&quot;Free for personal use&quot; text pasted into a description while the download ships a full commercial charset.</li><li>Wrong or impossible dates in metadata (a 2019 release of a font designed in 2021), which reveals sloppy repackaging.</li></ul>
+<h2>Worked example: the aggregator audit</h2>
+<p>A product team inherited a landing page using a display font downloaded years ago from an aggregator site. The audit walk:</p>
+<ul><li>The font&#x27;s name was a near-match to a retail serif by a known foundry; the file&#x27;s name table was largely blank except for the family name.</li><li>Searching the real family name plus &quot;foundry&quot; found the original: a commercial family with a paid license and a free trial cut. The aggregator file was the trial, stripped.</li><li>The team&#x27;s options were retroactive licensing or replacement; the font was used for one headline only, so replacement won.</li><li>The replacement (an OFL display face with a similar voice) went through the normal intake: provenance check, license file, version record.</li><li>The audit record now shows the incident, the substitution, and the rule adopted: no font enters the repo without a license document and a canonical source URL.</li><li>Total cost: half a day. The same discovery by the foundry&#x27;s monitoring would have started with a letter, not a task ticket.</li><li>The substituted face was chosen from the open catalog in an hour; the scarcity that made the aggregator download feel necessary was never real.</li><li>The team also scanned the rest of the asset library with the same checklist and found two more stripped files; audits of this kind always find siblings.</li><li>The policy that stuck: the manifest row is created before the file is added, not after; reverse order is how unverified files hide.</li></ul>
+<h2>Field notes</h2>
+<ul><li>Aggregators are not uniformly malicious; many hosts genuinely free fonts. The problem is that the site&#x27;s business model (traffic) has no stake in the license being right, so verification is always the user&#x27;s job.</li><li>Clone fonts deserve their own caution: a near-copy under a new name may be legal where it was made, but using it in place of the original is a design-quality decision as much as a legal one.</li><li>The safest habit is boring: download from the source, record the URL, record the date, move on. Every shortcut in this chain is where the risk enters.</li><li>Old freeware with a vanished author is a dead end for commercial work no matter how lovely; the license may say free, but unverifiable provenance fails due diligence.</li><li>When a client supplies fonts, apply the same checklist to their files; clients inherit their vendors&#x27; risks.</li><li>Font identification communities and reverse image search are legitimate first steps for tracing a font&#x27;s origin; use them before adopting anything anonymous.</li><li>Keep a substitution list: for the roles unverified free fonts were playing, name the documented open alternatives in advance, so the swap is a lookup instead of a project.</li><li>When an aggregator site is the only place a font exists, treat the font as unusable for commercial work even if the license text looks generous; provenance failure is disqualifying on its own.</li><li>Track which sites your team&#x27;s downloads historically came from; the pattern tells you where your process leaks.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="open-source-due-diligence.html">Open-source due diligence</a></li><li><a href="license-audit-checklist.html">License audit checklist</a></li><li><a href="trial-and-early-access-fonts.html">Trial and early access fonts</a></li><li><a href="../sourcing/google-fonts-catalog.html">Google Fonts Catalog</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

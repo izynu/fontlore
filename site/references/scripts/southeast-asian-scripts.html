@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Southeast Asian Scripts - Fontlore</title>
+<meta name="description" content="Thai, Lao, Khmer, and Myanmar typography for web and product work: overlapping marks, the line-height these scripts actually demand, and the Cadson Demak and...">
+<meta property="og:title" content="Southeast Asian Scripts - Fontlore">
+<meta property="og:description" content="Thai, Lao, Khmer, and Myanmar typography for web and product work: overlapping marks, the line-height these scripts actually demand, and the Cadson Demak and...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Scripts</span></nav>
+<article class="doc">
+<h1>Southeast Asian Scripts</h1>
+<p>What this reference covers: Thai, Lao, Khmer, and Myanmar typography for web and product work: overlapping marks, the line-height these scripts actually demand, and the Cadson Demak and Noto families that solve them. Vietnamese is Latin script with complex-script problems and is covered by the Latin reference; this file handles the true Southeast Asian scripts.</p>
+<h2>Shared structural facts</h2>
+<p>These Brahmic-derived scripts share three traits that wreck Latin-tuned layouts:</p>
+<ul><li>Stacked diacritics: vowels and tone marks can occupy two levels above the base letter and one or two below. Two-level stacks are normal text, not edge cases.</li><li>No letter case: hierarchy cannot use caps; weight, size, and spacing carry it.</li><li>Tall vertical demands: line-height below roughly 1.5 starts clipping; Khmer and Myanmar routinely need 1.7 or more. Set generous leading for these languages via <code>:lang()</code> scoped rules rather than inflating the whole page.</li></ul>
+<p>Letter-spacing must not be applied to any of these scripts; it pulls apart letters that may carry shared marks and reads as broken text.</p>
+<h2>Thai</h2>
+<p>Thai chains consonants, stacked vowels, and tone marks; tone marks (U+0E48-0E4B) must clear characters with tall upper parts such as U+0E1B and U+0E2D, and stack above the nikhahit vowel (U+0E4D) when both occur.</p>
+<ul><li>Two style worlds: looped (traditional, with small loops on letter heads) and loopless (modern geometric, common in signage and tech brands). Mixing them at random across an interface reads as inconsistent.</li><li>Cadson Demak, the Bangkok foundry, dominates open Thai typography. On Google Fonts: Prompt and Kanit (loopless, geometric), Sarabun (looped, the basis of the Thai government standard style), Mitr, Bai Jamjuree, Chakra Petch, Trirong (looped serif-flavored), KoHo, and K2D.</li><li>IBM Plex Sans Thai and IBM Plex Sans Thai Looped provide matched IBM Plex Latin; Noto Sans Thai and Noto Serif Thai are neutral defaults.</li><li>Thai digits U+0E50-0E59 exist, but Western digits dominate modern usage; both usually appear in one font.</li><li>Test tone marks over tall consonants and over stacked vowels at your production sizes; this is the single most common Thai rendering failure.</li></ul>
+<h2>Lao</h2>
+<p>Lao shares Thai&#x27;s structure with different letterforms and fewer complications in practice.</p>
+<ul><li>Line-height demands match Thai; stacked vowels and marks need room.</li><li>Reliable open fonts: Noto Sans Lao and Noto Serif Lao; Phetsarath, the government standard, is widely available for documents.</li><li>Verify tone marks and the vowel stacking pairs before committing a display face; coverage beyond a core set is thinner than for Thai.</li></ul>
+<h2>Khmer</h2>
+<p>Khmer is the heaviest of the four: two series of consonants, vowel signs that wrap around bases, and subscript consonants.</p>
+<ul><li>Subscripts are produced with the coeng sign U+17D2 preceding a consonant; the shaper converts the pair into a subscript form. A font with weak coeng handling produces visibly wrong clusters.</li><li>Stacks of three levels occur in ordinary words; line-height of 1.7 to 1.9 is a realistic body range.</li><li>Reliable open fonts: Noto Sans Khmer and Noto Serif Khmer (modern shaping), Kantumruy Pro (a contemporary UI face), Battambang (text), Moul (display, used for headings and formal contexts).</li><li>Test: subscript chains, two-vowel stacks, and punctuation like the Khmer sign sets in U+17D4-17DD; older fonts often miss the newer codepoints.</li></ul>
+<h2>Myanmar</h2>
+<p>Myanmar adds its own risks because the script went through a long non-Unicode era.</p>
+<ul><li>Use Unicode text only. Legacy &quot;Zawgyi&quot; encodings still circulate in old content and produce mojibake in any modern font; detect and convert rather than trying to support both.</li><li>Stacked consonants, kinzi (a historical mark rendered above via a virama sequence), and medials make shaping intensive; Padauk (SIL) and Noto Sans Myanmar are the reference implementations, with Tharlon a common text alternative.</li><li>Line-height 1.7 or more; Myanmar is also one of the scripts where font size needs a bump relative to Latin to match perceived size.</li><li>Test digits (Myanmar has its own, U+1040-1049) and mixed Myanmar-Latin runs in the same paragraph.</li></ul>
+<h2>Choosing a family system</h2>
+<ul><li>Thai-first products: Prompt or Sarabun with their built-in Latin; add IBM Plex Sans Thai if the brand already uses IBM Plex.</li><li>Neutral multilingual stacks: Noto per-script fonts (Noto Sans Thai, Noto Sans Lao, Noto Sans Khmer, Noto Sans Myanmar) plus one Latin face. This is the only approach that scales to ten languages without redesign.</li><li>Display moments: Moul for Khmer formality, Trirong for Thai editorial flavor; test display faces at large sizes for mark collisions.</li><li>Budget line-height per language: define <code>:lang(th)</code>, <code>:lang(lo)</code>, <code>:lang(km)</code>, <code>:lang(my)</code> rules with 1.5 to 1.8 leading rather than one global compromise.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Shipping a Thai font chosen for its loopless brand look, then discovering tone marks collide with tall consonants in body text.</li><li>Applying a global line-height of 1.3 tuned on Latin and clipping Khmer stacks; or a global 1.8 that makes the English interface airy to the point of feeling broken.</li><li>Accepting Zawgyi-encoded Myanmar content into a Unicode pipeline; the failure appears later as unfixable mojibake.</li><li>Using letter-spacing on Thai or Khmer labels.</li><li>Assuming the Cadson Demak families are interchangeable; each has a distinct voice and weight range, and some are loopless while others are looped.</li><li>Testing only headlines; mark collisions appear most in dense body text and small UI labels.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>One Southeast Asian language only: use its strongest single family (Thai: Prompt/Sarabun; Khmer: Kantumruy Pro or Noto Sans Khmer).</li><li>Several languages: Noto per-script fonts for everything except brand moments.</li><li>Government or formal contexts: prefer the standards-adjacent choices (Sarabun in Thai practice, Phetsarath for Lao).</li><li>Display headlines in any of these scripts: verify at final size with real words, including a tall-consonant plus tone-mark sequence, before approving.</li></ul>
+<h2>Comparison table</h2>
+<p>The four scripts compared on the layout demands that decide design systems:</p>
+<table><thead><tr><th>Script</th><th>Stacking reality</th><th>Body leading</th><th>Open exemplars</th><th>Watch-outs</th></tr></thead><tbody><tr><td>Thai</td><td>Two-level stacks are ordinary text</td><td>1.5-1.7</td><td>Prompt, Sarabun, Kanit, Noto Sans Thai, IBM Plex Sans Thai</td><td>Tone marks over tall consonants; looped versus loopless voice</td></tr><tr><td>Lao</td><td>Similar to Thai, slightly simpler in practice</td><td>1.5-1.7</td><td>Noto Sans Lao, Noto Serif Lao, Phetsarath</td><td>Thinner display selection; verify tone mark pairs</td></tr><tr><td>Khmer</td><td>Three-level stacks occur in ordinary words</td><td>1.7-1.9</td><td>Noto Sans Khmer, Noto Serif Khmer, Kantumruy Pro, Battambang, Moul</td><td>Coeng subscripts; newer punctuation codepoints missing in older fonts</td></tr><tr><td>Myanmar</td><td>Stacked consonants plus kinzi plus medials</td><td>1.7+</td><td>Padauk (SIL), Noto Sans Myanmar, Tharlon</td><td>Legacy Zawgyi content; size bump versus Latin</td></tr></tbody></table>
+<p>Weight facts for the Cadson Demak era of open Thai: Prompt spans 100-900, Kanit spans 100-900 with italics, Sarabun spans 100-800, Mitr 200-700, Bai Jamjuree 200-700, Chakra Petch 300-700, and Trirong 100-900 for a looped serif-flavored voice. IBM Plex Sans Thai runs 100-700 in both looped and loopless editions, and Noto Sans Thai runs 100-900. Thai digits U+0E50-0E59 exist in all of them, but Western digits dominate modern Thai usage.</p>
+<h2>Worked example</h2>
+<p>A Thai-first e-commerce storefront with English secondary:</p>
+<ol><li>Requirements: Thai body text and marketing headlines, English account and checkout chrome, product data from a feed, mobile-heavy audience.</li><li>Font plan: Sarabun for body (looped, familiar from the Thai government standard style) and Prompt for headings (loopless, geometric); the looped-body-plus-loopless-heading combination is a deliberate decision, signed off by a Thai-reading reviewer rather than an accident of font shopping.</li><li>Language scoping: lang=&quot;th&quot; on Thai trees; :lang(th) sets line-height 1.7 and keeps Latin tokens untouched.</li><li>Controls: buttons, inputs, and price rows get fixed heights; the Thai line box was inflating list rows before explicit control heights landed.</li><li>Tone-mark gate: tone marks U+0E48-0E4B are rendered over tall consonants (U+0E1B, U+0E2D) and over stacked vowels at 12, 16, and 32 px equivalents; the 13 px price labels caught a collision the desktop proof missed.</li><li>Digits: prices use Western digits per market convention; Thai digits U+0E50-0E59 are confirmed present for legal copy, and the decision is recorded.</li><li>Feed audit: product titles are sampled for tone-mark density, because catalog names exercise the stacks harder than marketing copy.</li><li>Cross-browser pass: Chromium, Firefox, and WebKit, plus a low-end Android device, since Thai shaping quality differences show up where fonts fall back.</li><li>Input test: Thai is typed, not pasted, into search and address fields on mobile, because keyboard composition exercises mark placement differently than paste.</li></ol>
+<p>Outcome: a coherent looped-plus-loopless system with per-language leading, no clipped marks at any production size, and a documented digit convention.</p>
+<h2>Field notes</h2>
+<ul><li>The single most common Thai failure is a loopless brand font chosen for its look, discovered later to collide tone marks with tall consonants in dense body text; the gate is the test string, not the specimen.</li><li>Sarabun&#x27;s familiarity comes from its basis in the Thai government standard style; formal and civic contexts should default to it, not to a tech-brand geometric.</li><li>IBM Plex Sans Thai and IBM Plex Sans Thai Looped pair with the wider IBM Plex system; they are the natural choice when the brand already runs Plex Latin.</li><li>Lao&#x27;s open selection is thinner than Thai&#x27;s: Noto Sans Lao and Phetsarath are the dependable names, and a display-face ambition in Lao needs a coverage proof before commitment.</li><li>Khmer subscripts come from the coeng sign U+17D2 preceding a consonant; weak coeng handling produces visibly wrong clusters, so the subscript chain belongs in every Khmer test file.</li><li>Khmer serial punctuation and sign sets in U+17D4-17DD are newer codepoints; older fonts miss them and paragraphs fall back mid-sentence.</li><li>Myanmar content must be Unicode; Zawgyi-encoded text produces unfixable mojibake in modern stacks, so detect and convert at ingest rather than trying to render both.</li><li>Padauk (SIL) and Noto Sans Myanmar are the reference implementations for Myanmar shaping; Tharlon is a common text alternative, and size usually needs a bump versus Latin.</li><li>Legacy TIS-620-encoded Thai still surfaces in old databases; it is a smaller-scale version of the Zawgyi problem and should be converted at ingest, not rendered through hacks.</li><li>Letter-spacing must never be applied to Thai, Lao, Khmer, or Myanmar; shared marks and stacked levels make tracking read as broken text.</li><li>Vietnamese is Latin script with complex-script problems (stacked tone marks); it belongs to the Latin coverage reference, not this one.</li><li>Prompt and Kanit are both loopless and geometric, but Kanit ships italics and Prompt does not; slanted Thai needs that check before a design promises it, because faux italic is worse than none.</li><li>Noto Sans Lao Looped exists alongside Noto Sans Lao; the looped versus loopless split applies to Lao too, not just Thai, and mixing the two without intent reads the same way it does in Thai.</li><li>Padauk&#x27;s coverage extends across Myanmar-script languages beyond Burmese, which makes it the deep-coverage reference when minority-language content is in scope.</li><li>Thai line breaking is dictionary-based because words run together without spaces; browsers break with ICU dictionaries, so prices, codes, and identifiers need nowrap or non-breaking characters to control where lines split.</li><li>Khmer breaks the same way (no inter-word spaces, dictionary-based); the same nowrap discipline applies to Khmer prices and reference numbers.</li><li>The uppermost mark in a Thai stack needs the most leading: a tone mark above a vowel above a consonant is the tallest ordinary text in the script, and it is why the display-size proof and the 13 px label proof must both run.</li><li>Sarabun and Prompt both include Latin, and their Latins differ in personality; make the pairing decision with real Thai-Latin mixed lines rather than solo specimens.</li><li>Thai keyboards emit combining marks as separate keystrokes mid-composition; type into real search and checkout fields on mobile rather than only pasting.</li><li>Noto Serif Khmer is a modern-shaping design; older Khmer fonts predate current shaping expectations and should not enter new stacks regardless of familiarity.</li><li>Mitr and Bai Jamjuree share Prompt&#x27;s loopless modern voice with narrower weight ranges; choosing among them is a width and weight decision rather than a voice one.</li></ul>
+<h2>Quick reference</h2>
+<ul><li>Leading tokens per language via :lang(): Thai and Lao 1.5-1.7, Khmer 1.7-1.9, Myanmar 1.7 or more; never one global value.</li><li>Hard gates: Thai tone marks over tall consonants and stacked vowels; Khmer coeng chains and multi-level stacks; Myanmar stacked consonants, kinzi, and digits U+1040-1049.</li><li>Never: letter-spacing on any of these scripts; uppercase-transform-based hierarchy (there is no case); global Latin-tuned leading.</li><li>Defaults: Thai Prompt or Sarabun; Lao Noto Sans Lao; Khmer Kantumruy Pro or Noto Sans Khmer; Myanmar Padauk or Noto Sans Myanmar; Noto per-script faces for multilingual stacks.</li><li>Display: Trirong for Thai editorial flavor, Moul for Khmer formality; verify at final size with real words including mark-heavy sequences.</li><li>Myanmar policy: Unicode text only; detect and convert Zawgyi at ingest.</li><li>Digits: Thai U+0E50-0E59 and Myanmar U+1040-1049 exist; the Western-versus-local digit decision is per locale in the i18n layer.</li><li>Verification: real body paragraphs plus price labels at small sizes, three browser engines, one low-end Android device.</li><li>Line-break control: Thai and Khmer words carry no spaces, so dictionary-based breaking decides; wrap prices, codes, and IDs in nowrap or non-breaking characters.</li><li>Italic check: Kanit ships italics, Prompt does not; verify the family before promising slanted Thai, and reject faux italic.</li><li>Looped policy: decide looped versus loopless per role (body, headings, brand) and keep the choice coherent across surfaces.</li><li>Type-test gate: Thai and Khmer typed into real search and checkout inputs, not just pasted.</li><li>Mixed-line proof: Thai plus Latin in one line for every face whose built-in Latin is being relied on.</li><li>Weight planning: Prompt and Kanit reach 900, Sarabun stops at 800; match the design&#x27;s heaviest weight token to the family before committing.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="devanagari-script-typography.html">Devanagari script typography</a></li><li><a href="latin-and-extended.html">Latin and extended coverage</a></li><li><a href="mixed-script-fallbacks.html">Mixed script fallbacks</a></li><li><a href="../technical/subsetting-and-performance.html">Subsetting and performance</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Social Media Graphics - Fontlore</title>
+<meta name="description" content="Typography inside social content: legibility at thumbnail sizes, which fonts you can and cannot control per platform, brand consistency when custom fonts onl...">
+<meta property="og:title" content="Social Media Graphics - Fontlore">
+<meta property="og:description" content="Typography inside social content: legibility at thumbnail sizes, which fonts you can and cannot control per platform, brand consistency when custom fonts onl...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Applications</span></nav>
+<article class="doc">
+<h1>Social Media Graphics</h1>
+<p>What this reference covers: Typography inside social content: legibility at thumbnail sizes, which fonts you can and cannot control per platform, brand consistency when custom fonts only exist inside images, and the accessibility basics for text-in-graphics. Social type is read while scrolling fast, at sizes nobody chose.</p>
+<h2>The thumbnail reality</h2>
+<ul><li>Feed images render small and shrink further on mobile: design for the smallest realistic render, roughly 150 to 300 px wide, then verify at that size before shipping.</li><li>One message per graphic: a headline of up to about 6 words at a size that survives the thumbnail; secondary lines belong in the caption, not the image.</li><li>Test procedure: export the graphic, place it in a grid beside competing posts at feed size, and read it from arm&#x27;s length on a phone. If the headline does not win, increase size or cut words.</li><li>Stroke weight matters more than family choice at these sizes: medium and bold weights with open counters survive; thin, high-contrast display faces turn to lint.</li><li>Contrast over imagery: a scrim, gradient, or solid panel behind text is usually required; busy photos defeat text at any size. The contrast rules from accessibility work apply to graphics too, and platform compression further muddies edge contrast.</li></ul>
+<h2>Platform font constraints</h2>
+<ul><li>Native text (posts, captions, profiles) uses platform fonts; you do not control them, and &quot;fancy fonts&quot; achieved through Unicode lookalike characters are a trap: screen readers read them as gibberish, search cannot index them, and some codepoints render as tofu on common devices.</li><li>Custom brand typography enters social only inside images and videos: quote cards, banners, story frames, video titles. Plan which strings are baked in and which live in the caption.</li><li>Design tools (Canva, Figma exports, Adobe templates) hold the licensed brand fonts; check that team seats and template use are covered by the license, and that brand kits in those tools point at approved files.</li><li>Video: baked-in titles must respect safe areas (platform UI crops edges) and caption overlays; provide real captions (SRT or platform captioning) rather than relying on burned-in text, which is both an accessibility and a localization failure.</li><li>Platform crops vary per surface (feed, story, profile grid): keep text inside central safe zones and re-check each placement.</li></ul>
+<h2>Brand consistency without native control</h2>
+<ul><li>Since native text cannot carry the brand face, consistency comes from graphics templates: a small set of layouts with fixed type styles (headline, subhead, CTA) that anyone on the team can apply.</li><li>Template discipline beats font proliferation: one display style, one label style, fixed margins and scrims; a social kit with ten styles produces ten brands.</li><li>The brand type system (see the branding reference) defines which face and weights social graphics use; social is a surface of the brand, not a parallel brand.</li><li>Localization: social graphics get translated; templates must reserve room for German-length strings and check per-script rendering if markets use non-Latin scripts.</li></ul>
+<h2>Accessibility basics for text-in-graphics</h2>
+<ul><li>Alt text carries the words: if the message is in the image, the alt text must state it (platforms support alt text on images; write it as part of publishing, not as an afterthought).</li><li>Do not bake essential information (dates, prices, accessibility details) solely into imagery; repeat it in the caption text.</li><li>Contrast on graphics follows the same 4.5 to 1 target for body-size text; decorative headline text still deserves real contrast.</li><li>Avoid Unicode lookalike fonts in text entirely; they are an accessibility and search failure in one move.</li></ul>
+<h2>Workflow that scales</h2>
+<ul><li>Build the social kit as templates with locked type styles and swappable content; export presets handle sizes per platform.</li><li>A two-person rule for quality: creator plus one reviewer checking thumbnail legibility, contrast, safe areas, and alt text before publishing.</li><li>Keep a library of past graphics sorted by performance; the templates that keep winning define the system&#x27;s evolution, judged by engagement and legibility, not novelty.</li><li>Archive source files with font versions; a campaign refresh a year later should not hunt for which weight was used.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Full sentences inside feed images at sizes that render illegibly; the caption exists, use it.</li><li>Low-contrast text over busy photography with no scrim.</li><li>Unicode &quot;fancy fonts&quot; in captions and bios, breaking screen readers and search.</li><li>Ignoring safe areas, so headlines hide behind platform UI on stories and reels.</li><li>Baked-in text with no alt text, excluding screen reader users from the entire message.</li><li>One-off graphics with ad-hoc fonts, so the brand&#x27;s social presence drifts from every other surface.</li><li>Forgetting translation overflow: a headline sized for English clips in German or wraps badly in Vietnamese.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Every graphic: one primary message, thumbnail-tested, with the words duplicated in caption or alt text.</li><li>Type style: from the brand kit only; new styles require the same approval as any brand surface.</li><li>Text over photos: scrim or panel always; contrast verified at the worst point of the image, not the average.</li><li>Video titles: real caption files plus burned-in titles, sized for the smallest surface the video ships to.</li><li>Any new platform or format: re-run the thumbnail and safe-area checks; crop assumptions do not transfer.</li></ul>
+<h2>Comparison table: platform text realities</h2>
+<table><thead><tr><th>Platform</th><th>Native text font</th><th>Custom brand type</th><th>Notes</th></tr></thead><tbody><tr><td>Instagram</td><td>the platform&#x27;s own set for captions and stories</td><td>images, story templates, reels</td><td>keep story text clear of roughly the top and bottom 250 px</td></tr><tr><td>TikTok</td><td>in-app text options only</td><td>burned into video frames</td><td>use the platform caption tooling for accessibility</td></tr><tr><td>X</td><td>platform font for posts</td><td>in images</td><td>alt text supported; unicode lookalikes break it</td></tr><tr><td>LinkedIn</td><td>platform font for posts</td><td>in images; document posts rasterize your PDF, keeping typography intact</td><td>document posts are the one native surface where brand type survives</td></tr><tr><td>YouTube</td><td>platform font for titles and descriptions</td><td>thumbnails, end screens, burned-in titles</td><td>thumbnail text must survive phone-scale rendering</td></tr></tbody></table>
+<ul><li>The rule underneath the table: native text is platform typography, and no setting changes it.</li><li>Unicode &quot;fancy fonts&quot; are not fonts; they are lookalike codepoints that screen readers spell out and search cannot index.</li><li>Custom type travels only inside pixels; every graphic or video frame bakes the font in, which is why templates matter more here than anywhere else.</li><li>Design-tool brand kits (Canva teams, Figma libraries) need the same license review as any other deployment; team seats and template use are licensed uses.</li><li>Crops differ per surface: a 1080x1350 design re-cropped to 1080x1920 moves every text block relative to the platform UI.</li></ul>
+<h2>Worked example: a developer-tools quote card system</h2>
+<p>Scenario: a developer-tools company posts three times a week (quote cards, tip graphics, release announcements) produced by one designer and one marketer on an IBM Plex brand system.</p>
+<ul><li>Two templates only: a 1080x1350 quote card and a 1080x1920 story frame, both built in the design tool with locked text styles.</li><li>Quote style: IBM Plex Sans 600 at 56 to 64 px, leading 1.15, maximum twelve words; attribution in IBM Plex Mono 400 at 24 px with the author handle.</li><li>Padding: 96 px all around; text inside a central safe zone that survives both feed and story crops.</li><li>Scrim: a solid brand-color panel behind all text; photography never sits directly under type.</li><li>Thumbnail test: both templates previewed at 200 px wide before publishing; the quote must read at that size or words are cut.</li><li>Alt text: the full quote in the alt field, written at publish time; the caption repeats it as plain text for search.</li><li>Localization reserve: one extra line of vertical room in the quote block; German and Vietnamese translations overflow English in both directions.</li><li>Week-one catch: a 300-weight display variant chosen for style dissolved at feed size after platform compression; the style lock moved to weight 600 permanently.</li><li>Release announcements: the version number in Plex Mono, changelog highlights in the caption, never in the image; the image says the version and the date.</li><li>Carousel option: one idea per card, the same headline style, page numbers in tabular figures; carousels are typography at presentation scale.</li><li>Video tip posts: burned-in titles at 60 px equivalent inside safe areas, plus platform caption files; the burned-in text is decoration, the captions are the content.</li><li>Aftermath: three post types, two templates, zero ad-hoc fonts, and an archive folder that carries source files with font versions noted.</li></ul>
+<h2>Field notes</h2>
+<ul><li>The scroll is the adversary: a graphic gets a fraction of a second, and the headline either wins at thumbnail size or does not exist.</li><li>Compression is universal; platforms re-encode aggressively, and thin strokes with low-contrast text are the casualties.</li><li>Safe areas are observed crops, not official specs; check each placement because story, feed, and grid crop differently.</li><li>One message per graphic is a typography constraint before it is a marketing rule; thumbnail type cannot carry two ideas.</li><li>Burned-in captions fail accessibility and localization at once; platform caption files exist, so use them.</li><li>Video titles live in a smaller, cropped, moving context; size for the smallest surface the video ships to.</li><li>Unicode lookalikes are the most tempting and most harmful shortcut in social type.</li><li>Profile grids crop to squares on some surfaces; center-critical text stays central.</li><li>Link previews override your typography with the platform&#x27;s; the card image is the only controllable surface.</li><li>Story text tools change yearly; templates in your design tool outlive platform feature churn.</li><li>Hashtag strings are metadata, not display text; never bake them into graphics.</li><li>Alt text is part of publishing, not an afterthought; it belongs in the checklist step, not the apology.</li><li>Dark mode inverts platform chrome; text near UI elements can lose its assumed contrast.</li><li>Two-person review (creator plus checker) catches thumbnail failures that the creator&#x27;s full-size screen hides.</li><li>Translated headlines grow or shrink unpredictably; templates reserve room and the review re-runs per market.</li><li>Quote cards with more than about twelve words become articles; cut the quote or make the post a caption.</li><li>Fonts in team design tools drift when one member has a local font the others lack; brand kits point at shared, licensed files.</li><li>The graphics library is a type specimen over time: when a template stops winning, audit its typography before its content.</li></ul>
+<h2>Quick reference: social type floors</h2>
+<ul><li>One message per graphic; six-word headline target.</li><li>Design for 150 to 300 px rendering; test at that width.</li><li>Weights 500 to 700 over imagery; thin faces turn to lint.</li><li>Scrim or panel behind text, always; contrast checked at the worst point of the image.</li><li>Padding classes around 96 px; story text clear of roughly 250 px top and bottom.</li><li>Alt text carries every word in the image.</li><li>No unicode lookalike fonts, ever.</li><li>Real caption files for video; burned-in text is decoration.</li><li>Templates with locked styles; new styles go through brand review.</li><li>Export presets per platform; no manual re-crops.</li><li>Thumbnail test at 200 px before publishing.</li><li>Translation overflow re-check per market.</li><li>Source files archived with font versions.</li><li>Version numbers and data strings in a mono voice; prose in the brand sans.</li><li>Carousels: one idea per card, consistent headline style, tabular page numbers.</li><li>The caption repeats what the image says; search and screen readers never see pixels.</li><li>Headline weight 600 to 700; medium is the floor, thin is invisible.</li><li>Quote cards cap at about twelve words; longer quotes become carousels or captions.</li><li>Attribution and handles in a distinct style; mono works for technical brands.</li><li>Release and data graphics put numbers in tabular figures even at display sizes.</li><li>The two-person review checks thumbnail legibility, contrast, safe areas, and alt text together.</li><li>Platform-native text never pretends to be brand type; bios and captions stay platform.</li><li>Story frames tested in both feed and story placement before publishing.</li><li>Video titles sized for the smallest target surface first.</li><li>Every template names its fonts and weights in the file description.</li><li>The archive stores the exported file and the source file together.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="branding-and-logotypes.html">Branding and logotypes</a></li><li><a href="../accessibility/contrast-and-hierarchy.html">Contrast and hierarchy</a></li><li><a href="chat-and-messaging-ui.html">Chat and messaging UI</a></li><li><a href="../workflow/presenting-to-stakeholders.html">Presenting to stakeholders</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

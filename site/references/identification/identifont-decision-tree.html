@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Identifont Decision Tree - Fontlore</title>
+<meta name="description" content="How to identify a typeface from memory or description using Identifont&#x27;s question-based approach: when to use it, how its question paths work, how to answer...">
+<meta property="og:title" content="Identifont Decision Tree - Fontlore">
+<meta property="og:description" content="How to identify a typeface from memory or description using Identifont&#x27;s question-based approach: when to use it, how its question paths work, how to answer...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Identification</span></nav>
+<article class="doc">
+<h1>Identifont Decision Tree</h1>
+<p>What this reference covers: How to identify a typeface from memory or description using Identifont&#x27;s question-based approach: when to use it, how its question paths work, how to answer letterform questions accurately, and how to convert its output into verified candidates.</p>
+<p>When there is no image, only a memory of &quot;that serif with the funny g&quot;, automated identifiers are useless. Question-based identification is the tool for that situation, and it is also excellent training for reading letterforms deliberately.</p>
+<h2>When there is no image</h2>
+<ul><li>Someone describes a font from a remembered poster, book, or old website; the artifact is gone but the impression remains.</li><li>A stakeholder asks for &quot;something like the font in that banking ad&quot; with only a screenshot from memory to offer.</li><li>You can see the font in the real world but cannot capture it (signage behind glass, a bus going past): note the answers to the key questions on the spot.</li><li>In all these cases the workflow inverts: instead of pixels feeding a matcher, your observations feed a question tree, and your honesty about uncertainty determines the outcome.</li></ul>
+<h2>How Identifont works</h2>
+<ul><li>Identifont offers several identification modes: the main decision tree of yes/no questions, identification by similarity to a named font, by designer or publisher, and by name partials.</li><li>The main tree asks about structural features in a designed order: serif or sans first, then weight, width, and the shapes of specific letters.</li><li>Each answer prunes the candidate space; the tree ends with a short list of families matching all answers.</li><li>The question order is pedagogically useful: it teaches which features actually discriminate between families, in contrast to the vague adjectives most people use.</li></ul>
+<h2>Answering letterform questions well</h2>
+<ul><li>The g question is usually first or near first: single-story (like Futura) or double-story (like Times)? Answer from memory of the actual shape, not from genre assumption.</li><li>The a question follows the same logic: double-story a is the norm in serifs; geometric sans faces often use single-story forms.</li><li>Questions about R (straight or curved leg), Q (tail shape), G (spur or no spur), and terminals (ball, beak, sheared) require recalling details most people never consciously saw.</li><li>When genuinely unsure, choose the &quot;not sure&quot; option if offered rather than guessing; a wrong answer prunes the correct font silently.</li><li>If the memory is fuzzy on everything, identify by similarity instead: name a well-known font it resembles and let the similarity mode generate candidates.</li></ul>
+<h2>Converting output into candidates</h2>
+<ul><li>The result list is a candidate set, not an answer: pull specimens for each and compare against the remembered features.</li><li>Search the candidates on Fonts In Use and in foundry catalogs; seeing the font used in context often triggers recognition that specimens alone do not.</li><li>For shortlisted candidates, run the standard verification: diagnostic letters, metrics impression, era plausibility (a font released in 2015 cannot be the 1998 poster).</li><li>Feed any surviving candidate into the normal identification documentation workflow with an honest confidence level; memory-based identification rarely rises above &quot;probable&quot;.</li></ul>
+<h2>Training value</h2>
+<ul><li>Running the tree on fonts you know (test yourself on Helvetica, then on Garamond) calibrates your eye and reveals which features you misjudge.</li><li>The question vocabulary (terminals, apertures, spur, tail, stress) transfers directly to manual letterform analysis; learn it once and use it everywhere.</li><li>Teams that run the tree together converge on shared vocabulary, which shortens future reviews.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Write down every verifiable fact first: era, medium, brand context, serif or sans, weight impression.</li><li>Run the Identifont tree, answering honestly and using &quot;not sure&quot; freely.</li><li>Take the resulting shortlist to specimens; compare the remembered features one by one.</li><li>Search Fonts In Use for each plausible candidate to test recognition in context.</li><li>Verify the survivor at the foundry, then document with a confidence level appropriate to memory-based evidence.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Guessing at letterform questions instead of admitting uncertainty; the tree punishes confident wrong answers.</li><li>Assuming the first result is the answer without specimen comparison.</li><li>Using the tree when an image exists; automated tools on pixels beat memory on pixels.</li><li>Confusing designer memory with font memory (&quot;it was a Frutiger-like thing&quot; is a similarity answer, not a tree answer).</li><li>Forgetting era constraints and shortlisting fonts that did not exist when the artifact was made.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Image available: use image tools; the tree is for memory and description only.</li><li>More than half the answers are &quot;not sure&quot;: switch to similarity mode or gather better observations.</li><li>The tree&#x27;s shortlist contains fewer than three families: verify each thoroughly before expanding the search manually.</li><li>Memory-based identification never ships without an explicit &quot;probable&quot; or lower confidence marking in the record.</li></ul>
+<h2>Comparison table</h2>
+<p>Identifont&#x27;s identification modes and when each applies:</p>
+<table><thead><tr><th>Mode</th><th>You provide</th><th>Best when</th><th>Watch out for</th></tr></thead><tbody><tr><td>Main decision tree</td><td>Yes or no answers about letterform features</td><td>A real memory of shapes exists</td><td>Confident wrong answers prune the truth silently</td></tr><tr><td>By similarity</td><td>The name of a font it resembles</td><td>&quot;Like Frutiger but warmer&quot; is all you have</td><td>The anchor drives the whole list; choose it with care</td></tr><tr><td>By designer or publisher</td><td>A designer or foundry name</td><td>The attribution memory is strong</td><td>People remember shapes far better than credits</td></tr><tr><td>By name partials</td><td>A fragment of the name</td><td>A brand or file name survived</td><td>Partials bury the true candidate among near neighbors</td></tr></tbody></table>
+<p>The modes stack: run the tree for structure, then similarity mode to widen the net when the shortlist feels wrong. No mode verifies anything; every output is a candidate list that owes you specimens, an era check, and a confidence tier.</p>
+<p>Mode choice is itself evidence about your memory. A stakeholder who answers tree questions fluently has a real visual memory; one who can only produce adjectives (&quot;clean&quot;, &quot;modern&quot;, &quot;friendly&quot;) should be routed to similarity mode immediately, because tree answers built from adjectives are genre guesses in disguise.</p>
+<p>Era matters more here than anywhere else in identification: a candidate that did not exist when the artifact was made is not a candidate, no matter how well it fits the description. Collect the artifact&#x27;s date, medium, and market before the first question.</p>
+<p>Budget the questions too: every &quot;not sure&quot; spends one, and a tree run where half the answers are guesses is not a run at all. Ten honest answers beat thirty guessed ones every time.</p>
+<h2>Worked example</h2>
+<p>A stakeholder remembers a 2003 annual report cover: &quot;a friendly serif with big old-style numerals&quot;. No file survives. The tree, run honestly:</p>
+<ol><li>Serif or sans: serif, moderately heavy.</li><li>Contrast and serifs: moderate contrast, sturdy bracketed serifs; nothing hairline, nothing slab-like.</li><li>Width: normal, not condensed; the memory insists the cover &quot;felt calm, not squeezed&quot;.</li><li>g question: double-story, remembered clearly because the lower loop looked generous.</li><li>Numerals: old-style by default; the 3 and the 5 descended below the baseline in the remembered image.</li><li>x-height: large, &quot;almost sans-like&quot; in the stakeholder&#x27;s words.</li><li>Terminals and stress: not sure; answered honestly rather than guessed.</li></ol>
+<p>The shortlist comes back led by Georgia, with several book serifs behind it. The era check decides: Georgia shipped with core web fonts and Microsoft products from 1996, so a 2003 report could plausibly use it, and Georgia&#x27;s signature default old-style numerals match the memory&#x27;s strongest detail. Merriweather, whose large x-height also fits the profile, dies on era alone: it did not exist until 2011. Confidence lands at probable, the honest ceiling for memory-based identification, and the record names its own confirmation bar: finding the artifact itself.</p>
+<p>What kept the case honest: the stakeholder used &quot;not sure&quot; once instead of performing confidence; the strongest memory detail outweighed the vaguest; and the era check eliminated a candidate that two glyph impressions would have waved through.</p>
+<p>A second case, similarity mode, because the tree failed: a designer remembers a 2010s tech blog&#x27;s body face as &quot;Roboto but friendlier&quot;, and half the tree answers are &quot;not sure&quot;. Roboto goes in as the similarity anchor, and the returned neighbors are all open humanist sans faces. The break comes from context instead of letterforms: an archived copy of the blog settles it, because the page CSS declared Source Sans Pro from Google&#x27;s serving all along. Confidence: confirmed, and the record notes the lesson plainly, that a forced tree run is worth less than an honest similarity anchor plus a provenance check.</p>
+<p>Both cases share the same ending: outputs converted into candidates, candidates verified against evidence that exists outside anyone&#x27;s memory, and a confidence tier that admits what the method cannot prove.</p>
+<p>The first case run carelessly, for contrast:</p>
+<ul><li>Contrast guessed as &quot;high, probably&quot; because the stakeholder wanted to sound helpful; the shortlist fills with didones and loses Georgia.</li><li>Numerals answered as lining because old-style &quot;seems unlikely for a corporate report&quot;; the single strongest memory detail gets discarded.</li><li>Era skipped because the tree feels authoritative; Merriweather survives and steals the case on the strength of a large x-height.</li></ul>
+<h2>Field notes</h2>
+<p>Observations from running the tree on real memory-based cases:</p>
+<ul><li>People remember the serif-versus-sans split and the g form best; terminals and stress are almost never consciously seen. Ask the g question early and let it anchor the rest.</li><li>Numerals are underrated anchors: old-style versus lining, a flagged 1, an open 4. Anyone who noticed a numeral detail noticed something reliable.</li><li>The tree punishes genre assumptions. Someone who &quot;knows&quot; it was a geometric sans will answer the a question from the genre, not the memory; have them sketch the letter from memory first.</li><li>Similarity mode with a well-chosen anchor (Helvetica for grotesques, Frutiger for humanist sans, Garamond for old-style serifs) beats a half-guessed tree more often than not.</li><li>Treat &quot;bold-ish&quot; as a range, not a value; false precision on weight prunes real candidates.</li><li>Write down every answer with its certainty level; when the shortlist fails, the least-certain answer is the first one to flip.</li><li>Run the tree on fonts the team knows (Helvetica, then Garamond, then Inter) as a calibration exercise; it trains the vocabulary and exposes which features everyone misjudges.</li><li>Attribution memory is the least reliable input; &quot;it was a Frutiger thing&quot; is a similarity answer and should route there directly.</li><li>When two tree runs disagree (same person, different day), believe neither; the honest conclusion is that the memory is not load-bearing.</li><li>Regional and market context prune hard: a face sold only in one country&#x27;s domestic market is unlikely on another country&#x27;s poster.</li><li>Timebox memory-based hunts; forty minutes of tree and similarity usually exhausts what memory can give, and beyond that only the artifact itself moves the case.</li><li>Old samples favor old candidates: the longer ago the artifact, the more the shortlist skews toward classics, and a modern hit list is usually a sign of bad answers.</li><li>Devices corrupt memories: what someone remembers from a low-resolution phone photo of a poster is the rendering, not the typeface; ask where and how they saw it.</li><li>Composite memories are the hardest cases: two similar fonts remembered as one; when a description contradicts itself mid-sentence, suspect a blend and split it.</li></ul>
+<h2>Quick reference</h2>
+<p>The question sequence that matters, with anchor examples that keep answers honest:</p>
+<ol><li>Serif or sans: the first split; wrong here and everything downstream is noise.</li><li>Contrast: near-monoline, moderate, or extreme; Futura, Georgia, and Playfair Display span the range.</li><li>Weight and width: heavy or light; condensed, normal, or extended.</li><li>g: single-story like Futura or double-story like Georgia; the single most discriminating question.</li><li>a: single-story or double-story; finished with a tail or clean.</li><li>R: straight, kicked, or curved leg.</li><li>G: spur or no spur.</li><li>Q: tail inside, outside, straight, or curled.</li><li>Terminals: ball, beak, sheared, or flat cuts.</li><li>Numerals: lining or old-style; the 1 flagged or bare; the 0 narrower than the O or not.</li></ol>
+<p>Answer rules: answer from the remembered shape, never from the genre; use &quot;not sure&quot; freely and record where you used it; and treat every answer as a claim you will defend at specimen time. Run the sequence on paper before opening any reference site; the discipline is writing answers down, not knowing them.</p>
+<p>When the shortlist comes back empty, do not answer harder: loosen the two least-certain answers and re-run, or switch to similarity mode. And when it comes back huge, tighten the answers you were most sure about; a list of forty families means the tree learned nothing.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="manual-letterform-analysis.html">Manual letterform analysis</a></li><li><a href="identification-workflow-overview.html">Identification workflow overview</a></li><li><a href="verifying-an-identification.html">Verifying an identification</a></li><li><a href="documenting-identification-results.html">Documenting identification results</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

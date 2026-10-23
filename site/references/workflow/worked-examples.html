@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Worked Examples - Fontlore</title>
+<meta name="description" content="Four complete font-selection walks using the Fontlore workflow end to end: a B2B SaaS dashboard, an editorial long-read magazine, a bilingual Hindi-English g...">
+<meta property="og:title" content="Worked Examples - Fontlore">
+<meta property="og:description" content="Four complete font-selection walks using the Fontlore workflow end to end: a B2B SaaS dashboard, an editorial long-read magazine, a bilingual Hindi-English g...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Workflow</span></nav>
+<article class="doc">
+<h1>Worked Examples</h1>
+<p>What this reference covers: Four complete font-selection walks using the Fontlore workflow end to end: a B2B SaaS dashboard, an editorial long-read magazine, a bilingual Hindi-English government service site, and an artisan bakery brand identity. Each walk shows the brief, the derived constraints, the hard filters, the shortlist with rejection reasons, the final pick with pairing, the license check, and the implementation notes.</p>
+<p>Every example follows the same spine: constraints before fonts, hard filters before taste, verification before commitment. Read them as decision records; the goal is not to copy the picks but to copy the reasoning, which is reusable when your brief differs.</p>
+<h2>Example 1: B2B SaaS dashboard with dense tables</h2>
+<p>The brief: an analytics dashboard for a 14-person team, tables everywhere, IDs and currency values, one frontend, no budget approved for fonts.</p>
+<p>Constraints derived from the brief:</p>
+<ul><li>Latin only at launch, with no near-term markets on the roadmap.</li><li>Web only; no app, no print, no email embedding in scope.</li><li>Zero budget, so open licenses only.</li><li>Long sessions reading small dense text, so small-size legibility matters more than display character.</li><li>Heavy numeral use requiring column alignment, which means real tabular figures.</li><li>Dark and light themes both required.</li></ul>
+<p>Hard filters applied:</p>
+<ul><li>License must be OFL or Apache.</li><li>Tabular numerals (the tnum feature) must exist in the actual file, not the catalog copy.</li><li>At least regular, medium, and semibold weights; variable preferred.</li><li>Proven verifiable upstream source.</li></ul>
+<p>Shortlist with rejections:</p>
+<ul><li>Inter: kept. Strong tabular numerals, variable, excellent small-size legibility, permissive license.</li><li>IBM Plex Sans: kept. True tabular figures, neutral-but-distinct voice, deep weight range.</li><li>Source Sans 3: kept. Solid tables and a humanist voice, slightly warmer than the brief asked for.</li><li>SF Pro: rejected. Apple&#x27;s system font; not licensed for self-hosting on arbitrary web products.</li><li>Roboto: rejected. Reliable but visually defaults the product; the brief asked for a considered identity.</li><li>Lato: rejected. Tabular-numeral support is missing, which fails a hard filter for this brief.</li></ul>
+<p>Final pick and pairing: Inter for all UI and table text (400, 500, 600) plus JetBrains Mono for IDs, codes, and raw values.</p>
+<ul><li>The mono face doubles as a data-integrity signal: monospace means &quot;copy this value&quot;.</li><li>Weights beyond semibold were deliberately left out of scope to keep the payload small.</li></ul>
+<p>License check result: Inter is SIL OFL 1.1 in its upstream repository; JetBrains Mono is OFL 1.1. Bundling and self-hosting permitted, no pageview tiers, license texts stored with the files per the due-diligence reference.</p>
+<p>Implementation notes:</p>
+<ul><li>font-variant-numeric: tabular-nums on every table and metric, set once in the tokens.</li><li>13-14px base for dense tables at 1.3-1.4 line-height; larger for narrative panels.</li><li>Load via pinned Fontsource variable packages; latin subset only.</li><li>Test with real data: negative currency, long IDs, localized decimal separators.</li></ul>
+<h2>Example 2: Editorial long-read magazine site</h2>
+<p>The brief: a weekly long-form publication, 4,000-word features, strong brand personality, an advertising-free reading experience.</p>
+<p>Constraints derived from the brief:</p>
+<ul><li>Latin plus Vietnamese on the 12-month roadmap; both must work day one or be a documented, planned addition.</li><li>Web and static page surfaces only.</li><li>Small budget, with one paid family allowed if justified.</li><li>Display and body roles with distinct voices; italics essential for editorial tone.</li><li>Reading comfort at 1,000-word stretches is the success metric.</li></ul>
+<p>Hard filters applied:</p>
+<ul><li>Full Vietnamese coverage in every shipped file, verified in the files, not just the catalog claim.</li><li>True italics, not sloped romans.</li><li>Optical sizing or a proven display-to-text range.</li><li>License compatible with a reader-funded site.</li></ul>
+<p>Shortlist with rejections:</p>
+<ul><li>Fraunces: kept for display. Variable with opsz, SOFT, and WONK axes; wonky warmth at display sizes.</li><li>Newsreader: kept for text. Designed for long-form reading with a real optical-size axis and true italics.</li><li>Source Serif 4: kept as the alternative body face; variable, opsz, Vietnamese support.</li><li>Playfair Display: rejected. Overused for premium-editorial, and its high-contrast didone strokes fatigue at long-read text sizes.</li><li>PT Serif: rejected. Static files only; no optical sizing and a weaker Vietnamese story.</li><li>Lora: rejected as primary for being the category&#x27;s safe default; kept as a fallback reading face.</li></ul>
+<p>Final pick and pairing: Fraunces for headlines and pull quotes; Newsreader for body text and captions.</p>
+<ul><li>The two faces share editorial temperament (warm, slightly old-style) while occupying clearly separated roles.</li><li>This is the one-voice-per-role discipline: display sings, text disappears.</li></ul>
+<p>License check result: both families are SIL OFL 1.1 in the google/fonts repository; italics and all axes verified in the actual files rather than catalog copy; the evidence chain is recorded in the manifest.</p>
+<p>Implementation notes:</p>
+<ul><li>font-optical-sizing: auto, so opsz follows the rendered size.</li><li>Fraunces at SOFT 0 and WONK 0 for restraint; WONK 1 reserved for section openers.</li><li>Body at 1.125-1.25rem, 1.6 line-height, 60-70ch measure.</li><li>Vietnamese strings reviewed by a native reader before launch; latin and vietnamese subsets both shipped.</li></ul>
+<h2>Example 3: Hindi and English bilingual government service site</h2>
+<p>The brief: a public services portal, Hindi and English of equal importance, a huge audience on low-end Android devices, procurement that requires open-source fonts only.</p>
+<p>Constraints derived from the brief:</p>
+<ul><li>Devanagari plus Latin with equal first-class treatment; neither script is a fallback.</li><li>OFL-only, stated as a procurement requirement, so license class is a hard filter.</li><li>Web on slow networks; payload discipline matters.</li><li>Accessibility commitments including the text-spacing criterion.</li><li>A strictly neutral voice, appropriate for government.</li></ul>
+<p>Hard filters applied:</p>
+<ul><li>OFL-1.1 exactly, per procurement.</li><li>Full Devanagari conjunct coverage verified in the files.</li><li>At least 400, 500, 600, and 700 weights.</li><li>A single-family or matched-family system, so Hindi and English pages share one voice.</li></ul>
+<p>Shortlist with rejections:</p>
+<ul><li>IBM Plex Sans Devanagari plus IBM Plex Sans: kept. A matched family system, consistent weights, designed together for co-rendering.</li><li>Noto Sans Devanagari plus Noto Sans: kept. Maximum coverage and long-term maintenance, deliberately neutral voice.</li><li>Mukta: kept. A lighter single-family alternative covering Devanagari and Latin.</li><li>Baloo 2: rejected for the core system; its rounded warmth fights the neutrality requirement, noted as the choice for public campaign pages.</li><li>Mangal and Nirmala UI: rejected. Proprietary Windows system fonts; no redistribution rights.</li><li>Kohinoor Devanagari: rejected. Commercial family, incompatible with the procurement constraint.</li></ul>
+<p>Final pick and pairing: IBM Plex Sans Devanagari for Hindi text, IBM Plex Sans for Latin, with Noto Sans Devanagari as the declared fallback in the stack.</p>
+<ul><li>One foundry system keeps Hindi and English feeling like one product.</li><li>The fallback is named in the stack and in the register, so it is a decision, not an accident.</li></ul>
+<p>License check result: IBM Plex families are SIL OFL 1.1; Noto Sans Devanagari current releases are OFL 1.1, while early Noto releases were Apache-2.0, so the deployed version is pinned and recorded per the due-diligence reference.</p>
+<p>Implementation notes:</p>
+<ul><li>html lang set per page so the correct family leads the stack.</li><li>Devanagari line-height at 1.6 or taller to clear matras above and below the shirorekha.</li><li>unicode-range subsetting so English-only pages never download the Devanagari file.</li><li>Test strings covering conjuncts, nukta forms, and candrabindu, reviewed with native readers.</li><li>WCAG 1.4.12 text-spacing verified, because Devanagari tolerates forced spacing worse than Latin.</li><li>Low-end device testing under throttled network conditions.</li></ul>
+<h2>Example 4: Artisan bakery brand identity</h2>
+<p>The brief: a neighborhood bakery with a new brand, packaging and shelf presence, menus, a small website, essentially no font budget, and a personality that should read handmade rather than corporate.</p>
+<p>Constraints derived from the brief:</p>
+<ul><li>Print packaging and web both in scope, with packaging as the technically harder surface.</li><li>Zero budget, stated firmly.</li><li>Warm, slightly nostalgic personality.</li><li>Ingredient labels need tiny-size legibility and legal clarity.</li><li>Final artwork goes to a print vendor as PDF.</li></ul>
+<p>Hard filters applied:</p>
+<ul><li>OFL only, for the simplest license story on a brand asset that will live for a decade.</li><li>A display face with genuine character, not just &quot;a serif&quot;.</li><li>A durable workhorse for labels and body.</li><li>Files verified at upstream sources before adoption.</li></ul>
+<p>Shortlist with rejections:</p>
+<ul><li>Yeseva One: kept. High-personality display serif, one weight, warm rather than corporate.</li><li>Karla: kept for labels, menus, and web body. Variable weight axis, sturdy at small sizes, quirky without whimsy.</li><li>DM Serif Display: kept as the alternative display; more conventional, safer if the client balks at Yeseva One&#x27;s character.</li><li>Abril Fatface: rejected. Poster-didone drama competes with product photography on packaging.</li><li>Lobster and Pacifico: rejected. Script defaults with dated, template-era associations.</li><li>Recoleta: rejected. Commercial, and the zero-budget constraint is real; recorded as the paid upgrade path if the brand grows.</li><li>Clash Display: rejected. Reads contemporary-tech, the wrong temperature for a bakery.</li></ul>
+<p>Final pick and pairing: Yeseva One for the wordmark support, packaging headlines, and hero moments; Karla for ingredient labels, menus, and all web text.</p>
+<ul><li>One loud voice, one reliable voice, no third opinion.</li><li>The single weight of Yeseva One is treated as a feature: it forces restraint.</li></ul>
+<p>License check result: both families are SIL OFL 1.1 on Google Fonts, verified in the google/fonts repository with license copies stored in the brand asset folder; packaging embedding is permitted by the OFL.</p>
+<p>Implementation notes:</p>
+<ul><li>Display used only where it can breathe; never below 20px equivalents.</li><li>Ingredient labels and legal text always Karla, at 6-8pt on packaging, tested on actual print proofs.</li><li>Final print artwork outlined at handoff, which the OFL permits, while the editable source keeps live fonts.</li><li>Shelf test at one and two meters before approval.</li><li>Web uses the same two families so the site and the shelf match.</li></ul>
+<h2>Patterns across the examples</h2>
+<ul><li>Constraints killed more candidates than taste did; in all four walks the hard filters removed roughly half the shortlist before aesthetics were discussed.</li><li>Pairings worked when the two faces shared temperament but not role; matching role is what produces the two-display-faces problem.</li><li>The license check was never a formality: example 3 changed the font choice entirely, and example 4 recorded an upgrade path instead of pirating convenience.</li><li>Every pick named its fallback and its substitution plan; fonts are living dependencies, not one-time decisions.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>If the constraint sheet would have rejected the pick, the pick is wrong, however good it looks in a specimen.</li><li>A pairing needs a reason to exist; if either face could be swapped without the design changing, the pairing is decorative.</li><li>Zero-budget briefs get the best OFL faces and a documented commercial upgrade path, never a trial font in production.</li><li>Bilingual systems are picked as systems; evaluating the Latin face alone fails the brief.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="brief-to-constraints.html">Brief to constraints</a></li><li><a href="research-workflow.html">Research workflow</a></li><li><a href="testing-and-comparing-shortlists.html">Testing and comparing shortlists</a></li><li><a href="../selection/scoring-and-shortlisting.html">Scoring and shortlisting</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

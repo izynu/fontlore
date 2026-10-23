@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Noto and SIL Fonts - Fontlore</title>
+<meta name="description" content="The two workhorse sources for script coverage: Google&#x27;s Noto project and SIL International&#x27;s font catalog. It covers how each project is organized, when to r...">
+<meta property="og:title" content="Noto and SIL Fonts - Fontlore">
+<meta property="og:description" content="The two workhorse sources for script coverage: Google&#x27;s Noto project and SIL International&#x27;s font catalog. It covers how each project is organized, when to r...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Sourcing</span></nav>
+<article class="doc">
+<h1>Noto and SIL Fonts</h1>
+<p>What this reference covers: The two workhorse sources for script coverage: Google&#x27;s Noto project and SIL International&#x27;s font catalog. It covers how each project is organized, when to reach for which, and how to use them to fill coverage gaps that mainstream families cannot.</p>
+<p>When a project needs scripts beyond polished Latin, most commercial families fail you. Noto and SIL fonts exist precisely for this situation: Noto aims at uniform coverage across every script, while SIL publishes literacy-focused fonts with deep extended Latin, IPA, and minority-language support.</p>
+<h2>The Noto project structure</h2>
+<ul><li>Noto&#x27;s goal is famously &quot;no more tofu&quot;: a family for every script, with matching weights and consistent metrics so mixed-script text does not lurch between styles.</li><li>The project is organized per script. Historically you picked Noto Sans Devanagari, Noto Sans Thai, Noto Sans Hebrew, and so on, each a separate family with its own releases.</li><li>Development happens in per-script repositories under the notofonts GitHub organization, with releases, issue trackers, and QA per script family.</li><li>Newer unified builds merge many scripts into single variable fonts that share a design language across scripts; check current releases because this area evolves quickly.</li><li>Noto Sans and Noto Serif anchor the Latin, Greek, and Cyrillic core; Noto Sans Mono covers code; Noto Emoji and Noto Color Emoji cover symbols.</li><li>Variable builds typically expose weight and width, letting one file serve a whole UI system.</li></ul>
+<h2>Using Noto for coverage</h2>
+<ul><li>Treat Noto as the fallback layer of record: define your primary family for each script, then let Noto cover the long tail of unexpected characters and languages.</li><li>Because per-script families share metrics and weight structure, pairing Noto Sans Devanagari with your Latin sans is far less jarring than pairing two unrelated families.</li><li>Check shaping quality in a real shaping engine, not a design tool preview. Noto&#x27;s per-script repos ship test suites, and complex scripts (Indic, SEA, Arabic) must be tested with their actual shaping rules.</li><li>For CJK, Noto Sans JP/KR/SC/TC derive from Source Han fonts, jointly developed with Adobe. Coverage is excellent; file size and subsetting strategy become the real design problem.</li></ul>
+<h2>The SIL catalog</h2>
+<ul><li>SIL International is a language-development non-profit and the author of the SIL Open Font License itself. Its fonts are OFL-licensed and free for any use including commercial.</li><li>Gentium Plus, by Victor Gaultney, is a graceful serif with exceptional extended Latin and IPA coverage, built for literacy and linguistics work.</li><li>Charis SIL and Doulos SIL both descend from Matthew Carter&#x27;s Charter design; Charis is the text workhorse, Doulos the companion with a more traditional look. Both carry deep diacritic coverage.</li><li>Andika, also by Victor Gaultney, is designed explicitly for beginning readers: large x-height, open apertures, and letterforms that match how children are taught to write.</li><li>Scheherazade New is SIL&#x27;s Arabic entry, a traditional Naskh with wide coverage and support for OpenType and Graphite smart font features.</li><li>SIL fonts frequently support Graphite in addition to OpenType, which matters in niche rendering environments (notably some language-software stacks) where OpenType coverage is thin.</li></ul>
+<h2>When to choose SIL over Noto</h2>
+<ul><li>Minority languages and extended Latin: SIL&#x27;s diacritic engineering is deeper for unusual combinations (tone marks, double diacritics, rare letters).</li><li>Literacy and education contexts: Andika exists specifically because beginner readers need unambiguous letterforms that most text faces do not provide.</li><li>IPA and linguistic publishing: Gentium Plus is the de facto standard for linguistics documents.</li><li>Arabic with traditional flavor: Scheherazade New offers a classical Naskh where modern Arabic sans faces would look wrong.</li><li>For a consistent product-wide system, Noto usually wins; for script depth in specific languages, SIL often wins. Many projects use both.</li></ul>
+<h2>Workflow</h2>
+<ol><li>Inventory every script and language your content touches, including edge cases like IPA, transliteration, and archaic characters.</li><li>Pick a primary family per script from your normal sourcing process.</li><li>For gaps, search Noto first for structural consistency, then SIL for diacritic and literacy depth.</li><li>Test real content through a real text stack: shaping, fallback order, line breaking, and numeral contexts.</li><li>Record which family covers what, so future maintainers know why Noto Sans Armenian sits in the stack.</li></ol>
+<h2>Common mistakes</h2>
+<ul><li>Assuming one &quot;global&quot; family covers everything equally well; every multilingual family has strong and weak scripts.</li><li>Testing coverage in a design tool only, where fallback silently hides shaping failures.</li><li>Forgetting Noto Emoji-style symbol fonts when content includes emoji, then shipping tofu in production.</li><li>Using a literacy font like Andika as a general brand face; it is built for a specific job.</li><li>Mixing too many fallback families, producing ransom-note body text; prefer metric-compatible Noto layers for the tail.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Product UI with unpredictable user content: primary family for Latin, Noto layers for everything else.</li><li>Educational or linguistic publishing: start from SIL (Andika or Gentium Plus), add Noto for remaining scripts.</li><li>Arabic with traditional reading contexts: Scheherazade New over geometric Arabic sans faces.</li><li>If coverage is the whole brief, prioritize the family with the deepest language list in the google/fonts metadata and confirm in specimens.</li></ul>
+<h2>Comparison table: Noto versus SIL</h2>
+<table><thead><tr><th>Dimension</th><th>Noto</th><th>SIL International</th></tr></thead><tbody><tr><td>Mission</td><td>Uniform coverage across every script</td><td>Literacy, linguistics, minority-language depth</td></tr><tr><td>Strength</td><td>Breadth and metric consistency</td><td>Extended Latin, IPA, diacritic engineering</td></tr><tr><td>Organization</td><td>Per-script families plus unified builds</td><td>Focused catalog of text-oriented families</td></tr><tr><td>Rendering</td><td>OpenType shaping</td><td>OpenType plus Graphite smart fonts</td></tr><tr><td>License</td><td>OFL / Apache per project</td><td>OFL (SIL wrote the license)</td></tr><tr><td>Best role</td><td>Fallback layer and multi-script baseline</td><td>Deep coverage for specific languages</td></tr></tbody></table>
+<h2>Named families worth knowing</h2>
+<ul><li>Noto Sans and Noto Serif anchor the Latin, Greek, and Cyrillic core; Noto Sans Mono covers code; use these as the spine of a fallback stack.</li><li>Noto Sans JP, KR, SC, and TC descend from the Source Han project developed jointly with Adobe; coverage is excellent and subsetting strategy becomes the real engineering problem.</li><li>Noto Sans Devanagari, Noto Sans Thai, Noto Sans Hebrew, and Noto Sans Arabic are the per-script workhorses for UI fallback.</li><li>Noto Emoji and Noto Color Emoji cover symbols; monochrome Noto Emoji suits print and single-color UI.</li><li>Noto Sans Math and Noto Sans Symbols plug specific gaps that otherwise produce tofu in scientific or technical content.</li><li>Gentium Plus (Victor Gaultney) is the de facto standard serif for linguistics publishing, with deep IPA and extended Latin coverage.</li><li>Charis SIL and Doulos SIL descend from Matthew Carter&#x27;s Charter design; Charis is the text workhorse, Doulos the more traditional companion.</li><li>Andika, also by Victor Gaultney, is built for beginning readers: large x-height, open apertures, letterforms matching how children are taught to write.</li><li>Scheherazade New provides a traditional Naskh Arabic with wide coverage; Abyssinica SIL covers Ethiopic; Awami Nastaliq covers Nastaliq with Graphite-dependent features, so verify your stack supports it.</li></ul>
+<h2>Worked example: fallback stack for a Hindi-English product</h2>
+<p>Scenario: a government-facing web product runs English UI copy with Hindi content, on a stack where users may paste anything.</p>
+<ol><li>Set the Latin primary deliberately (say IBM Plex Sans), then declare Noto Sans Devanagari explicitly for Devanagari ranges; never rely on generic <code>sans-serif</code> fallback luck.</li><li>Test conjunct forms and matras with real words, not the glyph grid: conjunct clusters, post-base and above-base matras, and the danda character.</li><li>Raise line-height for Devanagari-heavy text; the shirorekha and stacked marks need more vertical room than Latin defaults, commonly 1.5 and up at body sizes.</li><li>Decide the numerals policy: Devanagari digits, European digits, or both, and verify the chosen family offers the forms the content requires.</li><li>Add Noto Sans Mono for code contexts if the product shows any, and Noto Color Emoji if user content can include emoji; missing symbol coverage is the classic late-stage surprise.</li><li>Record per-script coverage in the manifest so the next maintainer knows why each Noto family sits in the stack.</li></ol>
+<h2>Field notes</h2>
+<ul><li>Noto&#x27;s per-script repositories under the notofonts GitHub organization release independently; a fix in one script does not imply anything about another script&#x27;s timeline.</li><li>For CJK, file size is the design problem: pick the region-specific family (JP, KR, SC, TC) and lean on unicode-range subsetting rather than shipping a monolith.</li><li>Graphite support in SIL fonts matters in niche language-software stacks, but most browsers only honor OpenType; a Graphite-only feature will fail silently on the web.</li><li>Using a literacy font like Andika as a general brand face undersells the design and the brand; it is built for a specific job.</li><li>Mixed-script vertical metrics differ; when body text lurches in line height between scripts, check ascender and descender values rather than guessing at line-height hacks.</li></ul>
+<h2>Questions to ask when coverage fails</h2>
+<ul><li>Which code point exactly is failing: is it missing from the font, present but wrongly shaped, or shaped correctly but positioned badly?</li><li>Does the failure reproduce in a real browser with the production font stack, or only in a design tool with its own fallback behavior?</li><li>Is there a Noto family covering the script, and does its weight range match the primary family&#x27;s used weights?</li><li>For minority languages, does SIL have deeper coverage than Noto, and do the required features need Graphite?</li><li>Who on the team can read the script well enough to judge the fix, or can we recruit a native reviewer?</li></ul>
+<h2>Signals to trust</h2>
+<ul><li>Per-script repositories with active issue trackers and releases; Noto&#x27;s development is unusually public for a font project of this size.</li><li>SIL&#x27;s documentation, which explains design intent, coverage decisions, and rendering requirements (OpenType versus Graphite) in plain language.</li><li>Metric compatibility within the Noto per-script families, which is deliberate engineering and the reason they make reliable fallback layers.</li><li>Specimens that show real paragraphs in the target language, which both projects provide in quantity.</li></ul>
+<h2>Signals to distrust</h2>
+<ul><li>The assumption that any one Noto build covers everything equally; per-script quality and coverage vary, and the project says so.</li><li>Coverage counts as quality; a glyph list does not tell you whether shaping rules work in your stack.</li><li>Design-tool previews for complex scripts; they apply private fallback logic that hides what browsers will actually do.</li><li>Treating a literacy or linguistics font as a general-purpose brand face; these designs carry a specific job in their letterforms.</li></ul>
+<h2>Tool notes</h2>
+<ul><li>Render test pages in a real browser with the exact production stack: declare the font-family list precisely and paste real content, including numerals and punctuation.</li><li>For shaping checks, compare against the per-script repository&#x27;s own test data where available; Noto&#x27;s repos ship test suites that encode the tricky cases.</li><li>unicode-range maps in your CSS should mirror the subsets you actually serve; generating them from the font files beats hand-maintaining ranges.</li><li>When CJK payloads matter, measure: subset the family with pyftsubset or use region-specific builds, and record which variant you shipped, because SC and TC files are different products, not translations.</li></ul>
+<h2>Cross-references</h2>
+<ul><li><a href="regional-and-script-catalogs.html">Regional and script catalogs</a></li><li><a href="google-fonts-catalog.html">Google Fonts Catalog</a></li><li><a href="../licensing/open-font-license.html">Open Font License in practice</a></li><li><a href="google-fonts-repository.html">The google/fonts repository</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>

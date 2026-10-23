@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7F1E8">
+<title>Testing Typography Accessibility - Fontlore</title>
+<meta name="description" content="A practical audit procedure for typography decisions: the exact checks to run (zoom, font-size overrides, text-spacing overrides, contrast, forced colors), t...">
+<meta property="og:title" content="Testing Typography Accessibility - Fontlore">
+<meta property="og:description" content="A practical audit procedure for typography decisions: the exact checks to run (zoom, font-size overrides, text-spacing overrides, contrast, forced colors), t...">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../browse.html">Browse</a>
+      <a href="../../browse.html#references">References</a>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav></div>
+</header>
+<main class="container">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="crumb-sep">/</span><a href="../../browse.html#references">References</a><span class="crumb-sep">/</span><span aria-current="page">Accessibility</span></nav>
+<article class="doc">
+<h1>Testing Typography Accessibility</h1>
+<p>What this reference covers: A practical audit procedure for typography decisions: the exact checks to run (zoom, font-size overrides, text-spacing overrides, contrast, forced colors), the tools to run them with, and how to record results so fixes happen. Automation catches a third of the issues; this file is about the human half.</p>
+<h2>The audit in one list</h2>
+<p>Run these on key templates (home, article, form, table, checkout, mobile breakpoint) before sign-off:</p>
+<ol><li>200 percent browser zoom: no loss of content or function (WCAG 1.4.4).</li><li>400 percent zoom at 1280 px viewport: reflows to one column, no horizontal scrolling (1.4.10).</li><li>Browser default font size raised to 24 px (or text-only zoom in Firefox): every text element scales (rem check).</li><li>Text-spacing overrides applied (1.4.12 bookmarklet or snippet): nothing clips or overlaps.</li><li>Contrast audit on real rendered pairs, including states (1.4.3, 1.4.11).</li><li>Grayscale check: hierarchy and links survive without color (1.4.1).</li><li>Forced-colors / high-contrast mode: content remains usable; backgrounds and text remap sanely.</li><li>Keyboard-only pass at high zoom: focus indicators visible and not clipped.</li><li>Screen reader spot check with correct lang attributes: pronunciation and structure sane.</li></ol>
+<h2>Tools for each check</h2>
+<ul><li>Zoom and reflow: browser zoom plus the devtools device toolbar set to a 320 px width; screenshot at 400 percent for the record.</li><li>Font-size overrides: browser settings (raise default size) and Firefox text-only zoom; both in one pass.</li><li>Text spacing: the alphagov text-spacing bookmarklet, or a console snippet setting line-height 1.5em, letter-spacing 0.12em, word-spacing 0.16em, and paragraph margin 2em on all elements. Apply globally, including embeds.</li><li>Contrast: browser extensions and built-in devtools contrast checkers for rendered pairs; token-level scripts for CI; manual sampling over images and gradients.</li><li>Grayscale: devtools rendering emulation (or OS grayscale filters); the point is color-independence of hierarchy.</li><li>Forced colors: Windows High Contrast or the devtools forced-colors emulation; check that text tokens and focus styles remap.</li><li>Screen readers: VoiceOver (macOS/iOS), NVDA (Windows), TalkBack (Android); verify lang switching on multilingual content, not full navigation testing.</li></ul>
+<h2>What to record</h2>
+<ul><li>Per template: pass/fail per check, with screenshots for failures. Screenshots of the 400 percent reflow and the spacing-override state communicate to stakeholders faster than any writeup.</li><li>Per component library: the component list with its smallest supported text size and its contrast pair tokens; this becomes the design system&#x27;s accessibility appendix.</li><li>Open issues filed with the exact reproduction (zoom level, override state, viewport), because these failures are configuration-specific and &quot;works on my machine&quot; arguments are common.</li></ul>
+<h2>Common failure patterns to expect</h2>
+<ul><li>Fixed-height cards clipping text under spacing overrides; the single most common 1.4.12 failure.</li><li>px-locked labels that ignore browser font-size changes while headings scale.</li><li>Focus indicators invisible at 200 percent because they are 1 px outlines on 1 px layouts, or clipped by overflow hidden.</li><li>Placeholder-only form labels at low contrast.</li><li>Tables that scroll horizontally at 400 percent without a logical alternative reading order.</li><li>Multilingual pages failing everything above faster than English (taller scripts + overrides compound).</li></ul>
+<h2>Involving real users</h2>
+<p>Automated and self-testing covers mechanics; real low-vision and dyslexic readers catch usability issues mechanics miss:</p>
+<ul><li>Recruit a handful of participants who use zoom, magnification, or spacing overrides daily; a 30-minute session on your key flows is worth more than another checklist pass.</li><li>Ask them to change their settings first, then use the product; observe where the layout fights their settings.</li><li>Compensate participants; treat findings as design defects, not user error.</li><li>Keep a standing invitation: one recurring session beats an annual audit for catching regressions.</li></ul>
+<h2>Making it routine</h2>
+<ul><li>Fold checks 1-7 into the design-review template as checkbox items with screenshot slots; checks 8-9 into pre-merge QA for changed templates.</li><li>Automate the token-level contrast check and the rem-only lint in CI.</li><li>Re-run the full audit on: new templates, type system changes, dark mode additions, new language launches.</li><li>Version the audit itself; record which tool versions and browser builds were used so failures are reproducible later.</li><li>Keep the corpus and the snippet in the repo next to the tests; the audit is a fixture, and fixtures get version control.</li><li>Pair every new component with its override-state screenshot in the pull request; review without the artifact is rubber-stamping.</li></ul>
+<h2>Common mistakes</h2>
+<ul><li>Running the audit on polished marketing pages only; forms, tables, and checkout fail more and matter more.</li><li>Testing overrides by setting them &quot;a bit&quot;, rather than at the exact 1.4.12 values; the criterion defines the numbers.</li><li>Trusting a contrast extension&#x27;s verdict on gradient or image backgrounds; those need sampled measurement.</li><li>Treating the audit as a release gate only; design-stage checks catch the architecture problems (fixed heights, px type) while they are cheap.</li><li>Never testing forced-colors mode, then discovering the product is a gray-on-gray wall for its users.</li><li>Recording results as prose without screenshots; unverified claims do not drive fixes.</li><li>Treating a passed template as permanently passed; every redesign, dark mode, and language launch resets the clock.</li></ul>
+<h2>Decision rules</h2>
+<ul><li>Any new component: passes checks 1-7 in isolation before it enters the library.</li><li>Any failure on a shipped template: file with screenshot and reproduction settings; block the release only for criteria failures (contrast, reflow, spacing), not for polish.</li><li>Multilingual launch: re-run the full audit on the new language&#x27;s pages; scripts with tall demands fail first.</li><li>Time-boxed audit: prioritize forms, tables, checkout, and one long-form template; that covers most real reading and most real failures.</li></ul>
+<h2>Code notes: the exact override snippet</h2>
+<p>Save as a snippet in DevTools and toggle per template:</p>
+<pre><code class="language-css">/* WCAG 1.4.12 values, verbatim */
+*, *::before, *::after {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+p { margin-bottom: 2em !important; }   /* paragraph spacing: 2x font size */</code></pre>
+<p>Notes for honest results: apply to all elements including embeds; combine with 200 percent zoom for the compound test; remember the values are multiples of each element&#x27;s own font size, which is why em is correct and px is not.</p>
+<p>The alphagov bookmarklet does the same job portably; the snippet&#x27;s advantage is that it lives in version control next to the tests.</p>
+<h2>Comparison table: the nine checks and their tools</h2>
+<table><thead><tr><th>Check</th><th>Criterion</th><th>Tool</th><th>Automation ceiling</th></tr></thead><tbody><tr><td>200 percent zoom</td><td>1.4.4</td><td>Browser zoom, manual pass</td><td>None; behavioral</td></tr><tr><td>400 percent reflow</td><td>1.4.10</td><td>DevTools 320 px width, manual pass</td><td>None</td></tr><tr><td>Font-size preference</td><td>1.4.4</td><td>Browser settings, Firefox text-only zoom</td><td>None</td></tr><tr><td>Spacing overrides</td><td>1.4.12</td><td>Bookmarklet or snippet</td><td>None</td></tr><tr><td>Rendered contrast</td><td>1.4.3, 1.4.11</td><td>DevTools pickers, extensions</td><td>Partial; states and images need humans</td></tr><tr><td>Color independence</td><td>1.4.1</td><td>Grayscale emulation or print</td><td>None</td></tr><tr><td>Forced colors</td><td>1.4.11 territory</td><td>Windows High Contrast, DevTools emulation</td><td>None</td></tr><tr><td>Keyboard at zoom</td><td>2.4.7 and related</td><td>Manual keyboard pass</td><td>None</td></tr><tr><td>Language switching</td><td>3.1.1, 3.1.2</td><td>VoiceOver, NVDA spot check</td><td>None</td></tr></tbody></table>
+<p>One of nine is partially automatable; that is why this file exists next to the token linters.</p>
+<h2>Field notes: an afternoon audit schedule</h2>
+<p>A realistic single-day pass over four templates, run by one person with a second for triage:</p>
+<ul><li>09:00: environment setup; bookmarklet installed, forced-colors emulation verified, screenshot tooling ready.</li><li>09:30: home page; zoom, reflow, spacing, grayscale; file as you go.</li><li>10:30: sign-up or checkout form; contrast of labels, errors, placeholders; keyboard at zoom.</li><li>11:30: dashboard or table template; the worst-offender class; cell heights, truncation, tabular checks.</li><li>13:30: long-form template; measure, leading, overrides, forced colors.</li><li>14:30: mobile browser rerun of everything that failed on desktop; Safari finds its own set.</li><li>15:30: triage; every failure gets component, criterion, screenshot, and reproduction settings.</li><li>16:00: report-out; the two or three architecture-level fixes named, with owners.</li></ul>
+<p>Ten working hours finds the bulk of what matters on a mature codebase; the point of the schedule is that it ends with filed artifacts, not vibes.</p>
+<h2>Worked example: one finding, end to end</h2>
+<p>Finding: the checkout summary card clips the delivery-instructions text under spacing overrides.</p>
+<ol><li>Reproduce: bookmarklet on, 375 px viewport, screenshot showing the fourth line cut mid-word.</li><li>Classify: 1.4.12 failure, component class &quot;summary card&quot;, architecture cause (fixed height set to keep the grid even).</li><li>File: ticket with screenshot, reproduction settings, and the component name; not &quot;spacing looks broken on checkout&quot;.</li><li>Fix: min-height on the card, height removed, grid rows allowed to grow; the default-settings visual barely changes.</li><li>Verify: overrides again, plus 200 percent zoom, plus the longest real instruction text the form allows.</li><li>Promote: the component test suite gains an override-state screenshot so the class of bug cannot return silently.</li></ol>
+<p>The loop from reproduce to promote is the whole point; a finding that ends at &quot;fixed the page&quot; leaves the component armed to fail again elsewhere.</p>
+<h2>Cross-references</h2>
+<ul><li><a href="wcag-baseline-for-type.html">WCAG baseline for type</a></li><li><a href="text-spacing-criterion.html">Text spacing criterion</a></li><li><a href="low-vision-and-zoom.html">Low vision and zoom</a></li><li><a href="accessibility-audit-workflow.html">Accessibility audit workflow</a></li></ul>
+<p>Compiled 2025 as part of the Fontlore project.</p>
+<div class="doc-footer">Part of the Fontlore reference library. <a href="../../browse.html#references">Back to all references</a>.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html"><span>Font</span><span class="brand-accent">lore</span></a>
+      <p>Typeface intelligence for AI agents.<br>MIT licensed. No tracking, no vibes.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Library</h3>
+      <a href="../../browse.html#references">References (95)</a>
+      <a href="../../browse.html#fonts">Fonts (165)</a>
+      <a href="../../browse.html#pairings">Pairings (66)</a>
+      <a href="../../browse.html#tools">Tools (71)</a>
+    </div>
+    <div class="footer-col">
+      <h3>Project</h3>
+      <a href="https://github.com/izynu/fontlore" target="_blank" rel="noopener noreferrer">GitHub repository</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="https://github.com/izynu/fontlore/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>Compiled 2025 as part of the Fontlore project.</span>
+    <span>Created by Zynu (@izynu) &middot; Maintained by Shraddha (@xhraddha)</span>
+  </div>
+</footer>
+</body>
+</html>
